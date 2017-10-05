@@ -15,10 +15,7 @@ public class SemesterProject {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        System.out.println("test");
-        System.out.println("test2");
-        System.out.println("Hej Kasper");
+        // TODO code application logic here       
     }
     
 }
