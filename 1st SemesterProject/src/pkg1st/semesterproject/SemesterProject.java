@@ -18,6 +18,7 @@ public class SemesterProject {
         // TODO code application logic here
         System.out.println("test");
         System.out.println("test2");
+        System.out.println("Hej Kasper");
     }
     
 }
