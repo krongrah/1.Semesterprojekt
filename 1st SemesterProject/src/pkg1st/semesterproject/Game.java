@@ -8,13 +8,15 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-        
+    
+    // Cunstructor calls createRooms and creates new Parser
     public Game() 
     {
         createRooms();
         parser = new Parser();
     }
 
+    // Creates all rooms and their exits
     private void createRooms()
     {
         Room outside, theatre, pub, lab, office;
@@ -41,7 +43,8 @@ public class Game
         currentRoom = outside;
     }
 
-    // Starts the game
+    // Keeps game running requesting new command and ends the game
+    // when processCommand returns true
     public void play() 
     {            
         printWelcome();
@@ -65,6 +68,7 @@ public class Game
         System.out.println(currentRoom.getLongDescription());
     }
 
+    // Excecutes commands
     private boolean processCommand(Command command) 
     {
         boolean wantToQuit = false;
@@ -88,6 +92,7 @@ public class Game
         return wantToQuit;
     }
 
+    // Calls parser to show all possible commands
     private void printHelp() 
     {
         System.out.println("You are lost. You are alone. You wander");
@@ -97,17 +102,18 @@ public class Game
         parser.showCommands();
     }
 
+    //Checks if directions has an exit and moves to next room
     private void goRoom(Command command) 
     {
         if(!command.hasSecondWord()) {
             System.out.println("Go where?");
             return;
         }
-
+        
         String direction = command.getSecondWord();
-
+        
         Room nextRoom = currentRoom.getExit(direction);
-
+        
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
@@ -116,7 +122,8 @@ public class Game
             System.out.println(currentRoom.getLongDescription());
         }
     }
-
+    
+    // Quits the game
     private boolean quit(Command command) 
     {
         if(command.hasSecondWord()) {
