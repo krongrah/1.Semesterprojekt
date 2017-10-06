@@ -123,7 +123,7 @@ public class Game
         }
     }
     
-    // Quits the game
+    // Quits the game 
     private boolean quit(Command command) 
     {
         if(command.hasSecondWord()) {
