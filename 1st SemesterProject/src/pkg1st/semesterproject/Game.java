@@ -41,6 +41,7 @@ public class Game
         currentRoom = outside;
     }
 
+    // Starts the game
     public void play() 
     {            
         printWelcome();
@@ -52,7 +53,8 @@ public class Game
         }
         System.out.println("Thank you for playing.  Good bye.");
     }
-
+    
+    // Prints the welcome message, the help command, and the current room
     private void printWelcome()
     {
         System.out.println();
