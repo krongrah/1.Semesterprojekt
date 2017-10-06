@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class CommandWords
 {
     private HashMap<String, CommandWord> validCommands;
-
+    //constructor, places Commandwords in the validCommands map
     public CommandWords()
     {
         validCommands = new HashMap<String, CommandWord>();
@@ -20,7 +20,7 @@ public class CommandWords
             }
         }
     }
-
+    //getter
     public CommandWord getCommandWord(String commandWord)
     {
         CommandWord command = validCommands.get(commandWord);
@@ -31,12 +31,12 @@ public class CommandWords
             return CommandWord.UNKNOWN;
         }
     }
-    
+    //returns true if aString is a command
     public boolean isCommand(String aString)
     {
         return validCommands.containsKey(aString);
     }
-
+    //prints all commands
     public void showAll() 
     {
         for(String command : validCommands.keySet()) {
