@@ -15,12 +15,12 @@ public class Command
         this.commandWord = commandWord;
         this.secondWord = secondWord;
     }
-    //getter
+    //getter for commandWord
     public CommandWord getCommandWord()
     {
         return commandWord;
     }
-    //setter
+    //getter for secondWord
     public String getSecondWord()
     {
         return secondWord;
