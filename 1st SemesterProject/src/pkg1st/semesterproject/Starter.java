@@ -9,14 +9,19 @@ package pkg1st.semesterproject;
  *
  * @author Krongrah
  */
-public class SemesterProject {
+
+public class Starter {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here       
-        System.out.println("balbla");
+        System.out.println("Gotta load fast!");
+        Game newGame=new Game();
+        newGame.play();
+        
+        
     }
     
 }
