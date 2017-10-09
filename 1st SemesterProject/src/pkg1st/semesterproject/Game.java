@@ -4,6 +4,7 @@ package pkg1st.semesterproject;
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
+import java.util.Scanner;
 public class Game 
 {
     private Parser parser;
@@ -163,7 +164,27 @@ public class Game
     }
     
     private String talk(){
-    return "test";
+        
+        //Gives the player a list of NPCs in the room
+        System.out.println("Who do you wish to talk to?");
+        for (NPC npc: NPCs){
+            System.out.println(NPCs.getName());
+        }
+        //have the player enter a name
+        Scanner talking=new Scanner(System.in);
+        String target=talking.nextLine();
+        
+        //go through NPCs for matches to the input.
+        for (NPC npc: NPCs){
+        if (target==npc){
+            int step=npc.getDialogueStep();             //print the next line of dialogue.
+            System.out.println(npc.getDialogue[step]);
+            npc.incrementDialogueStep();                
+            break;
+        } 
+        }
+      //if no matches are found, print this line:
+    return "There is no one here by that name.";
     }
     
     
