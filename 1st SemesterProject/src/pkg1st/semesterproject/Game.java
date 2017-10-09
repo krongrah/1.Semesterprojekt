@@ -13,6 +13,9 @@ public class Game
     public Game() 
     {
         createRooms();
+        createNPCs();
+        createItems();
+        
         parser = new Parser();
     }
 
@@ -134,16 +137,19 @@ public class Game
             return true;
         }
     }
+    private void createNPCs(){
+    
+    }
+    
+    private void createItems(){
+    
+    }
     
     
     
     
     
     
-    
-    
-    //createNPCs
-    //createItems
     //accuse
     //talk 
     //search for items
