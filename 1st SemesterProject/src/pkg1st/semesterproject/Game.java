@@ -134,4 +134,20 @@ public class Game
             return true;
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    //createNPCs
+    //createItems
+    //accuse
+    //talk 
+    //search for items
+    
+    
+    
 }
