@@ -92,6 +92,15 @@ public class Game
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
+        else if (commandWord == CommandWord.SEARCH){
+        
+        }
+        else if (commandWord == CommandWord.TALK){
+        
+        }
+        else if (commandWord == CommandWord.ACCUSE){
+        
+        }
         return wantToQuit;
     }
 
@@ -145,14 +154,6 @@ public class Game
     
     }
     
-    
-    
-    
-    
-    
-    //accuse
-    //talk 
-    //search for items
     
     
     
