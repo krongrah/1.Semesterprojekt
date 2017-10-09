@@ -154,20 +154,12 @@ public class Game
     private void createItems(){
     
     }
-    
-    private void search(){
-    
-    }
-    
-    private void accuse(){
-    
-    }
-    
+    /*
     private String talk(){
         
         //Gives the player a list of NPCs in the room
         System.out.println("Who do you wish to talk to?");
-        for (NPC npc: NPCs){
+        for (NPC npc: NPCsInRoom){
             System.out.println(NPCs.getName());
         }
         //have the player enter a name
@@ -175,7 +167,7 @@ public class Game
         String target=talking.nextLine();
         
         //go through NPCs for matches to the input.
-        for (NPC npc: NPCs){
+        for (NPC npc: NPCsInRoom){
         if (target==npc){
             int step=npc.getDialogueStep();             //print the next line of dialogue.
             System.out.println(npc.getDialogue[step]);
@@ -187,7 +179,36 @@ public class Game
     return "There is no one here by that name.";
     }
     
+    private void search(){
+        System.out.println("You found these items:");
+        for (Item thing:ItemsInRoom){
+            System.out.println(thing.getName());
+        }
+        System.out.println("What do you want to pick up?");
+        System.out.println("If you don't want anything, type \"Nothing\".");
+        Scanner pick=new Scanner(System.in);
+        String newItem=pick.nextLine();
+        boolean sucess=false;
+        for (Item thing:ItemsInRoom){
+            if(newItem==thing.getName){
+            sucess=true;
+            if(thing.getCollectible){
+                System.out.println("You placed it in your bag.");
+                ItemsInRoom.remove(thing);
+                Inventory.add(thing);
+            }else{
+                System.out.println("You can't seem to get a hold of it.");
+            }    
+            }
+        }
+        if (!sucess){
+            System.out.println("You can't find that.");
+        };
+    }
+    */
+    private void accuse(){
     
+    }
     
     
 }
