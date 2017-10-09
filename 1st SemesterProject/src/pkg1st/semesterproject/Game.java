@@ -93,13 +93,13 @@ public class Game
             wantToQuit = quit(command);
         }
         else if (commandWord == CommandWord.SEARCH){
-        
+        search();
         }
         else if (commandWord == CommandWord.TALK){
-        
+        talk();
         }
         else if (commandWord == CommandWord.ACCUSE){
-        
+        accuse();
         }
         return wantToQuit;
     }
@@ -154,17 +154,19 @@ public class Game
     
     }
     
-    private void accuse(NPC npc){
-    
-    }
-    
-    private String talk(NPC npc){
-    
-    }
-    
     private void search(){
     
     }
+    
+    private void accuse(){
+    
+    }
+    
+    private String talk(){
+    return "test";
+    }
+    
+    
     
     
 }
