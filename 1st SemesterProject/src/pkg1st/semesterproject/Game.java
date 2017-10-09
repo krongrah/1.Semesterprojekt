@@ -93,7 +93,7 @@ public class Game
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
-        else if (commandWord == CommandWord.SEARCH){
+        /*else if (commandWord == CommandWord.SEARCH){
         search();
         }
         else if (commandWord == CommandWord.TALK){
@@ -101,7 +101,7 @@ public class Game
         }
         else if (commandWord == CommandWord.ACCUSE){
         accuse();
-        }
+        }*/
         return wantToQuit;
     }
 
@@ -154,13 +154,13 @@ public class Game
     private void createItems(){
     
     }
-    /*
+    
     private String talk(){
         
         //Gives the player a list of NPCs in the room
         System.out.println("Who do you wish to talk to?");
         for (NPC npc: NPCsInRoom){
-            System.out.println(NPCs.getName());
+            System.out.println(NPCsInRoom.getName());
         }
         //have the player enter a name
         Scanner talking=new Scanner(System.in);
@@ -168,7 +168,7 @@ public class Game
         
         //go through NPCs for matches to the input.
         for (NPC npc: NPCsInRoom){
-        if (target==npc){
+        if (target==npc.getName()){
             int step=npc.getDialogueStep();             //print the next line of dialogue.
             System.out.println(npc.getDialogue[step]);
             npc.incrementDialogueStep();                
@@ -205,9 +205,9 @@ public class Game
             System.out.println("You can't find that.");
         };
     }
-    */
-    private void accuse(){
     
+    private void accuse(){
+        System.out.println("You do not have the authority to do this.");
     }
     
     
