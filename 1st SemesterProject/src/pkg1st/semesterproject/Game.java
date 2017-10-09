@@ -154,7 +154,17 @@ public class Game
     
     }
     
+    private void accuse(NPC npc){
     
+    }
+    
+    private String talk(NPC npc){
+    
+    }
+    
+    private void search(){
+    
+    }
     
     
 }
