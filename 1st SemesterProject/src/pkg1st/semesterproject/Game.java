@@ -93,7 +93,7 @@ public class Game
         else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         }
-        /*else if (commandWord == CommandWord.SEARCH){
+        else if (commandWord == CommandWord.SEARCH){
         search();
         }
         else if (commandWord == CommandWord.TALK){
@@ -101,7 +101,7 @@ public class Game
         }
         else if (commandWord == CommandWord.ACCUSE){
         accuse();
-        }*/
+        }
         return wantToQuit;
     }
 
