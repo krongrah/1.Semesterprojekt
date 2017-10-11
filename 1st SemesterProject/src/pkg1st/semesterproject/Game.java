@@ -16,7 +16,7 @@ public class Game
         createRooms();
         createNPCs();
         createItems();
-        
+        PC player=new PC();
         parser = new Parser();
     }
 
@@ -156,7 +156,7 @@ public class Game
     }
     
     private void createItems(){
-    
+    Item dummyItemDontDelete=new Item();
     }
     
     private String talk(){
@@ -182,35 +182,43 @@ public class Game
       //if no matches are found, print this line:
     return "There is no one here by that name.";
     }
-    
+    //todo the search is a mess
     private void search(){
+        //prints all items in the room.
         System.out.println("You found these items:");
         for (Item thing:ItemsInRoom){
             System.out.println(thing.getName());
         }
         System.out.println("What do you want to pick up?");
         System.out.println("If you don't want anything, type \"Nothing\".");
+        //get an input for the desired item.
         Scanner pick=new Scanner(System.in);
         String newItem=pick.nextLine();
-        boolean sucess=false;
+        Item object=new Item();
+        if (newItem!="Nothing"){
+        //searches for the item
         for (Item thing:ItemsInRoom){
             if(newItem==thing.getName){
-            sucess=true;
-            if(thing.getCollectible){
-                System.out.println("You placed it in your bag.");
-                ItemsInRoom.remove(thing);
-                Inventory.add(thing);
-            }else{
-                System.out.println("You can't seem to get a hold of it.");
-            }    
+           object=thing;
+            break;                
             }
         }
+            if(object.getCollectible){
+                System.out.println("You placed it in your bag.");
+                ItemsInRoom.remove(object);
+                player.addToInventory(object);
+            }else{
+                System.out.println("You can't seem to get a hold of it.");
+            }
+            
         if (!sucess){
             System.out.println("You can't find that.");
         };
+        }
+        
     }
     
-    private void accuse(){
+    public void accuse(){
         System.out.println("You do not have the authority to do this.");
     }
     
