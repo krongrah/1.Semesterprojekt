@@ -39,3 +39,4 @@ public class NPC {
         this.dialougeList = newDialougeList;
     }
 }
+
