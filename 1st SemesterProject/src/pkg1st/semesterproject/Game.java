@@ -46,6 +46,10 @@ public class Game
 
         currentRoom = outside;
     }
+    
+    public Room getRoom(){
+    return currentRoom;
+    }
 
     // Keeps game running requesting new command and ends the game
     // when processCommand returns true
