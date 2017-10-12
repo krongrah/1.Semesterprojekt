@@ -152,7 +152,14 @@ public class Game
         }
     }
     private void createNPCs(){
-    //todo
+        NPC Hobo1 = new NPC("No-Teeth Terry", );
+        NPC Hobo2 = new NPC("Dirty Darryl", );
+        NPC Hobo3 = new NPC("Heroin Harry", );
+        NPC Hobo4 = new NPC("Insane Dwayne")
+        NPC Commissioner = new NPC("Commissioner Curt", );
+        NPC Bartender = new NPC("Bartender Bert", );
+        NPC Wife = new NPC("Wife Nancy = new Wife()", );
+        NPC Coroner = new NPC("Coroner", );
     }
     
     private void createItems(){
