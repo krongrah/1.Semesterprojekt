@@ -6,11 +6,13 @@
 package pkg1st.semesterproject;
 
 public class Item {
+    // creating the shared attributes
     String name;
     String description;
     Boolean collectible;
     Boolean isClue;
     
+    //creating the getter methods
     public boolean getCollectible() {
         return collectible;
         
@@ -24,6 +26,7 @@ public class Item {
     public String getDescription() {
         return description;
     }
+    //creating the constructor for the purpose of making objects of the item class
     public Item(String newName, String newDescription, boolean newIsClue, boolean newCollectible) {
         newName = name;
         newDescription = description;
