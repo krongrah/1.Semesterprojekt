@@ -192,7 +192,7 @@ public class Game
         for (NPC npc: NPCsInRoom){
         if (target==npc.getName()){
             int step=npc.getDialogueStep();             //print the next line of dialogue.
-            System.out.println(npc.getDialogue[step]);
+            System.out.println(npc.getDialogue());
             npc.incrementDialogueStep();                
             break;
         } 
