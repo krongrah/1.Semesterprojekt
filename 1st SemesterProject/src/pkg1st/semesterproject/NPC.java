@@ -32,7 +32,7 @@ public class NPC {
     public static List<String> getDialougeList() {
         return dialougeList;
     }
-    public static void incDialougeStep() {
+    public static void incrementDialougeStep() {
         dialougeStep += 1;
     }
     // NPC constructor
