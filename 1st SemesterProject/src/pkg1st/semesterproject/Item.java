@@ -5,10 +5,32 @@
  */
 package pkg1st.semesterproject;
 
-/**
- *
- * @author Krongrah
- */
 public class Item {
+    String name;
+    String description;
+    Boolean collectible;
+    Boolean isClue;
+    
+    public boolean getCollectible() {
+        return collectible;
+        
+    }
+    public boolean getIsclue() {
+        return isClue;
+    }
+    public String getName() {
+        return name;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public Item(String newName, String newDescription, boolean newIsClue, boolean newCollectible) {
+        newName = name;
+        newDescription = description;
+        newIsClue = isClue;
+        newCollectible = collectible;
+        
+    }
+
     
 }
