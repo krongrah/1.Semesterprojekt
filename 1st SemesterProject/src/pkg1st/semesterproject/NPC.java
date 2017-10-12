@@ -13,9 +13,9 @@ import java.util.*;
 public class NPC {
     // NPC attributes
     static String name;
-    static List<String> dialougeList = new ArrayList<String>();
+    static List<String> dialogueList = new ArrayList<String>();
     static int suspectability;
-    static int dialougeStep;
+    static int dialogueStep;
     //Moves NPC to another room
     public static void move(String Room) {
         
@@ -26,19 +26,19 @@ public class NPC {
     public static int getSuspectability() {
         return suspectability;
     } 
-    public static int getDialougeStep() {
-        return dialougeStep;
+    public static int getDialogueStep() {
+        return dialogueStep;
     }
-    public static List<String> getDialougeList() {
-        return dialougeList;
+    public static List<String> getDialogueList() {
+        return dialogueList;
     }
-    public static void incrementDialougeStep() {
-        dialougeStep += 1;
+    public static void incrementDialogueStep() {
+        dialogueStep += 1;
     }
     // NPC constructor
-    public NPC(String newName, List<String> newDialougeList) {
+    public NPC(String newName, List<String> newDialogueList) {
         this.name = newName;
-        this.dialougeList = newDialougeList;
+        this.dialogueList = newDialogueList;
     }
 }
 
