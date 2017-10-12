@@ -156,7 +156,25 @@ public class Game
     }
     
     private void createItems(){
-    //todo    
+        
+        // creation of the multiple items via the constructor in Item.java
+        Item murderWeapon = new Item("Murder Weapon", "This is a broken bottle"
+            + " with sharp edges and blood covering the edges", true, true);
+    
+        Item bloodsplatter = new Item("Blood splatter", "the ground is covered" +
+            " in blood", true, false);
+    
+        Item gun = new Item("Gun", "Its a smith and wesson, your best friend",
+             false, true);
+    
+        Item corpse = new Item("Corpse", "its a dead guy, he looks to be stabbed" + 
+            " brutally multiple times.\n When you look closer you notice" +
+            " his face is covered in spit", true, false);
+    
+        Item bloodSplatteredBadge = new Item("Blood Splattered Badge", "its your" +
+            " former partners badge covered in blood, odd that you would find" +
+            " this here. \n i wave of guilt washes over you as you realise" + 
+            " what you have done", true, true);
     }
     
     private String talk(){
@@ -183,6 +201,7 @@ public class Game
     return "There is no one here by that name.";
     }
     //todo the search is a mess
+    //add to cluelist
     private void search(){
         
         //prints all items in the room.
@@ -217,6 +236,5 @@ public class Game
     public void accuse(){
         System.out.println("You do not have the authority to do this.");
     }
-    
-    
+  
 }
