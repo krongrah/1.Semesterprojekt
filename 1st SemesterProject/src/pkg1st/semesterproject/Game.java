@@ -194,23 +194,16 @@ public class Game
         //get an input for the desired item.
         Scanner pick=new Scanner(System.in);
         String newItem=pick.nextLine();
-        Item object=new Item();
         if (newItem!="Nothing"){
         //searches for the item
+        boolean sucess=false;
         for (Item thing:ItemsInRoom){
             if(newItem==thing.getName){
-           object=thing;
+                sucess=true;
+                player.addToInventory(thing);
             break;                
             }
         }
-            if(object.getCollectible){
-                System.out.println("You placed it in your bag.");
-                ItemsInRoom.remove(object);
-                player.addToInventory(object);
-            }else{
-                System.out.println("You can't seem to get a hold of it.");
-            }
-            
         if (!sucess){
             System.out.println("You can't find that.");
         };
