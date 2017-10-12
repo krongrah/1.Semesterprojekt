@@ -201,7 +201,7 @@ public class Game
         //searches for the item
         boolean sucess=false;
         for (Item thing:ItemsInRoom){
-            if(newItem==thing.getName){
+            if(newItem==thing.getName()){
                 sucess=true;
                 player.addToInventory(thing);
             break;                
