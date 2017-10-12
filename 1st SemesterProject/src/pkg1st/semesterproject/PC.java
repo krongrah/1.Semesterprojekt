@@ -87,7 +87,7 @@ public class PC {
         if(thing.getCollectible()){
                 System.out.println("You placed it in your bag.");
                 //todo
-                newGame.currentRoom.ItemsInRoom.remove(thing);
+                newGame.currentRoom().ItemsInRoom().remove(thing);
                 inventory.add(thing);}
         else{
                 System.out.println("You can't seem to get a hold of it.");
