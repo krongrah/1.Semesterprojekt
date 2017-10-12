@@ -9,20 +9,20 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    
+    PC player=new PC();
     // Cunstructor calls createRooms and creates new Parser
     public Game() 
     {
         createRooms();
         createNPCs();
         createItems();
-        PC player=new PC();
         parser = new Parser();
+        
     }
 
     // Creates all rooms and their exits
     private void createRooms()
-    {
+    {   //todo
         Room outside, theatre, pub, lab, office;
       
         outside = new Room("outside the main entrance of the university");
@@ -67,7 +67,7 @@ public class Game
     
     // Prints the welcome message, the help command, and the current room
     private void printWelcome()
-    {
+    { //todo
         System.out.println();
         System.out.println("Welcome to the World of Zuul!");
         System.out.println("World of Zuul is a new, incredibly boring adventure game.");
@@ -112,8 +112,8 @@ public class Game
     // Calls parser to show all possible commands
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
+        System.out.println("You supposed to help others, ");
+        System.out.println("not get help.");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -152,11 +152,11 @@ public class Game
         }
     }
     private void createNPCs(){
-    
+    //todo
     }
     
     private void createItems(){
-    Item dummyItemDontDelete=new Item();
+    //todo    
     }
     
     private String talk(){
@@ -184,6 +184,7 @@ public class Game
     }
     //todo the search is a mess
     private void search(){
+        
         //prints all items in the room.
         System.out.println("You found these items:");
         for (Item thing:ItemsInRoom){
@@ -191,10 +192,12 @@ public class Game
         }
         System.out.println("What do you want to pick up?");
         System.out.println("If you don't want anything, type \"Nothing\".");
+        
         //get an input for the desired item.
         Scanner pick=new Scanner(System.in);
         String newItem=pick.nextLine();
         if (newItem!="Nothing"){
+            
         //searches for the item
         boolean sucess=false;
         for (Item thing:ItemsInRoom){
