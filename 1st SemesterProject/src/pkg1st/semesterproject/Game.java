@@ -21,30 +21,80 @@ public class Game
     }
 
     // Creates all rooms and their exits
+//    private void createRooms()
+//    {   //todo
+//        Room outside, theatre, pub, lab, office;
+//      
+//        outside = new Room("outside the main entrance of the university");
+//        theatre = new Room("in a lecture theatre");
+//        pub = new Room("in the campus pub");
+//        lab = new Room("in a computing lab");
+//        office = new Room("in the computing admin office");
+//        
+//        outside.setExit("east", theatre);
+//        outside.setExit("south", lab);
+//        outside.setExit("west", pub);
+//
+//        theatre.setExit("west", outside);
+//
+//        pub.setExit("east", outside);
+//
+//        lab.setExit("north", outside);
+//        lab.setExit("east", office);
+//
+//        office.setExit("west", lab);
+//
+//        currentRoom = outside;
+//    }
     private void createRooms()
     {   //todo
-        Room outside, theatre, pub, lab, office;
+        Room leftStreet, middleStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
       
-        outside = new Room("outside the main entrance of the university");
-        theatre = new Room("in a lecture theatre");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        leftStreet = new Room("You are on left street");
+        middleStreet = new Room("You are on middle street");
+        rightStreet = new Room("You are on Right street");
+        bar = new Room("You are in the bar");
+        hoboAlley = new Room("You are in the Hobo Alley, try not to get stabbed");
+        crimeScene = new Room("You are at the crime scene");
+        partnerHome = new Room("You are in your deceased partners house");
+        home = new Room("You are in your home");
+        pd = new Room("You are in the Police Department");
+        jail = new Room("You are visiting the jail, in the pd");
+        court = new Room("You are in the court");
+       
+        //leftStreet exits
+        leftStreet.setExit("east", rightStreet);
+        leftStreet.setExit("south",bar);
+        leftStreet.setExit("north", hoboAlley);
+        leftStreet.setExit("west", partnerHome);
+       
+        //rightsteet exits
+        rightStreet.setExit("east", home);
+        rightStreet.setExit("south",court);
+        rightStreet.setExit("north", court);
+        rightStreet.setExit("west", leftStreet);
+     
+        //leftstreet room exits
+        hoboAlley.setExit("north", crimeScene);
+        hoboAlley.setExit("south", leftStreet);
         
-        outside.setExit("east", theatre);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
+            crimeScene.setExit("south", hoboAlley);
 
-        theatre.setExit("west", outside);
+        bar.setExit("north", leftStreet);
+        
+        partnerHome.setExit("east", leftStreet);
+                        
+        //rightstreet room exits
+        pd.setExit("north", jail);
+        pd.setExit("south", rightStreet);
+            
+            jail.setExit("south", pd);
 
-        pub.setExit("east", outside);
-
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
-
-        office.setExit("west", lab);
-
-        currentRoom = outside;
+        home.setExit("west", rightStreet);    
+        
+        court.setExit("north", rightStreet);    
+            
+        currentRoom = bar;
     }
     
     public Room getRoom(){
