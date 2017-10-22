@@ -48,10 +48,9 @@ public class Game
 //    }
     private void createRooms()
     {   //todo
-        Room leftStreet, middleStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
+        Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
       
         leftStreet = new Room("You are on left street");
-        middleStreet = new Room("You are on middle street");
         rightStreet = new Room("You are on Right street");
         bar = new Room("You are in the bar");
         hoboAlley = new Room("You are in the Hobo Alley, try not to get stabbed");
@@ -60,7 +59,7 @@ public class Game
         home = new Room("You are in your home");
         pd = new Room("You are in the Police Department");
         jail = new Room("You are visiting the jail, in the pd");
-        court = new Room("You are in the court");
+        court = new Room("You are in court");
        
         //leftStreet exits
         leftStreet.setExit("east", rightStreet);
