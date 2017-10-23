@@ -31,7 +31,7 @@ public class Item {
         name = newName;
         description = newDescription;
         isClue = newIsClue;
-        collectible = newCollectible;
+        collectible = newCollectible; 
         
     }
 
