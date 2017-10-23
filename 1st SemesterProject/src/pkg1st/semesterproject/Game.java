@@ -247,7 +247,7 @@ public class Game
         //go through NPCs for matches to the input.
         for (NPC npc: NPCsInRoom){
         if (target==npc.getName()){
-            NPC.getDialogue();                
+            npc.getDialogue();                
             break;
         } 
         }
