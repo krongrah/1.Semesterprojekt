@@ -304,6 +304,7 @@ public class Game
     private void search(){
         
         //prints all items in the room.
+        if (currentRoom.getItemsInRoom().size()!=0){
         System.out.println("You found these items:");
         for (Item thing:currentRoom.getItemsInRoom()){
             System.out.println(thing.getName());
@@ -329,8 +330,11 @@ public class Game
         }
         if (!sucess){
             System.out.println("You can't find that.");
-        };
-        }
+        };}} else{
+               System.out.println("You can't find anything."); 
+                }
+        
+        
         
     }
     
