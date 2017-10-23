@@ -201,14 +201,14 @@ public class Game
         }
     }
     private void createNPCs(){
-        NPC Hobo1 = new NPC("No-Teeth Terry", );
-        NPC Hobo2 = new NPC("Dirty Darryl", );
-        NPC Hobo3 = new NPC("Heroin Harry", );
-        NPC Hobo4 = new NPC("Insane Dwayne")
-        NPC Commissioner = new NPC("Commissioner Curt", );
-        NPC Bartender = new NPC("Bartender Bert", );
-        NPC Wife = new NPC("Wife Nancy = new Wife()", );
-        NPC Coroner = new NPC("Coroner", );
+        NPC Hobo1 = new NPC("No-Teeth Terry" );
+        NPC Hobo2 = new NPC("Dirty Darryl" );
+        NPC Hobo3 = new NPC("Heroin Harry" );
+        NPC Hobo4 = new NPC("Insane Dwayne");
+        NPC Commissioner = new NPC("Commissioner Curt" );
+        NPC Bartender = new NPC("Bartender Bert" );
+        NPC Wife = new NPC("Wife Nancy = new Wife()" );
+        NPC Coroner = new NPC("Coroner" );
     }
     
     private void createItems(){
@@ -247,9 +247,7 @@ public class Game
         //go through NPCs for matches to the input.
         for (NPC npc: NPCsInRoom){
         if (target==npc.getName()){
-            int step=npc.getDialogueStep();             //print the next line of dialogue.
-            System.out.println(npc.getDialogue());
-            npc.incrementDialogueStep();                
+            NPC.getDialogue();                
             break;
         } 
         }
