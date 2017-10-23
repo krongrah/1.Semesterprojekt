@@ -290,7 +290,7 @@ public class Game
         //Gives the player a list of NPCs in the room
         System.out.println("Who do you wish to talk to?");
         for (NPC npc: currentRoom.getNpcsInRoom()){
-            System.out.println(currentRoom.getNpcsInRoom());
+            System.out.println(npc.getName());
         }
         //have the player enter a name
         Scanner talking=new Scanner(System.in);
