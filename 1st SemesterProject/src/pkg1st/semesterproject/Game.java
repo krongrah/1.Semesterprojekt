@@ -46,7 +46,7 @@ public class Game
         //rightsteet exits
         rightStreet.setExit("east", home);
         rightStreet.setExit("south",court);
-        rightStreet.setExit("north", court);
+        rightStreet.setExit("north", pd);
         rightStreet.setExit("west", leftStreet);
      
         //leftstreet room exits
