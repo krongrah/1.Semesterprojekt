@@ -26,16 +26,16 @@ public class Game
     {   //todo
         Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
       
-        leftStreet = new Room(" on left street");
-        rightStreet = new Room(" on Right street");
-        bar = new Room(" in the bar");
-        hoboAlley = new Room(" in the Hobo Alley, try not to get stabbed");
-        crimeScene = new Room(" at the crime scene");
-        partnerHome = new Room(" in your deceased partners house");
-        home = new Room(" in your home");
-        pd = new Room(" in the Police Department");
-        jail = new Room(" visiting the jail, in the pd");
-        court = new Room(" in court");
+        leftStreet = new Room(" on left street","Left Street");
+        rightStreet = new Room(" on Right street","Right Street");
+        bar = new Room(" in the bar","Bar");
+        hoboAlley = new Room(" in the Hobo Alley, try not to get stabbed","Hobo Alley");
+        crimeScene = new Room(" at the crime scene","Crime scene");
+        partnerHome = new Room(" in your deceased partners house","Partner's home");
+        home = new Room(" in your home","Home");
+        pd = new Room(" in the Police Department","Police Department");
+        jail = new Room(" visiting the jail, in the pd","Jail");
+        court = new Room(" in court","Court");
        
         //leftStreet exits
         leftStreet.setExit("east", rightStreet);
