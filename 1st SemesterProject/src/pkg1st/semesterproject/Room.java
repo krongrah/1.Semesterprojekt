@@ -16,12 +16,13 @@ public class Room
     private HashMap<String, Room> exits;
     private Set<Item> ItemsInRoom = new HashSet<>();
     private Set<NPC> NPCsInRoom = new HashSet<>();
-   
+    private String roomName;
         
     //contructor, requires description and generates an Exits map.
-    public Room(String description) 
+    public Room(String description, String roomName) 
     {
         this.description = description;
+        this.roomName = roomName;
         exits = new HashMap<String, Room>();
         
     }
@@ -66,7 +67,7 @@ public class Room
     //Getter for the description/name along with a list of exits.
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "You are" + description + ".\n" + getExitString();
     }
         //returns a list of exits
 	private String getExitString()
@@ -74,7 +75,7 @@ public class Room
         String returnString = "Exits:";
         Set<String> keys = exits.keySet();
         for(String exit : keys) {
-            returnString += " " + exit;
+            returnString += "| " + exit+" = "+ exits.get(exit).getRoomName()+" |";
         }
         return returnString;
     }
@@ -83,5 +84,12 @@ public class Room
     {
         return exits.get(direction);
     }
+       /**
+     * @return the name
+     */
+    public String getRoomName() {
+        return roomName;
+    }
+    
 }
 
