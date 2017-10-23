@@ -32,7 +32,7 @@ public class PC {
     }
     }
     public void checkDesk(){
-        if (newGame.getRoom()==station){
+        if (newGame.getRoom()==pd){
         for (Item thing:desk){
         System.out.println(thing.getName());
         }       

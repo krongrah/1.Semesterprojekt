@@ -35,8 +35,9 @@ public class NPC {
     }
     
     // NPC constructor
-    public NPC(String newName) {
+    public NPC(String newName, Dialogue dialogue) {
         this.name = newName;
+        this.dialogue=dialogue;
     }
 }
 

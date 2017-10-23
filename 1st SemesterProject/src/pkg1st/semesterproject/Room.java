@@ -15,7 +15,7 @@ public class Room
     private String description;
     private HashMap<String, Room> exits;
     private Set<Item> ItemsInRoom = new HashSet<>();
-    private Set<NPC> npcsInRoom = new HashSet<>();
+    private Set<NPC> NPCsInRoom = new HashSet<>();
    
         
     //contructor, requires description and generates an Exits map.
@@ -54,14 +54,14 @@ public class Room
      * @return the npcsInRoom
      */
     public Set<NPC> getNpcsInRoom() {
-        return npcsInRoom;
+        return NPCsInRoom;
     }
 
     /**
      * @param npcsInRoom the npcsInRoom to set
      */
     public void setNpcsInRoom(Set<NPC> npcsInRoom) {
-        this.npcsInRoom = npcsInRoom;
+        this.NPCsInRoom = npcsInRoom;
     }
     //Getter for the description/name along with a list of exits.
     public String getLongDescription()
