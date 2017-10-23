@@ -2,6 +2,7 @@ package pkg1st.semesterproject;
 
 import java.util.Set;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 
 
@@ -13,11 +14,16 @@ public class Room
 {   //rooms have a description/name and map with strings to rooms, serving as exits.
     private String description;
     private HashMap<String, Room> exits;
+    private Set<Item> ItemsInRoom = new HashSet<>();
+    private Set<NPC> npcsInRoom = new HashSet<>();
+   
+        
     //contructor, requires description and generates an Exits map.
     public Room(String description) 
     {
         this.description = description;
         exits = new HashMap<String, Room>();
+        
     }
     //adds a neighbooring room to the Exits map, with the direction being the key
     public void setExit(String direction, Room neighbor) 
@@ -28,6 +34,34 @@ public class Room
     public String getShortDescription()
     {
         return description;
+    }  
+    
+    /**
+     * @return the ItemsInRoom
+     */
+    public Set<Item> getItemsInRoom() {
+        return ItemsInRoom;
+    }
+
+    /**
+     * @param ItemsInRoom the ItemsInRoom to set
+     */
+    public void setItemsInRoom(Set<Item> ItemsInRoom) {
+        this.ItemsInRoom = ItemsInRoom;
+    }
+
+    /**
+     * @return the npcsInRoom
+     */
+    public Set<NPC> getNpcsInRoom() {
+        return npcsInRoom;
+    }
+
+    /**
+     * @param npcsInRoom the npcsInRoom to set
+     */
+    public void setNpcsInRoom(Set<NPC> npcsInRoom) {
+        this.npcsInRoom = npcsInRoom;
     }
     //Getter for the description/name along with a list of exits.
     public String getLongDescription()
