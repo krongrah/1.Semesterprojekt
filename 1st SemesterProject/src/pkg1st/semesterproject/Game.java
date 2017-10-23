@@ -1,5 +1,5 @@
 package pkg1st.semesterproject;
-//test
+
 /**
  * @author  Michael Kolling and David J. Barnes
  * @version 2006.03.30
