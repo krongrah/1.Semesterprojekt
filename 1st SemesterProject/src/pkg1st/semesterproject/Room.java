@@ -47,8 +47,8 @@ public class Room
     /**
      * @param ItemsInRoom the ItemsInRoom to set
      */
-    public void setItemsInRoom(Set<Item> ItemsInRoom) {
-        this.ItemsInRoom = ItemsInRoom;
+    public void addItemsToRoom(Item ItemsInRoom) {
+        this.ItemsInRoom.add(ItemsInRoom);
     }
 
     /**
@@ -61,8 +61,8 @@ public class Room
     /**
      * @param npcsInRoom the npcsInRoom to set
      */
-    public void setNpcsInRoom(Set<NPC> npcsInRoom) {
-        this.NPCsInRoom = npcsInRoom;
+    public void addNpcToRoom(NPC npcsInRoom) {
+        this.NPCsInRoom.add(npcsInRoom);
     }
     //Getter for the description/name along with a list of exits.
     public String getLongDescription()
