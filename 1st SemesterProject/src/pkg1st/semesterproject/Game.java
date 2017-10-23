@@ -304,13 +304,15 @@ public class Game
             System.out.println(thing.getName());
         }
         System.out.println("What do you want to pick up?");
-        System.out.println("If you don't want anything, type \"Nothing\".");
+        System.out.println("If you don't want anything, type \"nothing\".");
         
         //get an input for the desired item.
         Scanner pick=new Scanner(System.in);
         String newItem=pick.nextLine();
-        if (newItem!="Nothing"){
-            
+        if (newItem.equals("nothing")){
+            System.out.println("You decide that scavenging is above you.");    
+        }
+        else{   
         //searches for the item
         boolean sucess=false;
         for (Item thing:currentRoom.getItemsInRoom()){
