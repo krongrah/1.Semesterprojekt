@@ -9,6 +9,8 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
+      
     PC player;
     // Cunstructor calls createRooms and creates new Parser
     public Game() 
@@ -24,8 +26,7 @@ public class Game
     // Creates all rooms and their exits
     private void createRooms()
     {   //todo
-        Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
-      
+        
         leftStreet = new Room(" on left street","Left Street");
         rightStreet = new Room(" on Right street","Right Street");
         bar = new Room(" in the bar","Bar");
@@ -70,8 +71,11 @@ public class Game
         court.setExit("north", rightStreet);    
             
         currentRoom = bar;
+        
+        
     }
     
+      
     public Room getRoom(){
     return currentRoom;
     }
@@ -252,6 +256,7 @@ public class Game
         NPC Wife = new NPC("Wife Nancy = new Wife()",wifeDialogue );
         NPC Coroner = new NPC("Coroner" ,coronerDialogue);
     
+        bar.addNpcToRoom(Bartender);
     }
     
     
@@ -262,6 +267,8 @@ public class Game
         Item murderWeapon = new Item("Murder Weapon", "This is a broken bottle"
             + " with sharp edges and blood covering the edges", true, true);
     
+                bar.addItemsToRoom(murderWeapon);
+        
         Item bloodsplatter = new Item("Blood splatter", "the ground is covered" +
             " in blood", true, false);
     
