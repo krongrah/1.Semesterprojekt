@@ -81,11 +81,15 @@ public class Game
     public void play() 
     {            
         printWelcome();
-
+        getInfo();
+            
         boolean finished = false;
         while (! finished) {
+            
             Command command = parser.getCommand();
             finished = processCommand(command);
+            System.out.println("");
+            
         }
         System.out.println("Thank you for playing.  Good bye.");
     }
@@ -105,7 +109,7 @@ public class Game
     private boolean processCommand(Command command) 
     {
         boolean wantToQuit = false;
-
+        
         CommandWord commandWord = command.getCommandWord();
 
         if(commandWord == CommandWord.UNKNOWN) {
@@ -162,6 +166,7 @@ public class Game
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+          getInfo();  
         }
     }
     
@@ -332,5 +337,13 @@ public class Game
     public void accuse(){
         System.out.println("You do not have the authority to do this.");
     }
-  
+    private void getInfo(){
+    for (NPC npc: currentRoom.getNpcsInRoom()){
+            System.out.println(currentRoom.getNpcsInRoom());
+        }
+            if (currentRoom.getNpcsInRoom().size()==0){
+                System.out.println("You are all alone.");
+            }
+    }
+    
 }
