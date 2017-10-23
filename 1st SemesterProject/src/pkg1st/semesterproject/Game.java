@@ -327,15 +327,15 @@ public class Game
         }
         else{   
         //searches for the item
-        boolean sucess=false;
+        boolean success=false;
         for (Item thing:currentRoom.getItemsInRoom()){
             if(newItem==thing.getName()){
-                sucess=true;
+                success=true;
                 player.addToInventory(thing);
             break;                
             }
         }
-        if (!sucess){
+        if (success=false){
             System.out.println("You can't find that.");
         };}} else{
                System.out.println("You can't find anything."); 
@@ -350,7 +350,7 @@ public class Game
     }
     private void getInfo(){
     for (NPC npc: currentRoom.getNpcsInRoom()){
-            System.out.println(currentRoom.getNpcsInRoom());
+            System.out.println(npc.getName());
         }
             if (currentRoom.getNpcsInRoom().size()==0){
                 System.out.println("You are all alone.");
