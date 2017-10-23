@@ -9,7 +9,7 @@ public enum CommandWord
     GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), ACCUSE("accuse"), TALK("talk"), SEARCH("search");
     private String commandString;
     
-    //Constructor
+    //contructor
     CommandWord(String commandString)
     {
         this.commandString = commandString;

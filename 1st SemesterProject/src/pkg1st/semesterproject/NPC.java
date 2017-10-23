@@ -13,9 +13,8 @@ import java.util.*;
 public class NPC {
     // NPC attributes
     private String name;
-    String[] dialogueList;
+    Dialogue dialogue;
     private int suspectability;
-    private int dialogueStep;
     //Moves NPC to another room
     public static void move(String Room) {
         
@@ -26,19 +25,18 @@ public class NPC {
     public int getSuspectability() {
         return suspectability;
     } 
-    public int getDialogueStep() {
-        return dialogueStep;
+    
+    public void getDialogue() {
+        dialogue.getLine();
+        
     }
-    public String getDialogue() {
-        return dialogueList[dialogueStep];
+    public void setDialogue(Dialogue dialogue_){
+    dialogue=dialogue_;
     }
-    public void incrementDialogueStep() {
-        dialogueStep += 1;
-    }
+    
     // NPC constructor
-    public NPC(String newName, String[] newDialogueList) {
+    public NPC(String newName) {
         this.name = newName;
-        this.dialogueList = newDialogueList;
     }
 }
 
