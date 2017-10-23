@@ -210,6 +210,23 @@ public class Game
         NPC Wife = new NPC("Wife Nancy = new Wife()" );
         NPC Coroner = new NPC("Coroner" );
     }
+    private void createDialogue(){
+     
+            
+            String[] coroner1=new String[]{
+     "Welcome to the murder scene, make yourself at home.",
+     "The victim is your partner, Detective Prickard. He was a dick, and the world is a better place without him.",
+     "The victim was stabbed several times, and died from blood loss. It appear to be a crime of passion, due to the many stabs, and the spit on the victim’s face. (update cluelist)",
+     "The victim was surprised at the attack, so I believe he knew his killer. (update cluelist)",
+     "I’ll get the cleaning team here know, so we can get this shit of the street. (loop; if played, NPC will disappear on next loading.)"
+    };
+    Dialogue coroner=new Dialogue(coroner1);
+        
+    }
+    
+    private void setdialogue(){
+    //todo
+    }
     
     private void createItems(){
         
