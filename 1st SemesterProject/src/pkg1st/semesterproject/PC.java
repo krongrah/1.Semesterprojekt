@@ -19,10 +19,12 @@ public class PC {
     private Set<Item>desk=new HashSet<>();
     private Set<Clue>Cluelist=new HashSet<>();
     private int maxInventoryCapacity=2;
-    
+    private Game newGame;
+   
     //constructor
-    PC(){
+    PC(Game game){
     points=100;
+    newGame=game;
     }
     
     //Checking methods
@@ -32,7 +34,7 @@ public class PC {
     }
     }
     public void checkDesk(){
-        if (newGame.getRoom()==pd){
+        if (/*newGame.getRoom()==pd*/true){
         for (Item thing:desk){
         System.out.println(thing.getName());
         }       
@@ -87,7 +89,7 @@ public class PC {
         if(thing.getCollectible()){
                 System.out.println("You placed it in your bag.");
                 //todo
-                newGame.currentRoom().ItemsInRoom().remove(thing);
+                newGame.getRoom().getItemsInRoom().remove(thing);
                 inventory.add(thing);}
         else{
                 System.out.println("You can't seem to get a hold of it.");

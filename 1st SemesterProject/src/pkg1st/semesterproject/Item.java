@@ -28,10 +28,10 @@ public class Item {
     }
     //creating the constructor for the purpose of making objects of the item class
     public Item(String newName, String newDescription, boolean newIsClue, boolean newCollectible) {
-        newName = name;
-        newDescription = description;
-        newIsClue = isClue;
-        newCollectible = collectible;
+        name = newName;
+        description = newDescription;
+        isClue = newIsClue;
+        collectible = newCollectible;
         
     }
 

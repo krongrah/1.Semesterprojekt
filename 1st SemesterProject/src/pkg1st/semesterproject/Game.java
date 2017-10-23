@@ -9,7 +9,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    PC player=new PC();
+    PC player;
     // Cunstructor calls createRooms and creates new Parser
     public Game() 
     {
@@ -17,6 +17,7 @@ public class Game
         createNPCs();
         createItems();
         parser = new Parser();
+        player=new PC(this);
         
     }
 
