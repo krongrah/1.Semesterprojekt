@@ -45,10 +45,13 @@ public class Room
     }
 
     /**
-     * @param ItemsInRoom the ItemsInRoom to set
+     * @param itemsInRoom the ItemsInRoom to set
      */
-    public void addItemsToRoom(Item ItemsInRoom) {
-        this.ItemsInRoom.add(ItemsInRoom);
+    public void addItemsToRoom(Item itemsInRoom) {
+        this.ItemsInRoom.add(itemsInRoom);
+    }
+    public void removeItemFromRoom(Item itemsInRoom){
+    this.ItemsInRoom.remove(itemsInRoom);
     }
 
     /**

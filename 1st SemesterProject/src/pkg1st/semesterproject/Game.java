@@ -304,11 +304,11 @@ public class Game
         }
         //have the player enter a name
         Scanner talking=new Scanner(System.in);
-        String target=talking.nextLine();
-        
+        String target=talking.nextLine().toLowerCase();
         //go through NPCs for matches to the input.
         for (NPC npc: currentRoom.getNpcsInRoom()){
         if (target==npc.getName()){
+            System.out.println("Timmy!");
             npc.getDialogue();                
             break;
         } 
@@ -331,17 +331,22 @@ public class Game
         
         //get an input for the desired item.
         Scanner pick=new Scanner(System.in);
-        String newItem=pick.nextLine();
+        String newItem=pick.nextLine().toLowerCase();
         if (newItem.equals("nothing")){
             System.out.println("You decide that scavenging is above you.");    
         }
         else{   
         //searches for the item
         boolean success=false;
+            
         for (Item thing:currentRoom.getItemsInRoom()){
             if(newItem==thing.getName()){
+
                 success=true;
                 player.addToInventory(thing);
+                currentRoom.removeItemFromRoom(thing);
+                System.out.println("You successfully picked up the "+thing.getName());
+
             break;                
             }
         }
