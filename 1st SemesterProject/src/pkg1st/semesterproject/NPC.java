@@ -15,6 +15,9 @@ public class NPC {
     private String name;
     Dialogue dialogue;
     private int suspectability;
+    private Clue clue;
+    private int clueCount=0;
+    private int clueRelease;
     //Moves NPC to another room
     public static void move(String Room) {
         
@@ -33,11 +36,24 @@ public class NPC {
     public void setDialogue(Dialogue dialogue_){
     dialogue=dialogue_;
     }
+    public int getClueCount(){
+    clueCount++;
+    return clueCount;
+    } 
+    public int getClueRelease(){
+    return clueRelease;
+    }
+    public Clue giveClue(){
+        System.out.println(clue.getName()+" was added to your journal.");
+        return clue;
+    }
     
     // NPC constructor
-    public NPC(String newName, Dialogue dialogue) {
+    public NPC(String newName, Dialogue dialogue, Clue clue, int clueRelease) {
         this.name = newName;
         this.dialogue=dialogue;
+        this.clue=clue;
+        this.clueRelease=clueRelease;
     }
 }
 

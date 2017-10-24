@@ -243,15 +243,17 @@ public class Game {
         Dialogue hobo4Dialogue=new Dialogue(hobo4Line);
         Dialogue commissionerDialogue=new Dialogue(commissionerLine1,commissionerLine2);
 
+        //create clues
+        Clue testClue=new Clue("testName", "nondescript");
         
-                NPC hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue);
-        NPC hobo2 = new NPC("Dirty Darryl" ,hobo2Dialogue);
-        NPC hobo3 = new NPC("Heroin Harry" ,hobo3Dialogue);
-        NPC hobo4 = new NPC("Insane Dwayne",hobo4Dialogue);
-        NPC commissioner = new NPC("Commissioner Curt" ,commissionerDialogue);
-        NPC bartender = new NPC("Bartender Bert" ,bartenderDialogue);
-        NPC wife = new NPC("Wife Nancy = new Wife()",wifeDialogue );
-        NPC coroner = new NPC("Coroner" ,coronerDialogue);
+        NPC hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue,testClue ,0);
+        NPC hobo2 = new NPC("Dirty Darryl" ,hobo2Dialogue, testClue,0);
+        NPC hobo3 = new NPC("Heroin Harry" ,hobo3Dialogue, testClue,0);
+        NPC hobo4 = new NPC("Insane Dwayne",hobo4Dialogue, testClue,0);
+        NPC commissioner = new NPC("Commissioner Curt" ,commissionerDialogue, testClue,0);
+        NPC bartender = new NPC("Bartender Bert" ,bartenderDialogue, testClue,2);
+        NPC wife = new NPC("Wife Nancy = new Wife()",wifeDialogue, testClue,0 );
+        NPC coroner = new NPC("Coroner" ,coronerDialogue, testClue,0);
 
         bar.addNpcToRoom(bartender);
         home.addNpcToRoom(wife);
@@ -323,6 +325,9 @@ public class Game {
         for (NPC npc: currentRoom.getNpcsInRoom()) {
             if (target.equals(npc.getName())){
                 npc.getDialogue();
+                if(npc.getClueCount()==npc.getClueRelease() ){
+                player.addToCluelist(npc.giveClue());
+                }
                 break;
             }
         }
