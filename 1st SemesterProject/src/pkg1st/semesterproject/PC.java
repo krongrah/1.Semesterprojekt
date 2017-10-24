@@ -20,11 +20,13 @@ public class PC {
     private Set<Clue>Cluelist=new HashSet<>();
     private int maxInventoryCapacity=2;
     private Game newGame;
+    private Room pd;
    
     //constructor
-    PC(Game game){
+    PC(Game game, Room room){
     points=100;
     newGame=game;
+    pd=room;
     }
     
     //Checking methods
@@ -33,8 +35,8 @@ public class PC {
         System.out.println(thing.getName());
     }
     }
-    public void checkDesk(){
-        if (/*newGame.getRoom()==pd*/true){
+    public void checkDesk(Room currentRoom){
+        if (currentRoom==pd){
         for (Item thing:desk){
         System.out.println(thing.getName());
         }       
