@@ -39,7 +39,8 @@ public class PC {
             System.out.println("Your inventory is empty");
             
         }
-                
+          
+        
     }
     public void checkInventory(){
     for (Item thing:inventory){
