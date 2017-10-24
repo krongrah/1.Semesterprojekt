@@ -263,6 +263,13 @@ public class Game
         NPC coroner = new NPC("Coroner" ,coronerDialogue);
         
         bar.addNpcToRoom(bartender);
+        crimeScene.addNpcToRoom(coroner);
+        pd.addNpcToRoom(commissioner);
+        home.addNpcToRoom(wife);
+        crimeScene.addNpcToRoom(hobo1);
+        crimeScene.addNpcToRoom(hobo2);
+        crimeScene.addNpcToRoom(hobo3);
+        crimeScene.addNpcToRoom(hobo4);
         //todo move placements to fillRooms()        
     }
     private void fillRooms(){
@@ -276,9 +283,7 @@ public class Game
         // creation of the multiple items via the constructor in Item.java
         Item murderWeapon = new Item("Murder Weapon", "This is a broken bottle"
             + " with sharp edges and blood covering the edges", true, true);
-    
-                bar.addItemsToRoom(murderWeapon);
-        
+            
         Item bloodSplatter = new Item("Blood splatter", "the ground is covered" +
             " in blood", true, false);
     
@@ -293,6 +298,12 @@ public class Game
             " former partners badge covered in blood, odd that you would find" +
             " this here. \n i wave of guilt washes over you as you realise" + 
             " what you have done", true, true);
+        
+        crimeScene.addItemsToRoom(murderWeapon);
+        crimeScene.addItemsToRoom(bloodSplatter);
+        crimeScene.addItemsToRoom(corpse);
+        home.addItemsToRoom(bloodSplatteredBadge);
+        pd.addItemsToRoom(gun);
     }
     
     private String talk(){
