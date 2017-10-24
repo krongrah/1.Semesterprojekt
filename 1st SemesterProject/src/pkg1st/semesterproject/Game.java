@@ -10,7 +10,9 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
-      
+    private Item murderWeapon, bloodSplatteredBadge, gun, bloodSplatter, corpse;
+    private NPC coroner, commissioner, bartender, wife, hobo1, hobo2, hobo3, hobo4;
+    private Dialogue coronerDialogue, commissionerDialogue, bartenderDialogue, wifeDialogue, hobo1Dialogue, hobo2Dialogue, hobo3Dialogue, hobo4Dialogue;
     PC player;
     // Constructor calls createRooms and creates new Parser
     public Game() 
@@ -18,6 +20,8 @@ public class Game
         createRooms();
         createNPCs();
         createItems();
+        createDialogue();
+        fillRooms();
         parser = new Parser();
         player=new PC(this, pd);
         
@@ -186,7 +190,7 @@ public class Game
         }
     }
 
-    private void createNPCs(){
+    private void createDialogue(){
      
     //create dialogue        
     String[] coronerLine=new String[]{
@@ -244,21 +248,27 @@ public class Game
     Dialogue hobo3Dialogue=new Dialogue(hobo3Line);
     Dialogue hobo4Dialogue=new Dialogue(hobo4Line);
     Dialogue commissionerDialogue=new Dialogue(commissionerLine1,commissionerLine2);
-
-    //Creates NPCs
-
-        NPC Hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue);
-        NPC Hobo2 = new NPC("Dirty Darryl" ,hobo2Dialogue);
-        NPC Hobo3 = new NPC("Heroin Harry" ,hobo3Dialogue);
-        NPC Hobo4 = new NPC("Insane Dwayne",hobo4Dialogue);
-        NPC Commissioner = new NPC("Commissioner Curt" ,commissionerDialogue);
-        NPC Bartender = new NPC("Bartender Bert" ,bartenderDialogue);
-        NPC Wife = new NPC("Wife Nancy = new Wife()",wifeDialogue );
-        NPC Coroner = new NPC("Coroner" ,coronerDialogue);
     
-        bar.addNpcToRoom(Bartender);
     }
     
+    //Creates NPCs
+    private void createNPCs(){
+        NPC hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue);
+        NPC hobo2 = new NPC("Dirty Darryl" ,hobo2Dialogue);
+        NPC hobo3 = new NPC("Heroin Harry" ,hobo3Dialogue);
+        NPC hobo4 = new NPC("Insane Dwayne",hobo4Dialogue);
+        NPC commissioner = new NPC("Commissioner Curt" ,commissionerDialogue);
+        NPC bartender = new NPC("Bartender Bert" ,bartenderDialogue);
+        NPC wife = new NPC("Wife Nancy = new Wife()",wifeDialogue );
+        NPC coroner = new NPC("Coroner" ,coronerDialogue);
+        
+        bar.addNpcToRoom(bartender);
+        //todo move placements to fillRooms()        
+    }
+    private void fillRooms(){
+                   
+
+    }
     
     
     private void createItems(){
@@ -269,7 +279,7 @@ public class Game
     
                 bar.addItemsToRoom(murderWeapon);
         
-        Item bloodsplatter = new Item("Blood splatter", "the ground is covered" +
+        Item bloodSplatter = new Item("Blood splatter", "the ground is covered" +
             " in blood", true, false);
     
         Item gun = new Item("Gun", "Its a smith and wesson, your best friend",
