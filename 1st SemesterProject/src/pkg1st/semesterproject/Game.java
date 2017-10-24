@@ -310,10 +310,11 @@ public class Game {
         
     }
 
-    private String talk() {
+    private void talk() {
 
         //Gives the player a list of NPCs in the room
-        System.out.println("Who do you wish to talk to?");
+        boolean sucess=false;
+        do{System.out.println("Who do you wish to talk to?");
         for (NPC npc: currentRoom.getNpcsInRoom()) {
             System.out.println(npc.getName());
         }
@@ -322,17 +323,21 @@ public class Game {
         String target = talking.nextLine();
 
         //go through NPCs for matches to the input.
+        
         for (NPC npc: currentRoom.getNpcsInRoom()) {
             if (target.equals(npc.getName())){
                 npc.getDialogue();
+                sucess=true;
                 if(npc.getClueCount()==npc.getClueRelease() ){
                 player.addToCluelist(npc.giveClue());
                 }
                 break;
             }
-        }
+        }}
+        while(!sucess);
+        
         //if no matches are found, print this line:
-        return "There is no one here by that name.";
+        
     }
     //todo the search is a mess
     //add to cluelist
