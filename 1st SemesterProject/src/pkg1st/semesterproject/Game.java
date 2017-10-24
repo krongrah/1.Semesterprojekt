@@ -12,14 +12,14 @@ public class Game
     private Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
       
     PC player;
-    // Cunstructor calls createRooms and creates new Parser
+    // Constructor calls createRooms and creates new Parser
     public Game() 
     {
         createRooms();
         createNPCs();
         createItems();
         parser = new Parser();
-        player=new PC(this);
+        player=new PC(this, pd);
         
     }
 
@@ -85,7 +85,6 @@ public class Game
     public void play() 
     {            
         printWelcome();
-        getInfo();
             
         boolean finished = false;
         while (! finished) {
@@ -102,11 +101,12 @@ public class Game
     private void printWelcome()
     { //todo
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to the life of detective Dindunuffin.");
+        System.out.println("The commissioner wants you in the police department.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
+        getInfo();
     }
 
     // Excecutes commands
@@ -349,12 +349,15 @@ public class Game
         System.out.println("You do not have the authority to do this.");
     }
     private void getInfo(){
+        
+        if (currentRoom.getNpcsInRoom().size()==0){
+                System.out.println("You are all alone.");
+            } else{
+        System.out.println("The other people here are:");
     for (NPC npc: currentRoom.getNpcsInRoom()){
             System.out.println(npc.getName());
-        }
-            if (currentRoom.getNpcsInRoom().size()==0){
-                System.out.println("You are all alone.");
-            }
+        }}
+            
     }
     
 }
