@@ -34,7 +34,11 @@ public class PC {
     //Checking methods
     public void displayInventory(){
         int empty = 0;
-        System.out.println(inventory);
+        for (Item thing:inventory){
+            System.out.println(thing.getName());
+            System.out.println("you have " +inventory.size()+"/"+maxInventoryCapacity +" spots left in your inventory");
+        }
+         
         if (inventory.size() == empty){
             System.out.println("Your inventory is empty");
             
