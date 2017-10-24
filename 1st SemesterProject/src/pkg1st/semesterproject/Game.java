@@ -149,7 +149,7 @@ public class Game
     // Calls parser to show all possible commands
     private void printHelp() 
     {
-        System.out.println("You supposed to help others, ");
+        System.out.println("You're supposed to help others, ");
         System.out.println("not get help.");
         System.out.println();
         System.out.println("Your command words are:");
@@ -196,13 +196,13 @@ public class Game
     String[] coronerLine=new String[]{
      "Welcome to the murder scene, make yourself at home.",
      "The victim is your partner, Detective Prickard. He was a dick, and the world is a better place without him.",
-     "The victim was stabbed several times, and died from blood loss. It appear to be a crime of passion, due to the many stabs, and the spit on the victim’s face. (update cluelist)",
-     "The victim was surprised at the attack, so I believe he knew his killer. (update cluelist)",
+     "The victim was stabbed several times, and died from blood loss. It appears to be a crime of passion, due to the many stab wounds the spit on the victim’s face. (update cluelist)",
+     "The victim was surprised by the attack, so I believe he knew his killer. (update cluelist)",
      "I’ll get the cleaning team here know, so we can get this shit of the street. (loop; if played, NPC will disappear on next loading.)"
     };
     String[] wifeLine=new String[]{
-    "What are you doing here? You love your job more than me, so go back it and leave me alone.",
-    "You are always out drinking you sad piece of shit.",
+    "What are you doing here? You love your job more than me, so go do your job and leave me alone.",
+    "You are always out drinking, you sad piece of shit.",
     "Where were you even last night? You came home covered in shit all worked up?",
     "Go away, I want a good day. (end of dialogue: loop)"
     };        
