@@ -143,6 +143,9 @@ public class Game
         else if (commandWord == CommandWord.ACCUSE){
         accuse();
         }
+        else if (commandWord == CommandWord.INVENTORY){
+        player.displayInventory();
+        }
         return wantToQuit;
     }
 

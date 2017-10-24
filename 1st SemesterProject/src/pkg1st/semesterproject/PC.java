@@ -21,7 +21,9 @@ public class PC {
     private int maxInventoryCapacity=2;
     private Game newGame;
     private Room pd;
+    
    
+
     //constructor
     PC(Game game, Room room){
     points=100;
@@ -30,6 +32,15 @@ public class PC {
     }
     
     //Checking methods
+    public void displayInventory(){
+        int empty = 0;
+        System.out.println(inventory);
+        if (inventory.size() == empty){
+            System.out.println("Your inventory is empty");
+            
+        }
+                
+    }
     public void checkInventory(){
     for (Item thing:inventory){
         System.out.println(thing.getName());
@@ -98,6 +109,7 @@ public class PC {
             }
     
     }
+    
     
     public void addToCluelist(Clue thing ){
     Cluelist.add(thing);
