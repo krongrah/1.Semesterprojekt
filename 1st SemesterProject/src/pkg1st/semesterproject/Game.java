@@ -318,7 +318,8 @@ public class Game {
 
         //go through NPCs for matches to the input.
         for (NPC npc: currentRoom.getNpcsInRoom()) {
-            if (target == npc.getName()){
+            if (target.equals(npc.getName())){
+                System.out.println("test");
                 npc.getDialogue();
                 break;
             }
@@ -349,10 +350,10 @@ public class Game {
                 //searches for the item
                 boolean success = false;
                 for (Item thing:currentRoom.getItemsInRoom()){
-                    if(newItem == thing.getName()){
+                    if(newItem.equals(thing.getName())){
                         success = true;
-                        player.addToInventory(thing);
-                        System.out.println("Item was added yo your inventory");
+                        player.addToInventory(thing, currentRoom);
+                        System.out.println(thing.getName()+" was added yo your inventory");
                         break;
                     }
                 }
