@@ -336,14 +336,15 @@ public class Game {
             for (Item thing:currentRoom.getItemsInRoom()){
                 System.out.println(thing.getName());
             }
-            System.out.println("What do you want to pick up?");
+            System.out.println("What do you want to look at?");
             System.out.println("If you don't want anything, type \"nothing\".");
 
             //get an input for the desired item.
             Scanner pick = new Scanner(System.in);
             String newItem = pick.nextLine();
             if (newItem.equals("nothing")){
-                System.out.println("You decide that scavenging is above you.");
+                System.out.println("I guess this is not interesting to you.");
+                System.out.println("");
             }
             else{
                 //searches for the item
@@ -351,9 +352,29 @@ public class Game {
                 for (Item thing:currentRoom.getItemsInRoom()){
                     if(newItem.equals(thing.getName())){
                         success = true;
-                        player.addToInventory(thing, currentRoom);
-                        System.out.println(thing.getName()+" was added yo your inventory");
-                        break;
+                        System.out.println("");
+                        System.out.println(thing.getDescription());
+                        System.out.println("");
+                        
+                        if(thing.getCollectible()==true){
+                        System.out.println("Do you want to pick this item up? Yes/No");
+                            String willing = pick.nextLine();    
+                            if(willing.equals("Yes")==true){
+                            player.addToInventory(thing, currentRoom);
+                            
+                            }
+                            if(willing.equals("No")){
+                                System.out.println("The Item was left alone");
+                                break;
+                            }
+                        
+                        }
+                        else {
+                            System.out.println("This item can't be picked up.");
+                            break;
+                        }
+                        
+                        
                     }
                 }
                 if (success == false){
