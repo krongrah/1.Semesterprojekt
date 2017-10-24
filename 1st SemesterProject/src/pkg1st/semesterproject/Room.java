@@ -67,6 +67,12 @@ public class Room
     public void addNpcToRoom(NPC npcsInRoom) {
         this.NPCsInRoom.add(npcsInRoom);
     }
+    /**
+     * @param npcsInRoom the npcsInRoom to set
+     */
+    public void removeNpcFromRoom(NPC npcsInRoom) {
+        this.NPCsInRoom.remove(npcsInRoom);
+    }
     //Getter for the description/name along with a list of exits.
     public String getLongDescription()
     {
