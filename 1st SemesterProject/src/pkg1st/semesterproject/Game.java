@@ -243,11 +243,8 @@ public class Game {
         Dialogue hobo4Dialogue=new Dialogue(hobo4Line);
         Dialogue commissionerDialogue=new Dialogue(commissionerLine1,commissionerLine2);
 
-    }
-
-    //Creates NPCs
-    private void createNPCs(){
-        NPC hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue);
+        
+                NPC hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue);
         NPC hobo2 = new NPC("Dirty Darryl" ,hobo2Dialogue);
         NPC hobo3 = new NPC("Heroin Harry" ,hobo3Dialogue);
         NPC hobo4 = new NPC("Insane Dwayne",hobo4Dialogue);
@@ -264,6 +261,12 @@ public class Game {
         crimeScene.addNpcToRoom(hobo2);
         crimeScene.addNpcToRoom(hobo3);
         crimeScene.addNpcToRoom(hobo4);
+        
+    }
+
+    //Creates NPCs
+    private void createNPCs(){
+
         //todo move placements to fillRooms()
     }
     private void fillRooms(){

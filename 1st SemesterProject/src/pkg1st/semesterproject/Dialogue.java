@@ -28,15 +28,14 @@ public class Dialogue {
     }
     
     public void getLine(){
-        System.out.println("test");
         if(!condition1){
         System.out.println(dialogue1[lineIndex]);
-        if (lineIndex<dialogue1.length){
+        if (lineIndex<dialogue1.length-1){
         lineIndex++;
         }
     } else {
         System.out.println(dialogue2[lineIndex]);
-        if (lineIndex<dialogue2.length){
+        if (lineIndex<dialogue2.length-1){
         lineIndex++;
         }
         }
