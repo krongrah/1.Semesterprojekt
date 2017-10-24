@@ -104,11 +104,11 @@ public class PC {
     }
     
     //methods for adding to cluelist and inventory
-    public void addToInventory(Item thing){
+    public void addToInventory(Item thing, Room currentRoom){
         if(thing.getCollectible()) {
             System.out.println("You placed it in your bag.");
             //todo
-            newGame.getRoom().getItemsInRoom().remove(thing);
+            currentRoom.getItemsInRoom().remove(thing);
             inventory.add(thing);
         }
         else {
