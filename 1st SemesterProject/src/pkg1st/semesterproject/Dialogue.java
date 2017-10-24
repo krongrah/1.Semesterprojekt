@@ -18,13 +18,13 @@ public class Dialogue {
     private int lineIndex=0;
     
     //single dialogue constructor
-    Dialogue(String[] dialogue1_){
-    dialogue1=dialogue1_;
+    Dialogue(String[] dialogue1){
+    this.dialogue1=dialogue1;
     }
     //double dialogue constructor
-    Dialogue(String[] dialogue1_, String[] dialogue2_){
-    dialogue1=dialogue1_;
-    dialogue2=dialogue2_;
+    Dialogue(String[] dialogue1, String[] dialogue2){
+    this.dialogue1=dialogue1;
+    this.dialogue2=dialogue2;
     }
     
     public void getLine(){
