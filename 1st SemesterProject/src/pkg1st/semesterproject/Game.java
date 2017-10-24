@@ -319,7 +319,6 @@ public class Game {
         //go through NPCs for matches to the input.
         for (NPC npc: currentRoom.getNpcsInRoom()) {
             if (target.equals(npc.getName())){
-                System.out.println("test");
                 npc.getDialogue();
                 break;
             }

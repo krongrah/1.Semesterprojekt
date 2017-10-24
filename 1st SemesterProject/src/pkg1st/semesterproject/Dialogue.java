@@ -28,6 +28,7 @@ public class Dialogue {
     }
     
     public void getLine(){
+        System.out.println("test");
         if(!condition1){
         System.out.println(dialogue1[lineIndex]);
         if (lineIndex<dialogue1.length){
