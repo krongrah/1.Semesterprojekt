@@ -10,39 +10,40 @@ package pkg1st.semesterproject;
  * @author Krongrah
  */
 public class Dialogue {
-    
+
     //Attributes
     private String[] dialogue1;
-    private boolean condition1=false;
-    private String[] dialogue2=null;
-    private int lineIndex=0;
-    
+    private boolean condition1 = false;
+    private String[] dialogue2 = null;
+    private int lineIndex = 0;
+
     //single dialogue constructor
-    Dialogue(String[] dialogue1){
-    this.dialogue1=dialogue1;
+    Dialogue(String[] dialogue1) {
+        this.dialogue1 = dialogue1;
     }
+
     //double dialogue constructor
-    Dialogue(String[] dialogue1, String[] dialogue2){
-    this.dialogue1=dialogue1;
-    this.dialogue2=dialogue2;
+    Dialogue(String[] dialogue1, String[] dialogue2) {
+        this.dialogue1 = dialogue1;
+        this.dialogue2 = dialogue2;
     }
-    
-    public void getLine(){
-        if(!condition1){
-        System.out.println(dialogue1[lineIndex]);
-        if (lineIndex<dialogue1.length-1){
-        lineIndex++;
-        }
-    } else {
-        System.out.println(dialogue2[lineIndex]);
-        if (lineIndex<dialogue2.length-1){
-        lineIndex++;
-        }
+
+    public void getLine() {
+        if (!condition1) {
+            System.out.println(dialogue1[lineIndex]);
+            if (lineIndex < dialogue1.length - 1) {
+                lineIndex++;
+            }
+        } else {
+            System.out.println(dialogue2[lineIndex]);
+            if (lineIndex < dialogue2.length - 1) {
+                lineIndex++;
+            }
         }
     }
-    
-    public void fulfillCondition(){
-    condition1=true;
-    lineIndex=0;
+
+    public void fulfillCondition() {
+        condition1 = true;
+        lineIndex = 0;
     }
 }

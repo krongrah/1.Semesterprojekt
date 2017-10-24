@@ -9,7 +9,6 @@ package pkg1st.semesterproject;
  *
  * @author Krongrah
  */
-
 public class Starter {
 
     /**
@@ -18,10 +17,9 @@ public class Starter {
     public static void main(String[] args) {
         // TODO code application logic here       
         System.out.println("Gotta load fast!");
-        Game newGame=new Game();
+        Game newGame = new Game();
         newGame.play();
-        
-        
+
     }
-    
+
 }

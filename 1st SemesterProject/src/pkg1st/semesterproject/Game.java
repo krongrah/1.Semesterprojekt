@@ -1,12 +1,13 @@
 package pkg1st.semesterproject;
 
 /**
- * @author  Michael Kolling and David J. Barnes
+ * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
 import java.util.Scanner;
 
 public class Game {
+
     private Parser parser;
     private Room currentRoom;
     private Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
@@ -14,6 +15,7 @@ public class Game {
     private NPC coroner, commissioner, bartender, wife, hobo1, hobo2, hobo3, hobo4;
     private Dialogue coronerDialogue, commissionerDialogue, bartenderDialogue, wifeDialogue, hobo1Dialogue, hobo2Dialogue, hobo3Dialogue, hobo4Dialogue;
     PC player;
+
     // Constructor calls createRooms and creates new Parser
     public Game() {
         createRooms();
@@ -30,26 +32,26 @@ public class Game {
     private void createRooms() {
         //todo
 
-        leftStreet = new Room(" on left street","Left Street");
-        rightStreet = new Room(" on Right street","Right Street");
-        bar = new Room(" in the bar","Bar");
-        hoboAlley = new Room(" in the Hobo Alley, try not to get stabbed","Hobo Alley");
-        crimeScene = new Room(" at the crime scene","Crime scene");
-        partnerHome = new Room(" in your deceased partners house","Partner's home");
-        home = new Room(" in your home","Home");
-        pd = new Room(" in the Police Department","Police Department");
-        jail = new Room(" visiting the jail, in the pd","Jail");
-        court = new Room(" in court","Court");
+        leftStreet = new Room(" on left street", "Left Street");
+        rightStreet = new Room(" on Right street", "Right Street");
+        bar = new Room(" in the bar", "Bar");
+        hoboAlley = new Room(" in the Hobo Alley, try not to get stabbed", "Hobo Alley");
+        crimeScene = new Room(" at the crime scene", "Crime scene");
+        partnerHome = new Room(" in your deceased partners house", "Partner's home");
+        home = new Room(" in your home", "Home");
+        pd = new Room(" in the Police Department", "Police Department");
+        jail = new Room(" visiting the jail, in the pd", "Jail");
+        court = new Room(" in court", "Court");
 
         //leftStreet exits
         leftStreet.setExit("east", rightStreet);
-        leftStreet.setExit("south",bar);
+        leftStreet.setExit("south", bar);
         leftStreet.setExit("north", hoboAlley);
         leftStreet.setExit("west", partnerHome);
 
         //rightsteet exits
         rightStreet.setExit("east", home);
-        rightStreet.setExit("south",court);
+        rightStreet.setExit("south", court);
         rightStreet.setExit("north", pd);
         rightStreet.setExit("west", leftStreet);
 
@@ -76,18 +78,17 @@ public class Game {
         currentRoom = bar;
     }
 
-
-    public Room getRoom(){
+    public Room getRoom() {
         return currentRoom;
     }
 
     // Keeps game running requesting new command and ends the game
     // when processCommand returns true
-    public void play(){
+    public void play() {
         printWelcome();
 
         boolean finished = false;
-        while (! finished) {
+        while (!finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
             System.out.println("");
@@ -97,7 +98,7 @@ public class Game {
     }
 
     // Prints the welcome message, the help command, and the current room
-    private void printWelcome(){ 
+    private void printWelcome() {
         //todo
         System.out.println();
         System.out.println("Welcome to the life of detective Dindunuffin.");
@@ -109,36 +110,30 @@ public class Game {
     }
 
     // Excecutes commands
-    private boolean processCommand(Command command){
+    private boolean processCommand(Command command) {
         boolean wantToQuit = false;
 
         CommandWord commandWord = command.getCommandWord();
 
-        if(commandWord == CommandWord.UNKNOWN) {
+        if (commandWord == CommandWord.UNKNOWN) {
             System.out.println("I don't know what you mean...");
             return false;
         }
 
         if (commandWord == CommandWord.HELP) {
             printHelp();
-        }
-        else if (commandWord == CommandWord.GO) {
+        } else if (commandWord == CommandWord.GO) {
             goRoom(command);
-        }
-        else if (commandWord == CommandWord.QUIT) {
+        } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
-        }
-        else if (commandWord == CommandWord.SEARCH){
+        } else if (commandWord == CommandWord.SEARCH) {
             search();
-        }
-        else if (commandWord == CommandWord.TALK){
+        } else if (commandWord == CommandWord.TALK) {
             talk();
-        }
-        else if (commandWord == CommandWord.ACCUSE){
+        } else if (commandWord == CommandWord.ACCUSE) {
             accuse();
-        }
-        else if (commandWord == CommandWord.INVENTORY){
-        player.displayInventory();
+        } else if (commandWord == CommandWord.INVENTORY) {
+            player.displayInventory();
         }
         return wantToQuit;
     }
@@ -154,7 +149,7 @@ public class Game {
 
     //Checks if directions has an exit and moves to next room
     private void goRoom(Command command) {
-        if(!command.hasSecondWord()) {
+        if (!command.hasSecondWord()) {
             System.out.println("Go where?");
             return;
         }
@@ -165,8 +160,7 @@ public class Game {
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
-        }
-        else {
+        } else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
             getInfo();
@@ -175,11 +169,10 @@ public class Game {
 
     // Quits the game
     private boolean quit(Command command) {
-        if(command.hasSecondWord()) {
+        if (command.hasSecondWord()) {
             System.out.println("Quit what?");
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
@@ -187,73 +180,71 @@ public class Game {
     private void createDialogue() {
 
         //create dialogue
-        String[] coronerLine=new String[]{
+        String[] coronerLine = new String[]{
             "Welcome to the murder scene, make yourself at home.",
             "The victim is your partner, Detective Prickard. He was a dick, and the world is a better place without him.",
             "The victim was stabbed several times, and died from blood loss. It appears to be a crime of passion, due to the many stab wounds the spit on the victim’s face. (update cluelist)",
             "The victim was surprised by the attack, so I believe he knew his killer. (update cluelist)",
             "I’ll get the cleaning team here know, so we can get this shit of the street. (loop; if played, NPC will disappear on next loading.)"
         };
-        String[] wifeLine=new String[]{
+        String[] wifeLine = new String[]{
             "What are you doing here? You love your job more than me, so go do your job and leave me alone.",
             "You are always out drinking, you sad piece of shit.",
             "Where were you even last night? You came home covered in shit all worked up?",
             "Go away, I want a good day. (end of dialogue: loop)"
         };
-        String[] bartenderLine=new String[]{
+        String[] bartenderLine = new String[]{
             "You’re here early, just the usual? (add drink to inventory)",
             "Detective Prickard is dead? I can’t say I’m surprised, he didn’t seem to get along with anyone, especially not you. (add to cluelist)",
             "I think you should get back at work now. (loop)"
         };
-        String[] hobo1Line=new String[]{
+        String[] hobo1Line = new String[]{
             "Coppers don’t often come up to ‘dese parts",
             "I ‘eard a drunk fella’ shoutin’ at ’em.	(clue)",
             "Bugger off. (loop)"
         };
-        String[] hobo2Line=new String[]{
+        String[] hobo2Line = new String[]{
             "We don’ take kindly to your kind ‘roun’ ‘ere!",
             "What de’ ye’ stinkin’ cops wan’ over ‘ere? (clue)",
             "Ay ain’t tellin’ ye’ nutin’, stupid cop. (loop)"
         };
-        String[] hobo3Line=new String[]{
+        String[] hobo3Line = new String[]{
             "It gats’ ta’ be Rodney! He be lookin’ funny at me! (clue)",
             "Gat any smack? (loop)"
         };
-        String[] hobo4Line=new String[]{
+        String[] hobo4Line = new String[]{
             "I bet your ass killed him, cops can’t help killing.",
-            "I think you guilty, the voice in my head told me so. (loop)",
-        };
-        String[] commissionerLine1=new String[]{
+            "I think you guilty, the voice in my head told me so. (loop)",};
+        String[] commissionerLine1 = new String[]{
             "Detective, there has been a murder in the Hobo Alley, get over there ASAP. no time to wait for your partner, detective Prickard.",
             "Get your fat ass out of here! (loop)"
         };
-        String[] commissionerLine2=new String[]{
+        String[] commissionerLine2 = new String[]{
             "Did you find his badge? We need it for the memorial. (loop)"
 
         };
 
         //add dialogue to dialogue object
-
-        Dialogue coronerDialogue=new Dialogue(coronerLine);
-        Dialogue wifeDialogue=new Dialogue(wifeLine);
-        Dialogue bartenderDialogue=new Dialogue(bartenderLine);
-        Dialogue hobo1Dialogue=new Dialogue(hobo1Line);
-        Dialogue hobo2Dialogue=new Dialogue(hobo2Line);
-        Dialogue hobo3Dialogue=new Dialogue(hobo3Line);
-        Dialogue hobo4Dialogue=new Dialogue(hobo4Line);
-        Dialogue commissionerDialogue=new Dialogue(commissionerLine1,commissionerLine2);
+        Dialogue coronerDialogue = new Dialogue(coronerLine);
+        Dialogue wifeDialogue = new Dialogue(wifeLine);
+        Dialogue bartenderDialogue = new Dialogue(bartenderLine);
+        Dialogue hobo1Dialogue = new Dialogue(hobo1Line);
+        Dialogue hobo2Dialogue = new Dialogue(hobo2Line);
+        Dialogue hobo3Dialogue = new Dialogue(hobo3Line);
+        Dialogue hobo4Dialogue = new Dialogue(hobo4Line);
+        Dialogue commissionerDialogue = new Dialogue(commissionerLine1, commissionerLine2);
 
         //create clues
-        Clue testClue=new Clue("testName", "nondescript");
-        
-        NPC hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue,testClue ,0);
-        NPC hobo2 = new NPC("Dirty Darryl" ,hobo2Dialogue, testClue,0);
-        NPC hobo3 = new NPC("Heroin Harry" ,hobo3Dialogue, testClue,0);
-        NPC hobo4 = new NPC("Insane Dwayne",hobo4Dialogue, testClue,0);
-        NPC commissioner = new NPC("Commissioner Curt" ,commissionerDialogue, testClue,0);
-        NPC bartender = new NPC("Bartender Bert" ,bartenderDialogue, testClue,2);
-        NPC wife = new NPC("Wife Nancy = new Wife()",wifeDialogue, testClue,0 );
-        NPC coroner = new NPC("Coroner" ,coronerDialogue, testClue,0);
+        Clue testClue = new Clue("testName", "nondescript");
+
+        NPC hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue, testClue, 0);
+        NPC hobo2 = new NPC("Dirty Darryl", hobo2Dialogue, testClue, 0);
+        NPC hobo3 = new NPC("Heroin Harry", hobo3Dialogue, testClue, 0);
+        NPC hobo4 = new NPC("Insane Dwayne", hobo4Dialogue, testClue, 0);
+        NPC commissioner = new NPC("Commissioner Curt", commissionerDialogue, testClue, 0);
+        NPC bartender = new NPC("Bartender Bert", bartenderDialogue, testClue, 2);
+        NPC wife = new NPC("Wife Nancy = new Wife()", wifeDialogue, testClue, 0);
+        NPC coroner = new NPC("Coroner", coronerDialogue, testClue, 0);
 
         bar.addNpcToRoom(bartender);
         home.addNpcToRoom(wife);
@@ -263,44 +254,42 @@ public class Game {
         crimeScene.addNpcToRoom(hobo2);
         crimeScene.addNpcToRoom(hobo3);
         crimeScene.addNpcToRoom(hobo4);
-        
+
     }
 
     //Creates NPCs
-    private void createNPCs(){
+    private void createNPCs() {
 
         //todo move placements to fillRooms()
     }
-    private void fillRooms(){
 
+    private void fillRooms() {
 
     }
 
-
-    private void createItems(){
+    private void createItems() {
 
         // creation of the multiple items via the constructor in Item.java
         Item murderWeapon = new Item("Murder Weapon", "This is a broken bottle"
                 + " with sharp edges and blood covering the edges", true, true);
 
-        Item bloodSplatter = new Item("Blood splatter", "the ground is covered" +
-                " in blood", true, false);
+        Item bloodSplatter = new Item("Blood splatter", "the ground is covered"
+                + " in blood", true, false);
 
         Item gun = new Item("Gun", "Its a smith and wesson, your best friend",
                 false, true);
 
-        Item corpse = new Item("Corpse", "its a dead guy, he looks to be stabbed" +
-                " brutally multiple times.\n When you look closer you notice" +
-                " his face is covered in spit", true, false);
+        Item corpse = new Item("Corpse", "its a dead guy, he looks to be stabbed"
+                + " brutally multiple times.\n When you look closer you notice"
+                + " his face is covered in spit", true, false);
 
-        Item bloodSplatteredBadge = new Item("Blood Splattered Badge", "its your" +
-                " former partners badge covered in blood, odd that you would find" +
-                " this here. \n i wave of guilt washes over you as you realise" +
-                " what you have done", true, true);
-        
-        Item test=new Item("test","testDescipt",true,true);
-        
-        
+        Item bloodSplatteredBadge = new Item("Blood Splattered Badge", "its your"
+                + " former partners badge covered in blood, odd that you would find"
+                + " this here. \n i wave of guilt washes over you as you realise"
+                + " what you have done", true, true);
+
+        Item test = new Item("test", "testDescipt", true, true);
+
         bar.addItemsToRoom(test);
         crimeScene.addItemsToRoom(murderWeapon);
         crimeScene.addItemsToRoom(bloodSplatter);
@@ -313,42 +302,42 @@ public class Game {
     private void talk() {
 
         //Gives the player a list of NPCs in the room
-        boolean sucess=false;
-        do{System.out.println("Who do you wish to talk to?");
-        for (NPC npc: currentRoom.getNpcsInRoom()) {
-            System.out.println(npc.getName());
-        }
-        //have the player enter a name
-        Scanner talking = new Scanner(System.in);
-        String target = talking.nextLine();
-
-        //go through NPCs for matches to the input.
-        
-        for (NPC npc: currentRoom.getNpcsInRoom()) {
-            if (target.equals(npc.getName())){
-                npc.getDialogue();
-                sucess=true;
-                if(npc.getClueCount()==npc.getClueRelease() ){
-                player.addToCluelist(npc.giveClue());
-                }
-                break;
+        boolean sucess = false;
+        do {
+            System.out.println("Who do you wish to talk to?");
+            for (NPC npc : currentRoom.getNpcsInRoom()) {
+                System.out.println(npc.getName());
             }
-            else
-                System.out.println("There isnt anyone here by that name");
-        }}
-        while(!sucess);
-        
+            //have the player enter a name
+            Scanner talking = new Scanner(System.in);
+            String target = talking.nextLine();
+
+            //go through NPCs for matches to the input.
+            for (NPC npc : currentRoom.getNpcsInRoom()) {
+                if (target.equals(npc.getName())) {
+                    npc.getDialogue();
+                    sucess = true;
+                    if (npc.getClueCount() == npc.getClueRelease()) {
+                        player.addToCluelist(npc.giveClue());
+                    }
+                    break;
+                } else {
+                    System.out.println("There isnt anyone here by that name");
+                }
+            }
+        } while (!sucess);
+
         //if no matches are found, print this line:
-        
     }
+
     //todo the search is a mess
     //add to cluelist
-    private void search(){
+    private void search() {
 
         //prints all items in the room.
-        if (currentRoom.getItemsInRoom().size()!= 0){
+        if (currentRoom.getItemsInRoom().size() != 0) {
             System.out.println("You found these items:");
-            for (Item thing:currentRoom.getItemsInRoom()){
+            for (Item thing : currentRoom.getItemsInRoom()) {
                 System.out.println(thing.getName());
             }
             System.out.println("What do you want to look at?");
@@ -357,64 +346,60 @@ public class Game {
             //get an input for the desired item.
             Scanner pick = new Scanner(System.in);
             String newItem = pick.nextLine();
-            if (newItem.equals("nothing")){
+            if (newItem.equals("nothing")) {
                 System.out.println("I guess this is not interesting to you.");
                 System.out.println("");
-            }
-            else{
+            } else {
                 //searches for the item
                 boolean success = false;
-                for (Item thing:currentRoom.getItemsInRoom()){
-                    if(newItem.equals(thing.getName())){
+                for (Item thing : currentRoom.getItemsInRoom()) {
+                    if (newItem.equals(thing.getName())) {
                         success = true;
                         System.out.println("");
                         System.out.println(thing.getDescription());
                         System.out.println("");
-                        
-                        if(thing.getCollectible()==true){
-                        System.out.println("Do you want to pick this item up? Yes/No");
-                            String willing = pick.nextLine();    
-                            if(willing.equals("Yes")==true){
-                            player.addToInventory(thing, currentRoom);
-                            
+
+                        if (thing.getCollectible() == true) {
+                            System.out.println("Do you want to pick this item up? Yes/No");
+                            String willing = pick.nextLine();
+                            if (willing.equals("Yes") == true) {
+                                player.addToInventory(thing, currentRoom);
+
                             }
-                            if(willing.equals("No")){
+                            if (willing.equals("No")) {
                                 System.out.println("The Item was left alone");
                                 break;
                             }
-                        
-                        }
-                        else {
+
+                        } else {
                             System.out.println("This item can't be picked up.");
                             break;
                         }
-                        
-                        
+
                     }
                 }
-                if (success == false){
+                if (success == false) {
                     System.out.println("You can't find that.");
                 }
             }
-        }
-        else {
+        } else {
             System.out.println("You can't find anything.");
         }
     }
 
-    public void accuse(){
+    public void accuse() {
         System.out.println("You do not have the authority to do this.");
     }
-    private void getInfo(){
 
-        if (currentRoom.getNpcsInRoom().size()==0){
+    private void getInfo() {
+
+        if (currentRoom.getNpcsInRoom().size() == 0) {
             System.out.println("You are all alone.");
-        }
-        else {
+        } else {
             System.out.println("The other people here are:");
-            for (NPC npc: currentRoom.getNpcsInRoom()){
+            for (NPC npc : currentRoom.getNpcsInRoom()) {
                 System.out.println(npc.getName());
             }
-        }   
+        }
     }
 }

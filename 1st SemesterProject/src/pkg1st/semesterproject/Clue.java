@@ -10,27 +10,24 @@ package pkg1st.semesterproject;
  * @author Krongrah
  */
 public class Clue {
-    
+
     //Attributes
     private String name;
     private String description;
-    
+
     //constructor
-    Clue(String _name, String _description){
-    name=_name;
-    description=_description;
+    Clue(String _name, String _description) {
+        name = _name;
+        description = _description;
     }
-    
+
     //getters
-    public String getName(){
-    return name;
+    public String getName() {
+        return name;
     }
-    
-    public String getDescription(){
-    return description;
+
+    public String getDescription() {
+        return description;
     }
-    
-    
-    
-    
+
 }

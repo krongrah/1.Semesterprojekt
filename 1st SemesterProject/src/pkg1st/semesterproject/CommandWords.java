@@ -1,45 +1,43 @@
- package pkg1st.semesterproject;
+package pkg1st.semesterproject;
 
 import java.util.HashMap;
 
 /**
- * @author  Michael Kolling and David J. Barnes
+ * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
+public class CommandWords {
 
-public class CommandWords
-{
     private HashMap<String, CommandWord> validCommands;
+
     //constructor, places Commandwords in the validCommands map
-    public CommandWords()
-    {
+    public CommandWords() {
         validCommands = new HashMap<String, CommandWord>();
-        for(CommandWord command : CommandWord.values()) {
-            if(command != CommandWord.UNKNOWN) {
+        for (CommandWord command : CommandWord.values()) {
+            if (command != CommandWord.UNKNOWN) {
                 validCommands.put(command.toString(), command);
             }
         }
     }
+
     //getter
-    public CommandWord getCommandWord(String commandWord)
-    {
+    public CommandWord getCommandWord(String commandWord) {
         CommandWord command = validCommands.get(commandWord);
-        if(command != null) {
+        if (command != null) {
             return command;
-        }
-        else {
+        } else {
             return CommandWord.UNKNOWN;
         }
     }
+
     //returns true if aString is a command
-    public boolean isCommand(String aString)
-    {
+    public boolean isCommand(String aString) {
         return validCommands.containsKey(aString);
     }
+
     //prints all commands
-    public void showAll() 
-    {
-        for(String command : validCommands.keySet()) {
+    public void showAll() {
+        for (String command : validCommands.keySet()) {
             System.out.print(command + "  ");
         }
         System.out.println();
