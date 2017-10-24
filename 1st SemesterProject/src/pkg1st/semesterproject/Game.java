@@ -5,8 +5,7 @@ package pkg1st.semesterproject;
  * @version 2006.03.30
  */
 import java.util.Scanner;
-public class Game 
-{
+public class Game {
     private Parser parser;
     private Room currentRoom;
     private Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
@@ -144,8 +143,7 @@ private boolean processCommand(Command command)
 }
 
 // Calls parser to show all possible commands
-private void printHelp()
-{
+private void printHelp() {
     System.out.println("You're supposed to help others, ");
     System.out.println("not get help.");
     System.out.println();
@@ -298,12 +296,12 @@ private String talk() {
         System.out.println(npc.getName());
     }
     //have the player enter a name
-    Scanner talking=new Scanner(System.in);
-    String target=talking.nextLine();
+    Scanner talking = new Scanner(System.in);
+    String target = talking.nextLine();
     
     //go through NPCs for matches to the input.
     for (NPC npc: currentRoom.getNpcsInRoom()) {
-        if (target==npc.getName()){
+        if (target == npc.getName()){
             npc.getDialogue();
             break;
         }
@@ -316,7 +314,7 @@ private String talk() {
 private void search(){
     
     //prints all items in the room.
-    if (currentRoom.getItemsInRoom().size()!=0){
+    if (currentRoom.getItemsInRoom().size()!= 0){
         System.out.println("You found these items:");
         for (Item thing:currentRoom.getItemsInRoom()){
             System.out.println(thing.getName());
@@ -338,9 +336,6 @@ private void search(){
                     success = true;
                     player.addToInventory(thing);
                     break;
-                }
-                else {
-                    
                 }
             }
             if (success=false){
@@ -366,8 +361,6 @@ private void getInfo(){
         for (NPC npc: currentRoom.getNpcsInRoom()){
             System.out.println(npc.getName());
         }
-    }
-    
+    }   
 }
-
 }
