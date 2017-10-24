@@ -11,7 +11,7 @@ package pkg1st.semesterproject;
  */
 public class Dialogue {
     
-    //attributes
+    //Attributes
     private String[] dialogue1;
     private boolean condition1=false;
     private String[] dialogue2=null;
