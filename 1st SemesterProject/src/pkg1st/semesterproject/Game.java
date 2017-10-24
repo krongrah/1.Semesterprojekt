@@ -307,7 +307,7 @@ public class Game {
         crimeScene.addItemsToRoom(corpse);
         pd.addItemsToRoom(gun);
         home.addItemsToRoom(bloodSplatteredBadge);
-        
+
     }
 
     private void talk() {
@@ -333,6 +333,8 @@ public class Game {
                 }
                 break;
             }
+            else
+                System.out.println("There isnt anyone here by that name");
         }}
         while(!sucess);
         
