@@ -58,13 +58,20 @@ public class PC {
         }
 
     } 
-    public void checkDesk(Room currentRoom) {
+    public void diplayDesk(Room currentRoom) {
+        int empty = 0;
         if (currentRoom == pd) {
-            for (Item thing : desk) {
-                System.out.println(thing.getName());
-            }
+            for (Item deskItem : desk) {
+            System.out.println(deskItem.getName()+":");
+            System.out.println(deskItem.getDescription()+"\n");
+        }
+
+        if (journal.size() == empty) {
+            System.out.println("Your desk is empty");
+
+        }
         } else {
-            System.out.println("You can't check your desk from here.");
+            System.out.println("You can't check your desk from here, only in the Police station.");
         }
     }
    
@@ -104,15 +111,21 @@ public class PC {
 
     //methods for adding to cluelist and inventory
     public void addToInventory(Item thing, Room currentRoom) {
-        if (thing.getCollectible()) {
+        
+        if(inventory.size()<maxInventoryCapacity){
+            if (thing.getCollectible()) {
             System.out.println("You placed it in your bag.");
             //todo
             currentRoom.getItemsInRoom().remove(thing);
             inventory.add(thing);
-        } else {
+             }  else {
             System.out.println("You can't seem to get a hold of it.");
+            }
         }
-
+        else {
+            System.out.println("Your inventory are full");
+        }
+        
     }
 
     public void addToCluelist(Clue thing) {
