@@ -5,7 +5,7 @@ package pkg1st.semesterproject;
  * @version 2006.03.30
  */
 import java.util.Scanner;
-
+//fixing everything
 public class Game {
 
     private Parser parser;
