@@ -314,7 +314,7 @@ public class Game {
 
             //go through NPCs for matches to the input.
             for (NPC npc : currentRoom.getNpcsInRoom()) {
-                if (target.equals(npc.getName())) {
+                if (target.equals(npc.getName().toLowerCase())) {
                     npc.getDialogue();
                     sucess = true;
                     if (npc.getClueCount() == npc.getClueRelease()) {
@@ -351,18 +351,18 @@ public class Game {
                 //searches for the item
                 boolean success = false;
                 for (Item thing : currentRoom.getItemsInRoom()) {
-                    if (newItem.equals(thing.getName())) {
+                    if (newItem.equals(thing.getName().toLowerCase())) {
                         success = true;
                         System.out.println("\n" + thing.getDescription() + "\n");
 
                         if (thing.getCollectible() == true) {
                             System.out.println("Do you want to pick this item up? Yes/No");
                             String willing = pick.nextLine().toLowerCase();
-                            if (willing.equals("Yes") == true) {
+                            if (willing.equals("yes") == true) {
                                 player.addToInventory(thing, currentRoom);
 
                             }
-                            if (willing.equals("No")) {
+                            if (willing.equals("no")) {
                                 System.out.println("The Item was left alone");
                                 break;
                             }
