@@ -35,15 +35,10 @@ public class PC {
         int empty = 0;
         for (Item thing : inventory) {
             System.out.println(thing.getName()+ ":");
-            System.out.println(thing.getDescription()+"\n");
-            System.out.println("you have " + inventory.size() + "/" + maxInventoryCapacity + " spots left in your inventory");
+            System.out.println(thing.getDescription()+"\n");            
         }
-
-        if (inventory.size() == empty) {
-            System.out.println("Your inventory is empty");
-
-        }
-
+      
+        System.out.println("You have " + inventory.size() + "/" + maxInventoryCapacity + " spots filled in your inventory.");
     }
     public void displayJournal() {
         int empty = 0;

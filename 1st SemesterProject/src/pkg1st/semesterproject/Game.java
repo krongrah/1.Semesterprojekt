@@ -148,7 +148,7 @@ public class Game {
     
     private void inspect(Command command){
     if (!command.hasSecondWord()) {
-            System.out.println("Inspect what? inventory or journal");
+            System.out.println("Inspect what? inventory, desk or journal");
             return;
         }
     
