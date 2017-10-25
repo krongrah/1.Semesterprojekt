@@ -368,9 +368,7 @@ public class Game {
                     else 
                         continue;
                     } while (!sucess1);
-                
-            
-                } 
+                }
                 else {
                     System.out.println("There isnt anyone here by that name");
                 }
@@ -378,13 +376,7 @@ public class Game {
                     sucess = true;
                     break;
                 }
-                
-  
             }
-            
-                
-            
-
         } while (!sucess);
 
         //if no matches are found, print this line:
