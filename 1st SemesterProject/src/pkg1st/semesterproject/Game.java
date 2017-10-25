@@ -328,6 +328,7 @@ public class Game {
                     }
                     boolean sucess1 = false;
                     do{
+<<<<<<< HEAD
                         System.out.println("Do you want to keep talking?  Yes/No");
 
                         Scanner talking1 = new Scanner(System.in);
@@ -347,6 +348,23 @@ public class Game {
                             sucess1 = true;
                             sucess = true;
                         }    
+=======
+                    System.out.println("do you want to keep talking?  Yes/No");
+                    
+                    Scanner talking1 = new Scanner(System.in);
+                    String target1 = talking1.nextLine().toLowerCase();
+                    
+                    if (target1.equalsIgnoreCase("Yes")){
+                    npc.getDialogue();
+                    sucess1 = false;
+                    }
+                    
+                    if (target1.equalsIgnoreCase("No")){
+                    sucess1 = true;
+                    }
+                    else 
+                        sucess = true;
+>>>>>>> parent of 9147c37... fixed problems with the clue implementation in the talk method
                     } while (!sucess1);
                     break;
                 }
