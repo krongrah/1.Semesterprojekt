@@ -117,7 +117,6 @@ public class PC {
     public void addToCluelist(Clue thing) {
         Cluelist.add(thing);
         System.out.println("You noted the clue down.");
-        points += 100;
         
         
     }
@@ -125,11 +124,16 @@ public class PC {
         return points;
     }
     
-    public void addPoints() {
-        points += 100;
+    public void addPoints(int value) {
+        points += value;
         
     }
-    public void removePoints() {
-        points -= 10;
+    public void removePoints(int value) {
+        points -= value;
     }
 }
+
+//10 clues
+//1 end statement
+//accuse
+//start at 50, get 10 points per clue, up to 100 , then get 

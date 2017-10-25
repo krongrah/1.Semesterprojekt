@@ -429,7 +429,7 @@ public class Game {
 
     public void accuse() {
         int points = player.getPoints();
-        player.addPoints();
+        player.addPoints(20);
         if (points == 200) {
             System.out.println("you just completed the game");
         }
