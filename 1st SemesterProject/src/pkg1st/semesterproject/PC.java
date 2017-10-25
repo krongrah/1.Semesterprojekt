@@ -59,7 +59,7 @@ public class PC {
                 System.out.println(thing.getName());
             }
         } else {
-            System.out.println("You can't check your desk from here.");
+            System.out.println("You can't check your desk in the "+ currentRoom.getRoomName()+" only in the Police department.");
         }
     }
    
