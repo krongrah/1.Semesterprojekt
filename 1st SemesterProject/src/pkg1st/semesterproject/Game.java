@@ -160,6 +160,9 @@ public class Game {
     if(what.equals("journal")){
         player.displayJournal();
     }
+    if(what.equals("desk")){
+        player.checkDesk(currentRoom);
+    }
     
     }
     
