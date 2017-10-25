@@ -130,8 +130,8 @@ public class Game {
             talk();
         } else if (commandWord == CommandWord.ACCUSE) {
             accuse();
-        } else if (commandWord == CommandWord.INVENTORY) {
-            player.displayInventory();
+        } else if (commandWord == CommandWord.INSPECT) {
+            inspect(command);
         }
         return wantToQuit;
     }
@@ -145,6 +145,24 @@ public class Game {
         parser.showCommands();
     }
 
+    
+    private void inspect(Command command){
+    if (!command.hasSecondWord()) {
+            System.out.println("Inspect what? inventory or journal");
+            return;
+        }
+    
+    String what = command.getSecondWord();
+    
+    if(what.equals("inventory")){
+        player.displayInventory();
+    }
+    if(what.equals("journal")){
+        player.displayJournal();
+    }
+    
+    }
+    
     //Checks if directions has an exit and moves to next room
     private void goRoom(Command command) {
         if (!command.hasSecondWord()) {
