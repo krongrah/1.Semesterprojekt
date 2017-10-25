@@ -18,7 +18,7 @@ public class NPC {
     Dialogue dialogue;
     private int suspectability;
     private Clue clue;
-    private int clueCount = 0;
+    private int askForClueCounter = 0;
     private int clueRelease;
 
     //Moves NPC to another room
@@ -44,8 +44,8 @@ public class NPC {
     }
 
     public int getClueCount() {
-        clueCount++;
-        return clueCount;
+        askForClueCounter++;
+        return askForClueCounter;
     }
 
     public int getClueRelease() {
