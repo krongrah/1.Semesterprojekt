@@ -240,7 +240,7 @@ public class Game {
         Clue hobo3Statement=new Clue("Heroin Harry's statement", "According to Heroin Harry Dirty Darryl is the killer.");
         Clue coronerStatement=new Clue("Coroner's statement", "According to the coroner the murder was a crime of passion, \nand the victim knew his killer.");
         
-        
+
         NPC hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue, hobo1Statement, 2);
         NPC hobo2 = new NPC("Dirty Darryl", hobo2Dialogue, hobo2Statement, 2);
         NPC hobo3 = new NPC("Heroin Harry", hobo3Dialogue, hobo3Statement, 1);
@@ -265,26 +265,34 @@ public class Game {
 
     private void createItems() {
 
+        //create item clues
+        Clue murderWeaponClue = new Clue("Murder Weapon Evidence", "The murder weapon is a broken bottle of your favorite beer.");
+        Clue BloodsplatterClue = new Clue("Blood Splatter", "There was a lot of blood on the crimescene, suggesting a violent conflict.");
+        Clue CorpseClue = new Clue("Corpse", "The body of the victim was stabbed repeatedly, and had spit covering it's face.");
+        Clue bloodSplatteredBadgeClue = new Clue("Blood Splattered Badge evidence.", "This is the badge of the victim was found in your home, \nwhich points to you being the killer.");
+
+        
+        
         // creation of the multiple items via the constructor in Item.java
         Item murderWeapon = new Item("Murder Weapon", "This is a broken bottle"
-                + " with sharp edges and blood covering the edges", true, true);
+                + " with sharp edges and blood covering the edges", true, true, murderWeaponClue);
 
         Item bloodSplatter = new Item("Blood splatter", "the ground is covered"
-                + " in blood", true, false);
+                + " in blood", true, false, BloodsplatterClue);
 
         Item gun = new Item("Gun", "Its a smith and wesson, your best friend",
-                false, true);
+                false, true, CorpseClue);
 
         Item corpse = new Item("Corpse", "its a dead guy, he looks to be stabbed"
                 + " brutally multiple times.\n When you look closer you notice"
-                + " his face is covered in spit", true, false);
+                + " his face is covered in spit", true, false, CorpseClue);
 
         Item bloodSplatteredBadge = new Item("Blood Splattered Badge", "its your"
                 + " former partners badge covered in blood, odd that you would find"
                 + " this here. \n i wave of guilt washes over you as you realise"
-                + " what you have done", true, true);
+                + " what you have done", true, true,bloodSplatteredBadgeClue );
 
-        Item test = new Item("test", "testDescipt", true, true);
+        Item test = new Item("test", "testDescipt", false, true, CorpseClue);
 
         bar.addItemsToRoom(test);
         crimeScene.addItemsToRoom(murderWeapon);
@@ -363,8 +371,11 @@ public class Game {
                             String willing = pick.nextLine().toLowerCase();
                             if (willing.equals("yes") == true) {
                                 player.addToInventory(thing, currentRoom);
+                                if(thing.isClue==true){
+                                player.addToCluelist(thing.giveClue());
+                                }
 
-                            }
+                            } else
                             if (willing.equals("no")) {
                                 System.out.println("The Item was left alone");
                                 break;
@@ -374,6 +385,9 @@ public class Game {
 
                         } else {
                             System.out.println("This item can't be picked up.");
+                            if(thing.isClue==true){
+                            player.addToCluelist(thing.giveClue());
+                            }
                             break;
                         }
 
