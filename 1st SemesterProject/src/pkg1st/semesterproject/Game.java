@@ -336,13 +336,19 @@ public class Game {
                     if (target1.equalsIgnoreCase("Yes")){
                     npc.getDialogue();
                     sucess1 = false;
+                    if (npc.getClueCount() == npc.getClueRelease()) {
+                        player.addToCluelist(npc.giveClue());
+                    }
                     }
                     
+                    
                     if (target1.equalsIgnoreCase("No")){
+                        System.out.println("you decided not to talk anymore");
                     sucess1 = true;
+                    sucess = true;
                     }
                     else 
-                        sucess = true;
+                        continue;
                     } while (!sucess1);
                 
             
