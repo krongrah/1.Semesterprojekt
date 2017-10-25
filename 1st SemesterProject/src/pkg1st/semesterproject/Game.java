@@ -19,10 +19,8 @@ public class Game {
     // Constructor calls createRooms and creates new Parser
     public Game() {
         createRooms();
-        createNPCs();
         createItems();
         createDialogue();
-        fillRooms();
         parser = new Parser();
         player = new PC(this, pd);
 
@@ -183,7 +181,7 @@ public class Game {
         String[] coronerLine = new String[]{
             "Welcome to the murder scene, make yourself at home.",
             "The victim is your partner, Detective Prickard. He was a dick, and the world is a better place without him.",
-            "The victim was stabbed several times, and died from blood loss. It appears to be a crime of passion, due to the many stab wounds the spit on the victim’s face. (update cluelist)",
+            "The victim was stabbed several times, and died from blood loss. It appears to be a crime of passion, due to the many stab wounds the spit on the victim’s face.",
             "The victim was surprised by the attack, so I believe he knew his killer. (update cluelist)",
             "I’ll get the cleaning team here know, so we can get this shit of the street. (loop; if played, NPC will disappear on next loading.)"
         };
@@ -209,7 +207,7 @@ public class Game {
             "Ay ain’t tellin’ ye’ nutin’, stupid cop. (loop)"
         };
         String[] hobo3Line = new String[]{
-            "It gats’ ta’ be Rodney! He be lookin’ funny at me! (clue)",
+            "It gats’ ta’ be Darryl! He be lookin’ funny at me! (clue)",
             "Gat any smack? (loop)"
         };
         String[] hobo4Line = new String[]{
@@ -236,15 +234,21 @@ public class Game {
 
         //create clues
         Clue testClue = new Clue("testName", "nondescript");
-
-        NPC hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue, testClue, 0);
-        NPC hobo2 = new NPC("Dirty Darryl", hobo2Dialogue, testClue, 0);
-        NPC hobo3 = new NPC("Heroin Harry", hobo3Dialogue, testClue, 0);
+        Clue bartenderStatement=new Clue("Bartender's statement", "According to Bartender Bert everyone hated the victim.");
+        Clue hobo1Statement=new Clue("No-Teeth Terry's statement", "According to No-Teeth Terry the murderer was a drunk man.");
+        Clue hobo2Statement=new Clue("Dirty Darryl's statement", "Dirty Darryl obviously hates cops.");
+        Clue hobo3Statement=new Clue("Heroin Harry's statement", "According to Heroin Harry Dirty Darryl is the killer.");
+        Clue coronerStatement=new Clue("Coroner's statement", "According to the coroner the murder was a crime of passion, \nand the victim knew his killer.");
+        
+        
+        NPC hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue, hobo1Statement, 2);
+        NPC hobo2 = new NPC("Dirty Darryl", hobo2Dialogue, hobo2Statement, 2);
+        NPC hobo3 = new NPC("Heroin Harry", hobo3Dialogue, hobo3Statement, 1);
         NPC hobo4 = new NPC("Insane Dwayne", hobo4Dialogue, testClue, 0);
         NPC commissioner = new NPC("Commissioner Curt", commissionerDialogue, testClue, 0);
-        NPC bartender = new NPC("Bartender Bert", bartenderDialogue, testClue, 2);
+        NPC bartender = new NPC("Bartender Bert", bartenderDialogue, bartenderStatement, 2);
         NPC wife = new NPC("Wife", wifeDialogue, testClue, 0);
-        NPC coroner = new NPC("Coroner", coronerDialogue, testClue, 0);
+        NPC coroner = new NPC("Coroner", coronerDialogue, coronerStatement, 4);
 
         bar.addNpcToRoom(bartender);
         home.addNpcToRoom(wife);
@@ -254,18 +258,10 @@ public class Game {
         crimeScene.addNpcToRoom(hobo2);
         crimeScene.addNpcToRoom(hobo3);
         crimeScene.addNpcToRoom(hobo4);
-
+ 
     }
 
-    //Creates NPCs
-    private void createNPCs() {
 
-        //todo move placements to fillRooms()
-    }
-
-    private void fillRooms() {
-
-    }
 
     private void createItems() {
 
