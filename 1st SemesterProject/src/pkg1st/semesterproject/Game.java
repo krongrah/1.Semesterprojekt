@@ -370,6 +370,8 @@ public class Game {
                                 System.out.println("The Item was left alone");
                                 break;
                             }
+                            else
+                                System.out.println("I dont understand that");
 
                         } else {
                             System.out.println("This item can't be picked up.");
