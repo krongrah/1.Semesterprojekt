@@ -369,7 +369,7 @@ public class Game {
                         continue;
                     } while (!sucess1);
                 }
-                else {
+                if () {
                     System.out.println("There isnt anyone here by that name");
                 }
                 if (target.equalsIgnoreCase("Exit")) {
