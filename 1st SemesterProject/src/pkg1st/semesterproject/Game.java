@@ -145,6 +145,30 @@ public class Game {
         parser.showCommands();
     }
 
+<<<<<<< HEAD
+=======
+    
+    private void inspect(Command command){
+    if (!command.hasSecondWord()) {
+            System.out.println("Inspect what? inventory, desk or journal");
+            return;
+        }
+    
+    String what = command.getSecondWord();
+    
+    if(what.equals("inventory")){
+        player.displayInventory();
+    }
+    if(what.equals("journal")){
+        player.displayJournal();
+    }
+    if(what.equals("desk")){
+        player.checkDesk(currentRoom);
+    }
+    
+    }
+    
+>>>>>>> f21b3b056a1d98edee5fa684b48b80e27a5c50aa
     //Checks if directions has an exit and moves to next room
     private void goRoom(Command command) {
         if (!command.hasSecondWord()) {
