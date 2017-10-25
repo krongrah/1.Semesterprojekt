@@ -308,7 +308,9 @@ public class Game {
         //Gives the player a list of NPCs in the room
         boolean sucess = false;
         do {
-            System.out.println("Who do you wish to talk to?");
+            
+                
+                System.out.println("Who do you wish to talk to?");
             for (NPC npc : currentRoom.getNpcsInRoom()) {
                 System.out.println(npc.getName());
             }
@@ -320,11 +322,30 @@ public class Game {
             for (NPC npc : currentRoom.getNpcsInRoom()) {
                 if (target.equals(npc.getName().toLowerCase())) {
                     npc.getDialogue();
-                    sucess = true;
+
                     if (npc.getClueCount() == npc.getClueRelease()) {
                         player.addToCluelist(npc.giveClue());
                     }
-                    break;
+                    boolean sucess1 = false;
+                    do{
+                    System.out.println("do you want to keep talking?  Yes/No");
+                    
+                    Scanner talking1 = new Scanner(System.in);
+                    String target1 = talking1.nextLine().toLowerCase();
+                    
+                    if (target1.equalsIgnoreCase("Yes")){
+                    npc.getDialogue();
+                    sucess1 = false;
+                    }
+                    
+                    if (target1.equalsIgnoreCase("No")){
+                    sucess1 = true;
+                    }
+                    else 
+                        sucess = true;
+                    } while (!sucess1);
+                
+            
                 } 
                 else {
                     System.out.println("There isnt anyone here by that name");
@@ -334,8 +355,12 @@ public class Game {
                     break;
                 }
                 
-                
+  
             }
+            
+                
+            
+
         } while (!sucess);
 
         //if no matches are found, print this line:
@@ -403,6 +428,12 @@ public class Game {
     }
 
     public void accuse() {
+        int points = player.getPoints();
+        player.addPoints();
+        if (points == 200) {
+            System.out.println("you just completed the game");
+        }
+        
         System.out.println("You do not have the authority to do this.");
     }
 
