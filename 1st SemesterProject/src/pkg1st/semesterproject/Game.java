@@ -340,24 +340,20 @@ public class Game {
             for (Item thing : currentRoom.getItemsInRoom()) {
                 System.out.println(thing.getName());
             }
-            System.out.println("What do you want to look at?");
-            System.out.println("If you don't want anything, type \"nothing\".");
+            System.out.println("What do you want to look at?\nIf you don't want anything, type \"nothing\".");
 
             //get an input for the desired item.
             Scanner pick = new Scanner(System.in);
             String newItem = pick.nextLine();
             if (newItem.equals("nothing")) {
-                System.out.println("I guess this is not interesting to you.");
-                System.out.println("");
+                System.out.println("I guess this is not interesting to you.\n");
             } else {
                 //searches for the item
                 boolean success = false;
                 for (Item thing : currentRoom.getItemsInRoom()) {
                     if (newItem.equals(thing.getName())) {
                         success = true;
-                        System.out.println("");
-                        System.out.println(thing.getDescription());
-                        System.out.println("");
+                        System.out.println("\n" + thing.getDescription() + "\n");
 
                         if (thing.getCollectible() == true) {
                             System.out.println("Do you want to pick this item up? Yes/No");
