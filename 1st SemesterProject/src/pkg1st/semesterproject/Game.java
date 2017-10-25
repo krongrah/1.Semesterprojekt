@@ -5,7 +5,7 @@ package pkg1st.semesterproject;
  * @version 2006.03.30
  */
 import java.util.Scanner;
-//fixing everything
+
 public class Game {
 
     private Parser parser;
@@ -130,8 +130,8 @@ public class Game {
             talk();
         } else if (commandWord == CommandWord.ACCUSE) {
             accuse();
-        } else if (commandWord == CommandWord.INVENTORY) {
-            player.displayInventory();
+        } else if (commandWord == CommandWord.INSPECT) {
+            inspect(command);
         }
         return wantToQuit;
     }
@@ -145,6 +145,24 @@ public class Game {
         parser.showCommands();
     }
 
+    
+    private void inspect(Command command){
+    if (!command.hasSecondWord()) {
+            System.out.println("Inspect what? inventory or journal");
+            return;
+        }
+    
+    String what = command.getSecondWord();
+    
+    if(what.equals("inventory")){
+        player.displayInventory();
+    }
+    if(what.equals("journal")){
+        player.displayJournal();
+    }
+    
+    }
+    
     //Checks if directions has an exit and moves to next room
     private void goRoom(Command command) {
         if (!command.hasSecondWord()) {
@@ -328,7 +346,6 @@ public class Game {
                     }
                     boolean sucess1 = false;
                     do{
-
                         System.out.println("Do you want to keep talking?  Yes/No");
 
                         Scanner talking1 = new Scanner(System.in);
@@ -348,20 +365,6 @@ public class Game {
                             sucess1 = true;
                             sucess = true;
                         }    
-
-                                      
-              
-                    
-                    if (target1.equalsIgnoreCase("Yes")){
-                    npc.getDialogue();
-                    sucess1 = false;
-                    }
-                    
-                    if (target1.equalsIgnoreCase("No")){
-                    sucess1 = true;
-                    }
-                    else 
-                        sucess = true;
                     } while (!sucess1);
                     break;
                 }
@@ -410,6 +413,7 @@ public class Game {
                                 player.addToInventory(thing, currentRoom);
                                 if(thing.isClue==true){
                                 player.addToCluelist(thing.giveClue());
+                                break;
                                 }
 
                             } else
@@ -424,6 +428,7 @@ public class Game {
                             System.out.println("This item can't be picked up.");
                             if(thing.isClue==true){
                             player.addToCluelist(thing.giveClue());
+                            thing.setIsClue();
                             }
                             break;
                         }
@@ -441,7 +446,7 @@ public class Game {
 
     public void accuse() {
         int points = player.getPoints();
-        player.addPoints();
+        player.addPoints(20);
         if (points == 200) {
             System.out.println("you just completed the game");
         }
