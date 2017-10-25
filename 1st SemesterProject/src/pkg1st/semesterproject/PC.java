@@ -34,16 +34,15 @@ public class PC {
     public void displayInventory() {
         int empty = 0;
         for (Item thing : inventory) {
-<<<<<<< HEAD
             System.out.println(thing.getName());
             System.out.println("you have " + inventory.size() + "/" + maxInventoryCapacity + " spots left in your inventory");
-=======
-            System.out.println(thing.getName()+ ":");
-            System.out.println(thing.getDescription()+"\n");            
->>>>>>> f21b3b056a1d98edee5fa684b48b80e27a5c50aa
         }
-      
-        System.out.println("You have " + inventory.size() + "/" + maxInventoryCapacity + " spots filled in your inventory.");
+
+        if (inventory.size() == empty) {
+            System.out.println("Your inventory is empty");
+
+        }
+
     }
 
     public void checkInventory() {
@@ -58,7 +57,7 @@ public class PC {
                 System.out.println(thing.getName());
             }
         } else {
-            System.out.println("You can't check your desk in the "+ currentRoom.getRoomName()+" only in the Police department.");
+            System.out.println("You can't check your desk from here.");
         }
     }
 
