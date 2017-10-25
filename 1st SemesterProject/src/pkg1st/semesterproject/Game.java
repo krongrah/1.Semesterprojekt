@@ -321,9 +321,16 @@ public class Game {
                         player.addToCluelist(npc.giveClue());
                     }
                     break;
-                } else {
+                } 
+                else {
                     System.out.println("There isnt anyone here by that name");
                 }
+                if (target.equalsIgnoreCase("Exit")) {
+                    sucess = true;
+                    break;
+                }
+                
+                
             }
         } while (!sucess);
 
