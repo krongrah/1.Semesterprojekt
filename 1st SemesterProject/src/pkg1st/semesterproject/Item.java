@@ -12,6 +12,7 @@ public class Item {
     String description;
     Boolean collectible;
     Boolean isClue;
+    Clue clue;
 
     //creating the getter methods
     public boolean getCollectible() {
@@ -30,14 +31,17 @@ public class Item {
     public String getDescription() {
         return description;
     }
+    public Clue giveClue(){
+    return clue;
+    }
 
     //creating the constructor for the purpose of making objects of the item class
-    public Item(String newName, String newDescription, boolean newIsClue, boolean newCollectible) {
+    public Item(String newName, String newDescription, boolean newIsClue, boolean newCollectible, Clue newClue) {
         name = newName;
         description = newDescription;
         isClue = newIsClue;
         collectible = newCollectible;
-
+        clue =newClue;
     }
 
 }

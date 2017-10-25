@@ -118,5 +118,19 @@ public class PC {
     public void addToCluelist(Clue thing) {
         journal.add(thing);
         System.out.println("You noted the clue down.");
+        points += 100;
+        
+        
+    }
+    public int getPoints() {
+        return points;
+    }
+    
+    public void addPoints() {
+        points += 100;
+        
+    }
+    public void removePoints() {
+        points -= 10;
     }
 }

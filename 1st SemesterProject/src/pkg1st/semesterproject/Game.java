@@ -19,10 +19,8 @@ public class Game {
     // Constructor calls createRooms and creates new Parser
     public Game() {
         createRooms();
-        createNPCs();
         createItems();
         createDialogue();
-        fillRooms();
         parser = new Parser();
         player = new PC(this, pd);
 
@@ -201,7 +199,7 @@ public class Game {
         String[] coronerLine = new String[]{
             "Welcome to the murder scene, make yourself at home.",
             "The victim is your partner, Detective Prickard. He was a dick, and the world is a better place without him.",
-            "The victim was stabbed several times, and died from blood loss. It appears to be a crime of passion, due to the many stab wounds the spit on the victim’s face. (update cluelist)",
+            "The victim was stabbed several times, and died from blood loss. It appears to be a crime of passion, due to the many stab wounds the spit on the victim’s face.",
             "The victim was surprised by the attack, so I believe he knew his killer. (update cluelist)",
             "I’ll get the cleaning team here know, so we can get this shit of the street. (loop; if played, NPC will disappear on next loading.)"
         };
@@ -212,7 +210,7 @@ public class Game {
             "Go away, I want a good day. (end of dialogue: loop)"
         };
         String[] bartenderLine = new String[]{
-            "You’re here early, just the usual? (add drink to inventory)",
+            "Isn't it a bit early for you to be here?",
             "Detective Prickard is dead? I can’t say I’m surprised, he didn’t seem to get along with anyone, especially not you. (add to cluelist)",
             "I think you should get back at work now. (loop)"
         };
@@ -227,7 +225,7 @@ public class Game {
             "Ay ain’t tellin’ ye’ nutin’, stupid cop. (loop)"
         };
         String[] hobo3Line = new String[]{
-            "It gats’ ta’ be Rodney! He be lookin’ funny at me! (clue)",
+            "It gats’ ta’ be Darryl! He be lookin’ funny at me! (clue)",
             "Gat any smack? (loop)"
         };
         String[] hobo4Line = new String[]{
@@ -254,15 +252,21 @@ public class Game {
 
         //create clues
         Clue testClue = new Clue("testName", "nondescript");
+        Clue bartenderStatement=new Clue("Bartender's statement", "According to Bartender Bert everyone hated the victim.");
+        Clue hobo1Statement=new Clue("No-Teeth Terry's statement", "According to No-Teeth Terry the murderer was a drunk man.");
+        Clue hobo2Statement=new Clue("Dirty Darryl's statement", "Dirty Darryl obviously hates cops.");
+        Clue hobo3Statement=new Clue("Heroin Harry's statement", "According to Heroin Harry Dirty Darryl is the killer.");
+        Clue coronerStatement=new Clue("Coroner's statement", "According to the coroner the murder was a crime of passion, \nand the victim knew his killer.");
+        
 
-        NPC hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue, testClue, 0);
-        NPC hobo2 = new NPC("Dirty Darryl", hobo2Dialogue, testClue, 0);
-        NPC hobo3 = new NPC("Heroin Harry", hobo3Dialogue, testClue, 0);
+        NPC hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue, hobo1Statement, 2);
+        NPC hobo2 = new NPC("Dirty Darryl", hobo2Dialogue, hobo2Statement, 2);
+        NPC hobo3 = new NPC("Heroin Harry", hobo3Dialogue, hobo3Statement, 1);
         NPC hobo4 = new NPC("Insane Dwayne", hobo4Dialogue, testClue, 0);
         NPC commissioner = new NPC("Commissioner Curt", commissionerDialogue, testClue, 0);
-        NPC bartender = new NPC("Bartender Bert", bartenderDialogue, testClue, 2);
-        NPC wife = new NPC("Wife Nancy = new Wife()", wifeDialogue, testClue, 0);
-        NPC coroner = new NPC("Coroner", coronerDialogue, testClue, 0);
+        NPC bartender = new NPC("Bartender Bert", bartenderDialogue, bartenderStatement, 2);
+        NPC wife = new NPC("Wife", wifeDialogue, testClue, 0);
+        NPC coroner = new NPC("Coroner", coronerDialogue, coronerStatement, 4);
 
         bar.addNpcToRoom(bartender);
         home.addNpcToRoom(wife);
@@ -272,41 +276,41 @@ public class Game {
         crimeScene.addNpcToRoom(hobo2);
         crimeScene.addNpcToRoom(hobo3);
         crimeScene.addNpcToRoom(hobo4);
-
+ 
     }
 
-    //Creates NPCs
-    private void createNPCs() {
 
-        //todo move placements to fillRooms()
-    }
-
-    private void fillRooms() {
-
-    }
 
     private void createItems() {
 
+        //create item clues
+        Clue murderWeaponClue = new Clue("Murder Weapon Evidence", "The murder weapon is a broken bottle of your favorite beer.");
+        Clue BloodsplatterClue = new Clue("Blood Splatter", "There was a lot of blood on the crimescene, suggesting a violent conflict.");
+        Clue CorpseClue = new Clue("Corpse", "The body of the victim was stabbed repeatedly, and had spit covering it's face.");
+        Clue bloodSplatteredBadgeClue = new Clue("Blood Splattered Badge evidence.", "This is the badge of the victim was found in your home, \nwhich points to you being the killer.");
+
+        
+        
         // creation of the multiple items via the constructor in Item.java
         Item murderWeapon = new Item("Murder Weapon", "This is a broken bottle"
-                + " with sharp edges and blood covering the edges", true, true);
+                + " with sharp edges and blood covering the edges", true, true, murderWeaponClue);
 
         Item bloodSplatter = new Item("Blood splatter", "the ground is covered"
-                + " in blood", true, false);
+                + " in blood", true, false, BloodsplatterClue);
 
         Item gun = new Item("Gun", "Its a smith and wesson, your best friend",
-                false, true);
+                false, true, CorpseClue);
 
         Item corpse = new Item("Corpse", "its a dead guy, he looks to be stabbed"
                 + " brutally multiple times.\n When you look closer you notice"
-                + " his face is covered in spit", true, false);
+                + " his face is covered in spit", true, false, CorpseClue);
 
         Item bloodSplatteredBadge = new Item("Blood Splattered Badge", "its your"
                 + " former partners badge covered in blood, odd that you would find"
                 + " this here. \n i wave of guilt washes over you as you realise"
-                + " what you have done", true, true);
+                + " what you have done", true, true,bloodSplatteredBadgeClue );
 
-        Item test = new Item("test", "testDescipt", true, true);
+        Item test = new Item("test", "testDescipt", false, true, CorpseClue);
 
         bar.addItemsToRoom(test);
         crimeScene.addItemsToRoom(murderWeapon);
@@ -322,27 +326,59 @@ public class Game {
         //Gives the player a list of NPCs in the room
         boolean sucess = false;
         do {
-            System.out.println("Who do you wish to talk to?");
+            
+                
+                System.out.println("Who do you wish to talk to?");
             for (NPC npc : currentRoom.getNpcsInRoom()) {
                 System.out.println(npc.getName());
             }
             //have the player enter a name
             Scanner talking = new Scanner(System.in);
-            String target = talking.nextLine();
+            String target = talking.nextLine().toLowerCase();
 
             //go through NPCs for matches to the input.
             for (NPC npc : currentRoom.getNpcsInRoom()) {
-                if (target.equals(npc.getName())) {
+                if (target.equals(npc.getName().toLowerCase())) {
                     npc.getDialogue();
-                    sucess = true;
+
                     if (npc.getClueCount() == npc.getClueRelease()) {
                         player.addToCluelist(npc.giveClue());
                     }
-                    break;
-                } else {
+                    boolean sucess1 = false;
+                    do{
+                    System.out.println("do you want to keep talking?  Yes/No");
+                    
+                    Scanner talking1 = new Scanner(System.in);
+                    String target1 = talking1.nextLine().toLowerCase();
+                    
+                    if (target1.equalsIgnoreCase("Yes")){
+                    npc.getDialogue();
+                    sucess1 = false;
+                    }
+                    
+                    if (target1.equalsIgnoreCase("No")){
+                    sucess1 = true;
+                    }
+                    else 
+                        sucess = true;
+                    } while (!sucess1);
+                
+            
+                } 
+                else {
                     System.out.println("There isnt anyone here by that name");
                 }
+                if (target.equalsIgnoreCase("Exit")) {
+                    sucess = true;
+                    break;
+                }
+                
+  
             }
+            
+                
+            
+
         } while (!sucess);
 
         //if no matches are found, print this line:
@@ -358,39 +394,43 @@ public class Game {
             for (Item thing : currentRoom.getItemsInRoom()) {
                 System.out.println(thing.getName());
             }
-            System.out.println("What do you want to look at?");
-            System.out.println("If you don't want anything, type \"nothing\".");
+            System.out.println("What do you want to look at?\nIf you don't want anything, type \"nothing\".");
 
             //get an input for the desired item.
             Scanner pick = new Scanner(System.in);
-            String newItem = pick.nextLine();
+            String newItem = pick.nextLine().toLowerCase();
             if (newItem.equals("nothing")) {
-                System.out.println("I guess this is not interesting to you.");
-                System.out.println("");
+                System.out.println("I guess this is not interesting to you.\n");
             } else {
                 //searches for the item
                 boolean success = false;
                 for (Item thing : currentRoom.getItemsInRoom()) {
-                    if (newItem.equals(thing.getName())) {
+                    if (newItem.equals(thing.getName().toLowerCase())) {
                         success = true;
-                        System.out.println("");
-                        System.out.println(thing.getDescription());
-                        System.out.println("");
+                        System.out.println("\n" + thing.getDescription() + "\n");
 
                         if (thing.getCollectible() == true) {
                             System.out.println("Do you want to pick this item up? Yes/No");
-                            String willing = pick.nextLine();
-                            if (willing.equals("Yes") == true) {
+                            String willing = pick.nextLine().toLowerCase();
+                            if (willing.equals("yes") == true) {
                                 player.addToInventory(thing, currentRoom);
+                                if(thing.isClue==true){
+                                player.addToCluelist(thing.giveClue());
+                                }
 
-                            }
-                            if (willing.equals("No")) {
+                            } else
+                            if (willing.equals("no")) {
                                 System.out.println("The Item was left alone");
                                 break;
                             }
+                            else
+                                System.out.println("I dont understand that");
 
                         } else {
                             System.out.println("This item can't be picked up.");
+                            if(thing.isClue==true){
+                            player.addToCluelist(thing.giveClue());
+                            }
                             break;
                         }
 
@@ -406,6 +446,12 @@ public class Game {
     }
 
     public void accuse() {
+        int points = player.getPoints();
+        player.addPoints();
+        if (points == 200) {
+            System.out.println("you just completed the game");
+        }
+        
         System.out.println("You do not have the authority to do this.");
     }
 
