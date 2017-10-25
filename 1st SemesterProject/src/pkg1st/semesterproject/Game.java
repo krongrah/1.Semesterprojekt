@@ -430,6 +430,7 @@ public class Game {
                             System.out.println("This item can't be picked up.");
                             if(thing.isClue==true){
                             player.addToCluelist(thing.giveClue());
+                            thing.setIsClue();
                             }
                             break;
                         }
