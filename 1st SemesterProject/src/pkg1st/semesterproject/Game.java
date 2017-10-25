@@ -194,7 +194,7 @@ public class Game {
             "Go away, I want a good day. (end of dialogue: loop)"
         };
         String[] bartenderLine = new String[]{
-            "You’re here early, just the usual? (add drink to inventory)",
+            "Isn't it a bit early for you to be here?",
             "Detective Prickard is dead? I can’t say I’m surprised, he didn’t seem to get along with anyone, especially not you. (add to cluelist)",
             "I think you should get back at work now. (loop)"
         };
