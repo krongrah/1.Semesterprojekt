@@ -23,9 +23,6 @@ public class Item {
     public boolean getIsclue() {
         return isClue;
     }
-    public void setIsClue(){
-    isClue=false;
-    }
 
     public String getName() {
         return name;

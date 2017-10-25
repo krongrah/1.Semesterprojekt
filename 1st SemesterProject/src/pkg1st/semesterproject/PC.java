@@ -18,7 +18,7 @@ public class PC {
     private int points;
     private Set<Item> inventory = new HashSet<>();
     private Set<Item> desk = new HashSet<>();
-    private Set<Clue> journal = new HashSet<>();
+    private Set<Clue> Cluelist = new HashSet<>();
     private int maxInventoryCapacity = 2;
     private Game newGame;
     private Room pd;
@@ -34,8 +34,7 @@ public class PC {
     public void displayInventory() {
         int empty = 0;
         for (Item thing : inventory) {
-            System.out.println(thing.getName()+ ":");
-            System.out.println(thing.getDescription()+"\n");
+            System.out.println(thing.getName());
             System.out.println("you have " + inventory.size() + "/" + maxInventoryCapacity + " spots left in your inventory");
         }
 
@@ -45,19 +44,13 @@ public class PC {
         }
 
     }
-    public void displayJournal() {
-        int empty = 0;
-        for (Clue ClueItem : journal) {
-            System.out.println(ClueItem.getName()+":");
-            System.out.println(ClueItem.getDescription()+"\n");
+
+    public void checkInventory() {
+        for (Item thing : inventory) {
+            System.out.println(thing.getName());
         }
+    }
 
-        if (journal.size() == empty) {
-            System.out.println("Your journal is empty");
-
-        }
-
-    } 
     public void checkDesk(Room currentRoom) {
         if (currentRoom == pd) {
             for (Item thing : desk) {
@@ -67,7 +60,13 @@ public class PC {
             System.out.println("You can't check your desk from here.");
         }
     }
-   
+
+    public void checkClueList() {
+        for (Clue thing : Cluelist) {
+            System.out.println(thing.getName());
+        }
+    }
+
     //getters for the descriptions
     public void inspectItem(Item thing) {
         if (inventory.contains(thing)) {
@@ -78,7 +77,7 @@ public class PC {
     }
 
     public void inspectClue(Clue thing) {
-        if (journal.contains(thing)) {
+        if (Cluelist.contains(thing)) {
             System.out.println(thing.getDescription());
         } else {
             System.out.println("You don't know about that yet.");
@@ -116,8 +115,9 @@ public class PC {
     }
 
     public void addToCluelist(Clue thing) {
-        journal.add(thing);
+        Cluelist.add(thing);
         System.out.println("You noted the clue down.");
+        points += 100;
         
         
     }
@@ -125,16 +125,11 @@ public class PC {
         return points;
     }
     
-    public void addPoints(int value) {
-        points += value;
+    public void addPoints() {
+        points += 100;
         
     }
-    public void removePoints(int value) {
-        points -= value;
+    public void removePoints() {
+        points -= 10;
     }
 }
-
-//10 clues
-//1 end statement
-//accuse
-//start at 50, get 10 points per clue, up to 100 , then get 
