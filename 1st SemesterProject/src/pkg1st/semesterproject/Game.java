@@ -416,6 +416,7 @@ public class Game {
                                 player.addToInventory(thing, currentRoom);
                                 if(thing.isClue==true){
                                 player.addToCluelist(thing.giveClue());
+                                break;
                                 }
 
                             } else
