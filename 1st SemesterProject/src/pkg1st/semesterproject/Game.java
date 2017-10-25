@@ -346,35 +346,34 @@ public class Game {
                     }
                     boolean sucess1 = false;
                     do{
-                    System.out.println("do you want to keep talking?  Yes/No");
-                    
-                    Scanner talking1 = new Scanner(System.in);
-                    String target1 = talking1.nextLine().toLowerCase();
-                    
-                    if (target1.equalsIgnoreCase("Yes")){
-                    npc.getDialogue();
-                    sucess1 = false;
-                    if (npc.getClueCount() == npc.getClueRelease()) {
-                        player.addToCluelist(npc.giveClue());
-                    }
-                    }
-                    
-                    
-                    if (target1.equalsIgnoreCase("No")){
-                        System.out.println("you decided not to talk anymore");
-                    sucess1 = true;
-                    sucess = true;
-                    }
-                    else 
-                        continue;
+                        System.out.println("Do you want to keep talking?  Yes/No");
+
+                        Scanner talking1 = new Scanner(System.in);
+                        String target1 = talking1.nextLine().toLowerCase();
+
+                        if (target1.equalsIgnoreCase("Yes")){
+                            npc.getDialogue();
+                            sucess1 = false;
+                            if (npc.getClueCount() == npc.getClueRelease()) {
+                                player.addToCluelist(npc.giveClue());
+                            }
+                        }
+
+
+                        if (target1.equalsIgnoreCase("No")){
+                            System.out.println("You decided not to talk anymore");
+                            sucess1 = true;
+                            sucess = true;
+                        }    
                     } while (!sucess1);
-                }
-                if () {
-                    System.out.println("There isnt anyone here by that name");
+                    break;
                 }
                 if (target.equalsIgnoreCase("Exit")) {
                     sucess = true;
                     break;
+                }
+                else {
+                    System.out.println("There isnt anyone here by that name");
                 }
             }
         } while (!sucess);
