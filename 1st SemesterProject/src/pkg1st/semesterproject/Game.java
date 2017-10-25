@@ -243,7 +243,7 @@ public class Game {
         NPC hobo4 = new NPC("Insane Dwayne", hobo4Dialogue, testClue, 0);
         NPC commissioner = new NPC("Commissioner Curt", commissionerDialogue, testClue, 0);
         NPC bartender = new NPC("Bartender Bert", bartenderDialogue, testClue, 2);
-        NPC wife = new NPC("Wife Nancy = new Wife()", wifeDialogue, testClue, 0);
+        NPC wife = new NPC("Wife", wifeDialogue, testClue, 0);
         NPC coroner = new NPC("Coroner", coronerDialogue, testClue, 0);
 
         bar.addNpcToRoom(bartender);
@@ -310,7 +310,7 @@ public class Game {
             }
             //have the player enter a name
             Scanner talking = new Scanner(System.in);
-            String target = talking.nextLine();
+            String target = talking.nextLine().toLowerCase();
 
             //go through NPCs for matches to the input.
             for (NPC npc : currentRoom.getNpcsInRoom()) {
@@ -344,7 +344,7 @@ public class Game {
 
             //get an input for the desired item.
             Scanner pick = new Scanner(System.in);
-            String newItem = pick.nextLine();
+            String newItem = pick.nextLine().toLowerCase();
             if (newItem.equals("nothing")) {
                 System.out.println("I guess this is not interesting to you.\n");
             } else {
@@ -357,7 +357,7 @@ public class Game {
 
                         if (thing.getCollectible() == true) {
                             System.out.println("Do you want to pick this item up? Yes/No");
-                            String willing = pick.nextLine();
+                            String willing = pick.nextLine().toLowerCase();
                             if (willing.equals("Yes") == true) {
                                 player.addToInventory(thing, currentRoom);
 
