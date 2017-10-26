@@ -468,4 +468,12 @@ public class Game {
             }
         }
     }
+    public void confess(){
+    
+    player.addPoints(50);   
+    }
+    public void coverUp(){
+    
+    player.removePoints(50);   
+    }
 }
