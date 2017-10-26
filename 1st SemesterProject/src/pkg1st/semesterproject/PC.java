@@ -25,7 +25,7 @@ public class PC {
 
     //constructor
     PC(Game game, Room room) {
-        points = 100;
+        points = 50;
         newGame = game;
         pd = room;
     }
@@ -131,6 +131,7 @@ public class PC {
     public void addToCluelist(Clue thing) {
         journal.add(thing);
         System.out.println("You noted the clue down.");
+        addPoints(10);
         
         
     }
@@ -147,7 +148,3 @@ public class PC {
     }
 }
 
-//10 clues
-//1 end statement
-//accuse
-//start at 50, get 10 points per clue, up to 100 , then get 
