@@ -16,6 +16,7 @@ public class Game {
     private NPC coroner, commissioner, bartender, wife, hobo1, hobo2, hobo3, hobo4;
     private Dialogue coronerDialogue, commissionerDialogue, bartenderDialogue, wifeDialogue, hobo1Dialogue, hobo2Dialogue, hobo3Dialogue, hobo4Dialogue;
     PC player;
+    boolean wantToQuit = false;
 
     // Constructor calls createRooms and creates new Parser
     public Game() {
@@ -110,7 +111,6 @@ public class Game {
 
     // Excecutes commands
     private boolean processCommand(Command command) {
-        boolean wantToQuit = false;
 
         CommandWord commandWord = command.getCommandWord();
 
@@ -516,11 +516,32 @@ public class Game {
         }
     }
     public void confess(){
-    
-    player.addPoints(50);   
+    if (currentRoom!=pd){    
+    player.addPoints(50);
+        System.out.println("You told the commissioner what you did.");
+        System.out.println("I get you, he was an absolute asshole. You’re still going to jail, though");
+        System.out.println();
+        System.out.println("Congratulations, you won the game! you were rated a "+(player.getPoints()-100)+"percent good cop.");
+        wantToQuit=true;
+    } else{
+        System.out.println("You have to go to the police department first");
+    }
     }
     public void coverUp(){
-    
-    player.removePoints(50);   
+    if(currentRoom!=pd){
+    player.removePoints(50);
+        System.out.println("You tell the commissioner that you found the bloody badge in a trashcan.");
+        System.out.println("That bastard left it in the trash? We’ll fry him for that!");
+        if (player.getPoints()>=100){
+                System.out.println("Congratulations, you won the game! you were rated a "+(player.getPoints()-100)+"percent good cop.");
+        }else{
+                System.out.println("Congratulations, you won the game! you were rated a "+(100-player.getPoints())+"percent bad cop.");
+        }
+        wantToQuit=true;
+    }else{
+            System.out.println("You have to go to the police department first");
+
+    }
     }
 }
+
