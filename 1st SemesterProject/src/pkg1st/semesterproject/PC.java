@@ -44,7 +44,22 @@ public class PC {
 
         }
 
+        }
+    
+    public Set<Item> getInventory(){
+    return inventory;
     }
+    
+    public boolean inventoryEmpty(){
+        int empty = 0;
+        boolean emptyness = false;
+        if(inventory.size()==empty) {
+        emptyness= true;
+        }
+        
+        return emptyness;
+    }
+    
     public void displayJournal() {
         int empty = 0;
         for (Clue ClueItem : journal) {
@@ -66,7 +81,7 @@ public class PC {
             System.out.println(deskItem.getDescription()+"\n");
         }
 
-        if (journal.size() == empty) {
+        if (desk.size() == empty) {
             System.out.println("Your desk is empty");
 
         }
@@ -106,7 +121,12 @@ public class PC {
     public void moveToDesk(Item thing) {
         inventory.remove(thing);
         desk.add(thing);
-        System.out.println("You sucessfully moved the item from here to there.");
+        System.out.println("You sucessfully moved the item from your inventory to your desk.");
+    }
+    public void moveToRoom(Item thing, Room currentRoom) {
+        inventory.remove(thing);
+        currentRoom.getItemsInRoom().add(thing);
+        System.out.println("You sucessfully moved the item from your inventory to "+ currentRoom.getRoomName()+".");
     }
 
     //methods for adding to cluelist and inventory

@@ -4,6 +4,7 @@ package pkg1st.semesterproject;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
+import com.sun.glass.ui.SystemClipboard;
 import java.util.Scanner;
 
 public class Game {
@@ -132,6 +133,8 @@ public class Game {
             accuse();
         } else if (commandWord == CommandWord.INSPECT) {
             inspect(command);
+        } else if (commandWord == CommandWord.DROP) {
+            drop(command);
         }
         return wantToQuit;
     }
@@ -163,9 +166,53 @@ public class Game {
     if(what.equals("desk")){
         player.diplayDesk(currentRoom);
     }
-    
     }
+    private void drop(Command command){
+    String where = command.getSecondWord();
+       //if no second word    
+    if (!command.hasSecondWord()) {
+        System.out.println("Drop where? to room or desk");
+        return;
+        }
+    //if inventory is empty
+    if(player.inventoryEmpty()){
+        System.out.println("You can't drop anything because you don't have anything on you.");    
+    }  else{    
+        //if second word is room
+    if (where.equals("room")){
+    Scanner pick = new Scanner(System.in);
+             
+        System.out.println("Select the item to be dropped to the room");
+        for (Item thing : player.getInventory()){
+            System.out.println(thing.getName());
+            String newItem = pick.nextLine().toLowerCase();
+              if(newItem.equals(thing.getName())){
+                player.moveToRoom(thing, currentRoom);
+                    }  
+                }           
+            
+        }  
     
+    // if second word is desk and you are in PD
+    if (where.equals("desk") && currentRoom==pd){
+    Scanner pick = new Scanner(System.in);
+     
+        System.out.println("Select the item to be dropped into the desk");
+        for (Item thing : player.getInventory()){
+            System.out.println(thing.getName());
+            String newItem = pick.nextLine().toLowerCase();
+              if(newItem.equals(thing.getName())){
+                player.moveToDesk(thing);
+                    }  
+                }
+        
+        }  
+    // if second word is desk and not in PD
+    if (where.equals("desk") && currentRoom!=pd){
+        System.out.println("You can't reach your desk when you aren't in the police department.");
+            }
+        }
+    }
     //Checks if directions has an exit and moves to next room
     private void goRoom(Command command) {
         if (!command.hasSecondWord()) {
