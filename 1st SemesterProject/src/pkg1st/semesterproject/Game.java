@@ -511,10 +511,12 @@ public class Game {
             String person = choose.nextLine().toLowerCase();
                        
             if (person.equalsIgnoreCase("Bartender Bert")){
-                System.out.println("What the hell are you talking about");
-                System.out.println("Its obvious that it would be Bert, he was "
-                        + "serving my partner the night he died");
-                System.out.println("You take Bert to jail");
+                System.out.println("Bartender: What the hell are you talking about");
+
+                System.out.println("Its obvious that this man has no connection to the case ");
+                System.out.println("YOU LOSE");
+                wantToQuit = true;
+                
                 
                 
             } else
