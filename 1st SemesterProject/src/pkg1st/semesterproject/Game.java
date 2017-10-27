@@ -358,7 +358,7 @@ public class Game {
 
         Item bloodSplatteredBadge = new Item("Blood Splattered Badge", "its your"
                 + " former partners badge covered in blood, odd that you would find"
-                + " this here. \n i wave of guilt washes over you as you realise"
+                + " this here. \n A wave of guilt washes over you as you realise"
                 + " what you have done", true, true,bloodSplatteredBadgeClue );
 
         Item test = new Item("test", "testDescipt", false, true, CorpseClue);
@@ -461,6 +461,9 @@ public class Game {
                             String willing = pick.nextLine().toLowerCase();
                             if (willing.equals("yes") == true) {
                                 player.addToInventory(thing, currentRoom);
+                                if(thing==bloodSplatteredBadge){
+                                parser.addFinishers();
+                                }
                                 if(thing.isClue==true){
                                 player.addToCluelist(thing.giveClue());
                                 break;
@@ -595,7 +598,6 @@ public class Game {
     }
     }
 }
-//            parser.addFinishers();
 //            home.addItemsToRoom(bloodSplatteredBadge);
 
 //todo add to accuse
