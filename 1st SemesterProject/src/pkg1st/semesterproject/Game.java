@@ -496,12 +496,64 @@ public class Game {
 
     public void accuse() {
         int points = player.getPoints();
-        player.addPoints(20);
-        if (points == 200) {
-            System.out.println("you just completed the game");
+        System.out.println("You have decided to begin accusing people, god bless you");
+        System.out.println("are you sure?   Yes/No");
+        Scanner accusing = new Scanner(System.in);
+        String victim = accusing.nextLine().toLowerCase();
+        if (victim.equalsIgnoreCase("no")){
+            System.out.println("you decided not to accuse anyone... for now");
         }
+        else if (victim.equalsIgnoreCase("yes")){
+            System.out.println("these are the people you can accuse:");
+            for (NPC npc : currentRoom.getNpcsInRoom()) {
+                System.out.println(npc.getName());
+            }
+            Scanner choose = new Scanner(System.in);
+            String person = choose.nextLine().toLowerCase();
+            
+            if (person.equalsIgnoreCase("Bartender Bert")){
+                System.out.println("Bartender Bert: what the hell are you talking about");
+                System.out.println("Its obvious that it would be Bert, he was"+
+                        "serving my partner the night he died");
+                System.out.println("You take Bert to jail");
+                
+                
+            }
+            if (person.equalsIgnoreCase("No-Teeth Terry")){
+                
+            }
+            
+            if (person.equalsIgnoreCase("Dirty Darrel")){
+                
+            }
+            
+            if (person.equalsIgnoreCase("Heroin Harry")){
+                
+            }
+            
+            if (person.equalsIgnoreCase("Insane Dwayne")){
+                
+            }
+            
+            if (person.equalsIgnoreCase("Commissioner Curt")){
+                
+            }
+            
+            if (person.equalsIgnoreCase("Wife")){
+                
+            }
+            
+            if (person.equalsIgnoreCase("Corroner")){
+                
+            }
+            
+        }
+        else {
+            System.out.println("cant you just answer a simple Yes/No question?");
+        }
+
         
-        System.out.println("You do not have the authority to do this.");
+
     }
 
     private void getInfo() {
