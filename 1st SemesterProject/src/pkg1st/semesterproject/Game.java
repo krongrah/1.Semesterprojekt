@@ -15,6 +15,7 @@ public class Game {
     private Item bloodSplatteredBadge;
     PC player;
     boolean wantToQuit = false;
+
     // Constructor calls createRooms and creates new Parser
     public Game() {
         createRooms();
@@ -132,10 +133,10 @@ public class Game {
             inspect(command);
         } else if (commandWord == CommandWord.DROP) {
             drop(command);
-        } else if (commandWord == CommandWord.LIE){
-        coverUp();
-        } else if (commandWord == CommandWord.CONFESS){
-        confess();
+        } else if (commandWord == CommandWord.LIE) {
+            coverUp();
+        } else if (commandWord == CommandWord.CONFESS) {
+            confess();
         }
         return wantToQuit;
     }
@@ -149,127 +150,122 @@ public class Game {
         parser.showCommands();
     }
 
-    
-    private void inspect(Command command){
-    if (!command.hasSecondWord()) {
+    private void inspect(Command command) {
+        if (!command.hasSecondWord()) {
             System.out.println("Inspect what? inventory or journal");
             return;
         }
-    
-    String what = command.getSecondWord();
-    
-    if(what.equals("inventory")){
-        player.displayInventory();
-    }
-    if(what.equals("journal")){
-        player.displayJournal();
-    }
-    if(what.equals("desk")){
-        player.diplayDesk(currentRoom);
-    }
-    }
-    private void drop(Command command){
-    String where = command.getSecondWord();
-       //if no second word    
-    if (!command.hasSecondWord()) {
-        System.out.println("Drop where? to room or desk");
-        return;
+
+        String what = command.getSecondWord();
+
+        if (what.equals("inventory")) {
+            player.displayInventory();
         }
-    //if inventory is empty
-    if(player.inventoryEmpty()){
-        System.out.println("You can't drop anything because you don't have anything on you.");    
-    }  else{    
-        //if second word is room
-    if (where.equals("room")){
-    Scanner pick = new Scanner(System.in);
-             
-        System.out.println("Select the item to be dropped to the room or type \"nothing\" to exit drop");
-        for (Item thing : player.getInventory()){
-            System.out.println(thing.getName());
-            String newItem = pick.nextLine().toLowerCase();
-            boolean success = false;
-             while(!success){ 
-                 
-                if(newItem.equals(thing.getName())){
-                player.moveToRoom(thing, currentRoom);
-                success= true; }  
-                
-                if(newItem.equals("nothing")){
-                 success= true;
-                 break;
+        if (what.equals("journal")) {
+            player.displayJournal();
+        }
+        if (what.equals("desk")) {
+            player.diplayDesk(currentRoom);
+        }
+    }
+
+    private void drop(Command command) {
+        String where = command.getSecondWord();
+        //if no second word    
+        if (!command.hasSecondWord()) {
+            System.out.println("Drop where? to room or desk");
+            return;
+        }
+        //if inventory is empty
+        if (player.inventoryEmpty()) {
+            System.out.println("You can't drop anything because you don't have anything on you.");
+        } else {
+            //if second word is room
+            if (where.equals("room")) {
+                Scanner pick = new Scanner(System.in);
+
+                System.out.println("Select the item to be dropped to the room or type \"nothing\" to exit drop");
+                for (Item thing : player.getInventory()) {
+                    System.out.println(thing.getName());
+                    String newItem = pick.nextLine().toLowerCase();
+                    boolean success = false;
+                    while (!success) {
+
+                        if (newItem.equals(thing.getName())) {
+                            player.moveToRoom(thing, currentRoom);
+                            success = true;
+                        }
+
+                        if (newItem.equals("nothing")) {
+                            success = true;
+                            break;
+                        } else {
+                            System.out.println("Drop what? or nothing at all? type the item you want to drop or \"nothing\" to exit.");
+                            String newItem2 = pick.nextLine().toLowerCase();
+                            if (newItem2.equals("nothing")) {
+                                success = true;
+                                break;
+                            }
+                            if (newItem2.equals(thing.getName())) {
+                                player.moveToRoom(thing, currentRoom);
+                                success = true;
+                            } else if (!newItem2.equals("nothing") || !newItem2.equals(thing.getName())) {
+                                System.out.println("I did not understand that, try again");
+
+                            }
+                        }
+                    }
+
                 }
-                
-              else{ 
-                System.out.println("Drop what? or nothing at all? type the item you want to drop or \"nothing\" to exit.");
-                String newItem2 = pick.nextLine().toLowerCase();
-                if(newItem2.equals("nothing")){
-                 success= true;
-                 break;
-                }
-                if(newItem2.equals(thing.getName())){
-                        player.moveToRoom(thing, currentRoom);
-                        success= true;
-                 }
-                else if(!newItem2.equals("nothing")||!newItem2.equals(thing.getName())){
-                    System.out.println("I did not understand that, try again");
-                    
-                    } 
-                }
-             }
-             
-        }             
-    }  
-       
-    
-    // if second word is desk and you are in PD
-    if (where.equals("desk") && currentRoom==pd){
-    Scanner pick = new Scanner(System.in);
-     
-        System.out.println("Select the item to be dropped to in the desk or type \"nothing\" to exit drop");
-        for (Item thing : player.getInventory()){
-            System.out.println(thing.getName());
-            String newItem = pick.nextLine().toLowerCase();
-            boolean success = false;
-             while(!success){ 
-                 
-                if(newItem.equals(thing.getName())){
-                player.moveToDesk(thing);
-                success= true; }  
-                
-                if(newItem.equals("nothing")){
-                 success= true;
-                 break;
-                }
-                
-              else{ 
-                System.out.println("Drop what? or nothing at all? type the item you want to drop or \"nothing\" to exit.");
-                String newItem2 = pick.nextLine().toLowerCase();
-                if(newItem2.equals("nothing")){
-                 success= true;
-                 break;
-                }
-                if(newItem2.equals(thing.getName())){
-                        player.moveToDesk(thing);
-                        success= true;
-                 }
-                else if(!newItem2.equals("nothing")||!newItem2.equals(thing.getName())){
-                    System.out.println("I did not understand that, try again");
-                    
-                    } 
-                }
-             }
-             
-        
-                }
-        
-        }  
-    // if second word is desk and not in PD
-    if (where.equals("desk") && currentRoom!=pd){
-        System.out.println("You can't reach your desk when you aren't in the police department.");
             }
-    
+
+            // if second word is desk and you are in PD
+            if (where.equals("desk") && currentRoom == pd) {
+                Scanner pick = new Scanner(System.in);
+
+                System.out.println("Select the item to be dropped to in the desk or type \"nothing\" to exit drop");
+                for (Item thing : player.getInventory()) {
+                    System.out.println(thing.getName());
+                    String newItem = pick.nextLine().toLowerCase();
+                    boolean success = false;
+                    while (!success) {
+
+                        if (newItem.equals(thing.getName())) {
+                            player.moveToDesk(thing);
+                            success = true;
+                        }
+
+                        if (newItem.equals("nothing")) {
+                            success = true;
+                            break;
+                        } else {
+                            System.out.println("Drop what? or nothing at all? type the item you want to drop or \"nothing\" to exit.");
+                            String newItem2 = pick.nextLine().toLowerCase();
+                            if (newItem2.equals("nothing")) {
+                                success = true;
+                                break;
+                            }
+                            if (newItem2.equals(thing.getName())) {
+                                player.moveToDesk(thing);
+                                success = true;
+                            } else if (!newItem2.equals("nothing") || !newItem2.equals(thing.getName())) {
+                                System.out.println("I did not understand that, try again");
+
+                            }
+                        }
+                    }
+
+                }
+
+            }
+            // if second word is desk and not in PD
+            if (where.equals("desk") && currentRoom != pd) {
+                System.out.println("You can't reach your desk when you aren't in the police department.");
+            }
+
         }
     }
+
     //Checks if directions has an exit and moves to next room
     private void goRoom(Command command) {
         if (!command.hasSecondWord()) {
@@ -346,20 +342,20 @@ public class Game {
             "Did you find his badge? We need it for the memorial. (loop)"
 
         };
-        String coronerAlibi="";
-        String wifeAlibi="";
-        String commissionerAlibi="";
-        String bartenderAlibi="";
-        String hobo1Alibi="";
-        String hobo2Alibi="";
-        String hobo3Alibi="";
-        String hobo4Alibi="";
-        
+        String coronerAlibi = "";
+        String wifeAlibi = "";
+        String commissionerAlibi = "";
+        String bartenderAlibi = "";
+        String hobo1Alibi = "";
+        String hobo2Alibi = "";
+        String hobo3Alibi = "";
+        String hobo4Alibi = "";
+
         //add dialogue to dialogue object
         Dialogue coronerDialogue = new Dialogue(coronerLine, coronerAlibi, true);
-        Dialogue wifeDialogue = new Dialogue(wifeLine,wifeAlibi,false);
+        Dialogue wifeDialogue = new Dialogue(wifeLine, wifeAlibi, false);
         Dialogue bartenderDialogue = new Dialogue(bartenderLine, bartenderAlibi, true);
-        Dialogue hobo1Dialogue = new Dialogue(hobo1Line,hobo1Alibi,false);
+        Dialogue hobo1Dialogue = new Dialogue(hobo1Line, hobo1Alibi, false);
         Dialogue hobo2Dialogue = new Dialogue(hobo2Line, hobo2Alibi, false);
         Dialogue hobo3Dialogue = new Dialogue(hobo3Line, hobo3Alibi, false);
         Dialogue hobo4Dialogue = new Dialogue(hobo4Line, hobo4Alibi, false);
@@ -367,12 +363,11 @@ public class Game {
 
         //create clues
         Clue testClue = new Clue("testName", "nondescript");
-        Clue bartenderStatement=new Clue("Bartender's statement", "According to Bartender Bert everyone hated the victim.");
-        Clue hobo1Statement=new Clue("No-Teeth Terry's statement", "According to No-Teeth Terry the murderer was a drunk man.");
-        Clue hobo2Statement=new Clue("Dirty Darryl's statement", "Dirty Darryl obviously hates cops.");
-        Clue hobo3Statement=new Clue("Heroin Harry's statement", "According to Heroin Harry Dirty Darryl is the killer.");
-        Clue coronerStatement=new Clue("Coroner's statement", "According to the coroner the murder was a crime of passion, \nand the victim knew his killer.");
-        
+        Clue bartenderStatement = new Clue("Bartender's statement", "According to Bartender Bert everyone hated the victim.");
+        Clue hobo1Statement = new Clue("No-Teeth Terry's statement", "According to No-Teeth Terry the murderer was a drunk man.");
+        Clue hobo2Statement = new Clue("Dirty Darryl's statement", "Dirty Darryl obviously hates cops.");
+        Clue hobo3Statement = new Clue("Heroin Harry's statement", "According to Heroin Harry Dirty Darryl is the killer.");
+        Clue coronerStatement = new Clue("Coroner's statement", "According to the coroner the murder was a crime of passion, \nand the victim knew his killer.");
 
         NPC hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue, hobo1Statement, 2);
         NPC hobo2 = new NPC("Dirty Darryl", hobo2Dialogue, hobo2Statement, 2);
@@ -391,10 +386,8 @@ public class Game {
         crimeScene.addNpcToRoom(hobo2);
         crimeScene.addNpcToRoom(hobo3);
         crimeScene.addNpcToRoom(hobo4);
- 
+
     }
-
-
 
     private void createItems() {
 
@@ -404,8 +397,6 @@ public class Game {
         Clue CorpseClue = new Clue("Corpse", "The body of the victim was stabbed repeatedly, and had spit covering it's face.");
         Clue bloodSplatteredBadgeClue = new Clue("Blood Splattered Badge evidence.", "This is the badge of the victim was found in your home, \nwhich points to you being the killer.");
 
-        
-        
         // creation of the multiple items via the constructor in Item.java
         Item murderWeapon = new Item("Murder Weapon", "This is a broken bottle"
                 + " with sharp edges and blood covering the edges", true, true, murderWeaponClue);
@@ -423,7 +414,7 @@ public class Game {
         Item bloodSplatteredBadge = new Item("Blood Splattered Badge", "its your"
                 + " former partners badge covered in blood, odd that you would find"
                 + " this here. \n A wave of guilt washes over you as you realise"
-                + " what you have done", true, true,bloodSplatteredBadgeClue );
+                + " what you have done", true, true, bloodSplatteredBadgeClue);
 
         Item test = new Item("test", "testDescipt", false, true, CorpseClue);
 
@@ -440,9 +431,8 @@ public class Game {
         //Gives the player a list of NPCs in the room
         boolean sucess = false;
         do {
-                
-                
-                System.out.println("Who do you wish to talk to?");
+
+            System.out.println("Who do you wish to talk to?");
             for (NPC npc : currentRoom.getNpcsInRoom()) {
                 System.out.println(npc.getName());
             }
@@ -459,13 +449,13 @@ public class Game {
                         player.addToCluelist(npc.giveClue());
                     }
                     boolean sucess1 = false;
-                    do{
+                    do {
                         System.out.println("Do you want to keep talking?  Yes/No");
 
                         Scanner talking1 = new Scanner(System.in);
                         String target1 = talking1.nextLine().toLowerCase();
 
-                        if (target1.equalsIgnoreCase("Yes")){
+                        if (target1.equalsIgnoreCase("Yes")) {
                             npc.getDialogue();
                             sucess1 = false;
                             if (npc.getClueCount() == npc.getClueRelease()) {
@@ -473,20 +463,18 @@ public class Game {
                             }
                         }
 
-
-                        if (target1.equalsIgnoreCase("No")){
+                        if (target1.equalsIgnoreCase("No")) {
                             System.out.println("You decided not to talk anymore");
                             sucess1 = true;
                             sucess = true;
-                        }    
+                        }
                     } while (!sucess1);
                     break;
                 }
                 if (target.equalsIgnoreCase("Exit")) {
                     sucess = true;
                     break;
-                }
-                else {
+                } else {
                     System.out.println("There isnt anyone here by that name");
                 }
             }
@@ -525,27 +513,26 @@ public class Game {
                             String willing = pick.nextLine().toLowerCase();
                             if (willing.equals("yes") == true) {
                                 player.addToInventory(thing, currentRoom);
-                                if(thing==bloodSplatteredBadge){
-                                parser.addFinishers();
+                                if (thing == bloodSplatteredBadge) {
+                                    parser.addFinishers();
                                 }
-                                if(thing.isClue==true){
-                                player.addToCluelist(thing.giveClue());
-                                break;
+                                if (thing.isClue == true) {
+                                    player.addToCluelist(thing.giveClue());
+                                    break;
                                 }
 
-                            } else
-                            if (willing.equals("no")) {
+                            } else if (willing.equals("no")) {
                                 System.out.println("The Item was left alone");
                                 break;
-                            }
-                            else
+                            } else {
                                 System.out.println("I dont understand that");
+                            }
 
                         } else {
                             System.out.println("This item can't be picked up.");
-                            if(thing.isClue==true){
-                            player.addToCluelist(thing.giveClue());
-                            thing.setIsClue();
+                            if (thing.isClue == true) {
+                                player.addToCluelist(thing.giveClue());
+                                thing.setIsClue();
                             }
                             break;
                         }
@@ -566,61 +553,42 @@ public class Game {
         System.out.println("Are you sure?   Yes/No");
         Scanner accusing = new Scanner(System.in);
         String victim = accusing.nextLine().toLowerCase();
-        if (victim.equalsIgnoreCase("no")){
+        if (victim.equalsIgnoreCase("no")) {
             System.out.println("You decided not to accuse anyone... for now");
-        }
-        else if (victim.equalsIgnoreCase("yes")){
+        } else if (victim.equalsIgnoreCase("yes")) {
             System.out.println("These are the people you can accuse:");
             for (NPC npc : currentRoom.getNpcsInRoom()) {
                 System.out.println(npc.getName());
             }
             Scanner choose = new Scanner(System.in);
             String person = choose.nextLine().toLowerCase();
-                       
-            if (person.equalsIgnoreCase("Bartender Bert")){
+
+            if (person.equalsIgnoreCase("Bartender Bert")) {
                 System.out.println("Bartender: What the hell are you talking about");
 
                 System.out.println("Its obvious that this man has no connection to the case ");
                 System.out.println("YOU LOSE");
                 wantToQuit = true;
-                
-                
-                
-            } else
-            if (person.equalsIgnoreCase("No-Teeth Terry")){
-                
-            }else
-            
-            if (person.equalsIgnoreCase("Dirty Darrel")){
-                
-            }else
-            
-            if (person.equalsIgnoreCase("Heroin Harry")){
-                
-            }else
-            
-            if (person.equalsIgnoreCase("Insane Dwayne")){
-                
-            }else
-            
-            if (person.equalsIgnoreCase("Commissioner Curt")){
-                
-            }else
-            
-            if (person.equalsIgnoreCase("Wife")){
-                
-            }else
-            
-            if (person.equalsIgnoreCase("Corroner")){
-                
+
+            } else if (person.equalsIgnoreCase("No-Teeth Terry")) {
+
+            } else if (person.equalsIgnoreCase("Dirty Darrel")) {
+
+            } else if (person.equalsIgnoreCase("Heroin Harry")) {
+
+            } else if (person.equalsIgnoreCase("Insane Dwayne")) {
+
+            } else if (person.equalsIgnoreCase("Commissioner Curt")) {
+
+            } else if (person.equalsIgnoreCase("Wife")) {
+
+            } else if (person.equalsIgnoreCase("Corroner")) {
+
             }
-            
-        }
-        else {
+
+        } else {
             System.out.println("cant you just answer a simple Yes/No question?");
         }
-
-        
 
     }
 
@@ -635,33 +603,35 @@ public class Game {
             }
         }
     }
-    public void confess(){
-    if (currentRoom!=pd){    
-    player.addPoints(50);
-        System.out.println("You told the commissioner what you did.");
-        System.out.println("I get you, he was an absolute asshole. You’re still going to jail, though");
-        System.out.println();
-        System.out.println("Congratulations, you won the game! you were rated a "+(player.getPoints()-100)+"percent good cop.");
-        wantToQuit=true;
-    } else{
-        System.out.println("You have to go to the police department first");
-    }
-    }
-    public void coverUp(){
-    if(currentRoom!=pd){
-    player.removePoints(50);
-        System.out.println("You tell the commissioner that you found the bloody badge in a trashcan.");
-        System.out.println("That bastard left it in the trash? We’ll fry him for that!");
-        if (player.getPoints()>=100){
-                System.out.println("Congratulations, you won the game! you were rated a "+(player.getPoints()-100)+" percent good cop.");
-        }else{
-                System.out.println("Congratulations, you won the game! you were rated a "+(100-player.getPoints())+" percent bad cop.");
+
+    public void confess() {
+        if (currentRoom != pd) {
+            player.addPoints(50);
+            System.out.println("You told the commissioner what you did.");
+            System.out.println("I get you, he was an absolute asshole. You’re still going to jail, though");
+            System.out.println();
+            System.out.println("Congratulations, you won the game! you were rated a " + (player.getPoints() - 100) + "percent good cop.");
+            wantToQuit = true;
+        } else {
+            System.out.println("You have to go to the police department first");
         }
-        wantToQuit=true;
-    }else{
+    }
+
+    public void coverUp() {
+        if (currentRoom != pd) {
+            player.removePoints(50);
+            System.out.println("You tell the commissioner that you found the bloody badge in a trashcan.");
+            System.out.println("That bastard left it in the trash? We’ll fry him for that!");
+            if (player.getPoints() >= 100) {
+                System.out.println("Congratulations, you won the game! you were rated a " + (player.getPoints() - 100) + " percent good cop.");
+            } else {
+                System.out.println("Congratulations, you won the game! you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
+            }
+            wantToQuit = true;
+        } else {
             System.out.println("You have to go to the police department first");
 
-    }
+        }
     }
 }
 //            home.addItemsToRoom(bloodSplatteredBadge);
