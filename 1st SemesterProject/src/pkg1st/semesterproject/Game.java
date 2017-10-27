@@ -128,7 +128,7 @@ public class Game {
         } else if (commandWord == CommandWord.TALK) {
             talk();
         } else if (commandWord == CommandWord.ACCUSE) {
-            accuse();
+            arrest();
         } else if (commandWord == CommandWord.INSPECT) {
             inspect(command);
         } else if (commandWord == CommandWord.DROP) {
@@ -549,7 +549,7 @@ public class Game {
         }
     }
 
-    public void accuse() {
+    public void arrest() {
         System.out.println("You have decided to begin accusing people, god bless you");
         System.out.println("Are you sure?   Yes/No");
         Scanner accusing = new Scanner(System.in);
