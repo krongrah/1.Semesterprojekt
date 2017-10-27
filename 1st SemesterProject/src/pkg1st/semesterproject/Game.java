@@ -353,7 +353,7 @@ public class Game {
 
         //add dialogue to dialogue object
         Dialogue coronerDialogue = new Dialogue(coronerLine, coronerAlibi, true);
-        Dialogue wifeDialogue = new Dialogue(wifeLine, wifeAlibi, false);
+        Dialogue wifeDialogue = new Dialogue(wifeLine, wifeAlibi, trye);
         Dialogue bartenderDialogue = new Dialogue(bartenderLine, bartenderAlibi, true);
         Dialogue hobo1Dialogue = new Dialogue(hobo1Line, hobo1Alibi, false);
         Dialogue hobo2Dialogue = new Dialogue(hobo2Line, hobo2Alibi, false);
@@ -362,17 +362,18 @@ public class Game {
         Dialogue commissionerDialogue = new Dialogue(commissionerLine1, commissionerLine2, commissionerAlibi, true);
 
         //create clues
-        Clue testClue = new Clue("testName", "nondescript");
-        Clue bartenderStatement = new Clue("Bartender's statement", "According to Bartender Bert everyone hated the victim.");
-        Clue hobo1Statement = new Clue("No-Teeth Terry's statement", "According to No-Teeth Terry the murderer was a drunk man.");
-        Clue hobo2Statement = new Clue("Dirty Darryl's statement", "Dirty Darryl obviously hates cops.");
-        Clue hobo3Statement = new Clue("Heroin Harry's statement", "According to Heroin Harry Dirty Darryl is the killer.");
-        Clue coronerStatement = new Clue("Coroner's statement", "According to the coroner the murder was a crime of passion, \nand the victim knew his killer.");
+        Clue testClue = new Clue("testName", "nondescript", false);
+        Clue bartenderStatement = new Clue("Bartender's statement", "According to Bartender Bert everyone hated the victim.", false);
+        Clue hobo1Statement = new Clue("No-Teeth Terry's statement", "According to No-Teeth Terry the murderer was a drunk man.", false);
+        Clue hobo2Statement = new Clue("Dirty Darryl's statement", "Dirty Darryl obviously hates cops.", true);
+        Clue hobo3Statement = new Clue("Heroin Harry's statement", "According to Heroin Harry Dirty Darryl is the killer.", true);
+        Clue hobo4Statement = new Clue("Insane Dwayne", "Insane Dwayne is insane.", true);
+        Clue coronerStatement = new Clue("Coroner's statement", "According to the coroner the murder was a crime of passion, \nand the victim knew his killer.", true);
 
         NPC hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue, hobo1Statement, 2);
         NPC hobo2 = new NPC("Dirty Darryl", hobo2Dialogue, hobo2Statement, 2);
         NPC hobo3 = new NPC("Heroin Harry", hobo3Dialogue, hobo3Statement, 1);
-        NPC hobo4 = new NPC("Insane Dwayne", hobo4Dialogue, testClue, 0);
+        NPC hobo4 = new NPC("Insane Dwayne", hobo4Dialogue, hobo4Statement, 1);
         NPC commissioner = new NPC("Commissioner Curt", commissionerDialogue, testClue, 0);
         NPC bartender = new NPC("Bartender Bert", bartenderDialogue, bartenderStatement, 2);
         NPC wife = new NPC("Wife", wifeDialogue, testClue, 0);
@@ -392,10 +393,10 @@ public class Game {
     private void createItems() {
 
         //create item clues
-        Clue murderWeaponClue = new Clue("Murder Weapon Evidence", "The murder weapon is a broken bottle of your favorite beer.");
-        Clue BloodsplatterClue = new Clue("Blood Splatter", "There was a lot of blood on the crimescene, suggesting a violent conflict.");
-        Clue CorpseClue = new Clue("Corpse", "The body of the victim was stabbed repeatedly, and had spit covering it's face.");
-        Clue bloodSplatteredBadgeClue = new Clue("Blood Splattered Badge evidence.", "This is the badge of the victim was found in your home, \nwhich points to you being the killer.");
+        Clue murderWeaponClue = new Clue("Murder Weapon Evidence", "The murder weapon is a broken bottle of your favorite beer.", true);
+        Clue BloodsplatterClue = new Clue("Blood Splatter", "There was a lot of blood on the crimescene, suggesting a violent conflict.", false);
+        Clue CorpseClue = new Clue("Corpse", "The body of the victim was stabbed repeatedly, and had spit covering it's face.", false);
+        Clue bloodSplatteredBadgeClue = new Clue("Blood Splattered Badge evidence.", "This is the badge of the victim was found in your home, \nwhich points to you being the killer.", true);
 
         // creation of the multiple items via the constructor in Item.java
         Item murderWeapon = new Item("Murder Weapon", "This is a broken bottle"
