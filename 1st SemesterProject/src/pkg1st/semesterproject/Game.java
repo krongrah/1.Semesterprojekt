@@ -12,6 +12,7 @@ public class Game {
     private Parser parser;
     private Room currentRoom;
     private Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
+    private Item bloodSplatteredBadge;
     PC player;
     boolean wantToQuit = false;
     // Constructor calls createRooms and creates new Parser
@@ -367,7 +368,6 @@ public class Game {
         crimeScene.addItemsToRoom(bloodSplatter);
         crimeScene.addItemsToRoom(corpse);
         pd.addItemsToRoom(gun);
-        home.addItemsToRoom(bloodSplatteredBadge);
 
     }
 
@@ -544,6 +544,7 @@ public class Game {
     }
     }
 }
-
 //            parser.addFinishers();
-//todo add 
+//            home.addItemsToRoom(bloodSplatteredBadge);
+
+//todo add to accuse
