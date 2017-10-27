@@ -562,29 +562,13 @@ public class Game {
             }
             Scanner choose = new Scanner(System.in);
             String person = choose.nextLine().toLowerCase();
-
-            if (person.equalsIgnoreCase("Bartender Bert")) {
-                System.out.println("Bartender: What the hell are you talking about");
-
-                System.out.println("Its obvious that this man has no connection to the case ");
-                System.out.println("YOU LOSE");
-                wantToQuit = true;
-
-            } else if (person.equalsIgnoreCase("No-Teeth Terry")) {
-
-            } else if (person.equalsIgnoreCase("Dirty Darrel")) {
-
-            } else if (person.equalsIgnoreCase("Heroin Harry")) {
-
-            } else if (person.equalsIgnoreCase("Insane Dwayne")) {
-
-            } else if (person.equalsIgnoreCase("Commissioner Curt")) {
-
-            } else if (person.equalsIgnoreCase("Wife")) {
-
-            } else if (person.equalsIgnoreCase("Corroner")) {
-
+            
+            for (NPC npc : currentRoom.getNpcsInRoom()) {
+                if (person.equals(npc.getName().toLowerCase())) {
+                    npc.getAlibi();
+                }
             }
+                    
 
         } else {
             System.out.println("cant you just answer a simple Yes/No question?");
