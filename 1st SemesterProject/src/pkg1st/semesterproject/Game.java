@@ -12,9 +12,7 @@ public class Game {
     private Parser parser;
     private Room currentRoom;
     private Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
-    private Item murderWeapon, bloodSplatteredBadge, gun, bloodSplatter, corpse;
-    private NPC coroner, commissioner, bartender, wife, hobo1, hobo2, hobo3, hobo4;
-    private Dialogue coronerDialogue, commissionerDialogue, bartenderDialogue, wifeDialogue, hobo1Dialogue, hobo2Dialogue, hobo3Dialogue, hobo4Dialogue;
+    private Item bloodSplatteredBadge;
     PC player;
     boolean wantToQuit = false;
     // Constructor calls createRooms and creates new Parser
@@ -426,7 +424,6 @@ public class Game {
         crimeScene.addItemsToRoom(bloodSplatter);
         crimeScene.addItemsToRoom(corpse);
         pd.addItemsToRoom(gun);
-        home.addItemsToRoom(bloodSplatteredBadge);
 
     }
 
@@ -435,7 +432,7 @@ public class Game {
         //Gives the player a list of NPCs in the room
         boolean sucess = false;
         do {
-            
+                
                 
                 System.out.println("Who do you wish to talk to?");
             for (NPC npc : currentRoom.getNpcsInRoom()) {
@@ -554,13 +551,64 @@ public class Game {
     }
 
     public void accuse() {
-        int points = player.getPoints();
-        player.addPoints(20);
-        if (points == 200) {
-            System.out.println("you just completed the game");
+        System.out.println("You have decided to begin accusing people, god bless you");
+        System.out.println("Are you sure?   Yes/No");
+        Scanner accusing = new Scanner(System.in);
+        String victim = accusing.nextLine().toLowerCase();
+        if (victim.equalsIgnoreCase("no")){
+            System.out.println("You decided not to accuse anyone... for now");
         }
+        else if (victim.equalsIgnoreCase("yes")){
+            System.out.println("These are the people you can accuse:");
+            for (NPC npc : currentRoom.getNpcsInRoom()) {
+                System.out.println(npc.getName());
+            }
+            Scanner choose = new Scanner(System.in);
+            String person = choose.nextLine().toLowerCase();
+                       
+            if (person.equalsIgnoreCase("Bartender Bert")){
+                System.out.println("What the hell are you talking about");
+                System.out.println("Its obvious that it would be Bert, he was "
+                        + "serving my partner the night he died");
+                System.out.println("You take Bert to jail");
+                
+                
+            } else
+            if (person.equalsIgnoreCase("No-Teeth Terry")){
+                
+            }else
+            
+            if (person.equalsIgnoreCase("Dirty Darrel")){
+                
+            }else
+            
+            if (person.equalsIgnoreCase("Heroin Harry")){
+                
+            }else
+            
+            if (person.equalsIgnoreCase("Insane Dwayne")){
+                
+            }else
+            
+            if (person.equalsIgnoreCase("Commissioner Curt")){
+                
+            }else
+            
+            if (person.equalsIgnoreCase("Wife")){
+                
+            }else
+            
+            if (person.equalsIgnoreCase("Corroner")){
+                
+            }
+            
+        }
+        else {
+            System.out.println("cant you just answer a simple Yes/No question?");
+        }
+
         
-        System.out.println("You do not have the authority to do this.");
+
     }
 
     private void getInfo() {
@@ -603,4 +651,7 @@ public class Game {
     }
     }
 }
+//            parser.addFinishers();
+//            home.addItemsToRoom(bloodSplatteredBadge);
 
+//todo add to accuse

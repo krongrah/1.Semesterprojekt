@@ -43,4 +43,7 @@ public class Parser {
     public void showCommands() {
         commands.showAll();
     }
+    public void addFinishers(){
+    commands.addFinishers();
+    }
 }
