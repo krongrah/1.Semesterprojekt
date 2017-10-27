@@ -346,16 +346,24 @@ public class Game {
             "Did you find his badge? We need it for the memorial. (loop)"
 
         };
-
+        String coronerAlibi="";
+        String wifeAlibi="";
+        String commissionerAlibi="";
+        String bartenderAlibi="";
+        String hobo1Alibi="";
+        String hobo2Alibi="";
+        String hobo3Alibi="";
+        String hobo4Alibi="";
+        
         //add dialogue to dialogue object
-        Dialogue coronerDialogue = new Dialogue(coronerLine);
-        Dialogue wifeDialogue = new Dialogue(wifeLine);
-        Dialogue bartenderDialogue = new Dialogue(bartenderLine);
-        Dialogue hobo1Dialogue = new Dialogue(hobo1Line);
-        Dialogue hobo2Dialogue = new Dialogue(hobo2Line);
-        Dialogue hobo3Dialogue = new Dialogue(hobo3Line);
-        Dialogue hobo4Dialogue = new Dialogue(hobo4Line);
-        Dialogue commissionerDialogue = new Dialogue(commissionerLine1, commissionerLine2);
+        Dialogue coronerDialogue = new Dialogue(coronerLine, coronerAlibi, true);
+        Dialogue wifeDialogue = new Dialogue(wifeLine,wifeAlibi,false);
+        Dialogue bartenderDialogue = new Dialogue(bartenderLine, bartenderAlibi, true);
+        Dialogue hobo1Dialogue = new Dialogue(hobo1Line,hobo1Alibi,false);
+        Dialogue hobo2Dialogue = new Dialogue(hobo2Line, hobo2Alibi, false);
+        Dialogue hobo3Dialogue = new Dialogue(hobo3Line, hobo3Alibi, false);
+        Dialogue hobo4Dialogue = new Dialogue(hobo4Line, hobo4Alibi, false);
+        Dialogue commissionerDialogue = new Dialogue(commissionerLine1, commissionerLine2, commissionerAlibi, true);
 
         //create clues
         Clue testClue = new Clue("testName", "nondescript");
