@@ -17,7 +17,6 @@ public class Game {
     private Dialogue coronerDialogue, commissionerDialogue, bartenderDialogue, wifeDialogue, hobo1Dialogue, hobo2Dialogue, hobo3Dialogue, hobo4Dialogue;
     PC player;
     boolean wantToQuit = false;
-
     // Constructor calls createRooms and creates new Parser
     public Game() {
         createRooms();
@@ -135,6 +134,10 @@ public class Game {
             inspect(command);
         } else if (commandWord == CommandWord.DROP) {
             drop(command);
+        } else if (commandWord == CommandWord.LIE){
+        coverUp();
+        } else if (commandWord == CommandWord.CONFESS){
+        confess();
         }
         return wantToQuit;
     }
@@ -533,9 +536,9 @@ public class Game {
         System.out.println("You tell the commissioner that you found the bloody badge in a trashcan.");
         System.out.println("That bastard left it in the trash? We’ll fry him for that!");
         if (player.getPoints()>=100){
-                System.out.println("Congratulations, you won the game! you were rated a "+(player.getPoints()-100)+"percent good cop.");
+                System.out.println("Congratulations, you won the game! you were rated a "+(player.getPoints()-100)+" percent good cop.");
         }else{
-                System.out.println("Congratulations, you won the game! you were rated a "+(100-player.getPoints())+"percent bad cop.");
+                System.out.println("Congratulations, you won the game! you were rated a "+(100-player.getPoints())+" percent bad cop.");
         }
         wantToQuit=true;
     }else{

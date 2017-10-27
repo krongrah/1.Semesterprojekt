@@ -5,7 +5,7 @@ package pkg1st.semesterproject;
  * @version 2006.03.30
  */
 public enum CommandWord {   //converts Stings to Commands
-    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), ACCUSE("accuse"), TALK("talk"), SEARCH("search"), INSPECT("inspect"),DROP("drop");
+    GO("go"), QUIT("quit"), HELP("help"), UNKNOWN("?"), ACCUSE("accuse"), TALK("talk"), SEARCH("search"), INSPECT("inspect"),DROP("drop"), CONFESS("confess"), LIE("lie");
     private String commandString;
 
     //contructor
