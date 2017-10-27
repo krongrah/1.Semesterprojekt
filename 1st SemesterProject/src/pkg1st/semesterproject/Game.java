@@ -353,7 +353,7 @@ public class Game {
 
         //add dialogue to dialogue object
         Dialogue coronerDialogue = new Dialogue(coronerLine, coronerAlibi, true);
-        Dialogue wifeDialogue = new Dialogue(wifeLine, wifeAlibi, trye);
+        Dialogue wifeDialogue = new Dialogue(wifeLine, wifeAlibi, true);
         Dialogue bartenderDialogue = new Dialogue(bartenderLine, bartenderAlibi, true);
         Dialogue hobo1Dialogue = new Dialogue(hobo1Line, hobo1Alibi, false);
         Dialogue hobo2Dialogue = new Dialogue(hobo2Line, hobo2Alibi, false);
