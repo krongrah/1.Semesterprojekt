@@ -15,8 +15,7 @@ public class NPC {
 
     // NPC attributes
     private String name;
-    Dialogue dialogue;
-    Dialogue alibi;
+    private Dialogue dialogue;
     private int suspectability;
     private Clue clue;
     private int askForClueCounter = 0;
