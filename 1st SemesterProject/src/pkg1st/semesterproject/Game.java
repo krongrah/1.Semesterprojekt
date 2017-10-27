@@ -127,7 +127,7 @@ public class Game {
             search();
         } else if (commandWord == CommandWord.TALK) {
             talk();
-        } else if (commandWord == CommandWord.ACCUSE) {
+        } else if (commandWord == CommandWord.ARREST) {
             arrest();
         } else if (commandWord == CommandWord.INSPECT) {
             inspect(command);
