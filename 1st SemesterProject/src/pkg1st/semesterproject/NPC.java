@@ -16,6 +16,7 @@ public class NPC {
     // NPC attributes
     private String name;
     Dialogue dialogue;
+    Dialogue alibi;
     private int suspectability;
     private Clue clue;
     private int askForClueCounter = 0;
@@ -34,7 +35,10 @@ public class NPC {
 
     public void getDialogue() {
         dialogue.getLine();
-
+    }
+    
+    public void getAlibi(){    
+        dialogue.getAlibi();
     }
 
     public void setDialogue(Dialogue dialogue_) {
@@ -56,9 +60,10 @@ public class NPC {
     }
 
     // NPC constructor
-    public NPC(String newName, Dialogue dialogue, Clue clue, int clueRelease) {
+    public NPC(String newName, Dialogue dialogue, Dialogue alibi, Clue clue, int clueRelease) {
         this.name = newName;
         this.dialogue = dialogue;
+        this.alibi= alibi;
         this.clue = clue;
         this.clueRelease = clueRelease;
     }
