@@ -183,28 +183,83 @@ public class Game {
     if (where.equals("room")){
     Scanner pick = new Scanner(System.in);
              
-        System.out.println("Select the item to be dropped to the room");
+        System.out.println("Select the item to be dropped to the room or type \"nothing\" to exit drop");
         for (Item thing : player.getInventory()){
             System.out.println(thing.getName());
             String newItem = pick.nextLine().toLowerCase();
-              if(newItem.equals(thing.getName())){
+            boolean success = false;
+             while(!success){ 
+                 
+                if(newItem.equals(thing.getName())){
                 player.moveToRoom(thing, currentRoom);
-                    }  
-                }           
-            
-        }  
+                success= true; }  
+                
+                if(newItem.equals("nothing")){
+                 success= true;
+                 break;
+                }
+                
+              else{ 
+                System.out.println("Drop what? or nothing at all? type the item you want to drop or \"nothing\" to exit.");
+                String newItem2 = pick.nextLine().toLowerCase();
+                if(newItem2.equals("nothing")){
+                 success= true;
+                 break;
+                }
+                if(newItem2.equals(thing.getName())){
+                        player.moveToRoom(thing, currentRoom);
+                        success= true;
+                 }
+                else if(!newItem2.equals("nothing")||!newItem2.equals(thing.getName())){
+                    System.out.println("I did not understand that, try again");
+                    
+                    } 
+                }
+             }
+             
+        }             
+    }  
+       
     
     // if second word is desk and you are in PD
     if (where.equals("desk") && currentRoom==pd){
     Scanner pick = new Scanner(System.in);
      
-        System.out.println("Select the item to be dropped into the desk");
+        System.out.println("Select the item to be dropped to in the desk or type \"nothing\" to exit drop");
         for (Item thing : player.getInventory()){
             System.out.println(thing.getName());
             String newItem = pick.nextLine().toLowerCase();
-              if(newItem.equals(thing.getName())){
+            boolean success = false;
+             while(!success){ 
+                 
+                if(newItem.equals(thing.getName())){
                 player.moveToDesk(thing);
-                    }  
+                success= true; }  
+                
+                if(newItem.equals("nothing")){
+                 success= true;
+                 break;
+                }
+                
+              else{ 
+                System.out.println("Drop what? or nothing at all? type the item you want to drop or \"nothing\" to exit.");
+                String newItem2 = pick.nextLine().toLowerCase();
+                if(newItem2.equals("nothing")){
+                 success= true;
+                 break;
+                }
+                if(newItem2.equals(thing.getName())){
+                        player.moveToDesk(thing);
+                        success= true;
+                 }
+                else if(!newItem2.equals("nothing")||!newItem2.equals(thing.getName())){
+                    System.out.println("I did not understand that, try again");
+                    
+                    } 
+                }
+             }
+             
+        
                 }
         
         }  
@@ -212,6 +267,7 @@ public class Game {
     if (where.equals("desk") && currentRoom!=pd){
         System.out.println("You can't reach your desk when you aren't in the police department.");
             }
+    
         }
     }
     //Checks if directions has an exit and moves to next room
@@ -358,7 +414,7 @@ public class Game {
 
         Item bloodSplatteredBadge = new Item("Blood Splattered Badge", "its your"
                 + " former partners badge covered in blood, odd that you would find"
-                + " this here. \n i wave of guilt washes over you as you realise"
+                + " this here. \n A wave of guilt washes over you as you realise"
                 + " what you have done", true, true,bloodSplatteredBadgeClue );
 
         Item test = new Item("test", "testDescipt", false, true, CorpseClue);
@@ -461,6 +517,9 @@ public class Game {
                             String willing = pick.nextLine().toLowerCase();
                             if (willing.equals("yes") == true) {
                                 player.addToInventory(thing, currentRoom);
+                                if(thing==bloodSplatteredBadge){
+                                parser.addFinishers();
+                                }
                                 if(thing.isClue==true){
                                 player.addToCluelist(thing.giveClue());
                                 break;
@@ -597,7 +656,6 @@ public class Game {
     }
     }
 }
-//            parser.addFinishers();
 //            home.addItemsToRoom(bloodSplatteredBadge);
 
 //todo add to accuse
