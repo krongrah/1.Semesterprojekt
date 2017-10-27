@@ -32,8 +32,8 @@ public class NPC {
         return suspectability;
     }
 
-    public void getDialogue() {
-        dialogue.getLine();
+    public void getLine() {
+        System.out.println(name+": "+dialogue.getLine());
     }
     
     public boolean getAlibi(){    

@@ -35,18 +35,21 @@ public class Dialogue {
         this.isValid=isValid;
     }
 
-    public void getLine() {
+    public String getLine() {
         if (!condition1) {
-            System.out.println(dialogue1[lineIndex]);
+            String line= dialogue1[lineIndex];
             if (lineIndex < dialogue1.length - 1) {
                 lineIndex++;
-            }
+                
+            }return line;
         } else {
-            System.out.println(dialogue2[lineIndex]);
+            String line=dialogue2[lineIndex];
             if (lineIndex < dialogue2.length - 1) {
                 lineIndex++;
-            }
+                
+            }return line;
         }
+        
     }
 
     public void fulfillCondition() {

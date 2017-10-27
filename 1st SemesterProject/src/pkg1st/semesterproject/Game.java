@@ -443,7 +443,7 @@ public class Game {
             //go through NPCs for matches to the input.
             for (NPC npc : currentRoom.getNpcsInRoom()) {
                 if (target.equals(npc.getName().toLowerCase())) {
-                    npc.getDialogue();
+                    npc.getLine();
 
                     if (npc.getClueCount() == npc.getClueRelease()) {
                         player.addToCluelist(npc.giveClue());
@@ -456,7 +456,7 @@ public class Game {
                         String target1 = talking1.nextLine().toLowerCase();
 
                         if (target1.equalsIgnoreCase("Yes")) {
-                            npc.getDialogue();
+                            npc.getLine();
                             sucess1 = false;
                             if (npc.getClueCount() == npc.getClueRelease()) {
                                 player.addToCluelist(npc.giveClue());
