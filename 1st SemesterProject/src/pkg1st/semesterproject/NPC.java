@@ -37,8 +37,8 @@ public class NPC {
         dialogue.getLine();
     }
     
-    public void getAlibi(){    
-        dialogue.getAlibi();
+    public boolean getAlibi(){    
+       return dialogue.getAlibi();
     }
 
     public void setDialogue(Dialogue dialogue_) {
