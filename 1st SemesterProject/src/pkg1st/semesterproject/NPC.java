@@ -60,10 +60,9 @@ public class NPC {
     }
 
     // NPC constructor
-    public NPC(String newName, Dialogue dialogue, Dialogue alibi, Clue clue, int clueRelease) {
+    public NPC(String newName, Dialogue dialogue, Clue clue, int clueRelease) {
         this.name = newName;
         this.dialogue = dialogue;
-        this.alibi= alibi;
         this.clue = clue;
         this.clueRelease = clueRelease;
     }
