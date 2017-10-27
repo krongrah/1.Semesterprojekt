@@ -495,53 +495,52 @@ public class Game {
     }
 
     public void accuse() {
-        int points = player.getPoints();
         System.out.println("You have decided to begin accusing people, god bless you");
-        System.out.println("are you sure?   Yes/No");
+        System.out.println("Are you sure?   Yes/No");
         Scanner accusing = new Scanner(System.in);
         String victim = accusing.nextLine().toLowerCase();
         if (victim.equalsIgnoreCase("no")){
-            System.out.println("you decided not to accuse anyone... for now");
+            System.out.println("You decided not to accuse anyone... for now");
         }
         else if (victim.equalsIgnoreCase("yes")){
-            System.out.println("these are the people you can accuse:");
+            System.out.println("These are the people you can accuse:");
             for (NPC npc : currentRoom.getNpcsInRoom()) {
                 System.out.println(npc.getName());
             }
             Scanner choose = new Scanner(System.in);
             String person = choose.nextLine().toLowerCase();
-            
+                       
             if (person.equalsIgnoreCase("Bartender Bert")){
-                System.out.println("Bartender Bert: what the hell are you talking about");
-                System.out.println("Its obvious that it would be Bert, he was"+
-                        "serving my partner the night he died");
+                System.out.println("What the hell are you talking about");
+                System.out.println("Its obvious that it would be Bert, he was "
+                        + "serving my partner the night he died");
                 System.out.println("You take Bert to jail");
                 
                 
-            }
+            } else
             if (person.equalsIgnoreCase("No-Teeth Terry")){
                 
-            }
+            }else
             
             if (person.equalsIgnoreCase("Dirty Darrel")){
                 
-            }
+            }else
             
             if (person.equalsIgnoreCase("Heroin Harry")){
                 
-            }
+            }else
             
             if (person.equalsIgnoreCase("Insane Dwayne")){
                 
-            }
+            }else
             
             if (person.equalsIgnoreCase("Commissioner Curt")){
                 
-            }
+            }else
             
             if (person.equalsIgnoreCase("Wife")){
                 
-            }
+            }else
             
             if (person.equalsIgnoreCase("Corroner")){
                 
