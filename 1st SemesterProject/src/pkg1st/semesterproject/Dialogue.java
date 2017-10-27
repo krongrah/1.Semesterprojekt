@@ -15,17 +15,24 @@ public class Dialogue {
     private String[] dialogue1;
     private boolean condition1 = false;
     private String[] dialogue2 = null;
+    private String alibi;
+    private boolean isValid;
     private int lineIndex = 0;
 
     //single dialogue constructor
-    Dialogue(String[] dialogue1) {
+    Dialogue(String[] dialogue1, String alibi, boolean isValid) {
         this.dialogue1 = dialogue1;
+        this.alibi=alibi;
+        this.isValid=isValid;
+        
     }
 
     //double dialogue constructor
-    Dialogue(String[] dialogue1, String[] dialogue2) {
+    Dialogue(String[] dialogue1, String[] dialogue2, String alibi, boolean isValid) {
         this.dialogue1 = dialogue1;
         this.dialogue2 = dialogue2;
+        this.alibi=alibi;
+        this.isValid=isValid;
     }
 
     public void getLine() {
@@ -46,4 +53,9 @@ public class Dialogue {
         condition1 = true;
         lineIndex = 0;
     }
+    public boolean getAlibi(){
+        System.out.println(alibi);
+        return isValid;
+    }
+            
 }
