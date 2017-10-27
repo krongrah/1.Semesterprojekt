@@ -22,9 +22,7 @@ public class NPC {
     private int clueRelease;
 
     //Moves NPC to another room
-    public static void move(String Room) {
 
-    }
 
     public String getName() {
         return name;

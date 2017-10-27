@@ -12,9 +12,6 @@ public class Game {
     private Parser parser;
     private Room currentRoom;
     private Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
-    private Item murderWeapon, bloodSplatteredBadge, gun, bloodSplatter, corpse;
-    private NPC coroner, commissioner, bartender, wife, hobo1, hobo2, hobo3, hobo4;
-    private Dialogue coronerDialogue, commissionerDialogue, bartenderDialogue, wifeDialogue, hobo1Dialogue, hobo2Dialogue, hobo3Dialogue, hobo4Dialogue;
     PC player;
     boolean wantToQuit = false;
     // Constructor calls createRooms and creates new Parser
@@ -379,7 +376,7 @@ public class Game {
         //Gives the player a list of NPCs in the room
         boolean sucess = false;
         do {
-            
+                
                 
                 System.out.println("Who do you wish to talk to?");
             for (NPC npc : currentRoom.getNpcsInRoom()) {
@@ -600,3 +597,5 @@ public class Game {
     }
 }
 
+//            parser.addFinishers();
+//todo add 
