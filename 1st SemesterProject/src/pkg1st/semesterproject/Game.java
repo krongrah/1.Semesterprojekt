@@ -419,7 +419,7 @@ public class Game {
         Item test = new Item("test", "testDescipt", false, true, CorpseClue);
 
         bar.addItemsToRoom(test);
-        crimeScene.addItemsToRoom(murderWeapon);
+        hoboAlley.addItemsToRoom(murderWeapon);
         crimeScene.addItemsToRoom(bloodSplatter);
         crimeScene.addItemsToRoom(corpse);
         pd.addItemsToRoom(gun);
