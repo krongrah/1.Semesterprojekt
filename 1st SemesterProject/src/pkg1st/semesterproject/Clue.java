@@ -14,11 +14,13 @@ public class Clue {
     //Attributes
     private String name;
     private String description;
+    private boolean isConvictable;
 
     //constructor
-    Clue(String _name, String _description) {
+    Clue(String _name, String _description, boolean _isConvictable) {
         name = _name;
         description = _description;
+        isConvictable=_isConvictable;
     }
 
     //getters
