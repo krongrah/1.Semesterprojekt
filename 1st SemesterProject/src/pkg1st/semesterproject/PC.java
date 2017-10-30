@@ -163,6 +163,12 @@ public class PC {
         points += value;
         
     }
+    
+    public Set<Clue> getJournal(){
+        
+    return journal;
+    }
+    
     public void removePoints(int value) {
         points -= value;
     }
