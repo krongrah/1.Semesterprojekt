@@ -178,7 +178,7 @@ public class Game {
             return;
         }
         //if inventory is empty
-        if (player.inventoryEmpty()) {
+        if (player.getInventory().isEmpty()) {
             System.out.println("You can't drop anything because you don't have anything on you.");
         } else {
             //if second word is room
