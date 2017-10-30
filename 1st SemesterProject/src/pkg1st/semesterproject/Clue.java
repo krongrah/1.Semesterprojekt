@@ -39,4 +39,11 @@ public class Clue {
             return false;
         }
     }
+
+    /**
+     * @return the isConvictable
+     */
+    public boolean isConvictable() {
+        return isConvictable;
+    }
 }

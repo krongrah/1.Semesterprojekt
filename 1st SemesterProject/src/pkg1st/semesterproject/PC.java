@@ -19,6 +19,7 @@ public class PC {
     private Set<Item> inventory = new HashSet<>();
     private Set<Item> desk = new HashSet<>();
     private Set<Clue> journal = new HashSet<>();
+    private Set<Clue> evidence = new HashSet<>(); 
     private int maxInventoryCapacity = 2;
     private Game newGame;
     private Room pd;
@@ -148,13 +149,24 @@ public class PC {
         
     }
 
-    public void addToCluelist(Clue thing) {
+    public void addToJournal(Clue thing) {
         journal.add(thing);
         System.out.println("You noted the clue down.");
         addPoints(10);
-        
-        
     }
+    
+    public void addToevidence(Clue thing) {
+        journal.add(thing);
+        System.out.println("You noted the clue down.");
+        addPoints(10);
+        }
+    
+    public boolean isEvidence2(){
+    
+    return evidence.size()>=2;
+    }
+    
+    
     public int getPoints() {
         return points;
     }
@@ -167,6 +179,11 @@ public class PC {
     public Set<Clue> getJournal(){
         
     return journal;
+    }
+    
+    public Set<Clue> getEvidence(){
+    
+    return evidence;
     }
     
     public void removePoints(int value) {
