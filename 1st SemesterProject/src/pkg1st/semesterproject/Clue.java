@@ -31,5 +31,12 @@ public class Clue {
     public String getDescription() {
         return description;
     }
-
+    public boolean isBadge() {
+        if (name == "bloodSplatteredBadgeClue"){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
