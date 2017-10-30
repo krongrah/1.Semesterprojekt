@@ -599,40 +599,26 @@ public class Game {
         }
     }
 
-    public void confess() {
-        if (currentRoom != pd) {
-            player.addPoints(50);
-            System.out.println("You told the commissioner what you did.");
-            System.out.println("I get you, he was an absolute asshole. You’re still going to jail, though");
-            System.out.println();
-            System.out.println("Congratulations, you won the game! you were rated a " + (player.getPoints() - 100) + "percent good cop.");
-            wantToQuit = true;
-        } else {
-            System.out.println("You have to go to the police department first");
-        }
-    }
 
-    public void coverUp() {
-        if (currentRoom != pd) {
-            player.removePoints(50);
-            System.out.println("You tell the commissioner that you found the bloody badge in a trashcan.");
-            System.out.println("That bastard left it in the trash? We’ll fry him for that!");
-            if (player.getPoints() >= 100) {
-                System.out.println("Congratulations, you won the game! you were rated a " + (player.getPoints() - 100) + " percent good cop.");
-            } else {
-                System.out.println("Congratulations, you won the game! you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
-            }
-            wantToQuit = true;
-        } else {
-            System.out.println("You have to go to the police department first");
-
-        }
-    }
     public void goToJail(){
         System.out.println("test");
     }
     public void lose(){
         System.out.println("You lost.");
+        if (player.getPoints() >= 100) {
+                System.out.println("Congratulations, you won the game! you were rated a " + (player.getPoints() - 100) + " percent good cop.");
+            } else {
+                System.out.println("Congratulations, you won the game! you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
+            }
+        wantToQuit=true;
+    }
+    public void win(){
+        System.out.println("You win.");
+        if (player.getPoints() >= 100) {
+                System.out.println("Congratulations, you won the game! you were rated a " + (player.getPoints() - 100) + " percent good cop.");
+            } else {
+                System.out.println("Congratulations, you won the game! you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
+            }
         wantToQuit=true;
     }
 }
