@@ -550,7 +550,7 @@ public class Game {
     }
 
     public void arrest() {
-        System.out.println("You have decided to begin accusing people, god bless you");
+        System.out.println("You have decided to begin arresting people, god bless you");
         System.out.println("Are you sure?   Yes/No");
         Scanner accusing = new Scanner(System.in);
         String victim = accusing.nextLine().toLowerCase();
@@ -561,18 +561,28 @@ public class Game {
             for (NPC npc : currentRoom.getNpcsInRoom()) {
                 System.out.println(npc.getName());
             }
+            
             Scanner choose = new Scanner(System.in);
             String person = choose.nextLine().toLowerCase();
-            
+            boolean success=false;
             for (NPC npc : currentRoom.getNpcsInRoom()) {
                 if (person.equals(npc.getName().toLowerCase())) {
-                    npc.getAlibi();
+                    if(npc.getAlibi()){
+                        lose();
+                        success=true;
+                        break;
+            } else {
+                    goToJail();
+                    }
+                    success=true;
+                    break;
                 }
+                
             }
-                    
-
-        } else {
-            System.out.println("cant you just answer a simple Yes/No question?");
+            if(!success){        
+            System.out.println("If you're not going to be serious about this, find another job.");
+            }} else {
+            System.out.println("Can't you just answer a simple Yes/No question?");
         }
 
     }
@@ -617,6 +627,13 @@ public class Game {
             System.out.println("You have to go to the police department first");
 
         }
+    }
+    public void goToJail(){
+        System.out.println("test");
+    }
+    public void lose(){
+        System.out.println("You lost.");
+        wantToQuit=true;
     }
 }
 //            home.addItemsToRoom(bloodSplatteredBadge);
