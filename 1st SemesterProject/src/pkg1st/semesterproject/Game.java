@@ -136,8 +136,8 @@ public class Game {
             drop(command);
         } else if (commandWord == CommandWord.LIE) {
             System.out.println("Lying is bad, and you should feel bad.");  
-        } else if (commandWord == CommandWord.CONVICT) {
-        convict();
+        //} else if (commandWord == CommandWord.CONVICT) {
+        //convict();
         }
         return wantToQuit;
     }
@@ -444,42 +444,45 @@ public class Game {
             String target = talking.nextLine().toLowerCase();
 
             //go through NPCs for matches to the input.
-            for (NPC npc : currentRoom.getNPCsInRoom()) {
-                if (target.equals(npc.getName().toLowerCase())) {
-                    npc.getLine();
+            if (currentRoom.getNPCsInRoom().contains(target)){
+                for (NPC npc : currentRoom.getNPCsInRoom()) {
+                    if (target.equals(npc.getName().toLowerCase())) {
+                        npc.getLine();
 
-                    if (npc.getClueCount() == npc.getClueRelease()) {
-                        player.addToCluelist(npc.giveClue());
-                    }
-                    boolean sucess1 = false;
-                    do {
-                        System.out.println("Do you want to keep talking?  Yes/No");
+                        if (npc.getClueCount() == npc.getClueRelease()) {
+                            player.addToCluelist(npc.giveClue());
+                        }
+                        boolean sucess1 = false;
+                        do {
+                            System.out.println("Do you want to keep talking?  Yes/No");
 
-                        Scanner talking1 = new Scanner(System.in);
-                        String target1 = talking1.nextLine().toLowerCase();
+                            Scanner talking1 = new Scanner(System.in);
+                            String target1 = talking1.nextLine().toLowerCase();
 
-                        if (target1.equalsIgnoreCase("Yes")) {
-                            npc.getLine();
-                            sucess1 = false;
-                            if (npc.getClueCount() == npc.getClueRelease()) {
-                                player.addToCluelist(npc.giveClue());
+                            if (target1.equalsIgnoreCase("Yes")) {
+                                npc.getLine();
+                                sucess1 = false;
+                                if (npc.getClueCount() == npc.getClueRelease()) {
+                                    player.addToCluelist(npc.giveClue());
+                                }
                             }
-                        }
 
-                        if (target1.equalsIgnoreCase("No")) {
-                            System.out.println("You decided not to talk anymore");
-                            sucess1 = true;
-                            sucess = true;
-                        }
-                    } while (!sucess1);
-                    break;
+                            if (target1.equalsIgnoreCase("No")) {
+                                System.out.println("You decided not to talk anymore");
+                                sucess1 = true;
+                                sucess = true;
+                            }
+                        } while (!sucess1);
+                        break;
+                    }
+                    if (target.equalsIgnoreCase("Exit")) {
+                        sucess = true;
+                        break;
+                    }
                 }
-                if (target.equalsIgnoreCase("Exit")) {
-                    sucess = true;
-                    break;
-                } else {
-                    System.out.println("There isnt anyone here by that name");
-                }
+            }
+            else {
+                System.out.println("There isnt anyone here by that name");
             }
         } while (!sucess);
 
