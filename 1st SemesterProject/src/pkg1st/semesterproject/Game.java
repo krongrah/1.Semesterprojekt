@@ -133,10 +133,6 @@ public class Game {
             inspect(command);
         } else if (commandWord == CommandWord.DROP) {
             drop(command);
-        } else if (commandWord == CommandWord.LIE) {
-            coverUp();
-        } else if (commandWord == CommandWord.CONFESS) {
-            confess();
         }
         return wantToQuit;
     }
