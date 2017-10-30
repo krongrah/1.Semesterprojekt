@@ -575,12 +575,12 @@ public class Game {
                         break;
             } else {
                     goToJail(npc);
-                    }
+                }
                     success=true;
                     break;
-                }
-                
             }
+                    
+        }
             if(!success){        
             System.out.println("If you're not going to be serious about this, find another job.");
             }} else {
@@ -617,18 +617,40 @@ public class Game {
         System.out.println("You lost.");
         if (player.getPoints() >= 100) {
                 System.out.println("Congratulations, you won the game! you were rated a " + (player.getPoints() - 100) + " percent good cop.");
-            } else {
+        } else {
                 System.out.println("Congratulations, you won the game! you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
-            }
+        }
         wantToQuit=true;
     }
     public void win(){
         System.out.println("You won.");
-        if (player.getPoints() >= 100) {
+            if (player.getPoints() >= 100) {
                 System.out.println("Congratulations, you won the game! you were rated a " + (player.getPoints() - 100) + " percent good cop.");
             } else {
                 System.out.println("Congratulations, you won the game! you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
             }
         wantToQuit=true;
-    }
+        }
+    
+
+        public void convict() {
+        player.displayJournal();
+        
+        
+        for (Clue clueItem : player.getJournal()){
+            Scanner convicting = new Scanner(System.in);
+            String scumbag = convicting.nextLine();
+            if (scumbag.equals(clueItem.getName())) {
+            System.out.println("test");
+            
+        }else{
+            System.out.println("nontest");
+        }
+
+        }
+        
+                }
 }
+//            home.addItemsToRoom(bloodSplatteredBadge);
+
+//todo add to accuse
