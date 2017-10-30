@@ -137,7 +137,7 @@ public class Game {
         } else if (commandWord == CommandWord.LIE) {
             System.out.println("Lying is bad, and you should feel bad.");  
         } else if (commandWord == CommandWord.CONVICT) {
-        convict();
+        //convict();
         }
         return wantToQuit;
     }
@@ -442,12 +442,17 @@ public class Game {
             //have the player enter a name
             Scanner talking = new Scanner(System.in);
             String target = talking.nextLine().toLowerCase();
-
+                if (target.equalsIgnoreCase("exit")) {
+                sucess = true;
+                break;
+                }
             //go through NPCs for matches to the input.
+            boolean success=false;
             for (NPC npc : currentRoom.getNPCsInRoom()) {
+                
                 if (target.equals(npc.getName().toLowerCase())) {
                     npc.getLine();
-
+                    success=true;
                     if (npc.getClueCount() == npc.getClueRelease()) {
                         player.addToCluelist(npc.giveClue());
                     }
@@ -474,12 +479,11 @@ public class Game {
                     } while (!sucess1);
                     break;
                 }
-                if (target.equalsIgnoreCase("Exit")) {
-                    sucess = true;
-                    break;
-                } else {
-                    System.out.println("There isnt anyone here by that name");
-                }
+
+            }
+            if(!success){
+                System.out.println("There isnt anyone here by that name");
+
             }
         } while (!sucess);
 
