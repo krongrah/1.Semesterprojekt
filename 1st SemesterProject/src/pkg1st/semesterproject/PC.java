@@ -51,16 +51,6 @@ public class PC {
     return inventory;
     }
     
-    public boolean inventoryEmpty(){
-        int empty = 0;
-        boolean emptyness = false;
-        if(inventory.size()==empty) {
-        emptyness= true;
-        }
-        
-        return emptyness;
-    }
-    
     public void displayJournal() {
         int empty = 0;
         for (Clue ClueItem : journal) {
