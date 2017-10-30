@@ -5,7 +5,9 @@
  */
 package pkg1st.semesterproject;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -18,7 +20,7 @@ public class PC {
     private int points;
     private Set<Item> inventory = new HashSet<>();
     private Set<Item> desk = new HashSet<>();
-    private Set<Clue> journal = new HashSet<>();
+    private Map<String, Clue> journal = new HashMap<>();
     private int maxInventoryCapacity = 2;
     private Game newGame;
     private Room pd;
@@ -61,15 +63,11 @@ public class PC {
     }
     
     public void displayJournal() {
-        int empty = 0;
-        for (Clue ClueItem : journal) {
-            System.out.println(ClueItem.getName()+":");
-            System.out.println(ClueItem.getDescription()+"\n");
-        }
-
-        if (journal.size() == empty) {
+        if (journal.size() == 0) {
             System.out.println("Your journal is empty");
 
+        }else{
+            System.out.println(journal.keySet());
         }
 
     } 
@@ -100,7 +98,7 @@ public class PC {
     }
 
     public void inspectClue(Clue thing) {
-        if (journal.contains(thing)) {
+        if (journal.containsValue(thing)) {
             System.out.println(thing.getDescription());
         } else {
             System.out.println("You don't know about that yet.");
@@ -149,7 +147,7 @@ public class PC {
     }
 
     public void addToCluelist(Clue thing) {
-        journal.add(thing);
+        journal.put(thing.getName(),thing);
         System.out.println("You noted the clue down.");
         addPoints(10);
         
