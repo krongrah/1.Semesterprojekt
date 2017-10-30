@@ -13,6 +13,7 @@ public class Game {
     private Room currentRoom;
     private Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
     private Item bloodSplatteredBadge;
+    private NPC commissioner;
     PC player;
     boolean wantToQuit = false;
 
@@ -134,9 +135,9 @@ public class Game {
         } else if (commandWord == CommandWord.DROP) {
             drop(command);
         } else if (commandWord == CommandWord.LIE) {
-            
-        } else if (commandWord == CommandWord.CONFESS) {
-        
+            System.out.println("Lying is bad, and you should feel bad.");  
+        } else if (commandWord == CommandWord.CONVICT) {
+        convict();
         }
         return wantToQuit;
     }
@@ -435,7 +436,7 @@ public class Game {
         do {
 
             System.out.println("Who do you wish to talk to?");
-            for (NPC npc : currentRoom.getNpcsInRoom()) {
+            for (NPC npc : currentRoom.getNPCsInRoom()) {
                 System.out.println(npc.getName());
             }
             //have the player enter a name
@@ -443,7 +444,7 @@ public class Game {
             String target = talking.nextLine().toLowerCase();
 
             //go through NPCs for matches to the input.
-            for (NPC npc : currentRoom.getNpcsInRoom()) {
+            for (NPC npc : currentRoom.getNPCsInRoom()) {
                 if (target.equals(npc.getName().toLowerCase())) {
                     npc.getLine();
 
@@ -559,21 +560,21 @@ public class Game {
             System.out.println("You decided not to accuse anyone... for now");
         } else if (victim.equalsIgnoreCase("yes")) {
             System.out.println("These are the people you can accuse:");
-            for (NPC npc : currentRoom.getNpcsInRoom()) {
+            for (NPC npc : currentRoom.getNPCsInRoom()) {
                 System.out.println(npc.getName());
             }
             
             Scanner choose = new Scanner(System.in);
             String person = choose.nextLine().toLowerCase();
             boolean success=false;
-            for (NPC npc : currentRoom.getNpcsInRoom()) {
+            for (NPC npc : currentRoom.getNPCsInRoom()) {
                 if (person.equals(npc.getName().toLowerCase())) {
                     if(npc.getAlibi()){
                         lose();
                         success=true;
                         break;
             } else {
-                    goToJail();
+                    goToJail(npc);
                     }
                     success=true;
                     break;
@@ -590,19 +591,27 @@ public class Game {
 
     private void getInfo() {
 
-        if (currentRoom.getNpcsInRoom().size() == 0) {
+        if (currentRoom.getNPCsInRoom().size() == 0) {
             System.out.println("You are all alone.");
         } else {
             System.out.println("The other people here are:");
-            for (NPC npc : currentRoom.getNpcsInRoom()) {
+            for (NPC npc : currentRoom.getNPCsInRoom()) {
                 System.out.println(npc.getName());
             }
         }
     }
 
 
-    public void goToJail(){
-        System.out.println("test");
+    public void goToJail(NPC scum){
+        System.out.println("You moved the scum to jail.");
+        currentRoom.removeNpcFromRoom(scum);
+        pd.removeNpcFromRoom(commissioner);
+        jail.addNpcToRoom(scum);
+        jail.addNpcToRoom(commissioner);
+        System.out.println("Commissioner: Good job, now you need to go find "
+                + "some better evidence to convict this bastard.");
+        home.addItemsToRoom(bloodSplatteredBadge);
+        parser.addFinishers();
     }
     public void lose(){
         System.out.println("You lost.");
@@ -614,7 +623,7 @@ public class Game {
         wantToQuit=true;
     }
     public void win(){
-        System.out.println("You win.");
+        System.out.println("You won.");
         if (player.getPoints() >= 100) {
                 System.out.println("Congratulations, you won the game! you were rated a " + (player.getPoints() - 100) + " percent good cop.");
             } else {
@@ -623,6 +632,3 @@ public class Game {
         wantToQuit=true;
     }
 }
-//            home.addItemsToRoom(bloodSplatteredBadge);
-
-//todo add to accuse

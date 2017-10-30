@@ -19,7 +19,7 @@ public class CommandWords {
                 break;
                 case LIE:
                 break;
-                case CONFESS:
+                case CONVICT:
                 break;
                 default:
                 validCommands.put(command.toString(), command);    
@@ -56,7 +56,7 @@ public class CommandWords {
                 case LIE:
                 validCommands.put(command.toString(), command);
                 break;
-                case CONFESS:
+                case CONVICT:
                 validCommands.put(command.toString(), command);
                 break;
                 default:

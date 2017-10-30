@@ -56,7 +56,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     /**
      * @return the npcsInRoom
      */
-    public Set<NPC> getNpcsInRoom() {
+    public Set<NPC> getNPCsInRoom() {
         return NPCsInRoom;
     }
 
