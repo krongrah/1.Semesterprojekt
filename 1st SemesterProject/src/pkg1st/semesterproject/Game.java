@@ -342,14 +342,15 @@ public class Game {
             "Did you find his badge? We need it for the memorial. (loop)"
 
         };
-        String coronerAlibi = "";
-        String wifeAlibi = "";
-        String commissionerAlibi = "";
-        String bartenderAlibi = "";
-        String hobo1Alibi = "";
-        String hobo2Alibi = "";
-        String hobo3Alibi = "";
-        String hobo4Alibi = "";
+        String coronerAlibi = "The coroners fingerprints and footprints are everywhere  on the crimescene"
+                +" thats probaly because he is a coroner, his alibi checks out.";
+        String wifeAlibi = "Of all the crimes this human waste has done, murder is sadly not one of them.";
+        String commissionerAlibi = "Are you just accusing random people at this point? it is heresy to accuse Curt";
+        String bartenderAlibi = "This man has no motive, obviously you are mistaken...";
+        String hobo1Alibi = "With his broken english and his distrust for cops, this... thing is easily a suspect";
+        String hobo2Alibi = "He called you stupid, which should be a crime punishable by death, you are certain this is the man";
+        String hobo3Alibi = "Randomly throwing around accusations is often a sign of guilt, accept when you do it ofcourse...";
+        String hobo4Alibi = "This guy is insane... theres i no other way around it.";
 
         //add dialogue to dialogue object
         Dialogue coronerDialogue = new Dialogue(coronerLine, coronerAlibi, true);
