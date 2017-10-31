@@ -454,7 +454,7 @@ public class Game {
                     npc.getLine();
                     success=true;
                     if (npc.getClueCount() == npc.getClueRelease()) {
-                        player.addToCluelist(npc.giveClue());
+                        player.addToJournal(npc.giveClue());
                     }
                     boolean sucess1 = false;
                     do {
@@ -467,7 +467,7 @@ public class Game {
                             npc.getLine();
                             sucess1 = false;
                             if (npc.getClueCount() == npc.getClueRelease()) {
-                                player.addToCluelist(npc.giveClue());
+                                player.addToJournal(npc.giveClue());
                             }
                         }
 
@@ -524,7 +524,7 @@ public class Game {
                                     parser.addFinishers();
                                 }
                                 if (thing.isClue == true) {
-                                    player.addToCluelist(thing.giveClue());
+                                    player.addToJournal(thing.giveClue());
                                     break;
                                 }
 
@@ -538,7 +538,7 @@ public class Game {
                         } else {
                             System.out.println("This item can't be picked up.");
                             if (thing.isClue == true) {
-                                player.addToCluelist(thing.giveClue());
+                                player.addToJournal(thing.giveClue());
                                 thing.setIsClue();
                             }
                             break;
@@ -611,9 +611,8 @@ public class Game {
         currentRoom.removeNpcFromRoom(scum);
         pd.removeNpcFromRoom(commissioner);
         jail.addNpcToRoom(scum);
-        jail.addNpcToRoom(commissioner);
         System.out.println("Commissioner: Good job, now you need to go find "
-                + "some better evidence to convict this bastard.");
+                + "some better evidence to convict this bastard. I will be in the Police department.");
         home.addItemsToRoom(bloodSplatteredBadge);
         parser.addFinishers();
     }
@@ -637,24 +636,107 @@ public class Game {
         }
     
 
-        public void convict() {
+       public void convict() {
         player.displayJournal();
-        
-        
-        for (Clue clueItem : player.getJournal()){
-            Scanner convicting = new Scanner(System.in);
-            String scumbag = convicting.nextLine();
-            if (scumbag.equals(clueItem.getName())) {
-            System.out.println("test");
-            
-        }else{
-            System.out.println("nontest");
-        }
 
-        }
-        
+        for (Clue clueItem : player.getJournal()) {
+
+            boolean run = true;
+
+            while (run) {
+                Scanner convicting = new Scanner(System.in);
+                String scumbag = convicting.nextLine().toLowerCase();
+
+                if (clueItem.isBadge()) {
+
+                    System.out.println("Commisioner: Where did you find this? This evidence could be used to convict anyone.");
+                    System.out.println("(You can now Lie or Confess, if you lie an inocent man will be imprisoned, if you confess you'll be.)");
+
+                    Scanner willing = new Scanner(System.in);
+                    String will = willing.nextLine().toLowerCase();
+
+                    if (will.equals("confess")) {
+                        System.out.println("You told the truth and confessed to your crime ");
+                        win();
+                    }
+                    if (will.equals("lie")) {
+                        System.out.println("You lied");
+                        player.addToevidence(clueItem);
+                        if (player.isEvidence2() && player.getEvidence().contains(bloodSplatteredBadge)) {
+                            System.out.println("Judge: We have found" + jail.getNPCsInRoom() + " guilty of manslaugther.");
+                            win();
+                        } else {
+                            System.out.println("Do you want to add another piece of evidence?");
+
+                            String will2 = willing.nextLine().toLowerCase();
+
+                            if (will2.equals("yes")) {
+                                run = true;
+                                break;
+                            }
+                            if (will2.equals("no")) {
+                                run = false;
+                                break;
+                            } else {
+                                System.out.println("I don't understand");
+                            }
+
+                        }
+
+                    } else {
+                        System.out.println("I don't understand");
+                    }
                 }
-}
-//            home.addItemsToRoom(bloodSplatteredBadge);
 
-//todo add to accuse
+                if (scumbag.equals(clueItem.getName().toLowerCase()) && clueItem.isConvictable()) {
+                    player.addToevidence(clueItem);
+
+                    System.out.println(clueItem.getName() + " has been added to Evidence list");
+
+                    if (player.isEvidence2() && player.getEvidence().contains(bloodSplatteredBadge)) {
+                        System.out.println("Judge: We have found" + jail.getNPCsInRoom() + " guilty of manslaugther.");
+                        win();
+                    }
+
+                    System.out.println("Do you want to add another piece of evidence?");
+
+                    Scanner willing = new Scanner(System.in);
+                    String will = willing.nextLine().toLowerCase();
+
+                    if (will.equals("yes")) {
+                        run = true;
+                        break;
+                    }
+                    if (will.equals("no")) {
+                        run = false;
+                        break;
+                    } else {
+                        System.out.println("I don't understand");
+                    }
+
+                }
+                if (!clueItem.isConvictable()) {
+                    System.out.println(clueItem + " is not good enough to use in Court");
+                    System.out.println("Would you like to try again with another piece of evidence?");
+
+                    Scanner willing = new Scanner(System.in);
+                    String will = willing.nextLine().toLowerCase();
+
+                    if (will.equals("yes")) {
+                        run = true;
+                        break;
+                    }
+                    if (will.equals("no")) {
+                        run = false;
+                        break;
+                    } else {
+                        System.out.println("I don't understand");
+                    }
+                } else {
+                    System.out.println("I don't understand");
+                }
+            }
+        }
+
+    }
+}
