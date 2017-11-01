@@ -4,7 +4,6 @@ package pkg1st.semesterproject;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-import com.sun.glass.ui.SystemClipboard;
 import java.util.Scanner;
 
 public class Game {
@@ -12,10 +11,14 @@ public class Game {
     private Parser parser;
     private Room currentRoom;
     private Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
-    private Item bloodSplatteredBadge;
     private NPC commissioner;
-    PC player;
+   private PC player;
     boolean wantToQuit = false;
+   private Clue bloodSplatteredBadgeClue = new Clue("Blood Splattered Badge evidence", "This is the badge of the victim was found in your home, \nwhich points to you being the killer.", true);
+       private Item bloodSplatteredBadge = new Item("Blood Splattered Badge", "its your"
+                + " former partners badge covered in blood, odd that you would find"
+                + " this here. \n A wave of guilt washes over you as you realise"
+                + " what you have done", true, true, bloodSplatteredBadgeClue);
 
     // Constructor calls createRooms and creates new Parser
     public Game() {
@@ -137,7 +140,7 @@ public class Game {
         } else if (commandWord == CommandWord.LIE) {
             System.out.println("Lying is bad, and you should feel bad.");  
         } else if (commandWord == CommandWord.CONVICT) {
-        //convict();
+        convict();
         }
         return wantToQuit;
     }
@@ -350,7 +353,7 @@ public class Game {
         String bartenderAlibi = "This man has no motive, obviously you are mistaken...";
         String hobo1Alibi = "With his broken english and his distrust for cops, this... thing is easily a suspect";
         String hobo2Alibi = "He called you stupid, which should be a crime punishable by death, you are certain this is the man";
-        String hobo3Alibi = "Randomly throwing around accusations is often a sign of guilt, accept when you do it ofcourse...";
+        String hobo3Alibi = "Randomly throwing around accusations is often a sign of guilt, except when you do it, of course...";
         String hobo4Alibi = "This guy is insane... theres i no other way around it.";
 
         //add dialogue to dialogue object
@@ -398,8 +401,7 @@ public class Game {
         Clue murderWeaponClue = new Clue("Murder Weapon Evidence", "The murder weapon is a broken bottle of your favorite beer.", true);
         Clue BloodsplatterClue = new Clue("Blood Splatter", "There was a lot of blood on the crimescene, suggesting a violent conflict.", false);
         Clue CorpseClue = new Clue("Corpse", "The body of the victim was stabbed repeatedly, and had spit covering it's face.", false);
-        Clue bloodSplatteredBadgeClue = new Clue("Blood Splattered Badge evidence.", "This is the badge of the victim was found in your home, \nwhich points to you being the killer.", true);
-
+        
         // creation of the multiple items via the constructor in Item.java
         Item murderWeapon = new Item("Murder Weapon", "This is a broken bottle"
                 + " with sharp edges and blood covering the edges", true, true, murderWeaponClue);
@@ -414,10 +416,7 @@ public class Game {
                 + " brutally multiple times.\n When you look closer you notice"
                 + " his face is covered in spit", true, false, CorpseClue);
 
-        Item bloodSplatteredBadge = new Item("Blood Splattered Badge", "its your"
-                + " former partners badge covered in blood, odd that you would find"
-                + " this here. \n A wave of guilt washes over you as you realise"
-                + " what you have done", true, true, bloodSplatteredBadgeClue);
+        
 
         Item test = new Item("test", "testDescipt", false, true, CorpseClue);
 
@@ -495,7 +494,7 @@ public class Game {
     private void search() {
 
         //prints all items in the room.
-        if (currentRoom.getItemsInRoom().size() != 0) {
+        if (!currentRoom.getItemsInRoom().isEmpty()) {
             System.out.println("You found these items:");
             for (Item thing : currentRoom.getItemsInRoom()) {
                 System.out.println(thing.getName());
@@ -595,7 +594,7 @@ public class Game {
 
     private void getInfo() {
 
-        if (currentRoom.getNPCsInRoom().size() == 0) {
+        if (currentRoom.getNPCsInRoom().isEmpty()) {
             System.out.println("You are all alone.");
         } else {
             System.out.println("The other people here are:");
@@ -609,8 +608,9 @@ public class Game {
     public void goToJail(NPC scum){
         System.out.println("You moved the scum to jail.");
         currentRoom.removeNpcFromRoom(scum);
-        pd.removeNpcFromRoom(commissioner);
+//        pd.removeNpcFromRoom(commissioner);
         jail.addNpcToRoom(scum);
+        currentRoom=jail;
         System.out.println("Commissioner: Good job, now you need to go find "
                 + "some better evidence to convict this bastard. I will be in the Police department.");
         home.addItemsToRoom(bloodSplatteredBadge);
@@ -725,7 +725,7 @@ public class Game {
                     if (will.equals("yes")) {
                         run = true;
                         break;
-                    }
+                    } else
                     if (will.equals("no")) {
                         run = false;
                         break;
