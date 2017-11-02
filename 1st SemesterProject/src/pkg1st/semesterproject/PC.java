@@ -186,5 +186,13 @@ public class PC {
     public int getCurrentHealth(){
     return currentHealth;
     }
+    public boolean inventoryContains(String name){
+    for (Item thing: inventory){
+    if (thing.getName().equalsIgnoreCase(name)){
+    return true;
+    }
+    }
+    return false;
+    }
 }
 

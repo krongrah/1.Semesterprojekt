@@ -760,6 +760,9 @@ int enemyHp=enemy.getHealth();
 int playerDmg=10;
 int enemyDmg=enemy.getDamage();
 boolean keepFighting=true;
+if(player.inventoryContains("gun")){
+playerDmg=30;
+}
 Scanner fightCommander=new Scanner(System.in);
 String fightCommand;
     System.out.println("You are now fighting a "+enemy.getName()+". For your options, type 'help'.");
