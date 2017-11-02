@@ -106,5 +106,14 @@ public class Room {   //rooms have a description/name and map with strings to ro
     public String getRoomName() {
         return roomName;
     }
-    
+    public HostileNPC getJumped(){
+    for (NPC fighter:NPCsInRoom){
+        if(fighter instanceof HostileNPC){
+        if (/*Math.random()<0.5*/true){
+        return (HostileNPC)fighter;
+    }   
+    }
+    }
+    return null;
+    }
 }

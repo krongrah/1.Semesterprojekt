@@ -297,7 +297,12 @@ public class Game {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
             getInfo();
-        }}
+            HostileNPC enemy=currentRoom.getJumped();
+            if(enemy!=null){
+            fightLoop(enemy);
+            }        
+            }
+        }
     }
 
     // Quits the game
@@ -391,7 +396,7 @@ public class Game {
         NPC hobo4 = new NPC("Insane Dwayne", hobo4Dialogue, hobo4Statement, 1);
         NPC commissioner = new NPC("Commissioner Curt", commissionerDialogue, testClue, 0);
         NPC bartender = new NPC("Bartender Bert", bartenderDialogue, bartenderStatement, 2);
-        NPC wife = new NPC("Wife", wifeDialogue, testClue, 0);
+        HostileNPC wife = new HostileNPC("Wife", wifeDialogue, testClue, 0, 50, 5);
         NPC coroner = new NPC("Coroner", coronerDialogue, coronerStatement, 4);
 
         bar.addNpcToRoom(bartender);
@@ -749,4 +754,54 @@ public class Game {
         }
 
     }
+       public void fightLoop(HostileNPC enemy){   
+int playerHp=player.getCurrentHealth();
+int enemyHp=enemy.getHealth();
+int playerDmg=10;
+int enemyDmg=enemy.getDamage();
+boolean keepFighting=true;
+Scanner fightCommander=new Scanner(System.in);
+String fightCommand;
+    System.out.println("You are now fighting a "+enemy.getName()+". For your options, type 'help'.");
+while(keepFighting){
+fightCommand=fightCommander.nextLine().toLowerCase();
+
+switch(fightCommand){
+    case "run":
+        if(Math.random()>0.3){
+    keepFighting=false;
+        System.out.println("You ran away like a coward.");
+        }else{
+            System.out.println("Your opponent didn't let you escape, and you got hit.");
+            playerHp-=enemyDmg;
+            System.out.println("You took "+enemyDmg+" damage.");
+        }
+    break;
+    case "fight":
+        System.out.println("You strike your opponent and deal "+playerDmg+" damage.");
+        enemyHp-=playerDmg;
+        if(enemyHp<=0){
+            System.out.println("You defeated you oppoent!");
+            keepFighting=false;
+            break;
+        }
+        System.out.println("Your opponent retaliates, dealing "+enemyDmg+" damage.");
+        playerHp-=enemyDmg;
+    break;
+    case "help":
+        System.out.println("your options are:\nfight: Attack your opponent, "
+                + "and take a hit.\nrun: Attempt to run away from your "
+                + "opponent. Beware, escape is not certain.");
+    break;
+    default: 
+        System.out.println("Now is not the time to kid around.");
+}
+if(playerHp<=0){
+    System.out.println("You died.");
+lose();
+keepFighting=false;
+        }
+}
+player.setCurrentHealth(playerHp);
+}
 }

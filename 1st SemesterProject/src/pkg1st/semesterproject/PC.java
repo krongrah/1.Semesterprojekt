@@ -23,6 +23,7 @@ public class PC {
     private int maxInventoryCapacity = 2;
     private Game newGame;
     private Room pd;
+    private int currentHealth=100;
 
     //constructor
     PC(Game game, Room room) {
@@ -178,6 +179,12 @@ public class PC {
     
     public void removePoints(int value) {
         points -= value;
+    }
+    public void setCurrentHealth(int hp){
+    currentHealth=hp;
+    }
+    public int getCurrentHealth(){
+    return currentHealth;
     }
 }
 
