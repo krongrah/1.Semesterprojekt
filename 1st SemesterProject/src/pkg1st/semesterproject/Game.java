@@ -11,15 +11,16 @@ public class Game {
     private Parser parser;
     private Room currentRoom;
     private Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
-    private NPC commissioner;
-   private PC player;
+    private PC player;
     boolean wantToQuit = false;
-   private Clue bloodSplatteredBadgeClue = new Clue("Blood Splattered Badge evidence", "This is the badge of the victim was found in your home, \nwhich points to you being the killer.", true);
-       private Item bloodSplatteredBadge = new Item("Blood Splattered Badge", "its your"
+    private Clue bloodSplatteredBadgeClue = new Clue("Blood Splattered Badge evidence", "This is the badge of the victim was found in your home, \nwhich points to you being the killer.", true);
+    private Item bloodSplatteredBadge = new Item("Blood Splattered Badge", "its your"
                 + " former partners badge covered in blood, odd that you would find"
                 + " this here. \n A wave of guilt washes over you as you realise"
                 + " what you have done", true, true, bloodSplatteredBadgeClue);
-
+    private Item partnerKey=new Item("Key to Partner's home", "This key belongs to your deceased partner, "
+                + "and it allows you to enter his home.",false, true, null);
+        
     // Constructor calls createRooms and creates new Parser
     public Game() {
         createRooms();
@@ -276,18 +277,27 @@ public class Game {
             System.out.println("Go where?");
             return;
         }
-
+        
         String direction = command.getSecondWord();
 
         Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
-        } else {
+        } 
+        else{ if(nextRoom==partnerHome){
+        if (player.getInventory().contains(partnerKey)){
+        currentRoom = nextRoom;
+            System.out.println(currentRoom.getLongDescription());
+            getInfo();
+        }else{
+            System.out.println("The door is locked. You need a key to enter here.");
+        }
+        }else{
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
             getInfo();
-        }
+        }}
     }
 
     // Quits the game
@@ -415,7 +425,6 @@ public class Game {
         Item corpse = new Item("Corpse", "its a dead guy, he looks to be stabbed"
                 + " brutally multiple times.\n When you look closer you notice"
                 + " his face is covered in spit", true, false, CorpseClue);
-
         
 
         Item test = new Item("test", "testDescipt", false, true, CorpseClue);
@@ -425,6 +434,7 @@ public class Game {
         crimeScene.addItemsToRoom(bloodSplatter);
         crimeScene.addItemsToRoom(corpse);
         pd.addItemsToRoom(gun);
+        pd.addItemsToRoom(partnerKey);
 
     }
 

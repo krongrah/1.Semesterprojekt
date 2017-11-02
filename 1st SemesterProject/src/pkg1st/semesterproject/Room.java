@@ -106,5 +106,5 @@ public class Room {   //rooms have a description/name and map with strings to ro
     public String getRoomName() {
         return roomName;
     }
-
+    
 }
