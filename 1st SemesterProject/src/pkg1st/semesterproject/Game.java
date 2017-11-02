@@ -659,11 +659,11 @@ public class Game {
             boolean run = true;
 
             while (run) {
-                Scanner convicting = new Scanner(System.in);
-                String scumbag = convicting.nextLine().toLowerCase();
-
-                if (clueItem.isBadge()) {
-
+        Scanner convicting = new Scanner(System.in);
+        String scumbag = convicting.nextLine().toLowerCase();
+        
+                        if (clueItem.isBadge()) {
+            
                     System.out.println("Commisioner: Where did you find this? This evidence could be used to convict anyone.");
                     System.out.println("(You can now Lie or Confess, if you lie an inocent man will be imprisoned, if you confess you'll be.)");
 
@@ -688,7 +688,7 @@ public class Game {
                             if (will2.equals("yes")) {
                                 run = true;
                                 break;
-                            }
+                        } 
                             if (will2.equals("no")) {
                                 run = false;
                                 break;
@@ -701,7 +701,7 @@ public class Game {
                     } else {
                         System.out.println("I don't understand");
                     }
-                }
+                }      
 
                 if (scumbag.equals(clueItem.getName().toLowerCase()) && clueItem.isConvictable()) {
                     player.addToevidence(clueItem);
@@ -721,22 +721,22 @@ public class Game {
                     if (will.equals("yes")) {
                         run = true;
                         break;
-                    }
+                }
                     if (will.equals("no")) {
                         run = false;
                         break;
                     } else {
                         System.out.println("I don't understand");
                     }
-
+                        
                 }
                 if (!clueItem.isConvictable()) {
                     System.out.println(clueItem + " is not good enough to use in Court");
                     System.out.println("Would you like to try again with another piece of evidence?");
-
+                        
                     Scanner willing = new Scanner(System.in);
                     String will = willing.nextLine().toLowerCase();
-
+                        
                     if (will.equals("yes")) {
                         run = true;
                         break;
@@ -746,14 +746,14 @@ public class Game {
                         break;
                     } else {
                         System.out.println("I don't understand");
-                    }
+        }
                 } else {
                     System.out.println("I don't understand");
                 }
             }
         }
-
-    }
+        
+            }
        public void fightLoop(HostileNPC enemy){   
 int playerHp=player.getCurrentHealth();
 int enemyHp=enemy.getHealth();
