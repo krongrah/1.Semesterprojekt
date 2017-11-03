@@ -127,7 +127,6 @@ public class PC {
         if(inventory.size()<maxInventoryCapacity){
             if (thing.getCollectible()) {
             System.out.println("You placed it in your bag.");
-            //todo
             currentRoom.getItemsInRoom().remove(thing);
             inventory.add(thing);
              }  else {
