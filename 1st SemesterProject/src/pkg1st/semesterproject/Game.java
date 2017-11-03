@@ -12,6 +12,7 @@ public class Game {
     private Room currentRoom;
     private Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
     private PC player;
+    private Beverage beverage;
     boolean wantToQuit = false;
     private Clue bloodSplatteredBadgeClue = new Clue("Blood Splattered Badge evidence", "This is the badge of the victim was found in your home, \nwhich points to you being the killer.", true);
     private Item bloodSplatteredBadge = new Item("Blood Splattered Badge", "its your"
@@ -142,6 +143,8 @@ public class Game {
             System.out.println("Lying is bad, and you should feel bad.");  
         } else if (commandWord == CommandWord.CONVICT) {
         convict();
+        } else if (commandWord == CommandWord.DRINK) {
+            drink();
         }
         return wantToQuit;
     }
@@ -303,6 +306,8 @@ public class Game {
             }        
             }
         }
+        checkDrunkness();
+        player.removeDrunkness(1);
     }
 
     // Quits the game
@@ -430,6 +435,7 @@ public class Game {
         Item corpse = new Item("Corpse", "its a dead guy, he looks to be stabbed"
                 + " brutally multiple times.\n When you look closer you notice"
                 + " his face is covered in spit", true, false, CorpseClue);
+        Beverage beer = new Beverage("Beer", "Its a well known brand called pisswasser", false, true, null, 2, 2);
         
 
         Item test = new Item("test", "testDescipt", false, true, CorpseClue);
@@ -439,6 +445,7 @@ public class Game {
         crimeScene.addItemsToRoom(bloodSplatter);
         crimeScene.addItemsToRoom(corpse);
         pd.addItemsToRoom(gun);
+        bar.addItemsToRoom(beer);
         //pd.addItemsToRoom(partnerKey);
 
     }
@@ -447,6 +454,7 @@ public class Game {
 
         //Gives the player a list of NPCs in the room
         boolean sucess = false;
+        player.removeDrunkness(1);
         do {
 
             System.out.println("Who do you wish to talk to?");
@@ -507,6 +515,7 @@ public class Game {
     //todo the search is a mess
     //add to cluelist
     private void search() {
+        player.removeDrunkness(1);
 
         //prints all items in the room.
         if (!currentRoom.getItemsInRoom().isEmpty()) {
@@ -570,6 +579,7 @@ public class Game {
     }
 
     public void arrest() {
+        player.removeDrunkness(1);
         System.out.println("You have decided to begin arresting people, god bless you");
         System.out.println("Are you sure?   Yes/No");
         Scanner accusing = new Scanner(System.in);
@@ -618,6 +628,19 @@ public class Game {
             }
         }
     }
+    public void drink(){
+       System.out.println("drink method");
+           for (Item drink: player.getInventory()) {
+               System.out.println("For loop");
+               if (drink instanceof Beverage){
+                   System.out.println("You drink some " + drink.getName() + ", you start to feel all your problems disappear" );
+                   player.addDrunkness(((Beverage) drink).getAlcholContent());
+                   ((Beverage) drink).removeSip();
+                   
+               }
+           }
+    
+    }
 
 
     public void goToJail(NPC scum){
@@ -649,9 +672,24 @@ public class Game {
             }
         wantToQuit=true;
         }
-    
-
+    public void checkDrunkness(){
+        if (player.getDrunkness() == 6){
+            System.out.println("you feel your buzz start to fade, you need a drink");
+        }
+        if (player.getDrunkness() == 3){
+            System.out.println("CRITICAL SOBER LEVELS DRINK IMMEDIATELY");
+        }
+            
+        if (player.getDrunkness() == 0){
+            System.out.println("You feel completely sober, you fall down to the floor and die, knowing nobody loved you");
+            lose();
+            wantToQuit = true;
+        }
+            
+            
+    }
        public void convict() {
+           player.removeDrunkness(1);
         player.displayJournal();
 
         for (Clue clueItem : player.getJournal()) {
@@ -755,6 +793,7 @@ public class Game {
         
             }
        public void fightLoop(HostileNPC enemy){   
+           player.removeDrunkness(1);
 int playerHp=player.getCurrentHealth();
 int enemyHp=enemy.getHealth();
 int playerDmg=10;
