@@ -634,9 +634,9 @@ public class Game {
     public void lose(){
         System.out.println("You lost.");
         if (player.getPoints() >= 100) {
-                System.out.println("Congratulations, you won the game! you were rated a " + (player.getPoints() - 100) + " percent good cop.");
+                System.out.println("You lost the game. you were rated a " + (player.getPoints() - 100) + " percent good cop.");
         } else {
-                System.out.println("Congratulations, you won the game! you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
+                System.out.println("You lost the game. you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
         }
         wantToQuit=true;
     }
