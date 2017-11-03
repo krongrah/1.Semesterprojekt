@@ -15,6 +15,7 @@ import java.util.Set;
 public class PC {
 
     //player attributes
+    private int drunkness;
     private int points;
     private Set<Item> inventory = new HashSet<>();
     private Set<Item> desk = new HashSet<>();
@@ -28,6 +29,7 @@ public class PC {
     //constructor
     PC(Game game, Room room) {
         points = 50;
+        drunkness = 10;
         newGame = game;
         pd = room;
     }
@@ -127,7 +129,6 @@ public class PC {
         if(inventory.size()<maxInventoryCapacity){
             if (thing.getCollectible()) {
             System.out.println("You placed it in your bag.");
-            //todo
             currentRoom.getItemsInRoom().remove(thing);
             inventory.add(thing);
              }  else {
@@ -187,5 +188,26 @@ public class PC {
     public int getCurrentHealth(){
     return currentHealth;
     }
-}
+    public boolean inventoryContains(String name){
+    for (Item thing: inventory){
+    if (thing.getName().equalsIgnoreCase(name)){
+    return true;
+    }
+    }
+    return false;
+    }
+    
+    public int getDrunkness(){
+        return drunkness;
+    }
+    
+    public void removeDrunkness(int drunkValue){
+        drunkness -= drunkValue;
+    }
+    
+    public void addDrunkness(int drunkvalue){
+        drunkness += drunkvalue;
+    }
 
+
+}
