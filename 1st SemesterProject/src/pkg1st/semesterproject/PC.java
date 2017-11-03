@@ -194,7 +194,7 @@ public class PC {
     }
 
     public void removeDrunkness(int drunkValue) {
-        //drunkness -= drunkValue;
+        drunkness -= drunkValue;
     }
 
     public void addDrunkness(int drunkvalue) {

@@ -11,18 +11,20 @@ package pkg1st.semesterproject;
  */
 public class Beverage extends Item {
     private int numberOfSips;
-    private int alcholContent;
+    private int alcoholContent;
     
     public Beverage(String newName, String newDescription, boolean newIsClue, boolean newCollectible, Clue newClue, int numberOfSips, int alcholcontent) {
         super(newName, newDescription, newIsClue, newCollectible, newClue);
+        this.numberOfSips=numberOfSips;
+        this.alcoholContent=alcoholContent;
     }
     
     public int getNumberOfSips(){
         return numberOfSips;
     }
     
-    public int getAlcholContent(){
-        return alcholContent;
+    public int getAlcoholContent(){
+        return alcoholContent;
     }
     
     public void removeSip(){

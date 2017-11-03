@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Game {
 
     private Parser parser;
-    private Room currentRoom;
+    private Room currentRoom, lastRoom;
     private NPC commissioner;
     private Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
     private PC player;
@@ -298,6 +298,8 @@ public class Game {
                     System.out.println("The door is locked. You need a key to enter here.");
                 }
             } else {
+                
+                lastRoom=currentRoom;
                 currentRoom = nextRoom;
                 System.out.println(currentRoom.getLongDescription());
                 getInfo();
@@ -436,8 +438,9 @@ public class Game {
         Item corpse = new Item("Corpse", "its a dead guy, he looks to be stabbed"
                 + " brutally multiple times.\n When you look closer you notice"
                 + " his face is covered in spit", true, false, CorpseClue);
-        Beverage beer = new Beverage("Beer", "Its a well known brand called pisswasser", false, true, null, 2, 2);
-
+        Beverage beer = new Beverage("Beer", "It's a well known brand called pisswasser", false, true, null, 2, 2);
+        Beverage whiskey=new Beverage("Whiskey","This bottle is your favorite drink, and the reason you love coming home.",false, true, null,2,5);
+        
         Item test = new Item("test", "testDescipt", false, true, CorpseClue);
 
         bar.addItemsToRoom(test);
@@ -446,7 +449,8 @@ public class Game {
         crimeScene.addItemsToRoom(corpse);
         pd.addItemsToRoom(gun);
         bar.addItemsToRoom(beer);
-        //pd.addItemsToRoom(partnerKey);
+        home.addItemsToRoom(whiskey);
+        pd.addItemsToRoom(partnerKey);
 
     }
 
@@ -542,15 +546,14 @@ public class Game {
                             System.out.println("Do you want to pick this item up? Yes/No");
                             String willing = pick.nextLine().toLowerCase();
                             if (willing.equals("yes")) {
-                                player.addToInventory(thing, currentRoom);
                                 if (thing == bloodSplatteredBadge) {
                                     parser.addFinishers();
                                 }
                                 if (thing.isClue) {
                                     player.addToJournal(thing.giveClue());
-                                    break;
                                 }
-
+                                player.addToInventory(thing, currentRoom);
+                                break;
                             } else if (willing.equals("no")) {
                                 System.out.println("The Item was left alone");
                                 break;
@@ -631,14 +634,17 @@ public class Game {
     }
 
     public void drink() {
-        System.out.println("drink method");
         for (Item drink : player.getInventory()) {
-            System.out.println("For loop");
             if (drink instanceof Beverage) {
                 System.out.println("You drink some " + drink.getName() + ", you start to feel all your problems disappear");
-                player.addDrunkness(((Beverage) drink).getAlcholContent());
+                player.addDrunkness(((Beverage) drink).getAlcoholContent());
                 ((Beverage) drink).removeSip();
-
+                if(((Beverage) drink).getNumberOfSips()==0){
+                player.getInventory().remove(drink);
+                    System.out.println("You emptied your bottle and tossed it away.");
+                }
+                System.out.println(player.getDrunkness());
+                break;
             }
         }
 
@@ -647,13 +653,13 @@ public class Game {
     public void goToJail(NPC scum) {
         System.out.println("You moved the scum to jail.");
         currentRoom.removeNpcFromRoom(scum);
-//        pd.removeNpcFromRoom(commissioner);
         jail.addNpcToRoom(scum);
         currentRoom = jail;
         System.out.println("Commissioner: Good job, now you need to go find "
                 + "some better evidence to convict this bastard. I will be in the Police department.");
         home.addItemsToRoom(bloodSplatteredBadge);
         parser.addFinishers();
+        updateCrimeScene();
     }
 
     public void lose() {
@@ -684,9 +690,8 @@ public class Game {
         }
 
         if (player.getDrunkness() == 0) {
-            System.out.println("You feel completely sober, you fall down to the floor and die, knowing nobody loved you");
+            System.out.println("You feel completely sober, you fall down to the floor and die, knowing nobody loved you.");
             lose();
-            wantToQuit = true;
         }
 
     }
@@ -800,6 +805,9 @@ public class Game {
                     if (Math.random() < 0.7) {
                         keepFighting = false;
                         System.out.println("You ran away like a coward.");
+                        currentRoom = lastRoom;
+                System.out.println(currentRoom.getLongDescription());
+                getInfo();
                     } else {
                         System.out.println("Your opponent didn't let you escape, and you got hit.");
                         random1 = damageRandomizer();
@@ -856,6 +864,9 @@ public class Game {
 
     private int damageRandomizer() {
         return ((int) (Math.random() * 11) - 5);
+    }
+    private void updateCrimeScene(){
+        //todo
     }
 
 }
