@@ -10,6 +10,7 @@ public class Game {
 
     private Parser parser;
     private Room currentRoom;
+    private NPC commissioner;
     private Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
     private PC player;
     boolean wantToQuit = false;
@@ -651,21 +652,23 @@ public class Game {
         }
     
 
-       public void convict() {
-        player.displayJournal();
-
-        for (Clue clueItem : player.getJournal()) {
-
+    public void convict() {
+        
+        if(currentRoom==pd){
             boolean run = true;
 
             while (run) {
-        Scanner convicting = new Scanner(System.in);
+        Scanner convicting = new Scanner(System.in);        
+        System.out.println("Select a clue.");
+        player.displayJournal();
         String scumbag = convicting.nextLine().toLowerCase();
-        
-                        if (clueItem.isBadge()) {
+        for (Clue clueItem : player.getJournal()) {
+                
+            
+            if (scumbag.equalsIgnoreCase(bloodSplatteredBadgeClue.getName())) {
             
                     System.out.println("Commisioner: Where did you find this? This evidence could be used to convict anyone.");
-                    System.out.println("(You can now Lie or Confess, if you lie an inocent man will be imprisoned, if you confess you'll be.)");
+                    System.out.println("(You can now Lie or Confess, if you lie an inocent man will be imprisoned, if you confess you'll be.)(lie/confess)");
 
                     Scanner willing = new Scanner(System.in);
                     String will = willing.nextLine().toLowerCase();
@@ -673,13 +676,18 @@ public class Game {
                     if (will.equals("confess")) {
                         System.out.println("You told the truth and confessed to your crime ");
                         win();
+                        wantToQuit=true;
+                        break;
                     }
                     if (will.equals("lie")) {
                         System.out.println("You lied");
                         player.addToevidence(clueItem);
-                        if (player.isEvidence2() && player.getEvidence().contains(bloodSplatteredBadge)) {
+                        if (player.getEvidence().size()>=2 && player.getEvidence().contains(bloodSplatteredBadgeClue)) {
                             System.out.println("Judge: We have found" + jail.getNPCsInRoom() + " guilty of manslaugther.");
                             win();
+                            wantToQuit=true;
+                            break;
+                            
                         } else {
                             System.out.println("Do you want to add another piece of evidence?");
 
@@ -694,12 +702,14 @@ public class Game {
                                 break;
                             } else {
                                 System.out.println("I don't understand");
+                                break;
                             }
 
                         }
 
                     } else {
                         System.out.println("I don't understand");
+                        break;
                     }
                 }      
 
@@ -711,6 +721,8 @@ public class Game {
                     if (player.isEvidence2() && player.getEvidence().contains(bloodSplatteredBadge)) {
                         System.out.println("Judge: We have found" + jail.getNPCsInRoom() + " guilty of manslaugther.");
                         win();
+                        wantToQuit=true;
+                        break;
                     }
 
                     System.out.println("Do you want to add another piece of evidence?");
@@ -727,6 +739,7 @@ public class Game {
                         break;
                     } else {
                         System.out.println("I don't understand");
+                        break;
                     }
                         
                 }
@@ -749,10 +762,13 @@ public class Game {
         }
                 } else {
                     System.out.println("I don't understand");
+                    break;
                 }
             }
         }
-        
+        }else{
+            System.out.println("You are not near the commisioner, so you can't do this.");
+        }
             }
        public void fightLoop(HostileNPC enemy){   
 int playerHp=player.getCurrentHealth();
@@ -804,4 +820,5 @@ keepFighting=false;
 }
 player.setCurrentHealth(playerHp);
 }
+            
 }

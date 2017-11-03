@@ -147,8 +147,9 @@ public class PC {
     }
     
     public void addToevidence(Clue thing) {
-        journal.add(thing);
-        System.out.println("You noted the clue down.");
+        evidence.add(thing);
+        journal.remove(thing);
+        System.out.println("Added to evidence");
         addPoints(10);
         }
     
