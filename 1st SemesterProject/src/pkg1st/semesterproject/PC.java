@@ -28,7 +28,7 @@ public class PC {
 
     //constructor
     PC(Game game, Room room) {
-        points = 50;
+        points = 90;
         drunkness = 10;
         newGame = game;
         pd = room;
@@ -144,14 +144,13 @@ public class PC {
     public void addToJournal(Clue thing) {
         journal.add(thing);
         System.out.println("You noted the clue down.");
-        addPoints(10);
+        addPoints(5);
     }
     
     public void addToevidence(Clue thing) {
         evidence.add(thing);
         journal.remove(thing);
         System.out.println("Added to evidence");
-        addPoints(10);
         }
     
     public boolean isEvidence2(){
