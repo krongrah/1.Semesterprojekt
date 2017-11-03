@@ -399,7 +399,7 @@ public class Game {
         NPC hobo4 = new NPC("Insane Dwayne", hobo4Dialogue, hobo4Statement, 1);
         NPC commissioner = new NPC("Commissioner Curt", commissionerDialogue, testClue, 0);
         NPC bartender = new NPC("Bartender Bert", bartenderDialogue, bartenderStatement, 2);
-        HostileNPC wife = new HostileNPC("Wife", wifeDialogue, testClue, 0, 50, 5);
+        HostileNPC wife = new HostileNPC("Wife", wifeDialogue, testClue, 0, 50, 5, 0.5);
         NPC coroner = new NPC("Coroner", coronerDialogue, coronerStatement, 4);
 
         bar.addNpcToRoom(bartender);
@@ -442,7 +442,7 @@ public class Game {
         crimeScene.addItemsToRoom(bloodSplatter);
         crimeScene.addItemsToRoom(corpse);
         pd.addItemsToRoom(gun);
-        pd.addItemsToRoom(partnerKey);
+        //pd.addItemsToRoom(partnerKey);
 
     }
 
@@ -535,12 +535,12 @@ public class Game {
                         if (thing.getCollectible() == true) {
                             System.out.println("Do you want to pick this item up? Yes/No");
                             String willing = pick.nextLine().toLowerCase();
-                            if (willing.equals("yes") == true) {
+                            if (willing.equals("yes")) {
                                 player.addToInventory(thing, currentRoom);
                                 if (thing == bloodSplatteredBadge) {
                                     parser.addFinishers();
                                 }
-                                if (thing.isClue == true) {
+                                if (thing.isClue) {
                                     player.addToJournal(thing.giveClue());
                                     break;
                                 }
@@ -775,42 +775,64 @@ int enemyHp=enemy.getHealth();
 int playerDmg=10;
 int enemyDmg=enemy.getDamage();
 boolean keepFighting=true;
-if(player.inventoryContains("gun")){
-playerDmg=30;
-}
+int random1;
+int random2;
+
 Scanner fightCommander=new Scanner(System.in);
 String fightCommand;
     System.out.println("You are now fighting a "+enemy.getName()+". For your options, type 'help'.");
-while(keepFighting){
+if(player.inventoryContains("gun")){
+playerDmg=30;
+    System.out.println("You draw your gun.");
+}
+    while(keepFighting){
 fightCommand=fightCommander.nextLine().toLowerCase();
 
 switch(fightCommand){
     case "run":
-        if(Math.random()>0.3){
+        if(Math.random()<0.7){
     keepFighting=false;
         System.out.println("You ran away like a coward.");
         }else{
             System.out.println("Your opponent didn't let you escape, and you got hit.");
-            playerHp-=enemyDmg;
-            System.out.println("You took "+enemyDmg+" damage.");
+            random1=damageRandomizer();
+            playerHp-=enemyDmg+random1;
+            System.out.println("You took "+(enemyDmg+random1)+" damage.");
         }
     break;
     case "fight":
-        System.out.println("You strike your opponent and deal "+playerDmg+" damage.");
-        enemyHp-=playerDmg;
+        random1=damageRandomizer();
+        random2=damageRandomizer();
+        System.out.println("You strike your opponent and deal "+(playerDmg+random1)+" damage.");
+        enemyHp-=(playerDmg+random1);
         if(enemyHp<=0){
             System.out.println("You defeated you oppoent!");
             keepFighting=false;
+            currentRoom.removeNpcFromRoom(enemy);
             break;
         }
-        System.out.println("Your opponent retaliates, dealing "+enemyDmg+" damage.");
-        playerHp-=enemyDmg;
+        System.out.println("Your opponent retaliates, dealing "+(enemyDmg+random2)+" damage.");
+        playerHp-=(enemyDmg+random2);
     break;
     case "help":
         System.out.println("your options are:\nfight: Attack your opponent, "
                 + "and take a hit.\nrun: Attempt to run away from your "
-                + "opponent. Beware, escape is not certain.");
+                + "opponent. Beware, escape is not certain.\n calm: Attempt to "
+                + "calm your opponent down. beware, if you fail, your "
+                + "opponent will still attack you.");
     break;
+    case "calm":
+        if(Math.random()<0.1){
+        keepFighting=false;
+        System.out.println("You managed to calm down your opponent.");
+        enemy.calmDown();
+        }else{
+            random1=damageRandomizer();
+            playerHp-=enemyDmg+random1;
+            System.out.println("You failed to calm your opponent, and got "
+                    + "struck. you took "+(enemyDmg+random1)+" damage.");
+        }
+        break;
     default: 
         System.out.println("Now is not the time to kid around.");
 }
@@ -821,5 +843,9 @@ keepFighting=false;
         }
 }
 player.setCurrentHealth(playerHp);
+}
+       private int damageRandomizer(){
+       return ((int)(Math.random()*11)-5);
        }
+       
 }

@@ -12,8 +12,9 @@ package pkg1st.semesterproject;
 public class HostileNPC extends NPC{
     private int health;
     private int damage;
+    private double aggression;
     
-    public HostileNPC(String newName, Dialogue dialogue, Clue clue, int clueRelease, int health, int damage) {
+    public HostileNPC(String newName, Dialogue dialogue, Clue clue, int clueRelease, int health, int damage, double aggression) {
         super(newName, dialogue, clue, clueRelease);
         this.health=health;
         this.damage=damage;
@@ -23,5 +24,11 @@ public class HostileNPC extends NPC{
     }
     public int getDamage(){
     return damage;
+    }
+    public double getAggression(){
+    return aggression;
+    }
+    public void calmDown(){
+    aggression=-1;
     }
 }
