@@ -5,7 +5,10 @@
  */
 package pkg1st.semesterproject;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 /**
@@ -19,18 +22,16 @@ public class PC {
     private int points;
     private Set<Item> inventory = new HashSet<>();
     private Set<Item> desk = new HashSet<>();
-    private Set<Clue> journal = new HashSet<>();
-    private Set<Clue> evidence = new HashSet<>();
+    private Map<String,Clue> journal = new HashMap<>();
+    private Map<String,Clue> evidence = new HashMap<>();
     private int maxInventoryCapacity = 2;
-    private Game newGame;
     private Room pd;
     private int currentHealth = 100;
 
     //constructor
-    PC(Game game, Room room) {
+    PC(Room room) {
         points = 90;
         drunkness = 10;
-        newGame = game;
         pd = room;
     }
 
@@ -55,18 +56,15 @@ public class PC {
     }
 
     public void displayJournal() {
-        int empty = 0;
-        for (Clue ClueItem : journal) {
-            System.out.println(ClueItem.getName() + ":");
-            System.out.println(ClueItem.getDescription() + "\n");
-        }
-
-        if (journal.size() == empty) {
+        if (journal.isEmpty()) {
             System.out.println("Your journal is empty");
-
+        }else{
+        for (Entry<String,Clue> ClueItem : journal.entrySet()) {
+            System.out.println(ClueItem.getKey() + ":");
+            System.out.println(ClueItem.getValue().getDescription() + "\n");
         }
-
-    }
+        }
+        }
 
     public void diplayDesk(Room currentRoom) {
         int empty = 0;
@@ -91,14 +89,6 @@ public class PC {
             System.out.println(thing.getDescription());
         } else {
             System.out.println("You can't find it in your bag.");
-        }
-    }
-
-    public void inspectClue(Clue thing) {
-        if (journal.contains(thing)) {
-            System.out.println(thing.getDescription());
-        } else {
-            System.out.println("You don't know about that yet.");
         }
     }
 
@@ -143,15 +133,15 @@ public class PC {
     }
 
     public void addToJournal(Clue thing) {
-        journal.add(thing);
+        journal.put(thing.getName().toLowerCase(),thing);
         System.out.println("You noted the clue down.");
         addPoints(5);
     }
 
-    public void addToevidence(Clue thing) {
-        evidence.add(thing);
+    public void addToevidence(String thing) {
+        evidence.put(thing,journal.get(thing));
         journal.remove(thing);
-        System.out.println("Added to evidence");
+        System.out.println("Added "+thing+" to evidence");
     }
 
     public boolean isEvidence2() {
@@ -168,12 +158,12 @@ public class PC {
 
     }
 
-    public Set<Clue> getJournal() {
+    public Map<String, Clue> getJournal() {
 
         return journal;
     }
 
-    public Set<Clue> getEvidence() {
+    public Map<String,Clue> getEvidence() {
 
         return evidence;
     }
@@ -204,7 +194,7 @@ public class PC {
     }
 
     public void removeDrunkness(int drunkValue) {
-        drunkness -= drunkValue;
+        //drunkness -= drunkValue;
     }
 
     public void addDrunkness(int drunkvalue) {

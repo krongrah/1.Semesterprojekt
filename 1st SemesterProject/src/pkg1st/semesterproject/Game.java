@@ -29,7 +29,7 @@ public class Game {
         createItems();
         createDialogue();
         parser = new Parser();
-        player = new PC(this, pd);
+        player = new PC(pd);
 
     }
 
@@ -308,7 +308,7 @@ public class Game {
             }
         }
         checkDrunkness();
-        //player.removeDrunkness(1);
+        player.removeDrunkness(1);
     }
 
     // Quits the game
@@ -667,7 +667,6 @@ public class Game {
     }
 
     public void win() {
-        System.out.println("You won.");
         if (player.getPoints() >= 100) {
             System.out.println("Congratulations, you won the game! you were rated a " + (player.getPoints() - 100) + " percent good cop.");
         } else {
@@ -694,123 +693,82 @@ public class Game {
 
     public void convict() {
         player.removeDrunkness(1);
-        player.displayJournal();
         if (currentRoom == pd) {
-
             boolean run = true;
-
-            while (run) {
+            boolean confess=false;
+            do {
                 Scanner convicting = new Scanner(System.in);
                 System.out.println("Select a clue.");
                 player.displayJournal();
-                String scumbag = convicting.nextLine().toLowerCase();
-                for (Clue clueItem : player.getJournal()) {
+                String evidence = convicting.nextLine().toLowerCase();
+                if (!evidence.equalsIgnoreCase("exit")) {
+                    if (player.getJournal().containsKey(evidence)) {
+                        if (evidence.equalsIgnoreCase("Blood Splattered Badge evidence")) {
+                            System.out.println("Commisioner: Where did you find this? This evidence could be used to convict anyone.");
+                            do {
+                                System.out.println("(You can now Lie or Confess, if you lie an inocent man will be imprisoned, if you confess you'll be.)(lie/confess)");
 
-                    if (scumbag.equalsIgnoreCase(bloodSplatteredBadgeClue.getName())) {
+                                Scanner willing = new Scanner(System.in);
+                                String will = willing.nextLine().toLowerCase();
 
-                        System.out.println("Commisioner: Where did you find this? This evidence could be used to convict anyone.");
-                        System.out.println("(You can now Lie or Confess, if you lie an inocent man will be imprisoned, if you confess you'll be.)(lie/confess)");
-
-                        Scanner willing = new Scanner(System.in);
-                        String will = willing.nextLine().toLowerCase();
-
-                        if (will.equals("confess")) {
-                            System.out.println("You told the truth and confessed to your crime ");
-                            player.addPoints(20);
-                            win();
-                            break;
-                        }
-                        if (will.equals("lie")) {
-                            System.out.println("You lied");
-                            player.removePoints(40);
-                            player.addToevidence(clueItem);
-                            if (player.getEvidence().size() >= 2 && player.getEvidence().contains(bloodSplatteredBadgeClue)) {
-                                System.out.print("Judge: We have found ");
-                                for (NPC npc : jail.getNPCsInRoom()) {
-                                    System.out.print(npc.getName() + " ");
-
-                                }
-                                System.out.print("guilty of manslaugther.");
-                                win();
-                                break;
-
-                            } else {
-                                System.out.println("Do you want to add another piece of evidence?");
-
-                                String will2 = willing.nextLine().toLowerCase();
-
-                                if (will2.equals("yes")) {
-                                    run = true;
+                                if (will.equals("confess")) {
+                                    System.out.println("You told the truth and confessed to your crime.");
+                                    player.addPoints(20);
+                                    confess=true;
+                                    win();
                                     break;
-                                }
-                                if (will2.equals("no")) {
-                                    run = false;
+                                } else if (will.equals("lie")) {
+                                    System.out.println("You lied");
+                                    player.removePoints(40);
                                     break;
                                 } else {
-                                    System.out.println("I don't understand");
-                                    break;
+                                    System.out.println("This is serious.");
                                 }
-
+                            } while (true);
+                            if(confess){
+                            break;
                             }
+                        }
+                        if (player.getJournal().get(evidence).isConvictable()) {
+                            player.addToevidence(evidence);
+                            System.out.println(evidence + " has been added to Evidence list");
+                            if (player.isEvidence2()) {
+                                System.out.print("Judge: We have found ");
+                                for(NPC npc:jail.getNPCsInRoom()){
+                                System.out.print(npc.getName()+(" "));
+                                }
+                                System.out.print("guilty of murder.");
 
+                                win();
+                                break;
+                            } else {
+                                while (true) {
+                                    System.out.println("Do you want to add another piece of evidence?");
+                                    Scanner willing = new Scanner(System.in);
+                                    String will = willing.nextLine().toLowerCase();
+
+                                    if (will.equals("yes")) {
+                                        run = true;
+                                        break;
+                                    }
+                                    if (will.equals("no")) {
+                                        run = false;
+                                        break;
+                                    } else {
+                                        System.out.println("I don't understand");
+                                    }
+                                }
+                            }
                         } else {
-                            System.out.println("I don't understand");
-                            break;
-                        }
-                    }
-
-                    if (scumbag.equals(clueItem.getName().toLowerCase()) && clueItem.isConvictable()) {
-                        player.addToevidence(clueItem);
-
-                        System.out.println(clueItem.getName() + " has been added to Evidence list");
-
-                        if (player.isEvidence2() && player.getEvidence().contains(bloodSplatteredBadge)) {
-                            System.out.println("Judge: We have found" + jail.getNPCsInRoom() + " guilty of manslaugther.");
-                            win();
-                            wantToQuit = true;
-                            break;
-                        }
-
-                        System.out.println("Do you want to add another piece of evidence?");
-
-                        Scanner willing = new Scanner(System.in);
-                        String will = willing.nextLine().toLowerCase();
-
-                        if (will.equals("yes")) {
-                            run = true;
-                            break;
-                        }
-                        if (will.equals("no")) {
-                            run = false;
-                            break;
-                        } else {
-                            System.out.println("I don't understand");
-                            break;
-                        }
-
-                    }
-                    if (!clueItem.isConvictable()) {
-                        System.out.println(clueItem + " is not good enough to use in Court");
-                        System.out.println("Would you like to try again with another piece of evidence?");
-
-                        Scanner willing = new Scanner(System.in);
-                        String will = willing.nextLine().toLowerCase();
-
-                        if (will.equals("yes")) {
-                            run = true;
-                            break;
-                        } else if (will.equals("no")) {
-                            run = false;
-                            break;
-                        } else {
-                            System.out.println("I don't understand");
+                            System.out.println(evidence + " is not good enough to use in Court");
                         }
                     } else {
-                        System.out.println("I don't understand");
-                        break;
+                        System.out.println("That is not evidence.");
                     }
+                } else {
+                    run = false;
                 }
-            }
+            } while (run);
         } else {
             System.out.println("You are not near the commisioner, so you can't do this.");
         }
