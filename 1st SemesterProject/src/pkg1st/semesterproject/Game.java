@@ -308,7 +308,7 @@ public class Game {
             }
         }
         checkDrunkness();
-        player.removeDrunkness(1);
+        //player.removeDrunkness(1);
     }
 
     // Quits the game
@@ -393,7 +393,7 @@ public class Game {
         Clue hobo1Statement = new Clue("No-Teeth Terry's statement", "According to No-Teeth Terry the murderer was a drunk man.", false);
         Clue hobo2Statement = new Clue("Dirty Darryl's statement", "Dirty Darryl obviously hates cops.", true);
         Clue hobo3Statement = new Clue("Heroin Harry's statement", "According to Heroin Harry Dirty Darryl is the killer.", true);
-        Clue hobo4Statement = new Clue("Insane Dwayne", "Insane Dwayne is insane.", true);
+        Clue hobo4Statement = new Clue("Insane Dwayne's statement", "Insane Dwayne is insane.", true);
         Clue coronerStatement = new Clue("Coroner's statement", "According to the coroner the murder was a crime of passion, \nand the victim knew his killer.", true);
 
         NPC hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue, hobo1Statement, 2);
@@ -717,7 +717,6 @@ public class Game {
                         System.out.println("You told the truth and confessed to your crime ");
                         player.addPoints(20);
                         win();
-                        wantToQuit=true;
                         break;
                     }
                     if (will.equals("lie")) {
@@ -725,9 +724,13 @@ public class Game {
                         player.removePoints(40);
                         player.addToevidence(clueItem);
                         if (player.getEvidence().size()>=2 && player.getEvidence().contains(bloodSplatteredBadgeClue)) {
-                            System.out.println("Judge: We have found" + jail.getNPCsInRoom() + " guilty of manslaugther.");
+                            System.out.print("Judge: We have found ");
+                            for (NPC npc :jail.getNPCsInRoom()){
+                            System.out.print(npc.getName()+" ");
+                            
+                            }
+                            System.out.print("guilty of manslaugther.");
                             win();
-                            wantToQuit=true;
                             break;
                             
                         } else {
