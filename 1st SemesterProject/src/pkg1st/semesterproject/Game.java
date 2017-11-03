@@ -12,6 +12,7 @@ public class Game {
     private Room currentRoom;
     private Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
     private PC player;
+    private Beverage beverage;
     boolean wantToQuit = false;
     private Clue bloodSplatteredBadgeClue = new Clue("Blood Splattered Badge evidence", "This is the badge of the victim was found in your home, \nwhich points to you being the killer.", true);
     private Item bloodSplatteredBadge = new Item("Blood Splattered Badge", "its your"
@@ -142,6 +143,8 @@ public class Game {
             System.out.println("Lying is bad, and you should feel bad.");  
         } else if (commandWord == CommandWord.CONVICT) {
         convict();
+        } else if (commandWord == CommandWord.DRINK) {
+            drink();
         }
         return wantToQuit;
     }
@@ -618,6 +621,18 @@ public class Game {
             }
         }
     }
+    public void drink(){
+       System.out.println("drink method");
+           for (Item drink: player.getInventory()) {
+               System.out.println("For loop");
+               if (drink instanceof Beverage){
+                   System.out.println("You drink some " + beverage.getName() + ", you start to feel all your problems disappear" );
+                   player.addDrunkness(beverage.alcholContent);
+                   beverage.removeSip();  
+               }
+           }
+    
+    }
 
 
     public void goToJail(NPC scum){
@@ -806,5 +821,5 @@ keepFighting=false;
         }
 }
 player.setCurrentHealth(playerHp);
-}
+       }
 }
