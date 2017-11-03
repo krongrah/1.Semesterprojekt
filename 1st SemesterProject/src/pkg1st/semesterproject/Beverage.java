@@ -10,8 +10,8 @@ package pkg1st.semesterproject;
  * @author sebastian
  */
 public class Beverage extends Item {
-    int numberOfSips;
-    int alcholContent;
+    private int numberOfSips;
+    private int alcholContent;
     
     public Beverage(String newName, String newDescription, boolean newIsClue, boolean newCollectible, Clue newClue, int numberOfSips, int alcholcontent) {
         super(newName, newDescription, newIsClue, newCollectible, newClue);

@@ -15,7 +15,7 @@ import java.util.Set;
 public class PC {
 
     //player attributes
-     int drunkness;
+    private int drunkness;
     private int points;
     private Set<Item> inventory = new HashSet<>();
     private Set<Item> desk = new HashSet<>();
@@ -29,7 +29,7 @@ public class PC {
     //constructor
     PC(Game game, Room room) {
         points = 50;
-        drunkness = 100;
+        drunkness = 10;
         newGame = game;
         pd = room;
     }
