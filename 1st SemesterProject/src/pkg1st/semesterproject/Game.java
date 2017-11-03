@@ -673,11 +673,6 @@ public class Game {
             }
         wantToQuit=true;
         }
-
-   
-        
-       
-
     public void checkDrunkness(){
         if (player.getDrunkness() == 6){
             System.out.println("you feel your buzz start to fade, you need a drink");
@@ -694,7 +689,6 @@ public class Game {
             
             
     }
-    
        public void convict() {
            player.removeDrunkness(1);
         player.displayJournal();
@@ -895,7 +889,6 @@ keepFighting=false;
 }
 player.setCurrentHealth(playerHp);
 }
-
        private int damageRandomizer(){
        return ((int)(Math.random()*11)-5);
        }
