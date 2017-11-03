@@ -715,12 +715,14 @@ public class Game {
 
                     if (will.equals("confess")) {
                         System.out.println("You told the truth and confessed to your crime ");
+                        player.addPoints(20);
                         win();
                         wantToQuit=true;
                         break;
                     }
                     if (will.equals("lie")) {
                         System.out.println("You lied");
+                        player.removePoints(40);
                         player.addToevidence(clueItem);
                         if (player.getEvidence().size()>=2 && player.getEvidence().contains(bloodSplatteredBadgeClue)) {
                             System.out.println("Judge: We have found" + jail.getNPCsInRoom() + " guilty of manslaugther.");
@@ -853,6 +855,7 @@ switch(fightCommand){
         if(enemyHp<=0){
             System.out.println("You defeated you oppoent!");
             keepFighting=false;
+            player.removePoints(15);
             currentRoom.removeNpcFromRoom(enemy);
             break;
         }
@@ -871,6 +874,7 @@ switch(fightCommand){
         keepFighting=false;
         System.out.println("You managed to calm down your opponent.");
         enemy.calmDown();
+        player.addPoints(10);
         }else{
             random1=damageRandomizer();
             playerHp-=enemyDmg+random1;
