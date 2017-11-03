@@ -17,12 +17,12 @@ public class Game {
     boolean wantToQuit = false;
     private Clue bloodSplatteredBadgeClue = new Clue("Blood Splattered Badge evidence", "This is the badge of the victim was found in your home, \nwhich points to you being the killer.", true);
     private Item bloodSplatteredBadge = new Item("Blood Splattered Badge", "its your"
-                + " former partners badge covered in blood, odd that you would find"
-                + " this here. \n A wave of guilt washes over you as you realise"
-                + " what you have done", true, true, bloodSplatteredBadgeClue);
-    private Item partnerKey=new Item("Key to Partner's home", "This key belongs to your deceased partner, "
-                + "and it allows you to enter his home.",false, true, null);
-        
+            + " former partners badge covered in blood, odd that you would find"
+            + " this here. \n A wave of guilt washes over you as you realise"
+            + " what you have done", true, true, bloodSplatteredBadgeClue);
+    private Item partnerKey = new Item("Key to Partner's home", "This key belongs to your deceased partner, "
+            + "and it allows you to enter his home.", false, true, null);
+
     // Constructor calls createRooms and creates new Parser
     public Game() {
         createRooms();
@@ -141,9 +141,9 @@ public class Game {
         } else if (commandWord == CommandWord.DROP) {
             drop(command);
         } else if (commandWord == CommandWord.LIE) {
-            System.out.println("Lying is bad, and you should feel bad.");  
+            System.out.println("Lying is bad, and you should feel bad.");
         } else if (commandWord == CommandWord.CONVICT) {
-        convict();
+            convict();
         } else if (commandWord == CommandWord.DRINK) {
             drink();
         }
@@ -281,30 +281,30 @@ public class Game {
             System.out.println("Go where?");
             return;
         }
-        
+
         String direction = command.getSecondWord();
 
         Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
-        } 
-        else{ if(nextRoom==partnerHome){
-        if (player.getInventory().contains(partnerKey)){
-        currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
-            getInfo();
-        }else{
-            System.out.println("The door is locked. You need a key to enter here.");
-        }
-        }else{
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
-            getInfo();
-            HostileNPC enemy=currentRoom.getJumped();
-            if(enemy!=null){
-            fightLoop(enemy);
-            }        
+        } else {
+            if (nextRoom == partnerHome) {
+                if (player.getInventory().contains(partnerKey)) {
+                    currentRoom = nextRoom;
+                    System.out.println(currentRoom.getLongDescription());
+                    getInfo();
+                } else {
+                    System.out.println("The door is locked. You need a key to enter here.");
+                }
+            } else {
+                currentRoom = nextRoom;
+                System.out.println(currentRoom.getLongDescription());
+                getInfo();
+                HostileNPC enemy = currentRoom.getJumped();
+                if (enemy != null) {
+                    fightLoop(enemy);
+                }
             }
         }
         checkDrunkness();
@@ -368,7 +368,7 @@ public class Game {
 
         };
         String coronerAlibi = "The coroners fingerprints and footprints are everywhere  on the crimescene"
-                +" thats probaly because he is a coroner, his alibi checks out.";
+                + " thats probaly because he is a coroner, his alibi checks out.";
         String wifeAlibi = "Of all the crimes this human waste has done, murder is sadly not one of them.";
         String commissionerAlibi = "Are you just accusing random people at this point? it is heresy to accuse Curt";
         String bartenderAlibi = "This man has no motive, obviously you are mistaken...";
@@ -422,7 +422,7 @@ public class Game {
         Clue murderWeaponClue = new Clue("Murder Weapon Evidence", "The murder weapon is a broken bottle of your favorite beer.", true);
         Clue BloodsplatterClue = new Clue("Blood Splatter", "There was a lot of blood on the crimescene, suggesting a violent conflict.", false);
         Clue CorpseClue = new Clue("Corpse", "The body of the victim was stabbed repeatedly, and had spit covering it's face.", false);
-        
+
         // creation of the multiple items via the constructor in Item.java
         Item murderWeapon = new Item("Murder Weapon", "This is a broken bottle"
                 + " with sharp edges and blood covering the edges", true, true, murderWeaponClue);
@@ -437,7 +437,6 @@ public class Game {
                 + " brutally multiple times.\n When you look closer you notice"
                 + " his face is covered in spit", true, false, CorpseClue);
         Beverage beer = new Beverage("Beer", "Its a well known brand called pisswasser", false, true, null, 2, 2);
-        
 
         Item test = new Item("test", "testDescipt", false, true, CorpseClue);
 
@@ -465,17 +464,17 @@ public class Game {
             //have the player enter a name
             Scanner talking = new Scanner(System.in);
             String target = talking.nextLine().toLowerCase();
-                if (target.equalsIgnoreCase("exit")) {
+            if (target.equalsIgnoreCase("exit")) {
                 sucess = true;
                 break;
-                }
+            }
             //go through NPCs for matches to the input.
-            boolean success=false;
+            boolean success = false;
             for (NPC npc : currentRoom.getNPCsInRoom()) {
-                
+
                 if (target.equals(npc.getName().toLowerCase())) {
                     npc.getLine();
-                    success=true;
+                    success = true;
                     if (npc.getClueCount() == npc.getClueRelease()) {
                         player.addToJournal(npc.giveClue());
                     }
@@ -504,7 +503,7 @@ public class Game {
                 }
 
             }
-            if(!success){
+            if (!success) {
                 System.out.println("There isnt anyone here by that name");
 
             }
@@ -592,27 +591,28 @@ public class Game {
             for (NPC npc : currentRoom.getNPCsInRoom()) {
                 System.out.println(npc.getName());
             }
-            
+
             Scanner choose = new Scanner(System.in);
             String person = choose.nextLine().toLowerCase();
-            boolean success=false;
+            boolean success = false;
             for (NPC npc : currentRoom.getNPCsInRoom()) {
                 if (person.equals(npc.getName().toLowerCase())) {
-                    if(npc.getAlibi()){
+                    if (npc.getAlibi()) {
                         lose();
-                        success=true;
+                        success = true;
                         break;
-            } else {
-                    goToJail(npc);
-                }
-                    success=true;
+                    } else {
+                        goToJail(npc);
+                    }
+                    success = true;
                     break;
+                }
+
             }
-                    
-        }
-            if(!success){        
-            System.out.println("If you're not going to be serious about this, find another job.");
-            }} else {
+            if (!success) {
+                System.out.println("If you're not going to be serious about this, find another job.");
+            }
+        } else {
             System.out.println("Can't you just answer a simple Yes/No question?");
         }
 
@@ -629,275 +629,275 @@ public class Game {
             }
         }
     }
-    public void drink(){
-       System.out.println("drink method");
-           for (Item drink: player.getInventory()) {
-               System.out.println("For loop");
-               if (drink instanceof Beverage){
-                   System.out.println("You drink some " + drink.getName() + ", you start to feel all your problems disappear" );
-                   player.addDrunkness(((Beverage) drink).getAlcholContent());
-                   ((Beverage) drink).removeSip();
-                   
-               }
-           }
-    
+
+    public void drink() {
+        System.out.println("drink method");
+        for (Item drink : player.getInventory()) {
+            System.out.println("For loop");
+            if (drink instanceof Beverage) {
+                System.out.println("You drink some " + drink.getName() + ", you start to feel all your problems disappear");
+                player.addDrunkness(((Beverage) drink).getAlcholContent());
+                ((Beverage) drink).removeSip();
+
+            }
+        }
+
     }
 
-
-    public void goToJail(NPC scum){
+    public void goToJail(NPC scum) {
         System.out.println("You moved the scum to jail.");
         currentRoom.removeNpcFromRoom(scum);
 //        pd.removeNpcFromRoom(commissioner);
         jail.addNpcToRoom(scum);
-        currentRoom=jail;
+        currentRoom = jail;
         System.out.println("Commissioner: Good job, now you need to go find "
                 + "some better evidence to convict this bastard. I will be in the Police department.");
         home.addItemsToRoom(bloodSplatteredBadge);
         parser.addFinishers();
     }
-    public void lose(){
+
+    public void lose() {
         System.out.println("You lost.");
         if (player.getPoints() >= 100) {
-                System.out.println("You lost the game. you were rated a " + (player.getPoints() - 100) + " percent good cop.");
+            System.out.println("You lost the game. you were rated a " + (player.getPoints() - 100) + " percent good cop.");
         } else {
-                System.out.println("You lost the game. you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
+            System.out.println("You lost the game. you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
         }
-        wantToQuit=true;
+        wantToQuit = true;
     }
-    public void win(){
+
+    public void win() {
         System.out.println("You won.");
-            if (player.getPoints() >= 100) {
-                System.out.println("Congratulations, you won the game! you were rated a " + (player.getPoints() - 100) + " percent good cop.");
-            } else {
-                System.out.println("Congratulations, you won the game! you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
-            }
-        wantToQuit=true;
+        if (player.getPoints() >= 100) {
+            System.out.println("Congratulations, you won the game! you were rated a " + (player.getPoints() - 100) + " percent good cop.");
+        } else {
+            System.out.println("Congratulations, you won the game! you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
         }
-    public void checkDrunkness(){
-        if (player.getDrunkness() == 6){
+        wantToQuit = true;
+    }
+
+    public void checkDrunkness() {
+        if (player.getDrunkness() == 6) {
             System.out.println("you feel your buzz start to fade, you need a drink");
         }
-        if (player.getDrunkness() == 3){
+        if (player.getDrunkness() == 3) {
             System.out.println("CRITICAL SOBER LEVELS DRINK IMMEDIATELY");
         }
-            
-        if (player.getDrunkness() == 0){
+
+        if (player.getDrunkness() == 0) {
             System.out.println("You feel completely sober, you fall down to the floor and die, knowing nobody loved you");
             lose();
             wantToQuit = true;
         }
-            
-            
+
     }
-       public void convict() {
-           player.removeDrunkness(1);
+
+    public void convict() {
+        player.removeDrunkness(1);
         player.displayJournal();
-         if(currentRoom==pd){
-        
+        if (currentRoom == pd) {
 
             boolean run = true;
 
             while (run) {
-        Scanner convicting = new Scanner(System.in);        
-        System.out.println("Select a clue.");
-        player.displayJournal();
-        String scumbag = convicting.nextLine().toLowerCase();
-        for (Clue clueItem : player.getJournal()) {
-                
-            
-            if (scumbag.equalsIgnoreCase(bloodSplatteredBadgeClue.getName())) {
-            
-                    System.out.println("Commisioner: Where did you find this? This evidence could be used to convict anyone.");
-                    System.out.println("(You can now Lie or Confess, if you lie an inocent man will be imprisoned, if you confess you'll be.)(lie/confess)");
+                Scanner convicting = new Scanner(System.in);
+                System.out.println("Select a clue.");
+                player.displayJournal();
+                String scumbag = convicting.nextLine().toLowerCase();
+                for (Clue clueItem : player.getJournal()) {
 
-                    Scanner willing = new Scanner(System.in);
-                    String will = willing.nextLine().toLowerCase();
+                    if (scumbag.equalsIgnoreCase(bloodSplatteredBadgeClue.getName())) {
 
-                    if (will.equals("confess")) {
-                        System.out.println("You told the truth and confessed to your crime ");
-                        player.addPoints(20);
-                        win();
-                        break;
-                    }
-                    if (will.equals("lie")) {
-                        System.out.println("You lied");
-                        player.removePoints(40);
-                        player.addToevidence(clueItem);
-                        if (player.getEvidence().size()>=2 && player.getEvidence().contains(bloodSplatteredBadgeClue)) {
-                            System.out.print("Judge: We have found ");
-                            for (NPC npc :jail.getNPCsInRoom()){
-                            System.out.print(npc.getName()+" ");
-                            
-                            }
-                            System.out.print("guilty of manslaugther.");
+                        System.out.println("Commisioner: Where did you find this? This evidence could be used to convict anyone.");
+                        System.out.println("(You can now Lie or Confess, if you lie an inocent man will be imprisoned, if you confess you'll be.)(lie/confess)");
+
+                        Scanner willing = new Scanner(System.in);
+                        String will = willing.nextLine().toLowerCase();
+
+                        if (will.equals("confess")) {
+                            System.out.println("You told the truth and confessed to your crime ");
+                            player.addPoints(20);
                             win();
                             break;
-                            
-                        } else {
-                            System.out.println("Do you want to add another piece of evidence?");
+                        }
+                        if (will.equals("lie")) {
+                            System.out.println("You lied");
+                            player.removePoints(40);
+                            player.addToevidence(clueItem);
+                            if (player.getEvidence().size() >= 2 && player.getEvidence().contains(bloodSplatteredBadgeClue)) {
+                                System.out.print("Judge: We have found ");
+                                for (NPC npc : jail.getNPCsInRoom()) {
+                                    System.out.print(npc.getName() + " ");
 
-                            String will2 = willing.nextLine().toLowerCase();
+                                }
+                                System.out.print("guilty of manslaugther.");
+                                win();
+                                break;
 
-                            if (will2.equals("yes")) {
-                                run = true;
-                                break;
-                        } 
-                            if (will2.equals("no")) {
-                                run = false;
-                                break;
                             } else {
-                                System.out.println("I don't understand");
-                                break;
+                                System.out.println("Do you want to add another piece of evidence?");
+
+                                String will2 = willing.nextLine().toLowerCase();
+
+                                if (will2.equals("yes")) {
+                                    run = true;
+                                    break;
+                                }
+                                if (will2.equals("no")) {
+                                    run = false;
+                                    break;
+                                } else {
+                                    System.out.println("I don't understand");
+                                    break;
+                                }
+
                             }
 
+                        } else {
+                            System.out.println("I don't understand");
+                            break;
+                        }
+                    }
+
+                    if (scumbag.equals(clueItem.getName().toLowerCase()) && clueItem.isConvictable()) {
+                        player.addToevidence(clueItem);
+
+                        System.out.println(clueItem.getName() + " has been added to Evidence list");
+
+                        if (player.isEvidence2() && player.getEvidence().contains(bloodSplatteredBadge)) {
+                            System.out.println("Judge: We have found" + jail.getNPCsInRoom() + " guilty of manslaugther.");
+                            win();
+                            wantToQuit = true;
+                            break;
                         }
 
+                        System.out.println("Do you want to add another piece of evidence?");
+
+                        Scanner willing = new Scanner(System.in);
+                        String will = willing.nextLine().toLowerCase();
+
+                        if (will.equals("yes")) {
+                            run = true;
+                            break;
+                        }
+                        if (will.equals("no")) {
+                            run = false;
+                            break;
+                        } else {
+                            System.out.println("I don't understand");
+                            break;
+                        }
+
+                    }
+                    if (!clueItem.isConvictable()) {
+                        System.out.println(clueItem + " is not good enough to use in Court");
+                        System.out.println("Would you like to try again with another piece of evidence?");
+
+                        Scanner willing = new Scanner(System.in);
+                        String will = willing.nextLine().toLowerCase();
+
+                        if (will.equals("yes")) {
+                            run = true;
+                            break;
+                        } else if (will.equals("no")) {
+                            run = false;
+                            break;
+                        } else {
+                            System.out.println("I don't understand");
+                        }
                     } else {
                         System.out.println("I don't understand");
                         break;
                     }
-                }      
-
-                if (scumbag.equals(clueItem.getName().toLowerCase()) && clueItem.isConvictable()) {
-                    player.addToevidence(clueItem);
-
-                    System.out.println(clueItem.getName() + " has been added to Evidence list");
-
-                    if (player.isEvidence2() && player.getEvidence().contains(bloodSplatteredBadge)) {
-                        System.out.println("Judge: We have found" + jail.getNPCsInRoom() + " guilty of manslaugther.");
-                        win();
-                        wantToQuit=true;
-                        break;
-                    }
-
-                    System.out.println("Do you want to add another piece of evidence?");
-
-                    Scanner willing = new Scanner(System.in);
-                    String will = willing.nextLine().toLowerCase();
-
-                    if (will.equals("yes")) {
-                        run = true;
-                        break;
-                }
-                    if (will.equals("no")) {
-                        run = false;
-                        break;
-                    } else {
-                        System.out.println("I don't understand");
-                        break;
-                    }
-                        
-                }
-                if (!clueItem.isConvictable()) {
-                    System.out.println(clueItem + " is not good enough to use in Court");
-                    System.out.println("Would you like to try again with another piece of evidence?");
-                        
-                    Scanner willing = new Scanner(System.in);
-                    String will = willing.nextLine().toLowerCase();
-                        
-                    if (will.equals("yes")) {
-                        run = true;
-                        break;
-                    } else
-                    if (will.equals("no")) {
-                        run = false;
-                        break;
-                    } else {
-                        System.out.println("I don't understand");
-        }
-                } else {
-                    System.out.println("I don't understand");
-                    break;
                 }
             }
-        }
-        }else{
+        } else {
             System.out.println("You are not near the commisioner, so you can't do this.");
         }
-            
-       }
-       
-       
-       public void fightLoop(HostileNPC enemy){   
-           player.removeDrunkness(1);
-int playerHp=player.getCurrentHealth();
-int enemyHp=enemy.getHealth();
-int playerDmg=10;
-int enemyDmg=enemy.getDamage();
-boolean keepFighting=true;
-int random1;
-int random2;
 
-Scanner fightCommander=new Scanner(System.in);
-String fightCommand;
-    System.out.println("You are now fighting a "+enemy.getName()+". For your options, type 'help'.");
-if(player.inventoryContains("gun")){
-playerDmg=30;
-    System.out.println("You draw your gun.");
-}
-    while(keepFighting){
-fightCommand=fightCommander.nextLine().toLowerCase();
+    }
 
-switch(fightCommand){
-    case "run":
-        if(Math.random()<0.7){
-    keepFighting=false;
-        System.out.println("You ran away like a coward.");
-        }else{
-            System.out.println("Your opponent didn't let you escape, and you got hit.");
-            random1=damageRandomizer();
-            playerHp-=enemyDmg+random1;
-            System.out.println("You took "+(enemyDmg+random1)+" damage.");
+    public void fightLoop(HostileNPC enemy) {
+        player.removeDrunkness(1);
+        int playerHp = player.getCurrentHealth();
+        int enemyHp = enemy.getHealth();
+        int playerDmg = 10;
+        int enemyDmg = enemy.getDamage();
+        boolean keepFighting = true;
+        int random1;
+        int random2;
+
+        Scanner fightCommander = new Scanner(System.in);
+        String fightCommand;
+        System.out.println("You are now fighting a " + enemy.getName() + ". For your options, type 'help'.");
+        if (player.inventoryContains("gun")) {
+            playerDmg = 30;
+            System.out.println("You draw your gun.");
         }
-    break;
-    case "fight":
-        random1=damageRandomizer();
-        random2=damageRandomizer();
-        System.out.println("You strike your opponent and deal "+(playerDmg+random1)+" damage.");
-        enemyHp-=(playerDmg+random1);
-        if(enemyHp<=0){
-            System.out.println("You defeated you oppoent!");
-            keepFighting=false;
-            player.removePoints(15);
-            currentRoom.removeNpcFromRoom(enemy);
-            break;
+        while (keepFighting) {
+            fightCommand = fightCommander.nextLine().toLowerCase();
+
+            switch (fightCommand) {
+                case "run":
+                    if (Math.random() < 0.7) {
+                        keepFighting = false;
+                        System.out.println("You ran away like a coward.");
+                    } else {
+                        System.out.println("Your opponent didn't let you escape, and you got hit.");
+                        random1 = damageRandomizer();
+                        playerHp -= enemyDmg + random1;
+                        System.out.println("You took " + (enemyDmg + random1) + " damage.");
+                    }
+                    break;
+                case "fight":
+                    random1 = damageRandomizer();
+                    random2 = damageRandomizer();
+                    System.out.println("You strike your opponent and deal " + (playerDmg + random1) + " damage.");
+                    enemyHp -= (playerDmg + random1);
+                    if (enemyHp <= 0) {
+                        System.out.println("You defeated you oppoent!");
+                        keepFighting = false;
+                        player.removePoints(15);
+                        currentRoom.removeNpcFromRoom(enemy);
+                        break;
+                    }
+                    System.out.println("Your opponent retaliates, dealing " + (enemyDmg + random2) + " damage.");
+                    playerHp -= (enemyDmg + random2);
+                    break;
+                case "help":
+                    System.out.println("your options are:\nfight: Attack your opponent, "
+                            + "and take a hit.\nrun: Attempt to run away from your "
+                            + "opponent. Beware, escape is not certain.\n calm: Attempt to "
+                            + "calm your opponent down. beware, if you fail, your "
+                            + "opponent will still attack you.");
+                    break;
+                case "calm":
+                    if (Math.random() < 0.1) {
+                        keepFighting = false;
+                        System.out.println("You managed to calm down your opponent.");
+                        enemy.calmDown();
+                        player.addPoints(10);
+                    } else {
+                        random1 = damageRandomizer();
+                        playerHp -= enemyDmg + random1;
+                        System.out.println("You failed to calm your opponent, and got "
+                                + "struck. you took " + (enemyDmg + random1) + " damage.");
+                    }
+                    break;
+                default:
+                    System.out.println("Now is not the time to kid around.");
+            }
+            if (playerHp <= 0) {
+                System.out.println("You died.");
+                lose();
+                keepFighting = false;
+            }
         }
-        System.out.println("Your opponent retaliates, dealing "+(enemyDmg+random2)+" damage.");
-        playerHp-=(enemyDmg+random2);
-    break;
-    case "help":
-        System.out.println("your options are:\nfight: Attack your opponent, "
-                + "and take a hit.\nrun: Attempt to run away from your "
-                + "opponent. Beware, escape is not certain.\n calm: Attempt to "
-                + "calm your opponent down. beware, if you fail, your "
-                + "opponent will still attack you.");
-    break;
-    case "calm":
-        if(Math.random()<0.1){
-        keepFighting=false;
-        System.out.println("You managed to calm down your opponent.");
-        enemy.calmDown();
-        player.addPoints(10);
-        }else{
-            random1=damageRandomizer();
-            playerHp-=enemyDmg+random1;
-            System.out.println("You failed to calm your opponent, and got "
-                    + "struck. you took "+(enemyDmg+random1)+" damage.");
-        }
-        break;
-    default: 
-        System.out.println("Now is not the time to kid around.");
-}
-if(playerHp<=0){
-    System.out.println("You died.");
-lose();
-keepFighting=false;
-        }
-}
-player.setCurrentHealth(playerHp);
-}
-       private int damageRandomizer(){
-       return ((int)(Math.random()*11)-5);
-       }
-       
+        player.setCurrentHealth(playerHp);
+    }
+
+    private int damageRandomizer() {
+        return ((int) (Math.random() * 11) - 5);
+    }
+
 }

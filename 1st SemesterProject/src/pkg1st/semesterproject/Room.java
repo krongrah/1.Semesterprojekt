@@ -15,7 +15,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     private HashMap<String, Room> exits;
     private Set<Item> ItemsInRoom = new HashSet<>();
     private Set<NPC> NPCsInRoom = new HashSet<>();
-    private Map<String, NPC> NPCsInRoomMap=new HashMap<>();
+    private Map<String, NPC> NPCsInRoomMap = new HashMap<>();
     private String roomName;
 
     //contructor, requires description and generates an Exits map.
@@ -60,8 +60,9 @@ public class Room {   //rooms have a description/name and map with strings to ro
     public Set<NPC> getNPCsInRoom() {
         return NPCsInRoom;
     }
-    public Map<String, NPC> getNPCsInRoomMap(){
-    return NPCsInRoomMap;
+
+    public Map<String, NPC> getNPCsInRoomMap() {
+        return NPCsInRoomMap;
     }
 
     /**
@@ -69,7 +70,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
      */
     public void addNpcToRoom(NPC npc) {
         this.NPCsInRoom.add(npc);
-        this.NPCsInRoomMap.put(npc.getName(),npc);
+        this.NPCsInRoomMap.put(npc.getName(), npc);
     }
 
     /**
@@ -106,16 +107,16 @@ public class Room {   //rooms have a description/name and map with strings to ro
     public String getRoomName() {
         return roomName;
     }
-    public HostileNPC getJumped(){
-    for (NPC fighter:NPCsInRoom){
-        if(fighter instanceof HostileNPC){
-        if (/*Math.random()<0.5*/true){
-        return (HostileNPC)fighter;
-    }   
+
+    public HostileNPC getJumped() {
+        for (NPC fighter : NPCsInRoom) {
+            if (fighter instanceof HostileNPC) {
+                if (/*Math.random()<0.5*/true) {
+                    return (HostileNPC) fighter;
+                }
+            }
+        }
+        return null;
     }
-    }
-    return null;
-    }
-    
-    
+
 }

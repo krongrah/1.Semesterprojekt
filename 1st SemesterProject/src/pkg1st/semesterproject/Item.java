@@ -23,8 +23,9 @@ public class Item {
     public boolean getIsclue() {
         return isClue;
     }
-    public void setIsClue(){
-    isClue=false;
+
+    public void setIsClue() {
+        isClue = false;
     }
 
     public String getName() {
@@ -34,8 +35,9 @@ public class Item {
     public String getDescription() {
         return description;
     }
-    public Clue giveClue(){
-    return clue;
+
+    public Clue giveClue() {
+        return clue;
     }
 
     //creating the constructor for the purpose of making objects of the item class
@@ -44,7 +46,7 @@ public class Item {
         description = newDescription;
         isClue = newIsClue;
         collectible = newCollectible;
-        clue =newClue;
+        clue = newClue;
     }
 
 }

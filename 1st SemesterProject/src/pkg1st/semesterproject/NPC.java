@@ -22,8 +22,6 @@ public class NPC {
     private int clueRelease;
 
     //Moves NPC to another room
-
-
     public String getName() {
         return name;
     }
@@ -33,11 +31,11 @@ public class NPC {
     }
 
     public void getLine() {
-        System.out.println(name+": "+dialogue.getLine());
+        System.out.println(name + ": " + dialogue.getLine());
     }
-    
-    public boolean getAlibi(){    
-       return dialogue.getAlibi();
+
+    public boolean getAlibi() {
+        return dialogue.getAlibi();
     }
 
     public void setDialogue(Dialogue dialogue_) {

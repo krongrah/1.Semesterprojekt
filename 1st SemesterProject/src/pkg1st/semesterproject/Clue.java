@@ -20,7 +20,7 @@ public class Clue {
     Clue(String _name, String _description, boolean _isConvictable) {
         name = _name;
         description = _description;
-        isConvictable=_isConvictable;
+        isConvictable = _isConvictable;
     }
 
     //getters
@@ -31,11 +31,11 @@ public class Clue {
     public String getDescription() {
         return description;
     }
+
     public boolean isBadge() {
-        if (name == "bloodSplatteredBadgeClue"){
+        if (name == "bloodSplatteredBadgeClue") {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

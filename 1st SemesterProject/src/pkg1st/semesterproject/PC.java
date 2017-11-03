@@ -20,11 +20,11 @@ public class PC {
     private Set<Item> inventory = new HashSet<>();
     private Set<Item> desk = new HashSet<>();
     private Set<Clue> journal = new HashSet<>();
-    private Set<Clue> evidence = new HashSet<>(); 
+    private Set<Clue> evidence = new HashSet<>();
     private int maxInventoryCapacity = 2;
     private Game newGame;
     private Room pd;
-    private int currentHealth=100;
+    private int currentHealth = 100;
 
     //constructor
     PC(Game game, Room room) {
@@ -38,8 +38,8 @@ public class PC {
     public void displayInventory() {
         int empty = 0;
         for (Item thing : inventory) {
-            System.out.println(thing.getName()+ ":");
-            System.out.println(thing.getDescription()+"\n");
+            System.out.println(thing.getName() + ":");
+            System.out.println(thing.getDescription() + "\n");
             System.out.println("you have " + inventory.size() + "/" + maxInventoryCapacity + " spots left in your inventory");
         }
 
@@ -48,17 +48,17 @@ public class PC {
 
         }
 
-        }
-    
-    public Set<Item> getInventory(){
-    return inventory;
     }
-    
+
+    public Set<Item> getInventory() {
+        return inventory;
+    }
+
     public void displayJournal() {
         int empty = 0;
         for (Clue ClueItem : journal) {
-            System.out.println(ClueItem.getName()+":");
-            System.out.println(ClueItem.getDescription()+"\n");
+            System.out.println(ClueItem.getName() + ":");
+            System.out.println(ClueItem.getDescription() + "\n");
         }
 
         if (journal.size() == empty) {
@@ -66,24 +66,25 @@ public class PC {
 
         }
 
-    } 
+    }
+
     public void diplayDesk(Room currentRoom) {
         int empty = 0;
         if (currentRoom == pd) {
             for (Item deskItem : desk) {
-            System.out.println(deskItem.getName()+":");
-            System.out.println(deskItem.getDescription()+"\n");
-        }
+                System.out.println(deskItem.getName() + ":");
+                System.out.println(deskItem.getDescription() + "\n");
+            }
 
-        if (desk.size() == empty) {
-            System.out.println("Your desk is empty");
+            if (desk.size() == empty) {
+                System.out.println("Your desk is empty");
 
-        }
+            }
         } else {
             System.out.println("You can't check your desk from here, only in the Police station.");
         }
     }
-   
+
     //getters for the descriptions
     public void inspectItem(Item thing) {
         if (inventory.contains(thing)) {
@@ -117,28 +118,28 @@ public class PC {
         desk.add(thing);
         System.out.println("You sucessfully moved the item from your inventory to your desk.");
     }
+
     public void moveToRoom(Item thing, Room currentRoom) {
         inventory.remove(thing);
         currentRoom.getItemsInRoom().add(thing);
-        System.out.println("You sucessfully moved the item from your inventory to "+ currentRoom.getRoomName()+".");
+        System.out.println("You sucessfully moved the item from your inventory to " + currentRoom.getRoomName() + ".");
     }
 
     //methods for adding to cluelist and inventory
     public void addToInventory(Item thing, Room currentRoom) {
-        
-        if(inventory.size()<maxInventoryCapacity){
+
+        if (inventory.size() < maxInventoryCapacity) {
             if (thing.getCollectible()) {
-            System.out.println("You placed it in your bag.");
-            currentRoom.getItemsInRoom().remove(thing);
-            inventory.add(thing);
-             }  else {
-            System.out.println("You can't seem to get a hold of it.");
+                System.out.println("You placed it in your bag.");
+                currentRoom.getItemsInRoom().remove(thing);
+                inventory.add(thing);
+            } else {
+                System.out.println("You can't seem to get a hold of it.");
             }
-        }
-        else {
+        } else {
             System.out.println("Your inventory are full");
         }
-        
+
     }
 
     public void addToJournal(Clue thing) {
@@ -146,67 +147,68 @@ public class PC {
         System.out.println("You noted the clue down.");
         addPoints(5);
     }
-    
+
     public void addToevidence(Clue thing) {
         evidence.add(thing);
         journal.remove(thing);
         System.out.println("Added to evidence");
-        }
-    
-    public boolean isEvidence2(){
-    
-    return evidence.size()>=2;
     }
-    
-    
+
+    public boolean isEvidence2() {
+
+        return evidence.size() >= 2;
+    }
+
     public int getPoints() {
         return points;
     }
-    
+
     public void addPoints(int value) {
         points += value;
-        
+
     }
-    
-    public Set<Clue> getJournal(){
-        
-    return journal;
+
+    public Set<Clue> getJournal() {
+
+        return journal;
     }
-    
-    public Set<Clue> getEvidence(){
-    
-    return evidence;
+
+    public Set<Clue> getEvidence() {
+
+        return evidence;
     }
-    
+
     public void removePoints(int value) {
         points -= value;
     }
-    public void setCurrentHealth(int hp){
-    currentHealth=hp;
-    }
-    public int getCurrentHealth(){
-    return currentHealth;
-    }
-    public boolean inventoryContains(String name){
-    for (Item thing: inventory){
-    if (thing.getName().equalsIgnoreCase(name)){
-    return true;
-    }
-    }
-    return false;
-    }
-    
-    public int getDrunkness(){
-        return drunkness;
-    }
-    
-    public void removeDrunkness(int drunkValue){
-        drunkness -= drunkValue;
-    }
-    
-    public void addDrunkness(int drunkvalue){
-        drunkness += drunkvalue;
+
+    public void setCurrentHealth(int hp) {
+        currentHealth = hp;
     }
 
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public boolean inventoryContains(String name) {
+        for (Item thing : inventory) {
+            if (thing.getName().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int getDrunkness() {
+        return drunkness;
+    }
+
+    public void removeDrunkness(int drunkValue) {
+        drunkness -= drunkValue;
+    }
+
+    public void addDrunkness(int drunkvalue) {
+        drunkness += drunkvalue;
+    }
 
 }

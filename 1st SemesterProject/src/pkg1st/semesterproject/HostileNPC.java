@@ -9,26 +9,31 @@ package pkg1st.semesterproject;
  *
  * @author Krongrah
  */
-public class HostileNPC extends NPC{
+public class HostileNPC extends NPC {
+
     private int health;
     private int damage;
     private double aggression;
-    
+
     public HostileNPC(String newName, Dialogue dialogue, Clue clue, int clueRelease, int health, int damage, double aggression) {
         super(newName, dialogue, clue, clueRelease);
-        this.health=health;
-        this.damage=damage;
+        this.health = health;
+        this.damage = damage;
     }
-    public int getHealth(){
-    return health;
+
+    public int getHealth() {
+        return health;
     }
-    public int getDamage(){
-    return damage;
+
+    public int getDamage() {
+        return damage;
     }
-    public double getAggression(){
-    return aggression;
+
+    public double getAggression() {
+        return aggression;
     }
-    public void calmDown(){
-    aggression=-1;
+
+    public void calmDown() {
+        aggression = -1;
     }
 }
