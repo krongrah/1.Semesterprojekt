@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.6608040201005025" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="282.0" prefWidth="598.0">
+         <children>
+            <Pane layoutX="-1.0" layoutY="33.0" prefHeight="224.0" prefWidth="598.0" />
+            <ProgressBar fx:id="badBar" layoutX="3.0" layoutY="14.0" prefHeight="20.0" prefWidth="296.0" progress="0.0" />
+            <ProgressBar fx:id="goodBar" layoutX="299.0" layoutY="14.0" prefHeight="20.0" prefWidth="296.0" progress="0.0" />
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+         <children>
+            <TextField fx:id="InputField" layoutX="384.0" layoutY="90.0" prefHeight="27.0" prefWidth="200.0" />
+            <TextArea fx:id="outputArea" layoutX="384.0" layoutY="3.0" prefHeight="88.0" prefWidth="200.0" />
+            <ProgressIndicator fx:id="drunkMeter" layoutX="7.0" layoutY="5.0" progress="0.0" />
+            <Button fx:id="north" layoutX="68.0" layoutY="20.0" mnemonicParsing="false" text="North" />
+            <Button fx:id="south" layoutX="68.0" layoutY="84.0" mnemonicParsing="false" text="South" />
+            <Button fx:id="east" layoutX="100.0" layoutY="53.0" mnemonicParsing="false" text="East" />
+            <Button fx:id="west" layoutX="43.0" layoutY="53.0" mnemonicParsing="false" text="West" />
+            <Button layoutX="161.0" layoutY="54.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="Talk" />
+            <Button layoutX="161.0" layoutY="90.0" mnemonicParsing="false" prefWidth="70.0" text="Search" />
+            <Button layoutX="313.0" layoutY="53.0" mnemonicParsing="false" prefWidth="70.0" text="Arrest" />
+            <Button layoutX="237.0" layoutY="20.0" mnemonicParsing="false" prefWidth="70.0" text="Convict" />
+            <Button layoutX="313.0" layoutY="90.0" mnemonicParsing="false" prefWidth="70.0" text="Drink" />
+            <Button layoutX="237.0" layoutY="90.0" mnemonicParsing="false" prefWidth="70.0" text="Button" />
+            <Button layoutX="237.0" layoutY="54.0" mnemonicParsing="false" prefWidth="70.0" text="Inspect" />
+         </children></AnchorPane>
+  </items>
+</SplitPane>
