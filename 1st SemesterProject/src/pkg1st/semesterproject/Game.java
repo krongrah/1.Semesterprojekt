@@ -146,6 +146,8 @@ public class Game {
             convict();
         } else if (commandWord == CommandWord.DRINK) {
             drink();
+        } else if (commandWord == CommandWord.DRUNKNESS){
+            drunkness();
         }
         return wantToQuit;
     }
@@ -440,6 +442,12 @@ public class Game {
                 + " his face is covered in spit", true, false, CorpseClue);
         Beverage beer = new Beverage("Beer", "It's a well known brand called pisswasser", false, true, null, 2, 2);
         Beverage whiskey=new Beverage("Whiskey","This bottle is your favorite drink, and the reason you love coming home.",false, true, null,2,5);
+        Beverage gin = new Beverage ("Half-empty Gin", "its a half-empty bottle of gin, some idiot wasted his drink", false, true, null,1,7);
+        Beverage beerKeg = new Beverage ("Keg of beer", "Its a keg of beer, nobody will notice if you take this", false, true, null, 4,4);
+        Beverage coffee = new Beverage ("Coffee", "A normal looking drink of coffee, expect you can smell a faint vodka odor", false, true, null, 2,6);
+        Beverage wine = new Beverage ("Wine", "the fancy people left out a glass of wine", false, true, null, 3,7);
+        
+        
         
         Item test = new Item("test", "testDescipt", false, true, CorpseClue);
 
@@ -451,6 +459,11 @@ public class Game {
         bar.addItemsToRoom(beer);
         home.addItemsToRoom(whiskey);
         pd.addItemsToRoom(partnerKey);
+        hoboAlley.addItemsToRoom(gin);
+        pd.addItemsToRoom(coffee);
+        rightStreet.addItemsToRoom(beerKeg);
+        leftStreet.addItemsToRoom(wine);
+        
 
     }
 
@@ -682,11 +695,11 @@ public class Game {
     }
 
     public void checkDrunkness() {
-        if (player.getDrunkness() == 6) {
+        if (player.getDrunkness() == 15) {
             System.out.println("you feel your buzz start to fade, you need a drink");
         }
-        if (player.getDrunkness() == 3) {
-            System.out.println("CRITICAL SOBER LEVELS DRINK IMMEDIATELY");
+        if (player.getDrunkness() == 5) {
+            System.out.println("You start to feel your hands again, if you dont drink soon you might die");
         }
 
         if (player.getDrunkness() == 0) {
@@ -778,6 +791,12 @@ public class Game {
             System.out.println("You are not near the commisioner, so you can't do this.");
         }
 
+    }
+    public void drunkness() {
+        System.out.println(player.getDrunkness());
+
+        
+        
     }
 
     public void fightLoop(HostileNPC enemy) {
