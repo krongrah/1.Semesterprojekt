@@ -146,6 +146,8 @@ public class Game {
             convict();
         } else if (commandWord == CommandWord.DRINK) {
             drink();
+        } else if (commandWord == CommandWord.DRUNKNESS){
+            drunkness();
         }
         return wantToQuit;
     }
@@ -778,6 +780,9 @@ public class Game {
             System.out.println("You are not near the commisioner, so you can't do this.");
         }
 
+    }
+    public void drunkness() {
+        System.out.println(player.getDrunkness());
     }
 
     public void fightLoop(HostileNPC enemy) {

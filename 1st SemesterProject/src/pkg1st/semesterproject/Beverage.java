@@ -13,7 +13,7 @@ public class Beverage extends Item {
     private int numberOfSips;
     private int alcoholContent;
     
-    public Beverage(String newName, String newDescription, boolean newIsClue, boolean newCollectible, Clue newClue, int numberOfSips, int alcholcontent) {
+    public Beverage(String newName, String newDescription, boolean newIsClue, boolean newCollectible, Clue newClue, int numberOfSips, int alcoholContent) {
         super(newName, newDescription, newIsClue, newCollectible, newClue);
         this.numberOfSips=numberOfSips;
         this.alcoholContent=alcoholContent;
