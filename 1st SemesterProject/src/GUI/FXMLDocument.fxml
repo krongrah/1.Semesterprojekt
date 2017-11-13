@@ -4,30 +4,51 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.6608040201005025" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="282.0" prefWidth="598.0">
+<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="203.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="397.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="19.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="290.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Pane layoutX="-1.0" layoutY="33.0" prefHeight="224.0" prefWidth="598.0" />
-            <ProgressBar fx:id="badBar" layoutX="3.0" layoutY="14.0" prefHeight="20.0" prefWidth="296.0" progress="0.0" />
-            <ProgressBar fx:id="goodBar" layoutX="299.0" layoutY="14.0" prefHeight="20.0" prefWidth="296.0" progress="0.0" />
-         </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+            <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
+            <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
+            <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
+            <Button mnemonicParsing="false" text="Button" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
+            <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+            <Button mnemonicParsing="false" text="Button" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+            <ProgressIndicator progress="0.0" />
+         </children>
+      </GridPane>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
          <children>
-            <TextField fx:id="InputField" layoutX="384.0" layoutY="90.0" prefHeight="27.0" prefWidth="200.0" />
-            <TextArea fx:id="outputArea" layoutX="384.0" layoutY="3.0" prefHeight="88.0" prefWidth="200.0" />
-            <ProgressIndicator fx:id="drunkMeter" layoutX="7.0" layoutY="5.0" progress="0.0" />
-            <Button fx:id="north" layoutX="68.0" layoutY="20.0" mnemonicParsing="false" text="North" />
-            <Button fx:id="south" layoutX="68.0" layoutY="84.0" mnemonicParsing="false" text="South" />
-            <Button fx:id="east" layoutX="100.0" layoutY="53.0" mnemonicParsing="false" text="East" />
-            <Button fx:id="west" layoutX="43.0" layoutY="53.0" mnemonicParsing="false" text="West" />
-            <Button layoutX="161.0" layoutY="54.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="70.0" text="Talk" />
-            <Button layoutX="161.0" layoutY="90.0" mnemonicParsing="false" prefWidth="70.0" text="Search" />
-            <Button layoutX="313.0" layoutY="53.0" mnemonicParsing="false" prefWidth="70.0" text="Arrest" />
-            <Button layoutX="237.0" layoutY="20.0" mnemonicParsing="false" prefWidth="70.0" text="Convict" />
-            <Button layoutX="313.0" layoutY="90.0" mnemonicParsing="false" prefWidth="70.0" text="Drink" />
-            <Button layoutX="237.0" layoutY="90.0" mnemonicParsing="false" prefWidth="70.0" text="Button" />
-            <Button layoutX="237.0" layoutY="54.0" mnemonicParsing="false" prefWidth="70.0" text="Inspect" />
-         </children></AnchorPane>
-  </items>
-</SplitPane>
+            <TextArea maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <TextField maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="16.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS">
+         <children>
+            <ProgressBar maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
+            <ProgressBar maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+   </children>
+</GridPane>
