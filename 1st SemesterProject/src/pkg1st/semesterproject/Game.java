@@ -22,6 +22,9 @@ public class Game {
             + " what you have done", true, true, bloodSplatteredBadgeClue);
     private Item partnerKey = new Item("Key to Partner's home", "This key belongs to your deceased partner, "
             + "and it allows you to enter his home.", false, true, null);
+    Clue hobo2Statement = new Clue("Dirty Darryl's statement", "Dirty Darryl obviously hates cops.", true);
+    Beverage beer = new Beverage("Beer", "It's a well known brand called pisswasser", false, true, null, 2, 2);
+    HostileNPC wife1 = new HostileNPC("Wife", null, null, 0, 50, 5, 0.5);
 
     // Constructor calls createRooms and creates new Parser
     public Game() {
@@ -90,6 +93,108 @@ public class Game {
     // Keeps game running requesting new command and ends the game
     // when processCommand returns true
     public void play() {
+        System.out.println("testing? Y/N");
+        Scanner testing = new Scanner(System.in);
+        String tester = testing.nextLine().toLowerCase();
+        if (tester.equals("y")){
+            System.out.println("write the method or room you would like to test");
+            Scanner roomster = new Scanner(System.in);
+            String testerr = roomster.nextLine().toLowerCase();
+            if (testerr.equals("fight")){
+                fightLoop(wife1);
+            }
+            if (testerr.equals("pd")){
+                currentRoom = pd;
+                System.out.println("you are now in the police department");
+            }
+            if (testerr.equals("crime scene")){
+                currentRoom = crimeScene;
+                System.out.println("you are now in the crime scene");
+            }
+            if (testerr.equalsIgnoreCase("home")){
+                currentRoom = home;
+                System.out.println("you are now home :)");
+            }
+            if (testerr.equals("arrest")){
+                player.addToJournal(bloodSplatteredBadgeClue);
+                player.addToJournal(hobo2Statement);
+                currentRoom = crimeScene;
+                arrest();
+                wantToQuit = true;
+            }
+            if (testerr.equals("convict")){
+                player.addToJournal(bloodSplatteredBadgeClue);
+                player.addToJournal(hobo2Statement);
+                currentRoom = pd;
+                convict();
+                wantToQuit = true;
+            }
+            if (testerr.equals("drink")) {
+                currentRoom = bar;
+                player.addToInventory(beer, currentRoom);
+                drink();
+                System.out.println("this is how drunk you are");
+                drunkness();
+                wantToQuit = true;
+            }
+            if (testerr.equals("search")){
+                System.out.println("where do you want to search MIKKEL");
+                Scanner whatareyouevendoing = new Scanner(System.in);
+                String thisisshit = whatareyouevendoing.nextLine().toLowerCase();
+                if (thisisshit.equals("end your life")){
+                    System.out.println("just end my life");
+                }
+                if (thisisshit.equalsIgnoreCase("pd")){
+                    currentRoom = pd;
+                    search();
+                }
+                if (thisisshit.equalsIgnoreCase("crime scene")){
+                    currentRoom = crimeScene;
+                    search();
+                }
+                if (thisisshit.equalsIgnoreCase("Hoboalley")){
+                    currentRoom = hoboAlley;
+                    search();
+                }
+                if (thisisshit.equalsIgnoreCase("home")){
+                    currentRoom = home;
+                    search();
+                }   
+            }
+            if (testerr.equalsIgnoreCase("talk")){
+                System.out.println("where do you want to talk");
+                Scanner talkingmethod = new Scanner(System.in);
+                String talkshit = talkingmethod.nextLine().toLowerCase();
+                if (talkshit.equals("pd")){
+                    currentRoom = pd;
+                    talk();
+                }
+                if (talkshit.equalsIgnoreCase("crime scene")){
+                    currentRoom = crimeScene;
+                    talk();
+                }
+                if (talkshit.equalsIgnoreCase("home")){
+                    currentRoom = home;
+                    talk();
+                }
+                if (talkshit.equalsIgnoreCase("hobo alley")){
+                    currentRoom = hoboAlley;
+                    talk();
+                }
+                if (talkshit.equalsIgnoreCase("Bar")){
+                    currentRoom = bar;
+                    talk();
+                }
+            }
+                        
+        
+       
+            
+            
+        }
+        if (testing.equals("N")){
+            
+        }
         printWelcome();
 
         boolean finished = false;
@@ -395,7 +500,7 @@ public class Game {
         Clue testClue = new Clue("testName", "nondescript", false);
         Clue bartenderStatement = new Clue("Bartender's statement", "According to Bartender Bert everyone hated the victim.", false);
         Clue hobo1Statement = new Clue("No-Teeth Terry's statement", "According to No-Teeth Terry the murderer was a drunk man.", false);
-        Clue hobo2Statement = new Clue("Dirty Darryl's statement", "Dirty Darryl obviously hates cops.", true);
+        
         Clue hobo3Statement = new Clue("Heroin Harry's statement", "According to Heroin Harry Dirty Darryl is the killer.", true);
         Clue hobo4Statement = new Clue("Insane Dwayne's statement", "Insane Dwayne is insane.", true);
         Clue coronerStatement = new Clue("Coroner's statement", "According to the coroner the murder was a crime of passion, \nand the victim knew his killer.", true);
@@ -440,7 +545,7 @@ public class Game {
         Item corpse = new Item("Corpse", "its a dead guy, he looks to be stabbed"
                 + " brutally multiple times.\n When you look closer you notice"
                 + " his face is covered in spit", true, false, CorpseClue);
-        Beverage beer = new Beverage("Beer", "It's a well known brand called pisswasser", false, true, null, 2, 2);
+        
         Beverage whiskey=new Beverage("Whiskey","This bottle is your favorite drink, and the reason you love coming home.",false, true, null,2,5);
         Beverage gin = new Beverage ("Half-empty Gin", "its a half-empty bottle of gin, some idiot wasted his drink", false, true, null,1,7);
         Beverage beerKeg = new Beverage ("Keg of beer", "Its a keg of beer, nobody will notice if you take this", false, true, null, 4,4);
