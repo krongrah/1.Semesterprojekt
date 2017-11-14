@@ -6,6 +6,8 @@
 package PermanentFileClasses;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,26 +16,73 @@ import java.util.Scanner;
  *
  * @author Krongrah
  */
-public class HiScore {
+class HiScore {
+
+    private List<String> hiScoreList = new ArrayList<>();
+    private File file = new File("/Users/Krongrah/NetBeansProjects/1.Semesterprojekt-2/1st SemesterProject/build/classes/PermanentFileClasses/HiScore.txt");
+    private int max=10;
     
-List<Score> HiScoreList=new ArrayList<>();
-File file =new File("HiScore.xml");   
-//Scanner input = new Scanner(file));
+    private void pullHiScore() {
+        try {
+            Scanner input = new Scanner(file);
+            while (input.hasNextLine()) {
+                hiScoreList.add(input.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
-//while (input.hasNextLine())
-//{
-//   System.out.println(input.nextLine());
-//}
+    private void readHiScore() {
+        for (String score : hiScoreList) {
+            System.out.println(score);
+        }
+    }
 
+    private void addHiScore(String entry) {
+        hiScoreList.add(entry);
+    }
 
+    private void sortArray() {
 
-private int maxPoints;
+        sort();
+        if (hiScoreList.size() == (max+1)) {
+            hiScoreList.remove(max);
+        }
 
+    }
 
+    private void writeHiScore() {
+        try {
+            PrintWriter writer = new PrintWriter(file);
+            for (String score : hiScoreList) {
+                writer.println(score);
+            }
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    private String[] sendHiScore(){
+    String[] score=new String[hiScoreList.size()]; 
+    for(int i=0;i<hiScoreList.size();i++){
+    score[i]=hiScoreList.get(i);
+    }
+    return score;
+    }
     
-public void applyForHiScore(int points){
-maxPoints=points;
-}    
+    private void sort(){
+    //todo
+    }
     
+    
+    String[] doHiScore(String entry){
+    pullHiScore();
+    addHiScore(entry);
+    sortArray();
+    readHiScore();
+    writeHiScore();
+    return sendHiScore();
+    } 
     
 }

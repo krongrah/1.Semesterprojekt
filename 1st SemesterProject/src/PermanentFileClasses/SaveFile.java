@@ -9,22 +9,6 @@ package PermanentFileClasses;
  *
  * @author Krongrah
  */
-public class Score {
+class SaveFile {
     
-private String name;
-private int score;
-    
-Score(String name, int score){
-this.name=name;
-this.score=score;
-}  
-public String getName(){
-return name;
-}
-public int getScore(){
-return score;
-}
-
-
-
 }

@@ -796,6 +796,7 @@ public class Game {
         } else {
             System.out.println("Congratulations, you won the game! you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
         }
+        //todo make highscore application
         wantToQuit = true;
     }
 
