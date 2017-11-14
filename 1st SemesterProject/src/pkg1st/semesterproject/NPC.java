@@ -55,6 +55,7 @@ public class NPC {
         System.out.println(clue.getName() + " was added to your journal.");
         return clue;
     }
+    
 
     // NPC constructor
     public NPC(String newName, Dialogue dialogue, Clue clue, int clueRelease) {

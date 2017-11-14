@@ -4,13 +4,14 @@ package pkg1st.semesterproject;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Game {
 
     private Parser parser;
     private Room currentRoom, lastRoom;
-    private NPC commissioner;
+    private NPC commissioner, hobo1, hobo2, hobo3, hobo4, coroner;
     private Room leftStreet, rightStreet, bar, hoboAlley, crimeScene, partnerHome, home, pd, jail, court;
     private PC player;
     private Beverage beverage;
@@ -38,7 +39,6 @@ public class Game {
 
     // Creates all rooms and their exits
     private void createRooms() {
-        //todo
 
         leftStreet = new Room(" on left street", "Left Street");
         rightStreet = new Room(" on Right street", "Right Street");
@@ -724,6 +724,7 @@ public class Game {
                         break;
                     } else {
                         goToJail(npc);
+                        updateCrimeScene();
                     }
                     success = true;
                     break;
@@ -770,14 +771,13 @@ public class Game {
 
     public void goToJail(NPC scum) {
         System.out.println("You moved the scum to jail.");
-        currentRoom.removeNpcFromRoom(scum);
-        jail.addNpcToRoom(scum);
+        currentRoom.moveNpc(scum, jail);
         currentRoom = jail;
         System.out.println("Commissioner: Good job, now you need to go find "
                 + "some better evidence to convict this bastard. I will be in the Police department.");
         home.addItemsToRoom(bloodSplatteredBadge);
         parser.addFinishers();
-        updateCrimeScene();
+        
     }
 
     public void lose() {
@@ -990,8 +990,23 @@ public class Game {
     private int damageRandomizer() {
         return ((int) (Math.random() * 11) - 5);
     }
-    private void updateCrimeScene(){
-        //todo
+    private void updateCrimeScene(){        
+        Iterator<NPC> iterator = crimeScene.getNPCsInRoom().iterator();
+
+    while(iterator.hasNext()) {
+        NPC npc = iterator.next();
+        if(npc.getName().equals("Coroner")){
+                iterator.remove();
+        }else{
+        
+        hoboAlley.addNpcToRoom(npc);
+        iterator.remove();
+         }
+        
+    }
+    
+    
+        }
     }
 
-}
+

@@ -77,8 +77,21 @@ public class Room {   //rooms have a description/name and map with strings to ro
      * @param npcsInRoom the npcsInRoom to set
      */
     public void removeNpcFromRoom(NPC npc) {
+        //this.NPCsInRoom.remove(npc);
+        this.NPCsInRoomMap.remove(npc.getName());
+    }
+    
+    public void moveNpc(NPC npc, Room newRoom){
+        
+        if(this.getNPCsInRoom().contains(npc)){
         this.NPCsInRoom.remove(npc);
         this.NPCsInRoomMap.remove(npc.getName());
+        newRoom.NPCsInRoom.add(npc);
+        newRoom.NPCsInRoomMap.put(npc.getName(), npc);
+        }
+        else {
+            System.out.println("No NPC to be moved");
+        }
     }
 
     //Getter for the description/name along with a list of exits.

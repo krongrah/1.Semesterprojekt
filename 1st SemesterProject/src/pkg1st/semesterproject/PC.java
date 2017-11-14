@@ -31,7 +31,7 @@ public class PC {
     //constructor
     PC(Room room) {
         points = 90;
-        drunkness = 10;
+        drunkness = 9999;
         pd = room;
     }
 
