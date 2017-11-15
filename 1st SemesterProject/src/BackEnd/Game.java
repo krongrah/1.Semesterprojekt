@@ -20,7 +20,7 @@ public class Game {
     private Parser parser;
     boolean wantToQuit = false;
     private PC player;
-    private Room currentRoom, lastRoom;
+    private Room currentRoom, lastRoom; //todo move to PC
     private World world=new World();
 
     // Constructor calls createRooms and creates new Parser
@@ -91,7 +91,10 @@ public class Game {
         } else if (commandWord == CommandWord.SEARCH) {
             search();
         } else if (commandWord == CommandWord.TALK) {
-            talk();
+            //talk();
+            PersistentFacade test=new PersistentFacade();
+            test.applyForHiScore("derp");
+            //todo
         } else if (commandWord == CommandWord.ARREST) {
             arrest();
         } else if (commandWord == CommandWord.INSPECT) {
@@ -667,7 +670,7 @@ public class Game {
                             System.out.println("This item can't be picked up.");
                             if (thing.getIsClue()) {
                                 player.addToJournal(thing.giveClue());
-                                thing.setIsClue();
+                                thing.deactivateClue();
                             }
                             break;
                         }
