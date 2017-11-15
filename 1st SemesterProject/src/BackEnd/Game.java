@@ -11,6 +11,7 @@ import BackEnd.WorldFill.Item;
 import BackEnd.Command.Parser;
 import BackEnd.Command.CommandWord;
 import BackEnd.Command.Command;
+import Permanence.PersistentFacade;
 import java.util.Iterator;
 import java.util.Scanner;
 
