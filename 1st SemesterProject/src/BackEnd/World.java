@@ -26,14 +26,14 @@ public class World {
     Map<String,Room> rooms=new HashMap<>();
 
     World(){
-    createItems();
+    createWorld();
     
     }
     
     
     
     
-    private void createItems() {
+    private void createWorld() {
 
         Clue bartenderStatement = new Clue("Bartender's statement", "According to Bartender Bert everyone hated the victim.", false);
         Clue hobo1Statement = new Clue("No-Teeth Terry's statement", "According to No-Teeth Terry the murderer was a drunk man.", false);
@@ -47,7 +47,6 @@ public class World {
         Clue bloodSplatteredBadgeClue = new Clue("Blood Splattered Badge evidence", "This is the badge of the victim was found in your home, \nwhich points to you being the killer.", true);
 
         
-        //create item clues
         
         // creation of the multiple items via the constructor in Item.java
         Item murderWeapon = new Item("Murder Weapon", "This is a broken bottle"
@@ -86,15 +85,7 @@ public class World {
         Room jail = new Room(" visiting the jail, in the pd", "Jail");
         Room court = new Room(" in court", "Court");
 
-        
-        
-       
-     
-        
-        
-        
-        
-
+      
 
         //create dialogue
         String[] coronerLine =  {

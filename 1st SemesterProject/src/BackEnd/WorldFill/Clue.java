@@ -33,7 +33,7 @@ public class Clue {
     }
 
     public boolean isBadge() {
-        if (name == "bloodSplatteredBadgeClue") {
+        if (name == "bloodSplatteredBadgeClue") {//todo dafuq?
             return true;
         } else {
             return false;
