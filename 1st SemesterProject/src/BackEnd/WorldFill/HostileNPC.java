@@ -21,6 +21,7 @@ public class HostileNPC extends NPC {
         super(newName, dialogue, clue, clueRelease);
         this.health = health;
         this.damage = damage;
+        this.aggression=aggression;
     }
 
     public int getHealth() {

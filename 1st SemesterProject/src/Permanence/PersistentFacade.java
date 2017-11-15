@@ -11,8 +11,8 @@ package Permanence;
  */
 public class PersistentFacade {
 
-    HiScore hiscore=new HiScore();
-    SaveFile save=new SaveFile();
+    private HiScore hiscore=new HiScore();
+    private SaveFile save=new SaveFile();
     
     public String[] applyForHiScore(String entry){
     return hiscore.doHiScore(entry);

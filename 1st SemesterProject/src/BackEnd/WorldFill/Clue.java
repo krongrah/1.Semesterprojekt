@@ -32,14 +32,6 @@ public class Clue {
         return description;
     }
 
-    public boolean isBadge() {
-        if (name == "bloodSplatteredBadgeClue") {//todo dafuq?
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     /**
      * @return the isConvictable
      */

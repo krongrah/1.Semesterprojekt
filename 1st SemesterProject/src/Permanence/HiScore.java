@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,10 +20,11 @@ import java.util.Scanner;
 class HiScore {
 
     private List<String> hiScoreList = new ArrayList<>();
-    private File file = new File("/Users/Krongrah/NetBeansProjects/1.Semesterprojekt-2/1st SemesterProject/build/classes/PermanentFileClasses/HiScore.txt");
-    private int max=10;
+    private File file = new File("HiScore.txt");
+    private final int max=10;
     
     private void pullHiScore() {
+        file.mkdir();//make directory if none exists
         try {
             Scanner input = new Scanner(file);
             while (input.hasNextLine()) {
@@ -72,9 +74,8 @@ class HiScore {
     }
     
     private void sort(){
-    //todo
+    Collections.sort(hiScoreList);
     }
-    
     
     String[] doHiScore(String entry){
     pullHiScore();

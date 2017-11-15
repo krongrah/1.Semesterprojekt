@@ -1,16 +1,20 @@
+package BackEnd;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BackEnd;
 
+
+import BackEnd.Room;
 import BackEnd.WorldFill.Beverage;
 import BackEnd.WorldFill.Clue;
 import BackEnd.WorldFill.Dialogue;
 import BackEnd.WorldFill.HostileNPC;
 import BackEnd.WorldFill.Item;
 import BackEnd.WorldFill.NPC;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,20 +22,16 @@ import java.util.Map;
  *
  * @author Krongrah
  */
-public class World {
+public class World implements Serializable {
     
-    Map<String,NPC> npcs=new HashMap<>();
-    Map<String,Item> items=new HashMap<>();
-    Map<String,Clue> clues=new HashMap<>();
-    Map<String,Room> rooms=new HashMap<>();
+    private Map<String,NPC> npcs=new HashMap<>();
+    private Map<String,Item> items=new HashMap<>();
+    private Map<String,Clue> clues=new HashMap<>();
+    private Map<String,Room> rooms=new HashMap<>();
 
-    World(){
+    public World(){
     createWorld();
-    
     }
-    
-    
-    
     
     private void createWorld() {
 
