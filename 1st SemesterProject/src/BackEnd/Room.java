@@ -1,9 +1,12 @@
-package pkg1st.semesterproject;
+package BackEnd;
 
+import BackEnd.WorldFill.NPC;
+import BackEnd.WorldFill.HostileNPC;
+import BackEnd.WorldFill.Item;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
+import java.util.Map;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -15,6 +18,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     private HashMap<String, Room> exits;
     private Set<Item> ItemsInRoom = new HashSet<>();
     private Set<NPC> NPCsInRoom = new HashSet<>();
+    private Map<String, NPC> NPCsInRoomMap = new HashMap<>();
     private String roomName;
 
     //contructor, requires description and generates an Exits map.
@@ -60,18 +64,37 @@ public class Room {   //rooms have a description/name and map with strings to ro
         return NPCsInRoom;
     }
 
-    /**
-     * @param npcsInRoom the npcsInRoom to set
-     */
-    public void addNpcToRoom(NPC npcsInRoom) {
-        this.NPCsInRoom.add(npcsInRoom);
+    public Map<String, NPC> getNPCsInRoomMap() {
+        return NPCsInRoomMap;
     }
 
     /**
      * @param npcsInRoom the npcsInRoom to set
      */
-    public void removeNpcFromRoom(NPC npcsInRoom) {
-        this.NPCsInRoom.remove(npcsInRoom);
+    public void addNpcToRoom(NPC npc) {
+        this.NPCsInRoom.add(npc);
+        this.NPCsInRoomMap.put(npc.getName(), npc);
+    }
+
+    /**
+     * @param npcsInRoom the npcsInRoom to set
+     */
+    public void removeNpcFromRoom(NPC npc) {
+        //this.NPCsInRoom.remove(npc);
+        this.NPCsInRoomMap.remove(npc.getName());
+    }
+    
+    public void moveNpc(NPC npc, Room newRoom){
+        
+        if(this.getNPCsInRoom().contains(npc)){
+        this.NPCsInRoom.remove(npc);
+        this.NPCsInRoomMap.remove(npc.getName());
+        newRoom.NPCsInRoom.add(npc);
+        newRoom.NPCsInRoomMap.put(npc.getName(), npc);
+        }
+        else {
+            System.out.println("No NPC to be moved");
+        }
     }
 
     //Getter for the description/name along with a list of exits.
@@ -99,6 +122,17 @@ public class Room {   //rooms have a description/name and map with strings to ro
      */
     public String getRoomName() {
         return roomName;
+    }
+
+    public HostileNPC getJumped() {
+        for (NPC fighter : NPCsInRoom) {
+            if (fighter instanceof HostileNPC) {
+                if (Math.random()<0.5) {
+                    return (HostileNPC) fighter;
+                }
+            }
+        }
+        return null;
     }
 
 }

@@ -1,4 +1,4 @@
-package pkg1st.semesterproject;
+package BackEnd.Command;
 
 import java.util.HashMap;
 
@@ -9,20 +9,21 @@ import java.util.HashMap;
 public class CommandWords {
 
     private HashMap<String, CommandWord> validCommands;
+
     //constructor, places Commandwords in the validCommands map
     public CommandWords() {
         validCommands = new HashMap<String, CommandWord>();
         for (CommandWord command : CommandWord.values()) {
-            
-            switch(command){
+
+            switch (command) {
                 case UNKNOWN:
-                break;
+                    break;
                 case LIE:
-                break;
+                    break;
                 case CONVICT:
-                break;
+                    break;
                 default:
-                validCommands.put(command.toString(), command);    
+                    validCommands.put(command.toString(), command);
             }
         }
     }
@@ -49,19 +50,20 @@ public class CommandWords {
         }
         System.out.println();
     }
-    public void addFinishers(){
-    for (CommandWord command : CommandWord.values()) {
-            
-            switch(command){
+
+    public void addFinishers() {
+        for (CommandWord command : CommandWord.values()) {
+
+            switch (command) {
                 case LIE:
-                validCommands.put(command.toString(), command);
-                break;
+                    validCommands.put(command.toString(), command);
+                    break;
                 case CONVICT:
-                validCommands.put(command.toString(), command);
-                break;
+                    validCommands.put(command.toString(), command);
+                    break;
                 default:
-                break;
-        }
+                    break;
+            }
         }
     }
-    }
+}

@@ -1,7 +1,7 @@
-package pkg1st.semesterproject;
+package BackEnd.Command;
+
 
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -43,7 +43,8 @@ public class Parser {
     public void showCommands() {
         commands.showAll();
     }
-    public void addFinishers(){
-    commands.addFinishers();
+
+    public void addFinishers() {
+        commands.addFinishers();
     }
 }
