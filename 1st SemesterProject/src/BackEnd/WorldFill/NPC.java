@@ -39,11 +39,11 @@ public class NPC {
     }
 
     public void getLine() {
-        System.out.println(name + ": " + dialogue.getLine());
+        System.out.println(name + ": " + getDialogue().getLine());
     }
 
     public boolean getAlibi() {
-        return dialogue.getAlibi();
+        return getDialogue().getAlibi();
     }
 
     public void setDialogue(Dialogue dialogue_) { //todo make set this in the constructor instead
@@ -62,6 +62,13 @@ public class NPC {
     public Clue giveClue() {
         System.out.println(clue.getName() + " was added to your journal.");
         return clue;
+    }
+
+    /**
+     * @return the dialogue
+     */
+    public Dialogue getDialogue() {
+        return dialogue;
     }
     
     

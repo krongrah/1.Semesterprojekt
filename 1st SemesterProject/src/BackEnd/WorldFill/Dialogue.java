@@ -16,6 +16,7 @@ public class Dialogue {
     private boolean condition1 = false;
     private String[] dialogue2 = null;
     private String alibi;
+    private String fightScream;
     private boolean isValid;
     private int lineIndex = 0;
 
@@ -33,6 +34,13 @@ public class Dialogue {
         this.dialogue2 = dialogue2;
         this.alibi = alibi;
         this.isValid = isValid;
+    }
+    public Dialogue(String[] dialogue1, String alibi, boolean isValid, String fightScream) {
+        this.dialogue1 = dialogue1;
+        this.dialogue2 = dialogue2;
+        this.alibi = alibi;
+        this.isValid = isValid;
+        this.fightScream = fightScream;
     }
 
     public String getLine() {
@@ -62,6 +70,13 @@ public class Dialogue {
     public boolean getAlibi() {
         System.out.println(alibi);
         return isValid;
+    }
+
+    /**
+     * @return the fightScream
+     */
+    public String getFightScream() {
+        return fightScream;
     }
 
 }
