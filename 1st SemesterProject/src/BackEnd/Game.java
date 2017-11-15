@@ -11,7 +11,6 @@ import BackEnd.WorldFill.Item;
 import BackEnd.Command.Parser;
 import BackEnd.Command.CommandWord;
 import BackEnd.Command.Command;
-import Permanence.PersistentFacade;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -91,10 +90,7 @@ public class Game {
         } else if (commandWord == CommandWord.SEARCH) {
             search();
         } else if (commandWord == CommandWord.TALK) {
-            //talk();
-            PersistentFacade test=new PersistentFacade();
-            test.applyForHiScore("derp");
-            //todo
+            talk();
         } else if (commandWord == CommandWord.ARREST) {
             arrest();
         } else if (commandWord == CommandWord.INSPECT) {
