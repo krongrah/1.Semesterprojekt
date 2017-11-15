@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkg1st.semesterproject;
+package BackEnd;
 
+import BackEnd.WorldFill.Clue;
+import BackEnd.WorldFill.Item;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -199,6 +201,6 @@ public class PC {
 
     public void addDrunkness(int drunkvalue) {
         drunkness += drunkvalue;
-    }
-
+    } 
+    
 }

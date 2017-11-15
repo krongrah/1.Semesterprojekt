@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkg1st.semesterproject;
+package BackEnd.WorldFill;
 
 /**
  *
@@ -20,7 +20,7 @@ public class Dialogue {
     private int lineIndex = 0;
 
     //single dialogue constructor
-    Dialogue(String[] dialogue1, String alibi, boolean isValid) {
+    public Dialogue(String[] dialogue1, String alibi, boolean isValid) {
         this.dialogue1 = dialogue1;
         this.alibi = alibi;
         this.isValid = isValid;
@@ -28,7 +28,7 @@ public class Dialogue {
     }
 
     //double dialogue constructor
-    Dialogue(String[] dialogue1, String[] dialogue2, String alibi, boolean isValid) {
+    public Dialogue(String[] dialogue1, String[] dialogue2, String alibi, boolean isValid) {
         this.dialogue1 = dialogue1;
         this.dialogue2 = dialogue2;
         this.alibi = alibi;

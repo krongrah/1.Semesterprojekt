@@ -1,4 +1,4 @@
-package pkg1st.semesterproject;
+package BackEnd.Command;
 
 /**
  * @author Michael Kolling and David J. Barnes

@@ -1,5 +1,8 @@
-package pkg1st.semesterproject;
+package BackEnd;
 
+import BackEnd.WorldFill.NPC;
+import BackEnd.WorldFill.HostileNPC;
+import BackEnd.WorldFill.Item;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -124,7 +127,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     public HostileNPC getJumped() {
         for (NPC fighter : NPCsInRoom) {
             if (fighter instanceof HostileNPC) {
-                if (/*Math.random()<0.5*/true) {
+                if (Math.random()<0.5) {
                     return (HostileNPC) fighter;
                 }
             }

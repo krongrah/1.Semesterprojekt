@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkg1st.semesterproject;
+package BackEnd.WorldFill;
 
 public class Item {
 
     // creating the shared attributes
-    String name;
-    String description;
-    Boolean collectible;
-    Boolean isClue;
-    Clue clue;
+    private String name;
+    private String description;
+    private Boolean collectible;
+    private Boolean isClue;
+    private Clue clue;
 
     //creating the getter methods
     public boolean getCollectible() {
@@ -20,7 +20,7 @@ public class Item {
 
     }
 
-    public boolean getIsclue() {
+    public boolean getIsClue() {
         return isClue;
     }
 

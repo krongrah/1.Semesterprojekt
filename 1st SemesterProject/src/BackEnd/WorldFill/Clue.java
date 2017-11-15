@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkg1st.semesterproject;
+package BackEnd.WorldFill;
 
 /**
  *
@@ -17,7 +17,7 @@ public class Clue {
     private boolean isConvictable;
 
     //constructor
-    Clue(String _name, String _description, boolean _isConvictable) {
+    public Clue(String _name, String _description, boolean _isConvictable) {
         name = _name;
         description = _description;
         isConvictable = _isConvictable;

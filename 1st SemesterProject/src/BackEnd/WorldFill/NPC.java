@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkg1st.semesterproject;
+package BackEnd.WorldFill;
 
+import BackEnd.WorldFill.Dialogue;
+import BackEnd.WorldFill.Clue;
 import java.util.*;
 
 /**
@@ -55,6 +57,8 @@ public class NPC {
         System.out.println(clue.getName() + " was added to your journal.");
         return clue;
     }
+    
+    
     
 
     // NPC constructor

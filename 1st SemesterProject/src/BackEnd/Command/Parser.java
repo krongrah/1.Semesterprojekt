@@ -1,5 +1,7 @@
-package pkg1st.semesterproject;
+package BackEnd.Command;
 
+import BackEnd.Command.CommandWords;
+import BackEnd.Command.Command;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
