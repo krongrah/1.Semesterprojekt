@@ -20,7 +20,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     private Set<NPC> NPCsInRoom = new HashSet<>();
     private Map<String, NPC> NPCsInRoomMap = new HashMap<>();
     private String roomName;
-    private boolean isHoboAccessable;
+    private boolean hoboAccessable;
     
 
     //contructor, requires description and generates an Exits map.
@@ -28,13 +28,13 @@ public class Room {   //rooms have a description/name and map with strings to ro
         this.description = description;
         this.roomName = roomName;
         exits = new HashMap<String, Room>();
-        this.isHoboAccessable=false;
+        this.hoboAccessable=false;
     }
     public Room(String description, String roomName, boolean isHoboAccessable) {
         this.description = description;
         this.roomName = roomName;
         exits = new HashMap<String, Room>();
-        this.isHoboAccessable=isHoboAccessable;
+        this.hoboAccessable=hoboAccessable;
     }
 
     //adds a neighbooring room to the Exits map, with the direction being the key
@@ -143,8 +143,8 @@ public class Room {   //rooms have a description/name and map with strings to ro
     /**
      * @return the isHoboAccessable
      */
-    public boolean isIsHoboAccessable() {
-        return isHoboAccessable;
+    public boolean HoboAccessable() {
+        return hoboAccessable;
     }
 
 }
