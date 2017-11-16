@@ -7,8 +7,10 @@ package BackEnd;
 
 import BackEnd.WorldFill.Clue;
 import BackEnd.WorldFill.Item;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -41,18 +43,10 @@ public class PC {
 
     //Checking methods
     public void displayInventory() {
-        int empty = 0;
+        List<String> stuff=new ArrayList();
         for (Item thing : inventory) {
-            System.out.println(thing.getName() + ":");
-            System.out.println(thing.getDescription() + "\n");
-            System.out.println("you have " + inventory.size() + "/" + maxInventoryCapacity + " spots left in your inventory");
+            stuff.add(thing.getName() + ":\n"+thing.getDescription() + "\n");
         }
-
-        if (inventory.size() == empty) {
-            System.out.println("Your inventory is empty");
-
-        }
-
     }
 
     public Set<Item> getInventory() {
@@ -60,92 +54,72 @@ public class PC {
     }
 
     public void displayJournal() {
-        if (journal.isEmpty()) {
-            System.out.println("Your journal is empty");
-        }else{
+        List<String> evidenceStuff=new ArrayList();
         for (Entry<String,Clue> ClueItem : journal.entrySet()) {
-            System.out.println(ClueItem.getKey() + ":");
-            System.out.println(ClueItem.getValue().getDescription() + "\n");
+        evidenceStuff.add(ClueItem.getKey() + ":\n"+ClueItem.getValue().getDescription() + "\n");
         }
         }
-        }
-
-    public void diplayDesk(Room currentRoom) {
-        int empty = 0;
-        if (currentRoom == pd) {
-            for (Item deskItem : desk) {
-                System.out.println(deskItem.getName() + ":");
-                System.out.println(deskItem.getDescription() + "\n");
-            }
-
-            if (desk.size() == empty) {
-                System.out.println("Your desk is empty");
-
-            }
-        } else {
-            System.out.println("You can't check your desk from here, only in the Police station.");
-        }
-    }
+//          todo remove?
+//    public String diplayDesk(Room currentRoom) {
+//        int empty = 0;
+//        if (currentRoom == pd) {
+//            for (Item deskItem : desk) {
+//                System.out.println(deskItem.getName() + ":");
+//                System.out.println(deskItem.getDescription() + "\n");
+//            }
+//
+//            if (desk.size() == empty) {
+//                return("Your desk is empty");
+//
+//            }
+//        } else {
+//            return("You can't check your desk from here, only in the Police station.");
+//        }
+//    }
 
     //getters for the descriptions
     public void inspectItem(Item thing) {
         if (inventory.contains(thing)) {
             System.out.println(thing.getDescription());
-        } else {
-            System.out.println("You can't find it in your bag.");
-        }
-    }
-
-    //methods for moving items between inventory and desk
-    public void moveToInventory(Item thing) {
-        if (inventory.size() <= maxInventoryCapacity) {
-            inventory.add(thing);
-            desk.remove(thing);
-            System.out.println("You sucessfully moved the item from there to here.");
-        } else {
-            System.out.println("Your bag is too small, or you just don't want to carry it.");
         }
     }
 
     public void moveToDesk(Item thing) {
         inventory.remove(thing);
         desk.add(thing);
-        System.out.println("You sucessfully moved the item from your inventory to your desk.");
     }
 
     public void moveToRoom(Item thing, Room currentRoom) {
         inventory.remove(thing);
         currentRoom.getItemsInRoom().add(thing);
-        System.out.println("You sucessfully moved the item from your inventory to " + currentRoom.getRoomName() + ".");
     }
 
     //methods for adding to cluelist and inventory
-    public void addToInventory(Item thing, Room currentRoom) {
+    public String addToInventory(Item thing, Room currentRoom) {
 
         if (inventory.size() < maxInventoryCapacity) {
             if (thing.getCollectible()) {
-                System.out.println("You placed it in your bag.");
+                
                 currentRoom.getItemsInRoom().remove(thing);
                 inventory.add(thing);
+                return("You placed it in your bag.");
             } else {
-                System.out.println("You can't seem to get a hold of it.");
+                return("You can't seem to get a hold of it.");
             }
         } else {
-            System.out.println("Your inventory are full");
+            return("Your inventory are full");
         }
 
     }
 
     public void addToJournal(Clue thing) {
         journal.put(thing.getName(),thing);
-        System.out.println("You noted the clue down.");
         addPoints(5);
     }
 
     public void addToevidence(String thing) {
         evidence.put(thing,journal.get(thing));
         journal.remove(thing);
-        System.out.println("Added "+thing+" to evidence");
     }
 
     public boolean isEvidence2() {
