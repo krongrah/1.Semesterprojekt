@@ -15,15 +15,18 @@ import Acquaintance.IFoundation;
 public class BackEndFacade implements IBackEnd{
 
     IFoundation foundation;
-    
+    Game game=new Game();
+
     @Override
     public void injectFoundation(IFoundation foundation) {
         this.foundation=foundation;
     }
     
     public void play(){
-    Game game=new Game();
     game.play();
     }
     
+    public String test(){
+    return game.test();
+    }
 }

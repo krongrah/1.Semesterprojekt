@@ -824,7 +824,9 @@ public class Game {
     
     }
 
-    
+    String test(){
+    return "ye boi!";
+    }
     }
 
 

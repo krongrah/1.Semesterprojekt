@@ -5,6 +5,7 @@
  */
 package FrontEnd;
 
+import Acquaintance.IBackEnd;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ import javafx.scene.control.TextField;
  * @author Krongrah
  */
 public class FXMLDocumentController implements Initializable {
+    IBackEnd backEnd;
     
     @FXML
     private Button talk;
@@ -39,20 +41,29 @@ public class FXMLDocumentController implements Initializable {
     
     public void onButtonClick(ActionEvent event){
         
-    }    
+    } 
+   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
     }    
 
     @FXML
     private void talkGui(ActionEvent event) {
-        textOutput.setText("success");
+        textOutput.setText(backEnd.test());
+        
     }
 
     @FXML
     private void searchGui(ActionEvent event) {
+        
     }
+    
+    void importBackEnd(IBackEnd backEnd){
+    this.backEnd=backEnd;
+    }
+    void test(){}
     
 }
