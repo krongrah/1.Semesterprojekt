@@ -15,7 +15,6 @@ public class NPC {
     // NPC attributes
     private String name;
     private Dialogue dialogue;
-    private int suspectability; //todo remove?
     private Clue clue;
     private int askForClueCounter = 0;
     private int clueRelease;
@@ -33,17 +32,15 @@ public class NPC {
         return name;
     }
 
-    public int getSuspectability() {
-        //todo remove?
-        return suspectability;
+    public String getLine() {
+        return(name + ": " + getDialogue().getLine());
     }
 
-    public void getLine() {
-        System.out.println(name + ": " + getDialogue().getLine());
+    public boolean getAlibiValidity() {
+        return getDialogue().isAlibiValid();
     }
-
-    public boolean getAlibi() {
-        return getDialogue().getAlibi();
+    public String getAlibi(){
+    return getDialogue().getAlibi();
     }
 
     public void setDialogue(Dialogue dialogue_) { //todo make set this in the constructor instead
@@ -60,7 +57,6 @@ public class NPC {
     }
 
     public Clue giveClue() {
-        System.out.println(clue.getName() + " was added to your journal.");
         return clue;
     }
 
