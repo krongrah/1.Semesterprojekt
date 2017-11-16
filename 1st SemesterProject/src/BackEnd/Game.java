@@ -285,7 +285,7 @@ public class Game {
         return ((int) (Math.random() * 11) - 5);
     }
     private void updateCrimeScene(){        
-        Iterator<NPC> iterator = world.getRoom("Crime scene").getNPCsInRoom().iterator();
+        Iterator<NPC> iterator = world.getRoom("Crime Scene").getNPCsInRoom().iterator();
 
     while(iterator.hasNext()) {
         NPC npc = iterator.next();
@@ -300,8 +300,8 @@ public class Game {
     Item corpseOutline = new Item("Corpse Outline", "its was a dead guy, he looked like he was stabbed"
                 + " brutally multiple times.\n When you looked closer you noticed"
                 + " his face is covered in spit", true, false, world.getClue("Corpse"));
-        world.getRoom("Crime scene").addItemsToRoom(corpseOutline);
-        world.getRoom("Crime scene").removeItemFromRoom(world.getItem("Corpse"));
+        world.getRoom("Crime Scene").addItemsToRoom(corpseOutline);
+        world.getRoom("Crime Scene").removeItemFromRoom(world.getItem("Corpse"));
         }
     
     public void fightLoop(HostileNPC enemy) {
