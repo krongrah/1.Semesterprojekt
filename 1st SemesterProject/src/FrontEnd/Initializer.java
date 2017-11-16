@@ -18,7 +18,7 @@ import static javafx.application.Application.launch;
  *
  * @author Krongrah
  */
-public class Initializer extends Application implements IFrontEnd{
+public class Initializer extends Application{
     IBackEnd backEnd;
     public Initializer(){}
     @Override
@@ -26,6 +26,12 @@ public class Initializer extends Application implements IFrontEnd{
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         
         Scene scene = new Scene(root);
+        
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
+        //FXMLDocumentController c = loader.getController();
+        //c.test();
+        //todo
+        
         
         stage.setScene(scene);
         stage.show();
@@ -35,13 +41,14 @@ public class Initializer extends Application implements IFrontEnd{
      * @param args the command line arguments
      */
     public void begin(String[] args) {
+        
         launch(args);
         backEnd.play();
     }
-
-    @Override
-    public void injectBackEnd(IBackEnd backEnd) {
-       this.backEnd=backEnd;
+    void injectBackEnd(IBackEnd backEnd){
+    this.backEnd=backEnd;
+    
     }
+
     
 }

@@ -12,6 +12,7 @@ package Acquaintance;
 public interface IBackEnd {
     void injectFoundation(IFoundation foundation);
     void play();
+    String test();
     
     
 }
