@@ -11,7 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -23,25 +23,19 @@ import javafx.scene.control.TextField;
 public class FXMLDocumentController implements Initializable {
     
     @FXML
-    private Button inventory;
-    @FXML
-    private Button drink;
-    @FXML
-    private Button search;
-    @FXML
-    private Button inspect;
-    @FXML
     private Button talk;
     @FXML
-    private Button save;
+    private ProgressIndicator Drunkmeter;
     @FXML
-    private Button help;
+    private TextArea textOutput;
     @FXML
-    private ProgressIndicator drunkness;
+    private TextField textInput;
     @FXML
-    private TextArea outputTextBox;
+    private ProgressBar badCopBar;
     @FXML
-    private TextField inputTextBox;
+    private ProgressBar GoodCopBar;
+    @FXML
+    private Button search;
     
     public void onButtonClick(ActionEvent event){
         
@@ -51,5 +45,14 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void talkGui(ActionEvent event) {
+        textOutput.setText("success");
+    }
+
+    @FXML
+    private void searchGui(ActionEvent event) {
+    }
     
 }

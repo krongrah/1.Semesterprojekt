@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FrontEnd.FXMLDocumentController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="203.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="397.0" />
@@ -28,25 +28,25 @@
         </rowConstraints>
          <children>
             <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
+            <Button fx:id="talk" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#talkGui" text="Talk" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
             <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
-            <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
+            <Button fx:id="search" mnemonicParsing="false" onAction="#searchGui" text="Search" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
             <Button mnemonicParsing="false" text="Button" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
             <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
             <Button mnemonicParsing="false" text="Button" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-            <ProgressIndicator progress="0.0" />
+            <ProgressIndicator fx:id="Drunkmeter" progress="0.0" />
          </children>
       </GridPane>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
          <children>
-            <TextArea maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-            <TextField maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+            <TextArea fx:id="textOutput" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <TextField fx:id="textInput" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="16.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS">
          <children>
-            <ProgressBar maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
-            <ProgressBar maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
+            <ProgressBar fx:id="badCopBar" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
+            <ProgressBar fx:id="GoodCopBar" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />

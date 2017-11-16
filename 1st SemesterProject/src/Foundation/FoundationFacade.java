@@ -5,14 +5,14 @@
  */
 package Foundation;
 
-import Acquaintance.IFoundationFacade;
 import java.util.ArrayList;
+import Acquaintance.IFoundation;
 
 /**
  *
  * @author Krongrah
  */
-public class FoundationFacade implements IFoundationFacade{
+public class FoundationFacade implements IFoundation{
 
     private HiScore hiscore=new HiScore();
     private SaveFile save=new SaveFile();

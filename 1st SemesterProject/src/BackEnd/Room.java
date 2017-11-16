@@ -127,7 +127,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     public HostileNPC getJumped() {
         for (NPC fighter : NPCsInRoom) {
             if (fighter instanceof HostileNPC) {
-                if (Math.random()<0.5) {
+                if (Math.random()<((HostileNPC) fighter).getAggression()) {
                     return (HostileNPC) fighter;
                 }
             }

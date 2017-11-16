@@ -184,9 +184,6 @@ public class Game {
         }
     }
 
-    
-
-
     private void getInfo() {
 
         if (currentRoom.getNPCsInRoomMap().isEmpty()) {
@@ -195,6 +192,7 @@ public class Game {
             System.out.println("The other people here are:");
             for (NPC npc : currentRoom.getNPCsInRoom()) {
                 System.out.println(npc.getName());
+                
             }
         }
     }
@@ -264,10 +262,8 @@ public class Game {
 
     public void drunkness() {
         System.out.println(player.getDrunkness());
-
-        
-        
     }
+    
     private int damageRandomizer() {
         return ((int) (Math.random() * 11) - 5);
     }
@@ -278,18 +274,18 @@ public class Game {
         NPC npc = iterator.next();
         if(npc.getName().equals("Coroner")){
                 iterator.remove();
-        }else{
-        
+            }else{        
         world.getRoom("Hobo Alley").addNpcToRoom(npc);
         iterator.remove();
-         }
-        
-    }
-       
-    
+        world.getHostileNPC(npc.getName()).setAggression(0.3);
+                }          
+            }
+    Item corpseOutline = new Item("Corpse Outline", "its was a dead guy, he looked like he was stabbed"
+                + " brutally multiple times.\n When you looked closer you noticed"
+                + " his face is covered in spit", true, false, world.getClue("Corpse"));
+        world.getRoom("Crime scene").addItemsToRoom(corpseOutline);
+        world.getRoom("Crime scene").removeItemFromRoom(world.getItem("Corpse"));
         }
-    
-    
     
     public void fightLoop(HostileNPC enemy) {
         player.removeDrunkness(1);
@@ -300,10 +296,12 @@ public class Game {
         boolean keepFighting = true;
         int random1;
         int random2;
-
+        
         Scanner fightCommander = new Scanner(System.in);
         String fightCommand;
         System.out.println("You are now fighting a " + enemy.getName() + ". For your options, type 'help'.");
+        System.out.println(enemy.getName()+" yells: "+enemy.getFightScream());
+
         if (player.inventoryContains("gun")) {
             playerDmg = 30;
             System.out.println("You draw your gun.");
@@ -371,6 +369,7 @@ public class Game {
             }
         }
         player.setCurrentHealth(playerHp);
+        getInfo();
     }
     
     public void convict() {

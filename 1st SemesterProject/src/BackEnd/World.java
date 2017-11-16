@@ -25,6 +25,7 @@ import java.util.Map;
 public class World implements Serializable {
     
     private Map<String,NPC> npcs=new HashMap<>();
+    private Map<String, HostileNPC> hostileNpcs = new HashMap<>();
     private Map<String,Item> items=new HashMap<>();
     private Map<String,Clue> clues=new HashMap<>();
     private Map<String,Room> rooms=new HashMap<>();
@@ -141,27 +142,34 @@ public class World implements Serializable {
         String hobo3Alibi = "Randomly throwing around accusations is often a sign of guilt, except when you do it, of course...";
         String hobo4Alibi = "This guy is insane... theres i no other way around it.";
 
+        //Fight Screams System.out.println((char)27 + "[31mThis text would show up red" + (char)27 + "[0m");
+        String fightScreamHobo1=(char)27 + "[31mYou arrested my friend, i can't bite you but i can punch you!"+ (char)27 + "[0m";
+        String fightScreamHobo2=(char)27 + "[31mYou arrested my friend, imma mess ya suit, n' ya face up now!"+ (char)27 + "[0m";
+        String fightScreamHobo3=(char)27 + "[31mYou arrested my friend, i am gonna, kill you and sell your badge for heroin!"+ (char)27 + "[0m";
+        String fightScreamHobo4=(char)27 + "[31mMonkey goes UH-UH-AH-AH! I like CAAAKEE!!"+ (char)27 + "[0m";
+        String fightScreamWife =(char)27 + "[31mThis is for coming home stinking like Booze, again!"+ (char)27 + "[0m";
+        
         //add dialogue to dialogue object
         Dialogue coronerDialogue = new Dialogue(coronerLine, coronerAlibi, true);
-        Dialogue wifeDialogue = new Dialogue(wifeLine, wifeAlibi, true);
+        Dialogue wifeDialogue = new Dialogue(wifeLine, wifeAlibi, true, fightScreamWife);
         Dialogue bartenderDialogue = new Dialogue(bartenderLine, bartenderAlibi, true);
-        Dialogue hobo1Dialogue = new Dialogue(hobo1Line, hobo1Alibi, false);
-        Dialogue hobo2Dialogue = new Dialogue(hobo2Line, hobo2Alibi, false);
-        Dialogue hobo3Dialogue = new Dialogue(hobo3Line, hobo3Alibi, false);
-        Dialogue hobo4Dialogue = new Dialogue(hobo4Line, hobo4Alibi, false);
+        Dialogue hobo1Dialogue = new Dialogue(hobo1Line, hobo1Alibi, false, fightScreamHobo1);
+        Dialogue hobo2Dialogue = new Dialogue(hobo2Line, hobo2Alibi, false, fightScreamHobo2);
+        Dialogue hobo3Dialogue = new Dialogue(hobo3Line, hobo3Alibi, false, fightScreamHobo3);
+        Dialogue hobo4Dialogue = new Dialogue(hobo4Line, hobo4Alibi, false, fightScreamHobo4);
         Dialogue commissionerDialogue = new Dialogue(commissionerLine1, commissionerLine2, commissionerAlibi, true);
 
         //create clues
+     
         
         
         
         
         
-        
-        NPC hobo1 = new NPC("No-Teeth Terry", hobo1Dialogue, hobo1Statement, 2);
-        NPC hobo2 = new NPC("Dirty Darryl", hobo2Dialogue, hobo2Statement, 2);
-        NPC hobo3 = new NPC("Heroin Harry", hobo3Dialogue, hobo3Statement, 1);
-        NPC hobo4 = new NPC("Insane Dwayne", hobo4Dialogue, hobo4Statement, 1);
+        HostileNPC hobo1 = new HostileNPC("No-Teeth Terry", hobo1Dialogue, hobo1Statement, 2);
+        HostileNPC hobo2 = new HostileNPC("Dirty Darryl", hobo2Dialogue, hobo2Statement, 2);
+        HostileNPC hobo3 = new HostileNPC("Heroin Harry", hobo3Dialogue, hobo3Statement, 1);
+        HostileNPC hobo4 = new HostileNPC("Insane Dwayne", hobo4Dialogue, hobo4Statement, 1);
         NPC commissioner = new NPC("Commissioner Curt", commissionerDialogue, null, 0);
         NPC bartender = new NPC("Bartender Bert", bartenderDialogue, bartenderStatement, 2);
         HostileNPC wife = new HostileNPC("Wife", wifeDialogue, null, 0, 50, 5, 0.5);
@@ -219,10 +227,10 @@ public class World implements Serializable {
 
         
         
-        npcs.put(hobo1.getName(), hobo1);
-        npcs.put(hobo2.getName(), hobo2);
-        npcs.put(hobo3.getName(), hobo3);
-        npcs.put(hobo4.getName(), hobo4);
+        hostileNpcs.put(hobo1.getName(), hobo1);
+        hostileNpcs.put(hobo2.getName(), hobo2);
+        hostileNpcs.put(hobo3.getName(), hobo3);
+        hostileNpcs.put(hobo4.getName(), hobo4);
         npcs.put(coroner.getName(), coroner);
         npcs.put(commissioner.getName(), commissioner);
         npcs.put(wife.getName(), wife);
@@ -268,6 +276,9 @@ public class World implements Serializable {
     
     public NPC getNPC(String name){
     return npcs.get(name);
+    }
+    public HostileNPC getHostileNPC(String name){
+    return hostileNpcs.get(name);
     }
     public Item getItem(String name){
     return items.get(name);

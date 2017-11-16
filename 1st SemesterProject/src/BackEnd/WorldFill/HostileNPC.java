@@ -16,12 +16,20 @@ public class HostileNPC extends NPC {
     private int health;
     private int damage;
     private double aggression;
-
+    
     public HostileNPC(String newName, Dialogue dialogue, Clue clue, int clueRelease, int health, int damage, double aggression) {
         super(newName, dialogue, clue, clueRelease);
         this.health = health;
         this.damage = damage;
         this.aggression=aggression;
+    }
+    
+    //semi No-arg constructor for making Normal NPCs Hostile
+    public HostileNPC(String newName, Dialogue dialogue, Clue clue, int clueRelease) {
+        super(newName, dialogue, clue, clueRelease);
+        this.health = 50;
+        this.damage = 7;
+        this.aggression=-1;
     }
 
     public int getHealth() {
@@ -37,6 +45,17 @@ public class HostileNPC extends NPC {
     }
 
     public void calmDown() {
-        aggression = -1;
+        setAggression(-1);
+    }
+
+    /**
+     * @param aggression the aggression to set
+     */
+    public void setAggression(double aggression) {
+        this.aggression = aggression;
+    }
+    
+    public String getFightScream(){
+    return getDialogue().getFightScream();
     }
 }

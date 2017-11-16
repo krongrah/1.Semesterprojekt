@@ -5,19 +5,22 @@
  */
 package FrontEnd;
 
+import Acquaintance.IBackEnd;
+import Acquaintance.IFrontEnd;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import BackEnd.Game;
+import static javafx.application.Application.launch;
 
 /**
  *
  * @author Krongrah
  */
-public class Starter extends Application {
-    
+public class Initializer extends Application implements IFrontEnd{
+    IBackEnd backEnd;
+    public Initializer(){}
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
@@ -31,10 +34,14 @@ public class Starter extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-       // launch(args);
-        Game game = new Game();
-        game.play();
+    public void begin(String[] args) {
+        launch(args);
+        backEnd.play();
+    }
+
+    @Override
+    public void injectBackEnd(IBackEnd backEnd) {
+       this.backEnd=backEnd;
     }
     
 }
