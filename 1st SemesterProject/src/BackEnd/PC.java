@@ -20,6 +20,7 @@ import java.util.Set;
 public class PC {
 
     //player attributes
+    private int movementChecker;
     private int drunkness;
     private int points;
     private Set<Item> inventory = new HashSet<>();
@@ -34,6 +35,7 @@ public class PC {
     PC(Room room) {
         points = 90;
         drunkness = 9999;
+        movementChecker = 0;
         pd = room;
     }
 
@@ -135,7 +137,7 @@ public class PC {
     }
 
     public void addToJournal(Clue thing) {
-        journal.put(thing.getName().toLowerCase(),thing);
+        journal.put(thing.getName(),thing);
         System.out.println("You noted the clue down.");
         addPoints(5);
     }
@@ -202,5 +204,14 @@ public class PC {
     public void addDrunkness(int drunkvalue) {
         drunkness += drunkvalue;
     } 
-    
+    public void passTime(int timer){
+        movementChecker += timer;
+    }
+    public int getMovementChecker() {
+        return movementChecker;
+    }
+            
 }
+    
+    
+

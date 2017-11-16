@@ -170,8 +170,8 @@ public class Game {
                 }
             }
         }
-        checkDrunkness();
-        player.removeDrunkness(1);
+        Checker();
+        remover();
     }
 
     // Quits the game
@@ -215,6 +215,7 @@ public class Game {
     }
 
     public void goToJail(NPC scum) {
+        remover();
         System.out.println("You moved the scum to jail.");
         currentRoom.moveNpc(scum, world.getRoom("Jail"));
         currentRoom = world.getRoom("Jail");
@@ -245,7 +246,7 @@ public class Game {
         wantToQuit = true;
     }
 
-    public void checkDrunkness() {
+    public void Checker() {
         if (player.getDrunkness() == 15) {
             System.out.println("you feel your buzz start to fade, you need a drink");
         }
@@ -257,8 +258,24 @@ public class Game {
             System.out.println("You feel completely sober, you fall down to the floor and die, knowing nobody loved you.");
             lose();
         }
-
+            switch (player.getMovementChecker()) {
+                case 12: currentRoom.moveNpc(world.getNPC("Dirty Darryl"), world.getRoom("Right Street"));
+                
+                
+                    
+                
+                
+                
+                
+                
+                
+            } 
     }
+        
+
+
+
+
 
     public void drunkness() {
         System.out.println(player.getDrunkness());
@@ -288,7 +305,7 @@ public class Game {
         }
     
     public void fightLoop(HostileNPC enemy) {
-        player.removeDrunkness(1);
+        remover();
         int playerHp = player.getCurrentHealth();
         int enemyHp = enemy.getHealth();
         int playerDmg = 10;
@@ -373,7 +390,7 @@ public class Game {
     }
     
     public void convict() {
-        player.removeDrunkness(1);
+        remover();
         if (currentRoom == world.getRoom("Police Department")) {
             boolean run = true;
             boolean confess=false;
@@ -457,6 +474,7 @@ public class Game {
     }
     
     private void drop(Command command) {
+        remover();
         String where = command.getSecondWord();
         //if no second word    
         if (!command.hasSecondWord()) {
@@ -558,7 +576,7 @@ public class Game {
 
         //Gives the player a list of NPCs in the room
         boolean sucess = false;
-        player.removeDrunkness(1);
+        remover();
         do {
 
             System.out.println("Who do you wish to talk to?");
@@ -619,7 +637,7 @@ public class Game {
     //todo the search is a mess
     //add to cluelist
     private void search() {
-        player.removeDrunkness(1);
+        remover();
 
         //prints all items in the room.
         if (!currentRoom.getItemsInRoom().isEmpty()) {
@@ -682,7 +700,7 @@ public class Game {
     }
 
     public void arrest() {
-        player.removeDrunkness(1);
+        remover();
         System.out.println("You have decided to begin arresting people, god bless you");
         System.out.println("Are you sure?   Yes/No");
         Scanner accusing = new Scanner(System.in);
@@ -744,22 +762,22 @@ public class Game {
                 fightLoop((HostileNPC) world.getNPC("Wife"));
             }
             if (testerr.equals("arrest")){
-                player.addToJournal(world.getClue("bloodSplatteredBagde"));
-                player.addToJournal(world.getClue("hobo2Statement"));
-                currentRoom = world.getRoom("HoboAlley");
+                player.addToJournal(world.getClue("Badge"));
+                player.addToJournal(world.getClue("Dirty Darryl's Statement"));
+                currentRoom = world.getRoom("Crime Scene");
                 arrest();
                 wantToQuit = true;
             }
             if (testerr.equals("convict")){
-                player.addToJournal(world.getClue("bloodSplatteredBagde"));
-                player.addToJournal(world.getClue("hobo2Statement"));
-                currentRoom = world.getRoom("pd");
+                player.addToJournal(world.getClue("Badge"));
+                player.addToJournal(world.getClue("Dirty Darryl's Statement"));
+                currentRoom = world.getRoom("Police Department");
                 convict();
                 wantToQuit = true;
             }
             if (testerr.equals("drink")) {
-                currentRoom = world.getRoom("bar");
-                player.addToInventory(world.getItem("beer"), currentRoom);
+                currentRoom = world.getRoom("Bar");
+                player.addToInventory(world.getItem("Beer"), currentRoom);
                 drink();
                 System.out.println("this is how drunk you are");
                 drunkness();
@@ -786,6 +804,11 @@ public class Game {
 
             }
     
+    }
+    public void remover() {
+        player.removeDrunkness(1);
+        player.passTime(2);
+        
     }
 
     

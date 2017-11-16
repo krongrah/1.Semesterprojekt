@@ -20,6 +20,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     private Set<NPC> NPCsInRoom = new HashSet<>();
     private Map<String, NPC> NPCsInRoomMap = new HashMap<>();
     private String roomName;
+    
 
     //contructor, requires description and generates an Exits map.
     public Room(String description, String roomName) {

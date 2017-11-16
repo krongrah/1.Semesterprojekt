@@ -36,40 +36,40 @@ public class World implements Serializable {
     
     private void createWorld() {
 
-        Clue bartenderStatement = new Clue("Bartender's statement", "According to Bartender Bert everyone hated the victim.", false);
-        Clue hobo1Statement = new Clue("No-Teeth Terry's statement", "According to No-Teeth Terry the murderer was a drunk man.", false);
-        Clue hobo2Statement = new Clue("Dirty Darryl's statement", "Dirty Darryl obviously hates cops.", true);
-        Clue hobo3Statement = new Clue("Heroin Harry's statement", "According to Heroin Harry Dirty Darryl is the killer.", true);
-        Clue hobo4Statement = new Clue("Insane Dwayne's statement", "Insane Dwayne is insane.", true);
-        Clue coronerStatement = new Clue("Coroner's statement", "According to the coroner the murder was a crime of passion, \nand the victim knew his killer.", true);
+        Clue bartenderStatement = new Clue("Bartender's Statement", "According to Bartender Bert everyone hated the victim.", false);
+        Clue hobo1Statement = new Clue("No-Teeth Terry's Statement", "According to No-Teeth Terry the murderer was a drunk man.", false);
+        Clue hobo2Statement = new Clue("Dirty Darryl's Statement", "Dirty Darryl obviously hates cops.", true);
+        Clue hobo3Statement = new Clue("Heroin Harry's Statement", "According to Heroin Harry Dirty Darryl is the killer.", true);
+        Clue hobo4Statement = new Clue("Insane Dwayne's Statement", "Insane Dwayne is insane.", true);
+        Clue coronerStatement = new Clue("Coroner's Statement", "According to the coroner the murder was a crime of passion, \nand the victim knew his killer.", true);
         Clue murderWeaponClue = new Clue("Murder Weapon Evidence", "The murder weapon is a broken bottle of your favorite beer.", true);
         Clue bloodsplatterClue = new Clue("Blood Splatter", "There was a lot of blood on the crimescene, suggesting a violent conflict.", false);
         Clue corpseClue = new Clue("Corpse", "The body of the victim was stabbed repeatedly, and had spit covering it's face.", false);
-        Clue bloodSplatteredBadgeClue = new Clue("Blood Splattered Badge evidence", "This is the badge of the victim was found in your home, \nwhich points to you being the killer.", true);
+        Clue bloodSplatteredBadgeClue = new Clue("Badge", "This is the badge of the victim was found in your home, \nwhich points to you being the killer.", true);
 
         
         
         // creation of the multiple items via the constructor in Item.java
         Item murderWeapon = new Item("Murder Weapon", "This is a broken bottle"
                 + " with sharp edges and blood covering the edges", true, true, murderWeaponClue);
-        Item bloodSplatter = new Item("Blood splatter", "the ground is covered"
+        Item bloodSplatter = new Item("Blood Splatter", "the ground is covered"
                 + " in blood", true, false, bloodsplatterClue);
         Item gun = new Item("Gun", "Its a smith and wesson, your best friend",
                 false, true, corpseClue);
         Item corpse = new Item("Corpse", "its a dead guy, he looks to be stabbed"
                 + " brutally multiple times.\n When you look closer you notice"
                 + " his face is covered in spit", true, false, corpseClue);
-        Item bloodSplatteredBadge = new Item("Blood Splattered Badge", "Its your"
+        Item badge = new Item("Badge", "Its your"
             + " former partners badge covered in blood, odd that you would find"
             + " this here. \n A wave of guilt washes over you as you realise"
             + " what you have done", true, true, bloodSplatteredBadgeClue);
-        Item partnerKey = new Item("Key to Partner's home", "This key belongs to your deceased partner, "
+        Item partnerKey = new Item("Key To Partner's Home", "This key belongs to your deceased partner, "
             + "and it allows you to enter his home.", false, true, null);
     
         
         Beverage whiskey=new Beverage("Whiskey","This bottle is your favorite drink, and the reason you love coming home.",false, true, null,2,5);
         Beverage gin = new Beverage ("Half-empty Gin", "its a half-empty bottle of gin, some idiot wasted his drink", false, true, null,1,7);
-        Beverage beerKeg = new Beverage ("Keg of beer", "Its a keg of beer, nobody will notice if you take this", false, true, null, 4,4);
+        Beverage beerKeg = new Beverage ("Keg Of beer", "Its a keg of beer, nobody will notice if you take this", false, true, null, 4,4);
         Beverage coffee = new Beverage ("Coffee", "A normal looking drink of coffee, expect you can smell a faint vodka odor", false, true, null, 2,6);
         Beverage wine = new Beverage ("Wine", "the fancy people left out a glass of wine", false, true, null, 3,7);
         Beverage beer = new Beverage("Beer", "It's a well known brand called pisswasser", false, true, null, 2, 2);
@@ -79,8 +79,8 @@ public class World implements Serializable {
         Room rightStreet = new Room(" on Right street", "Right Street");
         Room bar = new Room(" in the bar", "Bar");
         Room hoboAlley = new Room(" in the Hobo Alley, try not to get stabbed", "Hobo Alley");
-        Room crimeScene = new Room(" at the crime scene", "Crime scene");
-        Room partnerHome = new Room(" in your deceased partners house", "Partner's home");
+        Room crimeScene = new Room(" at the crime scene", "Crime Scene");
+        Room partnerHome = new Room(" in your deceased partners house", "Partner's Home");
         Room home = new Room(" in your home", "Home");
         Room pd = new Room(" in the Police Department", "Police Department");
         Room jail = new Room(" visiting the jail, in the pd", "Jail");
@@ -257,7 +257,7 @@ public class World implements Serializable {
         items.put(partnerKey.getName(), partnerKey);
         items.put(bloodSplatter.getName(), bloodSplatter);
         items.put(corpse.getName(), corpse);
-        items.put(bloodSplatteredBadge.getName(), bloodSplatteredBadge);
+        items.put(badge.getName(), badge);
         items.put(gun.getName(), gun);
         
         clues.put(hobo1Statement.getName(), hobo1Statement);
@@ -293,4 +293,9 @@ public class World implements Serializable {
         return rooms.containsKey(name);
     
     }
+    public Map getTheCluse (){
+    return clues;
+    }
+
 }
+
