@@ -11,13 +11,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import BackEnd.Game;
+import static javafx.application.Application.launch;
 
 /**
  *
  * @author Krongrah
  */
-public class Starter extends Application {
-    
+public class Initializer extends Application {
+    public Initializer(){}
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
@@ -31,8 +32,8 @@ public class Starter extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-       // launch(args);
+    public void begin(String[] args) {
+        launch(args);
         Game game = new Game();
         game.play();
     }
