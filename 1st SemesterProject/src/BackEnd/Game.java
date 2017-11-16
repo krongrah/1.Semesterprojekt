@@ -734,22 +734,15 @@ public class Game {
     }
     public void tester(){
               System.out.println("write the method or room you would like to test");
+ 
             Scanner roomster = new Scanner(System.in);
-            String testerr = roomster.nextLine().toLowerCase();
+            String testerr = roomster.nextLine();
+            if (world.isRoom(testerr)){
+                System.out.println("you are now in" + testerr);
+                currentRoom = world.getRoom(testerr);
+            }
             if (testerr.equals("fight")){
                 fightLoop((HostileNPC) world.getNPC("Wife"));
-            }
-            if (testerr.equals("pd")){
-                currentRoom = world.getRoom("pd");
-                System.out.println("you are now in the police department");
-            }
-            if (testerr.equals("crime scene")){
-                currentRoom = world.getRoom("CrimeScene");
-                System.out.println("you are now in the crime scene");
-            }
-            if (testerr.equalsIgnoreCase("home")){
-                currentRoom = world.getRoom("Home");
-                System.out.println("you are now home :)");
             }
             if (testerr.equals("arrest")){
                 player.addToJournal(world.getClue("bloodSplatteredBagde"));
@@ -774,53 +767,24 @@ public class Game {
                 wantToQuit = true;
             }
             if (testerr.equals("search")){
-                System.out.println("where do you want to search MIKKEL");
+                System.out.println("where do you want to search");
                 Scanner whatareyouevendoing = new Scanner(System.in);
-                String thisisshit = whatareyouevendoing.nextLine().toLowerCase();
-                if (thisisshit.equals("end your life")){
-                    System.out.println("just end my life");
-                }
-                if (thisisshit.equalsIgnoreCase("pd")){
-                    currentRoom = world.getRoom("pd");
+                String thisisshit = whatareyouevendoing.nextLine();
+                if (world.isRoom(thisisshit)){
+                    currentRoom = world.getRoom(thisisshit);
                     search();
                 }
-                if (thisisshit.equalsIgnoreCase("crime scene")){
-                    currentRoom = world.getRoom("CrimeScene");
-                    search();
-                }
-                if (thisisshit.equalsIgnoreCase("Hoboalley")){
-                    currentRoom = world.getRoom("HoboAlley");
-                    search();
-                }
-                if (thisisshit.equalsIgnoreCase("home")){
-                    currentRoom = world.getRoom("Home");
-                    search();
-                }   
+
             }
             if (testerr.equalsIgnoreCase("talk")){
                 System.out.println("where do you want to talk");
                 Scanner talkingmethod = new Scanner(System.in);
-                String talkshit = talkingmethod.nextLine().toLowerCase();
-                if (talkshit.equals("pd")){
-                    currentRoom = world.getRoom("pd");
+                String talkshit = talkingmethod.nextLine();
+                if (world.isRoom(talkshit)){
+                    currentRoom = world.getRoom(talkshit);
                     talk();
                 }
-                if (talkshit.equalsIgnoreCase("crime scene")){
-                    currentRoom = world.getRoom("CrimeScene");
-                    talk();
-                }
-                if (talkshit.equalsIgnoreCase("home")){
-                    currentRoom = world.getRoom("Home");
-                    talk();
-                }
-                if (talkshit.equalsIgnoreCase("hobo alley")){
-                    currentRoom = world.getRoom("HoboAlley");
-                    talk();
-                }
-                if (talkshit.equalsIgnoreCase("Bar")){
-                    currentRoom = world.getRoom("Bar");
-                    talk();
-                }
+
             }
     
     }

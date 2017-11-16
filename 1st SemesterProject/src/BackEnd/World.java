@@ -166,7 +166,6 @@ public class World implements Serializable {
         NPC bartender = new NPC("Bartender Bert", bartenderDialogue, bartenderStatement, 2);
         HostileNPC wife = new HostileNPC("Wife", wifeDialogue, null, 0, 50, 5, 0.5);
         NPC coroner = new NPC("Coroner", coronerDialogue, coronerStatement, 4);
-        HostileNPC wife1 = new HostileNPC("Wife", null, null, 0, 50, 5, 0.5); //todo what is this
         
         
         bar.addNpcToRoom(bartender);
@@ -278,5 +277,9 @@ public class World implements Serializable {
     }
     public Clue getClue(String name){
     return clues.get(name);
+    }
+    public boolean isRoom(String name){
+        return rooms.containsKey(name);
+    
     }
 }
