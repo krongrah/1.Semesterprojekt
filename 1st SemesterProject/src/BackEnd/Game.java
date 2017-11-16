@@ -728,11 +728,13 @@ public class Game {
 //            }
             for (NPC npc : currentRoom.getNPCsInRoom()) {
                 if (person.equals(npc.getName().toLowerCase())) {
-                    if (npc.getAlibi()) {
+                    if (npc.getAlibiValidity()) {
+                        System.out.println(npc.getAlibi());
                         lose();
                         success = true;
                         break;
                     } else {
+                        System.out.println(npc.getAlibi());
                         goToJail(npc);
                         updateCrimeScene();
                     }
