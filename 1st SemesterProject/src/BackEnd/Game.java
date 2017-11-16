@@ -66,6 +66,7 @@ public class Game {
         System.out.println("Welcome to the life of detective Dindunuffin.");
         System.out.println("The commissioner wants you in the police department.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
+        System.out.println("Use the \"talk\" command to talk to the Bartender.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
         getInfo();
@@ -111,9 +112,7 @@ public class Game {
 
     // Calls parser to show all possible commands
     private void printHelp() {
-        System.out.println("You're supposed to help others, ");
-        System.out.println("not get help.");
-        System.out.println();
+        
         System.out.println("Your command words are:");
         parser.showCommands();
     }
