@@ -131,9 +131,9 @@ public class Game {
         if (what.equals("journal")) {
             player.displayJournal();
         }
-        if (what.equals("desk")) {
-            player.diplayDesk(currentRoom);
-        }
+//        if (what.equals("desk")) {
+//            player.diplayDesk(currentRoom);
+//        }     todo remove?
     }
     //Checks if directions has an exit and moves to next room
     private void goRoom(Command command) {

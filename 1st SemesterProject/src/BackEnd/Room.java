@@ -100,9 +100,6 @@ public class Room {   //rooms have a description/name and map with strings to ro
         newRoom.NPCsInRoom.add(npc);
         newRoom.NPCsInRoomMap.put(npc.getName(), npc);
         }
-        else {
-            System.out.println("No NPC to be moved");
-        }
     }
 
     //Getter for the description/name along with a list of exits.
