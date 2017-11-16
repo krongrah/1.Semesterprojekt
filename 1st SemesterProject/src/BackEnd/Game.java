@@ -66,6 +66,7 @@ public class Game {
         System.out.println("Welcome to the life of detective Dindunuffin.");
         System.out.println("The commissioner wants you in the police department.");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
+        System.out.println("Use the \"talk\" command to talk to the Bartender.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
         getInfo();
@@ -111,9 +112,7 @@ public class Game {
 
     // Calls parser to show all possible commands
     private void printHelp() {
-        System.out.println("You're supposed to help others, ");
-        System.out.println("not get help.");
-        System.out.println();
+        
         System.out.println("Your command words are:");
         parser.showCommands();
     }
@@ -285,7 +284,7 @@ public class Game {
         return ((int) (Math.random() * 11) - 5);
     }
     private void updateCrimeScene(){        
-        Iterator<NPC> iterator = world.getRoom("Crime scene").getNPCsInRoom().iterator();
+        Iterator<NPC> iterator = world.getRoom("Crime Scene").getNPCsInRoom().iterator();
 
     while(iterator.hasNext()) {
         NPC npc = iterator.next();
@@ -300,8 +299,8 @@ public class Game {
     Item corpseOutline = new Item("Corpse Outline", "its was a dead guy, he looked like he was stabbed"
                 + " brutally multiple times.\n When you looked closer you noticed"
                 + " his face is covered in spit", true, false, world.getClue("Corpse"));
-        world.getRoom("Crime scene").addItemsToRoom(corpseOutline);
-        world.getRoom("Crime scene").removeItemFromRoom(world.getItem("Corpse"));
+        world.getRoom("Crime Scene").addItemsToRoom(corpseOutline);
+        world.getRoom("Crime Scene").removeItemFromRoom(world.getItem("Corpse"));
         }
     
     public void fightLoop(HostileNPC enemy) {
