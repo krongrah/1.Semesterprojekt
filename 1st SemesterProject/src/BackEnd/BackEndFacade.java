@@ -5,12 +5,25 @@
  */
 package BackEnd;
 
-import Acquaintance.IBackEndFacade;
+import Acquaintance.IBackEnd;
+import Acquaintance.IFoundation;
 
 /**
  *
  * @author Krongrah
  */
-public class BackEndFacade implements IBackEndFacade{
+public class BackEndFacade implements IBackEnd{
+
+    IFoundation foundation;
+    
+    @Override
+    public void injectFoundation(IFoundation foundation) {
+        this.foundation=foundation;
+    }
+    
+    public void play(){
+    Game game=new Game();
+    game.play();
+    }
     
 }

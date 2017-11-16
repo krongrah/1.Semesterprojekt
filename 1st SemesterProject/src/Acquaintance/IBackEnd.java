@@ -9,6 +9,9 @@ package Acquaintance;
  *
  * @author Krongrah
  */
-public interface IBackEndFacade {
+public interface IBackEnd {
+    void injectFoundation(IFoundation foundation);
+    void play();
+    
     
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Krongrah
  */
-public interface IFoundationFacade {
+public interface IFoundation {
    void saveHiScoreList(ArrayList<String> list);
    ArrayList<String> getHiScoreList();
 }

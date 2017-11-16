@@ -5,6 +5,11 @@
  */
 package Starter;
 
+import Acquaintance.IBackEnd;
+import Acquaintance.IFoundation;
+import Acquaintance.IFrontEnd;
+import BackEnd.BackEndFacade;
+import Foundation.FoundationFacade;
 import FrontEnd.Initializer;
 
 /**
@@ -14,8 +19,14 @@ import FrontEnd.Initializer;
 public class Driver {
  
     public static void main(String[] args) {
-        Initializer drive=new Initializer();
-        drive.begin(args);
+        IFoundation foundation = new FoundationFacade();
+	IBackEnd backEnd = new BackEndFacade();
+	IFrontEnd frontEnd = new Initializer();
+        
+        backEnd.injectFoundation(foundation);
+	frontEnd.injectBackEnd(backEnd);
+        
+        frontEnd.begin(args);
     }
     
     
