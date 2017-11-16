@@ -143,7 +143,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     /**
      * @return the isHoboAccessable
      */
-    public boolean HoboAccessable() {
+    public boolean isHoboAccessable() {
         return hoboAccessable;
     }
 
