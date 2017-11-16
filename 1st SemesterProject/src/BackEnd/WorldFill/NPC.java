@@ -18,7 +18,7 @@ public class NPC {
     private Clue clue;
     private int askForClueCounter = 0;
     private int clueRelease;
-
+    private String NPCcurrentRoomName= null;
     // NPC constructor
     public NPC(String newName, Dialogue dialogue, Clue clue, int clueRelease) {
         this.name = newName;
@@ -66,9 +66,19 @@ public class NPC {
     public Dialogue getDialogue() {
         return dialogue;
     }
-    
-    
-    
 
-    
+    /**
+     * @return the NPCcurrentRoom
+     */
+    public String getCurrentRoomName() {
+        return NPCcurrentRoomName;
+    }
+
+    /**
+     * @param NPCcurrentRoom the NPCcurrentRoom to set
+     */
+    public void setCurrentRoomName(String NPCcurrentRoomName) {
+        this.NPCcurrentRoomName = NPCcurrentRoomName;
+    }
+   
 }

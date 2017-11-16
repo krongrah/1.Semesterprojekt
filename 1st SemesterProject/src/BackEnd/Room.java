@@ -82,6 +82,8 @@ public class Room {   //rooms have a description/name and map with strings to ro
     public void addNpcToRoom(NPC npc) {
         this.NPCsInRoom.add(npc);
         this.NPCsInRoomMap.put(npc.getName(), npc);
+        npc.setCurrentRoomName(this.roomName);
+        
     }
 
     /**
@@ -90,6 +92,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     public void removeNpcFromRoom(NPC npc) {
         //this.NPCsInRoom.remove(npc);
         this.NPCsInRoomMap.remove(npc.getName());
+        npc.setCurrentRoomName(null);
     }
     
     public void moveNpc(NPC npc, Room newRoom){
@@ -99,6 +102,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
         this.NPCsInRoomMap.remove(npc.getName());
         newRoom.NPCsInRoom.add(npc);
         newRoom.NPCsInRoomMap.put(npc.getName(), npc);
+        npc.setCurrentRoomName(this.roomName);
         }
     }
 
