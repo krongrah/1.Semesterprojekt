@@ -259,7 +259,17 @@ public class Game {
             lose();
         }
             switch (player.getMovementChecker()) {
-                case 12: currentRoom.moveNpc(world.getNPC("Dirty Darryl"), world.getRoom("Right Street"));
+                case 12: 
+                    currentRoom.moveNpc(world.getHostileNPC("Dirty Darryl"), world.getRoom("Right Street"));
+                    currentRoom.moveNpc(world.getHostileNPC("Heroin Harry"), world.getRoom("Hobo Alley"));
+                    break;
+                case 28:
+                    currentRoom.moveNpc(world.getHostileNPC("Insane Dwayne"), world.getRoom("Hobo Alley"));
+                    currentRoom.moveNpc(world.getHostileNPC("Dirty Darryl"), world.getRoom("Left Street"));
+                    currentRoom.moveNpc(world.getHostileNPC("Heroing Harry"), world.getRoom("Crime Scene"));
+                    currentRoom.moveNpc(world.getHostileNPC("No-Teeth Terry"), world.getRoom("Hobo Alley"));
+                    break;
+                
                 
                 
                     
