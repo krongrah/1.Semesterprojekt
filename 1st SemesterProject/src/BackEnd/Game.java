@@ -260,6 +260,8 @@ public class Game {
         }
             switch (player.getMovementChecker()) {
                 case 12: 
+                    rollRooms();
+                    
                     currentRoom.moveNpc(world.getHostileNPC("Dirty Darryl"), world.getRoom("Right Street"));
                     currentRoom.moveNpc(world.getHostileNPC("Heroin Harry"), world.getRoom("Hobo Alley"));
                     break;
@@ -269,24 +271,11 @@ public class Game {
                     currentRoom.moveNpc(world.getHostileNPC("Heroing Harry"), world.getRoom("Crime Scene"));
                     currentRoom.moveNpc(world.getHostileNPC("No-Teeth Terry"), world.getRoom("Hobo Alley"));
                     break;
-                
-                
-                
-                    
-                
-                
-                
-                
-                
+
                 
             } 
     }
         
-
-
-
-
-
     public void drunkness() {
         System.out.println(player.getDrunkness());
     }
@@ -821,6 +810,10 @@ public class Game {
         
     }
 
+    public int rollRooms(){
+        int r = (int) (Math.random() * 2 + 5);
+        return r; 
+    }
     String test(){
     return "ye boi!";
     }
