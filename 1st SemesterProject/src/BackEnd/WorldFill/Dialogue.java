@@ -68,7 +68,6 @@ public class Dialogue {
     }
 
     public boolean isAlibiValid() {
-        System.out.println(alibi);
         return isValid;
         //todo
     }

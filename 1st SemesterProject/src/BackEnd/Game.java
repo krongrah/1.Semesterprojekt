@@ -220,7 +220,7 @@ public class Game {
         currentRoom = world.getRoom("Jail");
         System.out.println("Commissioner: Good job, now you need to go find "
                 + "some better evidence to convict this bastard. I will be in the Police department.");
-        world.getRoom("Home").addItemsToRoom(world.getItem("Blood Splattered Badge"));
+        world.getRoom("Home").addItemsToRoom(world.getItem("Badge"));
         parser.addFinishers();
         
     }
@@ -258,24 +258,23 @@ public class Game {
             lose();
         }
             switch (player.getMovementChecker()) {
-                case 12: currentRoom.moveNpc(world.getNPC("Dirty Darryl"), world.getRoom("Right Street"));
-                
-                
+                case 12: 
+                    rollRooms();
                     
-                
-                
-                
-                
-                
+                    currentRoom.moveNpc(world.getHostileNPC("Dirty Darryl"), world.getRoom("Right Street"));
+                    currentRoom.moveNpc(world.getHostileNPC("Heroin Harry"), world.getRoom("Hobo Alley"));
+                    break;
+                case 28:
+                    currentRoom.moveNpc(world.getHostileNPC("Insane Dwayne"), world.getRoom("Hobo Alley"));
+                    currentRoom.moveNpc(world.getHostileNPC("Dirty Darryl"), world.getRoom("Left Street"));
+                    currentRoom.moveNpc(world.getHostileNPC("Heroing Harry"), world.getRoom("Crime Scene"));
+                    currentRoom.moveNpc(world.getHostileNPC("No-Teeth Terry"), world.getRoom("Hobo Alley"));
+                    break;
+
                 
             } 
     }
         
-
-
-
-
-
     public void drunkness() {
         System.out.println(player.getDrunkness());
     }
@@ -710,7 +709,6 @@ public class Game {
             for (NPC npc : currentRoom.getNPCsInRoom()) {
                 System.out.println(npc.getName());
             }
-
             Scanner choose = new Scanner(System.in);
             String person = choose.nextLine();
             boolean success = false;
@@ -814,6 +812,10 @@ public class Game {
     return manager;
     }
 
+    public int rollRooms(){
+        int r = (int) (Math.random() * 2 + 5);
+        return r; 
+    }
     String test(){
     return "ye boi!";
     }
