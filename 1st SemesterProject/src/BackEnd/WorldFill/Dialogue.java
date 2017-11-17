@@ -67,9 +67,12 @@ public class Dialogue {
         lineIndex = 0;
     }
 
-    public boolean getAlibi() {
-        System.out.println(alibi);
+    public boolean isAlibiValid() {
         return isValid;
+        //todo
+    }
+    public String getAlibi(){
+    return alibi;
     }
 
     /**

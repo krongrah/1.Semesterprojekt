@@ -20,6 +20,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     private Set<NPC> NPCsInRoom = new HashSet<>();
     private Map<String, NPC> NPCsInRoomMap = new HashMap<>();
     private String roomName;
+    private boolean hoboAccessable;
     
 
     //contructor, requires description and generates an Exits map.
@@ -27,7 +28,13 @@ public class Room {   //rooms have a description/name and map with strings to ro
         this.description = description;
         this.roomName = roomName;
         exits = new HashMap<String, Room>();
-
+        this.hoboAccessable=false;
+    }
+    public Room(String description, String roomName, boolean hoboAccessable) {
+        this.description = description;
+        this.roomName = roomName;
+        exits = new HashMap<String, Room>();
+        this.hoboAccessable=hoboAccessable;
     }
 
     //adds a neighbooring room to the Exits map, with the direction being the key
@@ -75,6 +82,8 @@ public class Room {   //rooms have a description/name and map with strings to ro
     public void addNpcToRoom(NPC npc) {
         this.NPCsInRoom.add(npc);
         this.NPCsInRoomMap.put(npc.getName(), npc);
+        npc.setCurrentRoomName(this.roomName);
+        
     }
 
     /**
@@ -83,6 +92,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     public void removeNpcFromRoom(NPC npc) {
         //this.NPCsInRoom.remove(npc);
         this.NPCsInRoomMap.remove(npc.getName());
+        npc.setCurrentRoomName(null);
     }
     
     public void moveNpc(NPC npc, Room newRoom){
@@ -92,9 +102,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
         this.NPCsInRoomMap.remove(npc.getName());
         newRoom.NPCsInRoom.add(npc);
         newRoom.NPCsInRoomMap.put(npc.getName(), npc);
-        }
-        else {
-            System.out.println("No NPC to be moved");
+        npc.setCurrentRoomName(this.roomName);
         }
     }
 
@@ -134,6 +142,13 @@ public class Room {   //rooms have a description/name and map with strings to ro
             }
         }
         return null;
+    }
+
+    /**
+     * @return the isHoboAccessable
+     */
+    public boolean isHoboAccessable() {
+        return hoboAccessable;
     }
 
 }
