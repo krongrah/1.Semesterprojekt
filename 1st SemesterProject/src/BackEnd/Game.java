@@ -149,8 +149,8 @@ public class Game {
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
-            if (nextRoom == world.getRoom("Partner's home")) {
-                if (player.getInventory().contains(world.getItem("Key to Partner's home"))) {
+            if (nextRoom == world.getRoom("Partner's Home")) {
+                if (player.getInventory().contains(world.getItem("Key To Partner's Home"))) {
                     currentRoom = nextRoom;
                     System.out.println(currentRoom.getLongDescription());
                     getInfo();
@@ -594,7 +594,7 @@ public class Game {
             for (NPC npc : currentRoom.getNPCsInRoom()) {
 
                 if (target.equals(npc.getName().toLowerCase())) {
-                    npc.getLine();
+                    System.out.println(npc.getLine());
                     success = true;
                     if (npc.getClueCount() == npc.getClueRelease()) {
                         player.addToJournal(npc.giveClue());
@@ -607,8 +607,7 @@ public class Game {
                         String target1 = talking1.nextLine().toLowerCase();
 
                         if (target1.equalsIgnoreCase("Yes")) {
-                            npc.getLine();
-                            sucess1 = false;
+                            System.out.println(npc.getLine());                            sucess1 = false;
                             if (npc.getClueCount() == npc.getClueRelease()) {
                                 player.addToJournal(npc.giveClue());
                             }
