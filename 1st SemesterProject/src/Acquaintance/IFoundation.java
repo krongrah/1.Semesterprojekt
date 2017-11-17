@@ -14,4 +14,5 @@ import java.util.ArrayList;
 public interface IFoundation {
    void saveHiScoreList(ArrayList<String> list);
    ArrayList<String> getHiScoreList();
+
 }

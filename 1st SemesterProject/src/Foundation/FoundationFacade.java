@@ -28,6 +28,8 @@ public class FoundationFacade implements IFoundation{
     public ArrayList<String> getHiScoreList() {
 return hiscore.pullHiScore();
         }
+
+
     
 
     

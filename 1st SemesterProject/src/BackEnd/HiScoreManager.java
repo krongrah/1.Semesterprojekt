@@ -5,7 +5,9 @@
  */
 package BackEnd;
 
+import Acquaintance.IFoundation;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -13,11 +15,26 @@ import java.util.List;
  * @author Krongrah
  */
 public class HiScoreManager {
-    List<String> HiScore=new ArrayList<>();
-    void store(){
+    List<String> hiScore=new ArrayList<>();
+    List<String> tempList=new ArrayList<>();
+    IFoundation foundation;
     
+    void store(){
+    //todo
     }
-    void sort(){}
-    void pull(){}
-    void add(){}
+    void sort(){
+    Collections.sort(hiScore);
+    
+    //todo
+    }
+    
+    void pull(IFoundation foundation){
+    this.foundation=foundation;
+    }
+    
+    void add(String name, int points){
+        String pointString =String.format("%03d", points);
+    hiScore.add(pointString+" "+name);
+    sort();
+    }
 }

@@ -21,7 +21,7 @@ public class Game {
     private PC player;
     private Room currentRoom, lastRoom; //todo move to PC
     private World world=new World();
-
+    private HiScoreManager manager=new HiScoreManager();
     // Constructor calls createRooms and creates new Parser
     public Game() {
         
@@ -809,6 +809,9 @@ public class Game {
         player.removeDrunkness(1);
         player.passTime(2);
         
+    }
+    public HiScoreManager getHiScoreManager(){
+    return manager;
     }
 
     String test(){

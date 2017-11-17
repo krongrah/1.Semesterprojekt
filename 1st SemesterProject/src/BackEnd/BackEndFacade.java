@@ -23,8 +23,10 @@ public class BackEndFacade implements IBackEnd{
     }
     
     public void play(){
-    game.play();
-    }
+        game.getHiScoreManager().pull(foundation);
+        game.play();
+    
+    }    
     
     public String test(){
     return game.test();
