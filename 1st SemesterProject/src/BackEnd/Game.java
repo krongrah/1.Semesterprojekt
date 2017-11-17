@@ -220,7 +220,7 @@ public class Game {
         currentRoom = world.getRoom("Jail");
         System.out.println("Commissioner: Good job, now you need to go find "
                 + "some better evidence to convict this bastard. I will be in the Police department.");
-        world.getRoom("Home").addItemsToRoom(world.getItem("Blood Splattered Badge"));
+        world.getRoom("Home").addItemsToRoom(world.getItem("Badge"));
         parser.addFinishers();
         
     }
@@ -711,7 +711,6 @@ public class Game {
             for (NPC npc : currentRoom.getNPCsInRoom()) {
                 System.out.println(npc.getName());
             }
-
             Scanner choose = new Scanner(System.in);
             String person = choose.nextLine();
             boolean success = false;

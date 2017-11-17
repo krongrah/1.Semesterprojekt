@@ -30,7 +30,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
         exits = new HashMap<String, Room>();
         this.hoboAccessable=false;
     }
-    public Room(String description, String roomName, boolean isHoboAccessable) {
+    public Room(String description, String roomName, boolean hoboAccessable) {
         this.description = description;
         this.roomName = roomName;
         exits = new HashMap<String, Room>();
