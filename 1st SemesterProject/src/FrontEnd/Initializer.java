@@ -23,7 +23,7 @@ public class Initializer extends Application{
     
     @Override
     public void start(Stage stage) throws Exception {
-
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
         Parent root = (Parent) loader.load();
         FXMLDocumentController c = loader.getController();
@@ -42,6 +42,7 @@ public class Initializer extends Application{
         
         launch(args);
         backEnd.play();
+        
     }
     void injectBackEnd(IBackEnd backEnd){
     this.backEnd=backEnd;

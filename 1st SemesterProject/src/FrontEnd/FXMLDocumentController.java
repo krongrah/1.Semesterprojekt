@@ -6,6 +6,10 @@
 package FrontEnd;
 
 import Acquaintance.IBackEnd;
+import java.io.Console;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -38,17 +42,34 @@ public class FXMLDocumentController implements Initializable {
     private ProgressBar GoodCopBar;
     @FXML
     private Button search;
+    @FXML
+    private Button convict;
+    @FXML
+    private Button drink;
+    @FXML
+    private Button arrest;
+    @FXML
+    private Button save;
+    @FXML
+    private Button inspect;
     
-    public void onButtonClick(ActionEvent event){
-        
-    } 
-   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        OutputStream o = new OutputStream() {
+            @Override
+            public void write(int b) throws IOException {
+                textOutput.appendText(String.valueOf((char) b));
+            }
+        };
+        System.setOut(new PrintStream(o, true));
         
-    }    
+    }  
+        
+    void importBackEnd(IBackEnd backEnd){
+    this.backEnd=backEnd;
+    }
 
     @FXML
     private void talkGui(ActionEvent event) {
@@ -60,10 +81,24 @@ public class FXMLDocumentController implements Initializable {
     private void searchGui(ActionEvent event) {
         
     }
-    
-    void importBackEnd(IBackEnd backEnd){
-    this.backEnd=backEnd;
+
+    @FXML
+    private void ConvictGUI(ActionEvent event) {
     }
-    void test(){}
-    
+
+    @FXML
+    private void drinkGUI(ActionEvent event) {
+    }
+
+    @FXML
+    private void ArrestGUI(ActionEvent event) {
+    }
+
+    @FXML
+    private void saveGUI(ActionEvent event) {
+    }
+
+    @FXML
+    private void inspectGUI(ActionEvent event) {
+    }
 }
