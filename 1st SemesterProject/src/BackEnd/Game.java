@@ -197,6 +197,7 @@ public class Game {
     }
 
     public void drink() {
+        System.out.println("drinking");
         for (Item drink : player.getInventory()) {
             if (drink instanceof Beverage) {
                 System.out.println("You drink some " + drink.getName() + ", you start to feel all your problems disappear");
@@ -471,7 +472,7 @@ public class Game {
 
     }
     
-    private void drop(Command command) {
+     void drop(Command command) {
         remover();
         String where = command.getSecondWord();
         //if no second word    
@@ -569,9 +570,7 @@ public class Game {
         }
     }
 
-
-    private void talk() {
-
+     void talk() {
         //Gives the player a list of NPCs in the room
         boolean sucess = false;
         remover();
@@ -633,7 +632,7 @@ public class Game {
 
     //todo the search is a mess
     //add to cluelist
-    private void search() {
+     void search() {
         remover();
 
         //prints all items in the room.

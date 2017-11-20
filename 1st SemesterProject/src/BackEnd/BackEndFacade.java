@@ -27,8 +27,36 @@ public class BackEndFacade implements IBackEnd{
         game.play();
     
     }    
+
     
-    public String test(){
-    return game.test();
+    public void talk(){
+    game.talk();
     }
-}
+    
+    public void search(){
+    game.search();
+    }
+    
+    public void inspect(){
+    //game.inspect();
+    //todo
+    }
+    
+    public void convict(){
+    game.convict();
+    }
+    
+    public void arrest(){
+    game.arrest();
+    }
+    
+    public void drink(){
+    game.drink();
+    }
+    
+    public void save(){
+    //game.save();
+    //todo
+    }
+    
+}   

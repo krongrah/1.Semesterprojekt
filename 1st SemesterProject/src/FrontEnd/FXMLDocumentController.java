@@ -73,32 +73,36 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void talkGui(ActionEvent event) {
-        textOutput.setText(backEnd.test());
-        
+        backEnd.talk();
     }
 
     @FXML
     private void searchGui(ActionEvent event) {
-        
+      backEnd.search();
     }
 
     @FXML
     private void ConvictGUI(ActionEvent event) {
+      backEnd.convict();
     }
 
     @FXML
     private void drinkGUI(ActionEvent event) {
+       backEnd.drink();
     }
 
     @FXML
     private void ArrestGUI(ActionEvent event) {
+        backEnd.arrest();
     }
 
     @FXML
     private void saveGUI(ActionEvent event) {
+        backEnd.save();
     }
 
     @FXML
     private void inspectGUI(ActionEvent event) {
+        backEnd.inspect();
     }
 }

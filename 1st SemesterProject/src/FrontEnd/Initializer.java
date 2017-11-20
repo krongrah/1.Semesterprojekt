@@ -39,9 +39,9 @@ public class Initializer extends Application{
      * @param args the command line arguments
      */
     public void begin(String[] args) {
-        
-        launch(args);
         backEnd.play();
+        launch(args);
+        
         
     }
     void injectBackEnd(IBackEnd backEnd){
