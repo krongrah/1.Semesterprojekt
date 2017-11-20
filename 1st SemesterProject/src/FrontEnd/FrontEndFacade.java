@@ -24,7 +24,7 @@ public class FrontEndFacade implements IFrontEnd{
     public void begin(String[] args) {
         Initializer initializer=new Initializer();
         initializer.injectBackEnd(backEnd);
-        initializer.begin(args);
     }
+
     
 }

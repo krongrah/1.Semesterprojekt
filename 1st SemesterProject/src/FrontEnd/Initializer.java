@@ -6,7 +6,6 @@
 package FrontEnd;
 
 import Acquaintance.IBackEnd;
-import Acquaintance.IFrontEnd;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,20 +18,19 @@ import static javafx.application.Application.launch;
  * @author Krongrah
  */
 public class Initializer extends Application{
-    IBackEnd backEnd;
+    static IBackEnd backEnd;
     public Initializer(){}
+    
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = (Parent) loader.load();
+        FXMLDocumentController c = loader.getController();
+        c.importBackEnd(backEnd);
+
         
         Scene scene = new Scene(root);
-        
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
-        //FXMLDocumentController c = loader.getController();
-        //c.test();
-        //todo
-        
-        
         stage.setScene(scene);
         stage.show();
     }
