@@ -7,7 +7,7 @@ package BackEnd;
  */
 
 
-import BackEnd.Room;
+import BackEnd.WorldFill.Room;
 import BackEnd.WorldFill.Beverage;
 import BackEnd.WorldFill.Clue;
 import BackEnd.WorldFill.Dialogue;
