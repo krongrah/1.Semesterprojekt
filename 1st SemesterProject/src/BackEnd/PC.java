@@ -31,15 +31,14 @@ public class PC {
     private Map<String,Clue> journal = new HashMap<>();
     private Map<String,Clue> evidence = new HashMap<>();
     private int maxInventoryCapacity = 2;
-    private Room pd;
     private int currentHealth = 100;
+    private Room currentRoom, lastRoom;
 
     //constructor
-    PC(Room room) {
+    PC(){
         points = 90;
         drunkness = 9999;
         movementChecker = 0;
-        pd = room;
     }
 
     //Checking methods
@@ -185,7 +184,17 @@ public class PC {
     public int getMovementChecker() {
         return movementChecker;
     }
-            
+    public void move(Room newRoom){
+    lastRoom=currentRoom;
+    currentRoom=newRoom;
+    }
+    
+    public void moveBack(){
+    currentRoom=lastRoom;
+    }
+    Room getRoom(){
+    return currentRoom;
+    }
 }
     
     
