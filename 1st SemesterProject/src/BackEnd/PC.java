@@ -5,6 +5,7 @@
  */
 package BackEnd;
 
+import BackEnd.WorldFill.Room;
 import BackEnd.WorldFill.Clue;
 import BackEnd.WorldFill.Item;
 import java.util.ArrayList;

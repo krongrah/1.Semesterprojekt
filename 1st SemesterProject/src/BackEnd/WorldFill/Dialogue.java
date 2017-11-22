@@ -37,27 +37,24 @@ public class Dialogue {
     }
     public Dialogue(String[] dialogue1, String alibi, boolean isValid, String fightScream) {
         this.dialogue1 = dialogue1;
-        this.dialogue2 = dialogue2;
         this.alibi = alibi;
         this.isValid = isValid;
         this.fightScream = fightScream;
     }
 
-    public String getLine() {
+    public void getLine() {
         if (!condition1) {
-            String line = dialogue1[lineIndex];
+            System.out.println(dialogue1[lineIndex]);
             if (lineIndex < dialogue1.length - 1) {
                 lineIndex++;
 
             }
-            return line;
         } else {
-            String line = dialogue2[lineIndex];
+            System.out.println(dialogue1[lineIndex]);
             if (lineIndex < dialogue2.length - 1) {
                 lineIndex++;
 
             }
-            return line;
         }
 
     }
@@ -67,19 +64,16 @@ public class Dialogue {
         lineIndex = 0;
     }
 
-    public boolean isAlibiValid() {
+    public boolean getAlibi() {
+        System.out.println(alibi);
         return isValid;
-        //todo
     }
-    public String getAlibi(){
-    return alibi;
-    }
-
+    
     /**
-     * @return the fightScream
+     * Prints the fight scream.
      */
-    public String getFightScream() {
-        return fightScream;
+    public void getFightScream() {
+        System.out.println(fightScream);
     }
 
 }

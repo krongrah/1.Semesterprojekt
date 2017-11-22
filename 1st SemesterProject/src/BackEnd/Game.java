@@ -4,6 +4,7 @@ package BackEnd;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
+import BackEnd.WorldFill.Room;
 import BackEnd.WorldFill.NPC;
 import BackEnd.WorldFill.HostileNPC;
 import BackEnd.WorldFill.Beverage;
@@ -316,7 +317,7 @@ public class Game {
         Scanner fightCommander = new Scanner(System.in);
         String fightCommand;
         System.out.println("You are now fighting a " + enemy.getName() + ". For your options, type 'help'.");
-        System.out.println(enemy.getName()+" yells: "+enemy.getFightScream());
+        enemy.getFightScream();
 
         if (player.inventoryContains("gun")) {
             playerDmg = 30;
@@ -592,7 +593,7 @@ public class Game {
             for (NPC npc : currentRoom.getNPCsInRoom()) {
 
                 if (target.equals(npc.getName().toLowerCase())) {
-                    System.out.println(npc.getLine());
+                    npc.getLine();
                     success = true;
                     if (npc.getClueCount() == npc.getClueRelease()) {
                         player.addToJournal(npc.giveClue());
@@ -605,7 +606,8 @@ public class Game {
                         String target1 = talking1.nextLine().toLowerCase();
 
                         if (target1.equalsIgnoreCase("Yes")) {
-                            System.out.println(npc.getLine());                            sucess1 = false;
+                            npc.getLine();
+                            sucess1 = false;
                             if (npc.getClueCount() == npc.getClueRelease()) {
                                 player.addToJournal(npc.giveClue());
                             }
@@ -723,13 +725,11 @@ public class Game {
 //            }
             for (NPC npc : currentRoom.getNPCsInRoom()) {
                 if (person.equals(npc.getName().toLowerCase())) {
-                    if (npc.getAlibiValidity()) {
-                        System.out.println(npc.getAlibi());
+                    if (npc.getAlibi()) {
                         lose();
                         success = true;
                         break;
                     } else {
-                        System.out.println(npc.getAlibi());
                         goToJail(npc);
                         updateCrimeScene();
                     }

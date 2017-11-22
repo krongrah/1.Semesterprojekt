@@ -1,8 +1,6 @@
-package BackEnd;
+package BackEnd.WorldFill;
 
-import BackEnd.WorldFill.NPC;
-import BackEnd.WorldFill.HostileNPC;
-import BackEnd.WorldFill.Item;
+
 import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;

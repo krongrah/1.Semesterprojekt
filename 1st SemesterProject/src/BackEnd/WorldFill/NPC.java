@@ -18,7 +18,7 @@ public class NPC {
     private Clue clue;
     private int askForClueCounter = 0;
     private int clueRelease;
-    private String NPCcurrentRoomName= null;
+    private String NPCCurrentRoomName;
     // NPC constructor
     public NPC(String newName, Dialogue dialogue, Clue clue, int clueRelease) {
         this.name = newName;
@@ -32,27 +32,24 @@ public class NPC {
         return name;
     }
 
-    public String getLine() {
-        return(name + ": " + getDialogue().getLine());
+    public void getLine() {
+        dialogue.getLine();
     }
 
-    public boolean getAlibiValidity() {
-        return getDialogue().isAlibiValid();
-    }
-    public String getAlibi(){
-    return getDialogue().getAlibi();
+    public boolean getAlibi() {
+        return getDialogue().getAlibi();
     }
 
-    public void setDialogue(Dialogue dialogue_) { //todo make set this in the constructor instead
+    public void setDialogue(Dialogue dialogue_) { 
         dialogue = dialogue_;
     }
 
     public int getClueCount() {
-        askForClueCounter++;    //todo redo the clue-in-dialogue
+        askForClueCounter++;    
         return askForClueCounter;
     }
 
-    public int getClueRelease() {//todo same as above
+    public int getClueRelease() {
         return clueRelease;
     }
 
@@ -71,14 +68,14 @@ public class NPC {
      * @return the NPCcurrentRoom
      */
     public String getCurrentRoomName() {
-        return NPCcurrentRoomName;
+        return NPCCurrentRoomName;
     }
 
     /**
-     * @param NPCcurrentRoom the NPCcurrentRoom to set
+     * @param NPCcurrentRoom the new room of the NPC
      */
-    public void setCurrentRoomName(String NPCcurrentRoomName) {
-        this.NPCcurrentRoomName = NPCcurrentRoomName;
+    public void setCurrentRoomName(String NPCCurrentRoomName) {
+        this.NPCCurrentRoomName = NPCCurrentRoomName;
     }
    
 }
