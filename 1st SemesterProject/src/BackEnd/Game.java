@@ -4,6 +4,7 @@ package BackEnd;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
+import BackEnd.WorldFill.Room;
 import BackEnd.WorldFill.NPC;
 import BackEnd.WorldFill.HostileNPC;
 import BackEnd.WorldFill.Beverage;
@@ -19,7 +20,6 @@ public class Game {
     private Parser parser;
     boolean wantToQuit = false;
     private PC player;
-    private Room currentRoom, lastRoom; //todo move to PC
     private World world=new World();
     private HiScoreManager manager=new HiScoreManager();
     // Constructor calls createRooms and creates new Parser
@@ -27,15 +27,8 @@ public class Game {
         
  
         parser = new Parser();
-        player = new PC(world.getRoom("Bar"));
-        currentRoom = world.getRoom("Bar");
-    }
-
-    // Creates all rooms and their exits
-
-
-    public Room getRoom() {
-        return currentRoom;
+        player = new PC();
+        player.move(world.getRoom("Bar"));
     }
 
     // Keeps game running requesting new command and ends the game
@@ -68,10 +61,10 @@ public class Game {
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println("Use the \"talk\" command to talk to the Bartender.");
         System.out.println();
-        System.out.println(currentRoom.getLongDescription());
+        System.out.println(player.getRoom().getLongDescription());
         getInfo();
     }
-
+    
     // Excecutes commands
     private boolean processCommand(Command command) {
 
@@ -144,26 +137,26 @@ public class Game {
 
         String direction = command.getSecondWord();
 
-        Room nextRoom = currentRoom.getExit(direction);
+        Room nextRoom = player.getRoom().getExit(direction);
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
             if (nextRoom == world.getRoom("Partner's Home")) {
                 if (player.getInventory().contains(world.getItem("Key To Partner's Home"))) {
-                    currentRoom = nextRoom;
-                    System.out.println(currentRoom.getLongDescription());
+                    player.move(nextRoom);
+                    System.out.println(player.getRoom().getLongDescription());
                     getInfo();
                 } else {
                     System.out.println("The door is locked. You need a key to enter here.");
                 }
             } else {
                 
-                lastRoom=currentRoom;
-                currentRoom = nextRoom;
-                System.out.println(currentRoom.getLongDescription());
+                player.moveBack();
+                player.move(nextRoom);
+                System.out.println(player.getRoom().getLongDescription());
                 getInfo();
-                HostileNPC enemy = currentRoom.getJumped();
+                HostileNPC enemy = player.getRoom().getJumped();
                 if (enemy != null) {
                     fightLoop(enemy);
                 }
@@ -185,11 +178,11 @@ public class Game {
 
     private void getInfo() {
 
-        if (currentRoom.getNPCsInRoomMap().isEmpty()) {
+        if (player.getRoom().getNPCsInRoomMap().isEmpty()) {
             System.out.println("You are all alone.");
         } else {
             System.out.println("The other people here are:");
-            for (NPC npc : currentRoom.getNPCsInRoom()) {
+            for (NPC npc : player.getRoom().getNPCsInRoom()) {
                 System.out.println(npc.getName());
                 
             }
@@ -217,8 +210,8 @@ public class Game {
     public void goToJail(NPC scum) {
         remover();
         System.out.println("You moved the scum to jail.");
-        currentRoom.moveNpc(scum, world.getRoom("Jail"));
-        currentRoom = world.getRoom("Jail");
+        player.getRoom().moveNpc(scum, world.getRoom("Jail"));
+        player.move(world.getRoom("Jail"));
         System.out.println("Commissioner: Good job, now you need to go find "
                 + "some better evidence to convict this bastard. I will be in the Police department.");
         world.getRoom("Home").addItemsToRoom(world.getItem("Badge"));
@@ -262,14 +255,14 @@ public class Game {
                 case 12: 
                     rollRooms();
                     
-                    currentRoom.moveNpc(world.getHostileNPC("Dirty Darryl"), world.getRoom("Right Street"));
-                    currentRoom.moveNpc(world.getHostileNPC("Heroin Harry"), world.getRoom("Hobo Alley"));
+                    player.getRoom().moveNpc(world.getHostileNPC("Dirty Darryl"), world.getRoom("Right Street"));
+                    player.getRoom().moveNpc(world.getHostileNPC("Heroin Harry"), world.getRoom("Hobo Alley"));
                     break;
                 case 28:
-                    currentRoom.moveNpc(world.getHostileNPC("Insane Dwayne"), world.getRoom("Hobo Alley"));
-                    currentRoom.moveNpc(world.getHostileNPC("Dirty Darryl"), world.getRoom("Left Street"));
-                    currentRoom.moveNpc(world.getHostileNPC("Heroing Harry"), world.getRoom("Crime Scene"));
-                    currentRoom.moveNpc(world.getHostileNPC("No-Teeth Terry"), world.getRoom("Hobo Alley"));
+                    player.getRoom().moveNpc(world.getHostileNPC("Insane Dwayne"), world.getRoom("Hobo Alley"));
+                    player.getRoom().moveNpc(world.getHostileNPC("Dirty Darryl"), world.getRoom("Left Street"));
+                    player.getRoom().moveNpc(world.getHostileNPC("Heroing Harry"), world.getRoom("Crime Scene"));
+                    player.getRoom().moveNpc(world.getHostileNPC("No-Teeth Terry"), world.getRoom("Hobo Alley"));
                     break;
 
                 
@@ -316,7 +309,7 @@ public class Game {
         Scanner fightCommander = new Scanner(System.in);
         String fightCommand;
         System.out.println("You are now fighting a " + enemy.getName() + ". For your options, type 'help'.");
-        System.out.println(enemy.getName()+" yells: "+enemy.getFightScream());
+        enemy.getFightScream();
 
         if (player.inventoryContains("gun")) {
             playerDmg = 30;
@@ -330,8 +323,8 @@ public class Game {
                     if (Math.random() < 0.7) {
                         keepFighting = false;
                         System.out.println("You ran away like a coward.");
-                        currentRoom = lastRoom;
-                System.out.println(currentRoom.getLongDescription());
+                        player.moveBack();
+                        System.out.println(player.getRoom().getLongDescription());
                 getInfo();
                     } else {
                         System.out.println("Your opponent didn't let you escape, and you got hit.");
@@ -349,7 +342,7 @@ public class Game {
                         System.out.println("You defeated you oppoent!");
                         keepFighting = false;
                         player.removePoints(15);
-                        currentRoom.removeNpcFromRoom(enemy);
+                        player.getRoom().removeNpcFromRoom(enemy);
                         break;
                     }
                     System.out.println("Your opponent retaliates, dealing " + (enemyDmg + random2) + " damage.");
@@ -390,7 +383,7 @@ public class Game {
     
     public void convict() {
         remover();
-        if (currentRoom == world.getRoom("Police Department")) {
+        if (player.getRoom() == world.getRoom("Police Department")) {
             boolean run = true;
             boolean confess=false;
             do {
@@ -496,7 +489,7 @@ public class Game {
                     while (!success) {
 
                         if (newItem.equals(thing.getName())) {
-                            player.moveToRoom(thing, currentRoom);
+                            player.moveToRoom(thing, player.getRoom());
                             success = true;
                         }
 
@@ -511,7 +504,7 @@ public class Game {
                                 break;
                             }
                             if (newItem2.equals(thing.getName())) {
-                                player.moveToRoom(thing, currentRoom);
+                                player.moveToRoom(thing, player.getRoom());
                                 success = true;
                             } else if (!newItem2.equals("nothing") || !newItem2.equals(thing.getName())) {
                                 System.out.println("I did not understand that, try again");
@@ -524,7 +517,7 @@ public class Game {
             }
 
             // if second word is desk and you are in PD
-            if (where.equals("desk") && currentRoom == world.getRoom("Police Department")) {
+            if (where.equals("desk") && player.getRoom() == world.getRoom("Police Department")) {
                 Scanner pick = new Scanner(System.in);
 
                 System.out.println("Select the item to be dropped to in the desk or type \"nothing\" to exit drop");
@@ -563,7 +556,7 @@ public class Game {
 
             }
             // if second word is desk and not in PD
-            if (where.equals("desk") && currentRoom != world.getRoom("Police Department")) {
+            if (where.equals("desk") && player.getRoom() != world.getRoom("Police Department")) {
                 System.out.println("You can't reach your desk when you aren't in the police department.");
             }
 
@@ -577,7 +570,7 @@ public class Game {
         do {
 
             System.out.println("Who do you wish to talk to?");
-            for (NPC npc : currentRoom.getNPCsInRoom()) {
+            for (NPC npc : player.getRoom().getNPCsInRoom()) {
                 System.out.println(npc.getName());
             }
             //have the player enter a name
@@ -589,10 +582,10 @@ public class Game {
             }
             //go through NPCs for matches to the input.
             boolean success = false;
-            for (NPC npc : currentRoom.getNPCsInRoom()) {
+            for (NPC npc : player.getRoom().getNPCsInRoom()) {
 
                 if (target.equals(npc.getName().toLowerCase())) {
-                    System.out.println(npc.getLine());
+                    npc.getLine();
                     success = true;
                     if (npc.getClueCount() == npc.getClueRelease()) {
                         player.addToJournal(npc.giveClue());
@@ -605,7 +598,8 @@ public class Game {
                         String target1 = talking1.nextLine().toLowerCase();
 
                         if (target1.equalsIgnoreCase("Yes")) {
-                            System.out.println(npc.getLine());                            sucess1 = false;
+                            npc.getLine();
+                            sucess1 = false;
                             if (npc.getClueCount() == npc.getClueRelease()) {
                                 player.addToJournal(npc.giveClue());
                             }
@@ -636,9 +630,9 @@ public class Game {
         remover();
 
         //prints all items in the room.
-        if (!currentRoom.getItemsInRoom().isEmpty()) {
+        if (!player.getRoom().getItemsInRoom().isEmpty()) {
             System.out.println("You found these items:");
-            for (Item thing : currentRoom.getItemsInRoom()) {
+            for (Item thing : player.getRoom().getItemsInRoom()) {
                 System.out.println(thing.getName());
             }
             System.out.println("What do you want to look at?\nIf you don't want anything, type \"nothing\".");
@@ -651,7 +645,7 @@ public class Game {
             } else {
                 //searches for the item
                 boolean success = false;
-                for (Item thing : currentRoom.getItemsInRoom()) {
+                for (Item thing : player.getRoom().getItemsInRoom()) {
                     if (newItem.equals(thing.getName().toLowerCase())) {
                         success = true;
                         System.out.println("\n" + thing.getDescription() + "\n");
@@ -666,7 +660,7 @@ public class Game {
                                 if (thing.getIsClue()) {
                                     player.addToJournal(thing.giveClue());
                                 }
-                                player.addToInventory(thing, currentRoom);
+                                player.addToInventory(thing, player.getRoom());
                                 break;
                             } else if (willing.equals("no")) {
                                 System.out.println("The Item was left alone");
@@ -705,7 +699,7 @@ public class Game {
             System.out.println("You decided not to accuse anyone... for now");
         } else if (victim.equalsIgnoreCase("yes")) {
             System.out.println("These are the people you can accuse:");
-            for (NPC npc : currentRoom.getNPCsInRoom()) {
+            for (NPC npc : player.getRoom().getNPCsInRoom()) {
                 System.out.println(npc.getName());
             }
             Scanner choose = new Scanner(System.in);
@@ -721,15 +715,13 @@ public class Game {
 //            }else{
 //                System.out.println("That person isn't here");
 //            }
-            for (NPC npc : currentRoom.getNPCsInRoom()) {
+            for (NPC npc : player.getRoom().getNPCsInRoom()) {
                 if (person.equals(npc.getName().toLowerCase())) {
-                    if (npc.getAlibiValidity()) {
-                        System.out.println(npc.getAlibi());
+                    if (npc.getAlibi()) {
                         lose();
                         success = true;
                         break;
                     } else {
-                        System.out.println(npc.getAlibi());
                         goToJail(npc);
                         updateCrimeScene();
                     }
@@ -753,7 +745,7 @@ public class Game {
             String testerr = roomster.nextLine();
             if (world.isRoom(testerr)){
                 System.out.println("you are now in" + testerr);
-                currentRoom = world.getRoom(testerr);
+                player.move(world.getRoom(testerr));
             }
             if (testerr.equals("fight")){
                 fightLoop((HostileNPC) world.getNPC("Wife"));
@@ -761,20 +753,20 @@ public class Game {
             if (testerr.equals("arrest")){
                 player.addToJournal(world.getClue("Badge"));
                 player.addToJournal(world.getClue("Dirty Darryl's Statement"));
-                currentRoom = world.getRoom("Crime Scene");
+                player.move(world.getRoom("Crime Scene"));
                 arrest();
                 wantToQuit = true;
             }
             if (testerr.equals("convict")){
                 player.addToJournal(world.getClue("Badge"));
                 player.addToJournal(world.getClue("Dirty Darryl's Statement"));
-                currentRoom = world.getRoom("Police Department");
+                player.move(world.getRoom("Police Department"));
                 convict();
                 wantToQuit = true;
             }
             if (testerr.equals("drink")) {
-                currentRoom = world.getRoom("Bar");
-                player.addToInventory(world.getItem("Beer"), currentRoom);
+                player.move(world.getRoom("Bar"));
+                player.addToInventory(world.getItem("Beer"), player.getRoom());
                 drink();
                 System.out.println("this is how drunk you are");
                 drunkness();
@@ -785,7 +777,7 @@ public class Game {
                 Scanner whatareyouevendoing = new Scanner(System.in);
                 String thisisshit = whatareyouevendoing.nextLine();
                 if (world.isRoom(thisisshit)){
-                    currentRoom = world.getRoom(thisisshit);
+                    player.move(world.getRoom(thisisshit));
                     search();
                 }
 
@@ -795,7 +787,7 @@ public class Game {
                 Scanner talkingmethod = new Scanner(System.in);
                 String talkshit = talkingmethod.nextLine();
                 if (world.isRoom(talkshit)){
-                    currentRoom = world.getRoom(talkshit);
+                    player.move(world.getRoom(talkshit));
                     talk();
                 }
 

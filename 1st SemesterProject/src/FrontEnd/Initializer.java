@@ -18,9 +18,18 @@ import static javafx.application.Application.launch;
  * @author Krongrah
  */
 public class Initializer extends Application{
-    static IBackEnd backEnd;
-    public Initializer(){}
+    /**
+     * The backEnd attribute is static to allow it to be injected into the controller,
+     * despite the controller being instantiated by the start method, in a foreign class.
+     */
+    private static IBackEnd backEnd;
+    Initializer(){}
     
+    /**
+     * This method starts the GUI and injects the backEnd into th controller.
+     * @param stage
+     * @throws Exception 
+     */
     @Override
     public void start(Stage stage) throws Exception {
         
@@ -36,18 +45,22 @@ public class Initializer extends Application{
     }
 
     /**
+     * This method is responsible for calling the launch method.
      * @param args the command line arguments
      */
     public void begin(String[] args) {
         backEnd.play();
         launch(args);
-        
-        
     }
+    /**
+     * This method injects the backEnd into this object.
+     * @param backEnd The reference to the backEnd, created in the driver.
+     */
     void injectBackEnd(IBackEnd backEnd){
     this.backEnd=backEnd;
     
     }
+
 
     
 }

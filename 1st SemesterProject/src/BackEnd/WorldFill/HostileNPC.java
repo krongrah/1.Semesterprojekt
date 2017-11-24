@@ -5,7 +5,6 @@
  */
 package BackEnd.WorldFill;
 
-import BackEnd.WorldFill.Clue;
 
 /**
  *
@@ -55,7 +54,7 @@ public class HostileNPC extends NPC {
         this.aggression = aggression;
     }
     
-    public String getFightScream(){
-    return getDialogue().getFightScream();
+    public void getFightScream(){
+    getDialogue().getFightScream();
     }
 }

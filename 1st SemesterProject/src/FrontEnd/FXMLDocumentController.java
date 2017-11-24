@@ -11,22 +11,29 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 /**
  *
  * @author Krongrah
  */
 public class FXMLDocumentController implements Initializable {
-    IBackEnd backEnd;
+    private IBackEnd backEnd;
     
     @FXML
     private Button talk;
@@ -52,6 +59,8 @@ public class FXMLDocumentController implements Initializable {
     private Button save;
     @FXML
     private Button inspect;
+    @FXML
+    private GridPane gridPane;
     
     
     @Override
@@ -89,6 +98,15 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void drinkGUI(ActionEvent event) {
        backEnd.drink();
+       List<String> list=new ArrayList();
+       list.add("1");
+       list.add("2");
+       list.add("3");
+       list.add("4");
+       ListView listv=new ListView(FXCollections.observableArrayList(list));
+       gridPane.add(listv, 1, 1);
+       //listv.addEventHandler(EventType.ROOT, eventHandler);//todo
+       
     }
 
     @FXML
