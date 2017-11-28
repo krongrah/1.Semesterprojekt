@@ -32,7 +32,7 @@ public class World implements Serializable {
     private Map<String,Item> items=new HashMap<>();
     private Map<String,Clue> clues=new HashMap<>();
     private Map<String,Room> rooms=new HashMap<>();
-    private ArrayList<Hobo> hobos = new ArrayList<Hobo>();
+    private ArrayList<Hobo> hobos = new ArrayList<>();
 
     public World(){
     createWorld();
@@ -170,10 +170,10 @@ public class World implements Serializable {
         
         
         
-        Hobo hobo1 = (Hobo) new HostileNPC("No-Teeth Terry", hobo1Dialogue, hobo1Statement, 2);
-        Hobo hobo2 = (Hobo) new HostileNPC("Dirty Darryl", hobo2Dialogue, hobo2Statement, 2);
-        Hobo hobo3 = (Hobo) new HostileNPC("Heroin Harry", hobo3Dialogue, hobo3Statement, 1);
-        Hobo hobo4 = (Hobo) new HostileNPC("Insane Dwayne", hobo4Dialogue, hobo4Statement, 1);
+        Hobo hobo1 = (Hobo) new Hobo("No-Teeth Terry", hobo1Dialogue, hobo1Statement, 2);
+        Hobo hobo2 = (Hobo) new Hobo("Dirty Darryl", hobo2Dialogue, hobo2Statement, 2);
+        Hobo hobo3 = (Hobo) new Hobo("Heroin Harry", hobo3Dialogue, hobo3Statement, 1);
+        Hobo hobo4 = (Hobo) new Hobo("Insane Dwayne", hobo4Dialogue, hobo4Statement, 1);
         NPC commissioner = new NPC("Commissioner Curt", commissionerDialogue, null, 0);
         NPC bartender = new NPC("Bartender Bert", bartenderDialogue, bartenderStatement, 2);
         HostileNPC wife = new HostileNPC("Wife", wifeDialogue, null, 0, 50, 5, 0.5);
