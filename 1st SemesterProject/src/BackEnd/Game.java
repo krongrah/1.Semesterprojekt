@@ -14,6 +14,7 @@ import BackEnd.Command.CommandWord;
 import BackEnd.Command.Command;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Game {
 
@@ -84,7 +85,7 @@ public class Game {
         } else if (commandWord == CommandWord.SEARCH) {
             search();
         } else if (commandWord == CommandWord.TALK) {
-            talk();
+            talk("bla");
         } else if (commandWord == CommandWord.ARREST) {
             arrest();
         } else if (commandWord == CommandWord.INSPECT) {
@@ -562,14 +563,19 @@ public class Game {
 
         }
     }
-
-     void talk() {
+     Set<String> talkMenu(){
+     System.out.println("Who do you wish to talk to?");
+     return player.getRoom().getNPCsInRoomMap().keySet();
+     }
+     
+     
+     void talk(String name) {
         //Gives the player a list of NPCs in the room
         boolean sucess = false;
         remover();
         do {
 
-            System.out.println("Who do you wish to talk to?");
+            
             for (NPC npc : player.getRoom().getNPCsInRoom()) {
                 System.out.println(npc.getName());
             }
@@ -788,7 +794,7 @@ public class Game {
                 String talkshit = talkingmethod.nextLine();
                 if (world.isRoom(talkshit)){
                     player.move(world.getRoom(talkshit));
-                    talk();
+                    talk("bla");
                 }
 
             }

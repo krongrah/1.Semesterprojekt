@@ -25,6 +25,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -62,8 +63,12 @@ public class FXMLDocumentController implements Initializable {
     private Button inspect;
     @FXML
     private GridPane gridPane;
-    @FXML
     private Pane testPane;
+    private ListView<?> listView;
+    @FXML
+    private ListView<?> talkListView;
+    @FXML
+    private Pane talkTestPane;
     
     
     @Override
@@ -76,7 +81,7 @@ public class FXMLDocumentController implements Initializable {
             }
         };
         System.setOut(new PrintStream(o, true));
-        
+        testPane.setVisible(false);
     }  
         
     void importBackEnd(IBackEnd backEnd){
@@ -85,7 +90,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void talkGui(ActionEvent event) {
-        backEnd.talk();
+        talkTestPane.setVisible(true);
+        talkListView.setItems(FXCollections.observableList(new ArrayList(backEnd.talkMenu())));
     }
 
     @FXML
@@ -126,5 +132,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void inspectGUI(ActionEvent event) {
         backEnd.inspect();
+    }
+
+    @FXML
+    private void talkMenuSelect(MouseEvent event) {
+        talkListView.getSelectionModel().getSelectedItem();
     }
 }
