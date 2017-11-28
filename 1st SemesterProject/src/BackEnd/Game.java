@@ -634,91 +634,21 @@ public class Game {
                         }
          
      }
-     void search2(){
+     void pickup(String string){
      
-         //todo
-//                            if (willing.equals("yes")) {
-//                                if (thing == world.getItem("Blood Splattered Badge")) {
-//                                    parser.addFinishers();
-//                                }
-//                                if (thing.getIsClue()) {
-//                                    player.addToJournal(thing.giveClue());
-//                                }
-//                                player.addToInventory(thing, player.getRoom());
-//                            } else if (willing.equals("no")) {
-//                                System.out.println("The Item was left alone");
-//                            } else {
-//                                System.out.println("I dont understand that");
-//                            }
-                            
-                            
-                            
-                            
-         
-         
-        remover();
-        //todo
-        //prints all items in the room.
-        if (!player.getRoom().getItemsInRoomMap().isEmpty()) {
-            System.out.println("You found these items:");
-            for (Item thing : player.getRoom().getItemsInRoom()) {
-                System.out.println(thing.getName());
-            }
-            System.out.println("What do you want to look at?\nIf you don't want anything, type \"nothing\".");
-
-            //get an input for the desired item.
-            Scanner pick = new Scanner(System.in);
-            String newItem = pick.nextLine().toLowerCase();
-            if (newItem.equals("nothing")) {
-                System.out.println("I guess this is not interesting to you.\n");
-            } else {
-                //searches for the item
-                boolean success = false;
-                for (Item thing : player.getRoom().getItemsInRoom()) {
-                    if (newItem.equals(thing.getName().toLowerCase())) {
-                        success = true;
-                        System.out.println("\n" + thing.getDescription() + "\n");
-
-                        if (thing.getCollectible()) {
-                            System.out.println("Do you want to pick this item up? Yes/No");
-                            String willing = pick.nextLine().toLowerCase();
-                            if (willing.equals("yes")) {
-                                if (thing == world.getItem("Blood Splattered Badge")) {
-                                    parser.addFinishers();
-                                }
-                                if (thing.getIsClue()) {
-                                    player.addToJournal(thing.giveClue());
-                                }
-                                player.addToInventory(thing, player.getRoom());
-                                break;
-                            } else if (willing.equals("no")) {
-                                System.out.println("The Item was left alone");
-                                break;
-                            } else {
-                                System.out.println("I dont understand that");
-                            }
-
-                        } else {
-                            System.out.println("This item can't be picked up.");
-                            if (thing.getIsClue()) {
-                                player.addToJournal(thing.giveClue());
-                                thing.deactivateClue();
-                            }
-                            break;
-                        }
-
-                    }
-                }
-                if (success == false) {
-                    System.out.println("You can't find that.");
-                }
-            }
-        } else {
-            System.out.println("You can't find anything.");
+        Item item =world.getItem(string);
+                                
+        if (item.getIsClue()) {
+        player.addToJournal(item.giveClue());
         }
-        
+        player.addToInventory(item, player.getRoom());
+    
     }
 
+     boolean ask(){
+     return true;
+     }
+     
      Set<String> arrestMenu(){
      System.out.println("Who do you wish to talk to?");
      return player.getRoom().getNPCsInRoomMap().keySet();

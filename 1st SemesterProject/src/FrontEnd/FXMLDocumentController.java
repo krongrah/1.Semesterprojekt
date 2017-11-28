@@ -105,10 +105,11 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void searchGui(ActionEvent event) {
-      
+      Set<String> set=backEnd.searchMenu();
+        if(set!=null){
         searchList.setVisible(true);
-        searchList.setItems(FXCollections.observableList(new ArrayList(backEnd.searchMenu())));
-
+        searchList.setItems(FXCollections.observableList(new ArrayList(set)));
+        }  
     }
 
     @FXML
