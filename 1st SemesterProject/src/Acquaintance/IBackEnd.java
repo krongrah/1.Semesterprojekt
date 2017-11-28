@@ -18,7 +18,7 @@ public interface IBackEnd {
     void save();
     void drink();
     void talk(String string);
-    void search(String string);
+    boolean search(String string);
     void inspect(String string);
     void arrest(String string);
     void convict(String string);

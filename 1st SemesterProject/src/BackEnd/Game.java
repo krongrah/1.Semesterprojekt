@@ -292,6 +292,8 @@ public class Game {
                 + " his face is covered in spit", true, false, world.getClue("Corpse"));
         world.getRoom("Crime Scene").addItemsToRoom(corpseOutline);
         world.getRoom("Crime Scene").removeItemFromRoom(world.getItem("Corpse"));
+        world.getRoom("Crime Scene").removeItemFromRoomMap("Corpse");
+        
         }
     
     public void fightLoop(HostileNPC enemy) {
@@ -568,8 +570,13 @@ public class Game {
         }
     }
      Set<String> talkMenu(){
+     if(!player.getRoom().getNPCsInRoomMap().isEmpty()){    
      System.out.println("Who do you wish to talk to?");
-     return player.getRoom().getNPCsInRoomMap().keySet();
+     return player.getRoom().getNPCsInRoomMap().keySet();}
+     else{
+         System.out.println("You are all alone.");
+     return null;
+     }
      }
      
      
@@ -583,16 +590,62 @@ public class Game {
      }
 
      Set<String> searchMenu(){
-     System.out.println("Who do you wish to talk to?");
-     return player.getRoom().getNPCsInRoomMap().keySet();
-     //todo
+        if(!player.getRoom().getItemsInRoomMap().isEmpty()){    
+     System.out.println("You found these items.\nWhat do you want to look at?");
+     return player.getRoom().getItemsInRoomMap().keySet();
+        }
+     else{
+         System.out.println("You can't find anything.");
+     return null;
+     }
+
      }
      
-     void search(String item) {
-        remover();
+     boolean search(String name) {
+         Item item=world.getItem(name);
+         System.out.println("\n" + item.getDescription() + "\n");
+         
+                                 if (item.getCollectible()) {
+                            System.out.println("Do you want to pick this item up? Yes/No");
+                            return true;
+      
 
+                        } else {
+                            System.out.println("This item can't be picked up.");
+                            if (item.getIsClue()) {
+                                player.addToJournal(item.giveClue());
+                                item.deactivateClue();
+                            }
+                            return false;
+                        }
+         
+     }
+     void search2(){
+     
+         //todo
+//                            if (willing.equals("yes")) {
+//                                if (thing == world.getItem("Blood Splattered Badge")) {
+//                                    parser.addFinishers();
+//                                }
+//                                if (thing.getIsClue()) {
+//                                    player.addToJournal(thing.giveClue());
+//                                }
+//                                player.addToInventory(thing, player.getRoom());
+//                            } else if (willing.equals("no")) {
+//                                System.out.println("The Item was left alone");
+//                            } else {
+//                                System.out.println("I dont understand that");
+//                            }
+                            
+                            
+                            
+                            
+         
+         
+        remover();
+        //todo
         //prints all items in the room.
-        if (!player.getRoom().getItemsInRoom().isEmpty()) {
+        if (!player.getRoom().getItemsInRoomMap().isEmpty()) {
             System.out.println("You found these items:");
             for (Item thing : player.getRoom().getItemsInRoom()) {
                 System.out.println(thing.getName());
@@ -612,7 +665,7 @@ public class Game {
                         success = true;
                         System.out.println("\n" + thing.getDescription() + "\n");
 
-                        if (thing.getCollectible() == true) {
+                        if (thing.getCollectible()) {
                             System.out.println("Do you want to pick this item up? Yes/No");
                             String willing = pick.nextLine().toLowerCase();
                             if (willing.equals("yes")) {
@@ -649,6 +702,7 @@ public class Game {
         } else {
             System.out.println("You can't find anything.");
         }
+        
     }
 
      Set<String> arrestMenu(){

@@ -91,7 +91,7 @@ public class PC {
 
     public void moveToRoom(Item thing, Room currentRoom) {
         inventory.remove(thing);
-        currentRoom.getItemsInRoom().add(thing);
+        currentRoom.addItemsToRoom(thing);
     }
 
     //methods for adding to cluelist and inventory
@@ -100,7 +100,8 @@ public class PC {
         if (inventory.size() < maxInventoryCapacity) {
             if (thing.getCollectible()) {
                 
-                currentRoom.getItemsInRoom().remove(thing);
+                currentRoom.removeItemFromRoom(thing);
+                currentRoom.removeItemFromRoomMap(thing.getName());
                 inventory.add(thing);
                 return("You placed it in your bag.");
             } else {

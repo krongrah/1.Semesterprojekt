@@ -28,7 +28,7 @@
         </rowConstraints>
          <children>
             <Button fx:id="talk" mnemonicParsing="false" onAction="#talkGui" text="Talk" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-            <Button fx:id="convict" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ConvictGUI" text="Convict" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
+            <Button fx:id="convict" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ConvictGUI" text="Convict" visible="false" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
             <Button fx:id="drink" mnemonicParsing="false" onAction="#drinkGUI" text="Drink" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
             <Button fx:id="search" mnemonicParsing="false" onAction="#searchGui" text="Search" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
             <Button fx:id="arrest" mnemonicParsing="false" onAction="#ArrestGUI" text="Arrest" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
@@ -62,11 +62,11 @@
          <children>
             <Pane fx:id="menuPane" prefHeight="221.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
                <children>
-                  <ListView fx:id="arrestList" onMouseClicked="#arrestMenuSelect" prefHeight="220.0" prefWidth="397.0" />
-                  <ListView fx:id="talkList" onMouseClicked="#talkMenuSelect" prefHeight="220.0" prefWidth="397.0" />
-                  <ListView fx:id="searchList" onMouseClicked="#searchMenuSelect" prefHeight="220.0" prefWidth="397.0" />
-                  <ListView fx:id="convictList" onMouseClicked="#convictMenuSelect" prefHeight="220.0" prefWidth="397.0" />
-                  <ListView fx:id="inspectList" onMouseClicked="#inspectMenuSelect" prefHeight="220.0" prefWidth="397.0" />
+                  <ListView fx:id="arrestList" onMouseClicked="#arrestMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
+                  <ListView fx:id="talkList" onMouseClicked="#talkMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
+                  <ListView fx:id="searchList" onMouseClicked="#searchMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
+                  <ListView fx:id="convictList" onMouseClicked="#convictMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
+                  <ListView fx:id="inspectList" onMouseClicked="#inspectMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
                </children>
             </Pane>
          </children>
