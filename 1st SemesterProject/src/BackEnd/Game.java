@@ -546,7 +546,7 @@ public class Game {
                     while (!success) {
 
                         if (newItem.equals(thing.getName())) {
-                            player.moveToDesk(thing);
+                            //player.moveToDesk(thing);
                             success = true;
                         }
 
@@ -561,7 +561,7 @@ public class Game {
                                 break;
                             }
                             if (newItem2.equals(thing.getName())) {
-                                player.moveToDesk(thing);
+                                //player.moveToDesk(thing);
                                 success = true;
                             } else if (!newItem2.equals("nothing") || !newItem2.equals(thing.getName())) {
                                 System.out.println("I did not understand that, try again");
