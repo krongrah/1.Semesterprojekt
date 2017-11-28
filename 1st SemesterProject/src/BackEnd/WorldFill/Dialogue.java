@@ -71,9 +71,10 @@ public class Dialogue {
     
     /**
      * Prints the fight scream.
+     * @return fightScream
      */
-    public void getFightScream() {
-        System.out.println(fightScream);
+    public String getFightScream() {
+        return fightScream;
     }
 
 }

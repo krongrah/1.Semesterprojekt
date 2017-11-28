@@ -14,23 +14,32 @@ public class Command {   //has two attributes, a commandWord and a matching stri
         this.commandWord = commandWord;
         this.secondWord = secondWord;
     }
-
-    //getter for commandWord
+/**
+ * Used for processing command words.
+ * @return commandWord
+ */
     public CommandWord getCommandWord() {
         return commandWord;
     }
 
-    //getter for secondWord
+    /**
+     * getter for secondWord
+     * @return secondWord
+     */
     public String getSecondWord() {
         return secondWord;
     }
-
-    //returns true the command is the unknown command.
+/**
+ * returns true if the command is an unknown command.
+ * @return (commandWord == CommandWord.UNKNOWN)
+ */    
     public boolean isUnknown() {
         return (commandWord == CommandWord.UNKNOWN);
     }
-
-    //returns true if the command has a string attached. 
+/**
+ * returns true if the command has a string attached
+ * @return (secondWord != null)
+ */
     public boolean hasSecondWord() {
         return (secondWord != null);
     }
