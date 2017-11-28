@@ -33,28 +33,28 @@
    <children>
       <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="159.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
          <top>
-            <ImageView fx:id="arrowNorth" fitHeight="46.0" fitWidth="50.0" onMouseClicked="#GoarrowNorth" pickOnBounds="true" preserveRatio="true" rotate="180.0" BorderPane.alignment="CENTER">
+            <ImageView fx:id="arrowNorth" fitHeight="46.0" fitWidth="50.0" onMouseClicked="#GoArrowNorth" pickOnBounds="true" preserveRatio="true" rotate="180.0" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../Texures/arrow.png" />
                </image>
             </ImageView>
          </top>
          <left>
-            <ImageView fx:id="arrowWest" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#GoarrowWest" pickOnBounds="true" preserveRatio="true" rotate="90.0" BorderPane.alignment="CENTER">
+            <ImageView fx:id="arrowWest" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#GoArrowWest" pickOnBounds="true" preserveRatio="true" rotate="90.0" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../Texures/arrow.png" />
                </image>
             </ImageView>
          </left>
          <right>
-            <ImageView fx:id="arrowEast" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#GoarrowEast" pickOnBounds="true" preserveRatio="true" rotate="-90.0" BorderPane.alignment="CENTER">
+            <ImageView fx:id="arrowEast" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#GoArrowEast" pickOnBounds="true" preserveRatio="true" rotate="-90.0" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../Texures/arrow.png" />
                </image>
             </ImageView>
          </right>
          <bottom>
-            <ImageView fx:id="arrowSouth" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#GoarrowSouth" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="arrowSouth" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#GoArrowSouth" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../Texures/arrow.png" />
                </image>
@@ -118,6 +118,7 @@
             <ListView fx:id="searchList" onMouseClicked="#searchMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
             <ListView fx:id="convictList" onMouseClicked="#convictMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
             <ListView fx:id="inspectList" onMouseClicked="#inspectMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+            <Pane onMouseClicked="#GoArrowNorth" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </GridPane>
    </children>

@@ -67,8 +67,6 @@ public class FXMLDocumentController implements Initializable {
     private GridPane gridPane;
     private Pane testPane;
     @FXML
-    private Pane menuPane;
-    @FXML
     private ListView<String> arrestList;
     @FXML
     private ListView<String> talkList;
@@ -188,18 +186,19 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void GoarrowNorth(MouseEvent event) {
+    private void GoArrowNorth(MouseEvent event) {
+        System.out.println("test");
     }
 
     @FXML
-    private void GoarrowWest(MouseEvent event) {
+    private void GoArrowWest(MouseEvent event) {
     }
 
     @FXML
-    private void GoarrowSouth(MouseEvent event) {
+    private void GoArrowSouth(MouseEvent event) {
     }
 
     @FXML
-    private void GoarrowEast(MouseEvent event) {
+    private void GoArrowEast(MouseEvent event) {
     }
 }

@@ -121,6 +121,7 @@ public class Game {
     
     
     private void inspect(Command command) {
+        //todo
         if (!command.hasSecondWord()) {
             System.out.println("Inspect what? inventory or journal");
             return;
