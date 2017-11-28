@@ -14,14 +14,18 @@ import java.util.Set;
 public interface IBackEnd {
     void injectFoundation(IFoundation foundation);
     void play();
-    void talk(String string);
-    void search();
-    void inspect();
+
     void save();
     void drink();
-    void arrest();
-    void convict();
+    void talk(String string);
+    void search(String string);
+    void inspect(String string);
+    void arrest(String string);
+    void convict(String string);
     Set<String> talkMenu();
-    
+    Set<String> arrestMenu();
+    Set<String> convictMenu();
+    Set<String> searchMenu();
+    Set<String> inspectMenu();
     
 }

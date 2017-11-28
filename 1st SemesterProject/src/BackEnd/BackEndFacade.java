@@ -23,44 +23,75 @@ public class BackEndFacade implements IBackEnd{
         this.foundation=foundation;
     }
     
+    @Override
     public void play(){
         game.getHiScoreManager().pull(foundation);
         game.play();
     
     }    
 
-    public Set<String> talkMenu(){
-    return game.talkMenu();
-    }
+
     
+    @Override
     public void talk(String string){
     game.talk(string);
     }
     
-    public void search(){
-    game.search();
+    @Override
+    public void search(String string){
+    game.search(string);
     }
     
-    public void inspect(){
-    //game.inspect();
+    @Override
+    public void inspect(String string){
+    //game.inspect(string);
     //todo
     }
     
-    public void convict(){
-    game.convict();
+    @Override
+    public void convict(String string){
+    game.convict(string);
     }
     
-    public void arrest(){
-    game.arrest();
+    @Override
+    public void arrest(String string){
+    game.arrest(string);
     }
     
+    @Override
     public void drink(){
     game.drink();
     }
     
+    @Override
     public void save(){
     //game.save();
     //todo
+    }
+
+    @Override
+    public Set<String> talkMenu(){
+    return game.talkMenu();
+    }
+    
+    @Override
+    public Set<String> arrestMenu() {
+        return game.arrestMenu();
+    }
+
+    @Override
+    public Set<String> convictMenu() {
+        return game.convictMenu();
+    }
+
+    @Override
+    public Set<String> searchMenu() {
+        return game.searchMenu();
+    }
+
+    @Override
+    public Set<String> inspectMenu() {
+        return game.inspectMenu();
     }
     
 }   
