@@ -39,8 +39,16 @@ public class BackEndFacade implements IBackEnd{
     
     @Override
     public void search(String string){
-    game.search(string);
+        if (game.search(string)){
+        if(game.ask()){
+        game.pickup(string);
+        }
+        }
     }
+    public void pickUpAsk(){
+    
+    }
+    
     
     @Override
     public void inspect(String string){

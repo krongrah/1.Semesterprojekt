@@ -19,6 +19,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     private String description;
     private HashMap<String, Room> exits;
     private Set<Item> ItemsInRoom = new HashSet<>();
+    private Map<String,Item> ItemsInRoomMap = new HashMap<>();
     private Set<NPC> NPCsInRoom = new HashSet<>();
     private Map<String, NPC> NPCsInRoomMap = new HashMap<>();
     private String roomName;
@@ -72,6 +73,10 @@ public class Room {   //rooms have a description/name and map with strings to ro
     public Set<Item> getItemsInRoom() {
         return ItemsInRoom;
     }
+    public Map<String,Item> getItemsInRoomMap() {
+        return ItemsInRoomMap;
+    }
+    
 
     /** Adds items to the ItemsInRoom Set.
      * @param item you want to add to ItemsInRoom Set.
@@ -79,7 +84,10 @@ public class Room {   //rooms have a description/name and map with strings to ro
      */
     public void addItemsToRoom(Item item) {
         this.ItemsInRoom.add(item);
+        this.ItemsInRoomMap.put(item.getName(), item);
     }
+
+    
     /**
     * Removes items from room set
     * @param item you want to be removed from itemsInRoom Set.
@@ -87,6 +95,9 @@ public class Room {   //rooms have a description/name and map with strings to ro
     */ 
     public void removeItemFromRoom(Item item) {
         this.ItemsInRoom.remove(item);
+    }
+    public void removeItemFromRoomMap(String string){
+        this.ItemsInRoomMap.remove(string);
     }
     /**
      * @return the npcsInRoom Set.
