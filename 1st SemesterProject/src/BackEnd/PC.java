@@ -59,34 +59,12 @@ public class PC {
         evidenceStuff.add(ClueItem.getKey() + ":\n"+ClueItem.getValue().getDescription() + "\n");
         }
         }
-//          todo remove?
-//    public String diplayDesk(Room currentRoom) {
-//        int empty = 0;
-//        if (currentRoom == pd) {
-//            for (Item deskItem : desk) {
-//                System.out.println(deskItem.getName() + ":");
-//                System.out.println(deskItem.getDescription() + "\n");
-//            }
-//
-//            if (desk.size() == empty) {
-//                return("Your desk is empty");
-//
-//            }
-//        } else {
-//            return("You can't check your desk from here, only in the Police station.");
-//        }
-//    }
 
     //getters for the descriptions
     public void inspectItem(Item thing) {
         if (inventory.contains(thing)) {
             System.out.println(thing.getDescription());
         }
-    }
-
-    public void moveToDesk(Item thing) {
-        inventory.remove(thing);
-        desk.add(thing);
     }
 
     public void moveToRoom(Item thing, Room currentRoom) {
