@@ -5,6 +5,7 @@ package BackEnd;
  * @version 2006.03.30
  */
 import BackEnd.WorldFill.Room;
+import BackEnd.WorldFill.Hobo;
 import BackEnd.WorldFill.NPC;
 import BackEnd.WorldFill.HostileNPC;
 import BackEnd.WorldFill.Beverage;
@@ -261,6 +262,19 @@ public class Game {
             lose();
         }
             switch (player.getMovementChecker()) {
+                case 6: 
+                NpcMover();
+                break;
+            
+            case 16:
+                NpcMover();
+                break;
+            
+            case 30:
+                NpcMover();
+                break;
+            default:
+                break;
 
 
                 
@@ -831,6 +845,63 @@ public class Game {
     String test(){
     return "ye boi!";
     } 
+    
+    public void NpcMover(){
+      for(Hobo hobo: world.getHobos()){
+                   boolean success3 = false; 
+                
+                    do {
+                    switch (rollRooms()) {
+                        case 1:
+                            if(world.getRoom(hobo.getCurrentRoomName()).getExit().containsKey("south") == true){
+
+                                if (world.getRoom(world.getRoom(hobo.getCurrentRoomName()).getExit("south").getRoomName()).isHoboAccessable() == true){
+                                    world.getRoom(hobo.getCurrentRoomName()).moveNpc(hobo, world.getRoom(hobo.getCurrentRoomName()).getExit("south"));
+                                    success3 = true;
+                                    break;
+                                }
+                                
+                            }
+                            
+                        case 2:
+                            if(world.getRoom(hobo.getCurrentRoomName()).getExit().containsKey("north") == true){
+                                if (world.getRoom(world.getRoom(hobo.getCurrentRoomName()).getExit("north").getRoomName()).isHoboAccessable() == true){
+                                    world.getRoom(hobo.getCurrentRoomName()).moveNpc(hobo, world.getRoom(hobo.getCurrentRoomName()).getExit("south"));
+                                    success3 = true;
+                                    break;
+                                }
+                            }
+                            
+                        case 3:
+                            if(world.getRoom(hobo.getCurrentRoomName()).getExit().containsKey("west") == true){
+                                if (world.getRoom(world.getRoom(hobo.getCurrentRoomName()).getExit("west").getRoomName()).isHoboAccessable() == true){
+                                    world.getRoom(hobo.getCurrentRoomName()).moveNpc(hobo, world.getRoom(hobo.getCurrentRoomName()).getExit("south"));
+                                    success3 = true;
+                                    break;
+                                }
+                            }
+                            
+                        case 4:
+                            if(world.getRoom(hobo.getCurrentRoomName()).getExit().containsKey("east") == true){
+                                if (world.getRoom(world.getRoom(hobo.getCurrentRoomName()).getExit("east").getRoomName()).isHoboAccessable() == true){
+                                    world.getRoom(hobo.getCurrentRoomName()).moveNpc(hobo, world.getRoom(hobo.getCurrentRoomName()).getExit("south"));
+                                    success3 = true;
+                                    break;
+                                }
+                            }
+                            
+                        default:
+                            break;
+                    }
+                      
+                    } while(!success3);   
+                
+               
+            } 
+        
+            
+        }
+  
     }
 
 
