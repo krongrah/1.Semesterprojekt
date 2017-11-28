@@ -14,6 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventType;
@@ -62,7 +63,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private GridPane gridPane;
     private Pane testPane;
-    private ListView<String> talkListView;
     @FXML
     private Pane menuPane;
     @FXML
@@ -96,13 +96,17 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void talkGui(ActionEvent event) {
-        talkListView.setVisible(true);
-        talkListView.setItems(FXCollections.observableList(new ArrayList(backEnd.talkMenu())));
+        Set<String> set=backEnd.talkMenu();
+        if(set!=null){
+        talkList.setVisible(true);
+        talkList.setItems(FXCollections.observableList(new ArrayList(set)));
+        }   
     }
 
     @FXML
     private void searchGui(ActionEvent event) {
-      searchList.setVisible(true);
+      
+        searchList.setVisible(true);
         searchList.setItems(FXCollections.observableList(new ArrayList(backEnd.searchMenu())));
 
     }
@@ -141,8 +145,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void talkMenuSelect(MouseEvent event) {
-        backEnd.talk(talkListView.getSelectionModel().getSelectedItem());
-        talkListView.setVisible(false);
+        backEnd.talk(talkList.getSelectionModel().getSelectedItem());
+        talkList.setVisible(false);
     }
 
     @FXML

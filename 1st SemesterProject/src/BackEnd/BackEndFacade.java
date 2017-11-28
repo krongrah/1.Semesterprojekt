@@ -38,8 +38,8 @@ public class BackEndFacade implements IBackEnd{
     }
     
     @Override
-    public void search(String string){
-    game.search(string);
+    public boolean search(String string){
+    return game.search(string);
     }
     
     @Override
