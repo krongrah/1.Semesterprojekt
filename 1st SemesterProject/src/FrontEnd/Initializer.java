@@ -6,6 +6,7 @@
 package FrontEnd;
 
 import Acquaintance.IBackEnd;
+import Acquaintance.IFrontEnd;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +18,7 @@ import static javafx.application.Application.launch;
  *
  * @author Krongrah
  */
-public class Initializer extends Application{
+public class Initializer extends Application implements IFrontEnd{
     /**
      * The backEnd attribute is static to allow it to be injected into the controller,
      * despite the controller being instantiated by the start method, in a foreign class.

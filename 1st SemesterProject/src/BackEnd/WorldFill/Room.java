@@ -5,7 +5,6 @@ package BackEnd.WorldFill;
 
 import java.util.Set;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -18,7 +17,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     private String description;
     private HashMap<String, Room> exits;
     private Map<String,Item> ItemsInRoom = new HashMap<>();
-    private Map<String, NPC> NPCsInRoomMap = new HashMap<>();
+    private Map<String, NPC> NPCsInRoom = new HashMap<>();
     private String roomName;
     private boolean hoboAccessable;
     
@@ -96,7 +95,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     * @return the NPCsInRoomMap
     */
     public Map<String, NPC> getNPCsInRoomMap() {
-        return NPCsInRoomMap;
+        return NPCsInRoom;
     }
 
     /**Adds NPC to the NPCsInRoom Set
@@ -104,7 +103,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
      * Example of use: bar.addNpcToRoom(bartender);
      */
     public void addNpcToRoom(NPC npc) {
-        this.NPCsInRoomMap.put(npc.getName(), npc);
+        this.NPCsInRoom.put(npc.getName(), npc);
         npc.setCurrentRoomName(this.roomName);          
     }
 
@@ -114,7 +113,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
      */
     public void removeNpcFromRoom(NPC npc) {
         //this.NPCsInRoom.remove(npc);
-        this.NPCsInRoomMap.remove(npc.getName());
+        this.NPCsInRoom.remove(npc.getName());
         npc.setCurrentRoomName(null);
     }
     
@@ -128,8 +127,8 @@ public class Room {   //rooms have a description/name and map with strings to ro
     public void moveNpc(NPC npc, Room newRoom){
         
         if(this.getNPCsInRoomMap().containsKey(npc.getName())){
-        this.NPCsInRoomMap.remove(npc.getName());
-        newRoom.NPCsInRoomMap.put(npc.getName(), npc);
+        this.NPCsInRoom.remove(npc.getName());
+        newRoom.NPCsInRoom.put(npc.getName(), npc);
         npc.setCurrentRoomName(this.roomName);
         }
     }
@@ -183,7 +182,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
      * HostileNPC aggression, then you fight. 
      */
     public HostileNPC getJumped() {
-        for (Entry fighter : NPCsInRoomMap.entrySet()) {
+        for (Entry fighter : NPCsInRoom.entrySet()) {
             if (fighter instanceof HostileNPC) {
                 if (Math.random()<((HostileNPC) fighter).getAggression()) {
                     return (HostileNPC) fighter;
