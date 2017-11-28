@@ -7,6 +7,7 @@ package FrontEnd;
 
 import Acquaintance.IBackEnd;
 import java.io.Console;
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -26,6 +27,8 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -75,6 +78,16 @@ public class FXMLDocumentController implements Initializable {
     private ListView<String> convictList;
     @FXML
     private ListView<String> inspectList;
+    @FXML
+    private ImageView arrowNorth;
+    @FXML
+    private ImageView arrowWest;
+    @FXML
+    private ImageView arrowSouth;
+    @FXML
+    private ImageView roomPicture;
+    @FXML
+    private ImageView arrowEast;
     
     
     @Override
@@ -172,5 +185,21 @@ public class FXMLDocumentController implements Initializable {
     private void inspectMenuSelect(MouseEvent event) {
         backEnd.inspect(inspectList.getSelectionModel().getSelectedItem());
         inspectList.setVisible(false);
+    }
+
+    @FXML
+    private void GoarrowNorth(MouseEvent event) {
+    }
+
+    @FXML
+    private void GoarrowWest(MouseEvent event) {
+    }
+
+    @FXML
+    private void GoarrowSouth(MouseEvent event) {
+    }
+
+    @FXML
+    private void GoarrowEast(MouseEvent event) {
     }
 }
