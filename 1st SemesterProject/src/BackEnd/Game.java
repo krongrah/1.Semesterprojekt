@@ -14,6 +14,7 @@ import BackEnd.Command.CommandWord;
 import BackEnd.Command.Command;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Game {
 
@@ -84,7 +85,7 @@ public class Game {
         } else if (commandWord == CommandWord.SEARCH) {
             search();
         } else if (commandWord == CommandWord.TALK) {
-            talk();
+            talk("bla");
         } else if (commandWord == CommandWord.ARREST) {
             arrest();
         } else if (commandWord == CommandWord.INSPECT) {
@@ -562,67 +563,79 @@ public class Game {
 
         }
     }
-
-     void talk() {
+     Set<String> talkMenu(){
+     System.out.println("Who do you wish to talk to?");
+     return player.getRoom().getNPCsInRoomMap().keySet();
+     }
+     
+     
+     void talk(String name) {
         //Gives the player a list of NPCs in the room
-        boolean sucess = false;
-        remover();
-        do {
-
-            System.out.println("Who do you wish to talk to?");
-            for (NPC npc : player.getRoom().getNPCsInRoom()) {
-                System.out.println(npc.getName());
-            }
-            //have the player enter a name
-            Scanner talking = new Scanner(System.in);
-            String target = talking.nextLine().toLowerCase();
-            if (target.equalsIgnoreCase("exit")) {
-                sucess = true;
-                break;
-            }
-            //go through NPCs for matches to the input.
-            boolean success = false;
-            for (NPC npc : player.getRoom().getNPCsInRoom()) {
-
-                if (target.equals(npc.getName().toLowerCase())) {
-                    npc.getLine();
-                    success = true;
-                    if (npc.getClueCount() == npc.getClueRelease()) {
-                        player.addToJournal(npc.giveClue());
+        NPC target=player.getRoom().getNPCsInRoomMap().get(name);
+        target.getLine();
+        if (target.getClueCount() == target.getClueRelease()) {
+                        player.addToJournal(target.giveClue());
                     }
-                    boolean sucess1 = false;
-                    do {
-                        System.out.println("Do you want to keep talking?  Yes/No");
-
-                        Scanner talking1 = new Scanner(System.in);
-                        String target1 = talking1.nextLine().toLowerCase();
-
-                        if (target1.equalsIgnoreCase("Yes")) {
-                            npc.getLine();
-                            sucess1 = false;
-                            if (npc.getClueCount() == npc.getClueRelease()) {
-                                player.addToJournal(npc.giveClue());
-                            }
-                        }
-
-                        if (target1.equalsIgnoreCase("No")) {
-                            System.out.println("You decided not to talk anymore");
-                            sucess1 = true;
-                            sucess = true;
-                        }
-                    } while (!sucess1);
-                    break;
-                }
-
-            }
-            if (!success) {
-                System.out.println("There isnt anyone here by that name");
-
-            }
-        } while (!sucess);
-
-        //if no matches are found, print this line:
-    }
+     }
+//        
+//        boolean sucess = false;
+//        remover();
+//        do {
+//
+//            
+//            for (NPC npc : player.getRoom().getNPCsInRoom()) {
+//                System.out.println(npc.getName());
+//            }
+//            //have the player enter a name
+//            Scanner talking = new Scanner(System.in);
+//            String target = talking.nextLine().toLowerCase();
+//            if (target.equalsIgnoreCase("exit")) {
+//                sucess = true;
+//                break;
+//            }
+//            //go through NPCs for matches to the input.
+//            boolean success = false;
+//            for (NPC npc : player.getRoom().getNPCsInRoom()) {
+//
+//                if (target.equals(npc.getName().toLowerCase())) {
+//                    npc.getLine();
+//                    success = true;
+//                    if (npc.getClueCount() == npc.getClueRelease()) {
+//                        player.addToJournal(npc.giveClue());
+//                    }
+//                    boolean sucess1 = false;
+//                    do {
+//                        System.out.println("Do you want to keep talking?  Yes/No");
+//
+//                        Scanner talking1 = new Scanner(System.in);
+//                        String target1 = talking1.nextLine().toLowerCase();
+//
+//                        if (target1.equalsIgnoreCase("Yes")) {
+//                            npc.getLine();
+//                            sucess1 = false;
+//                            if (npc.getClueCount() == npc.getClueRelease()) {
+//                                player.addToJournal(npc.giveClue());
+//                            }
+//                        }
+//
+//                        if (target1.equalsIgnoreCase("No")) {
+//                            System.out.println("You decided not to talk anymore");
+//                            sucess1 = true;
+//                            sucess = true;
+//                        }
+//                    } while (!sucess1);
+//                    break;
+//                }
+//
+//            }
+//            if (!success) {
+//                System.out.println("There isnt anyone here by that name");
+//
+//            }
+//        } while (!sucess);
+//
+//        //if no matches are found, print this line:
+//    }
 
     //todo the search is a mess
     //add to cluelist
@@ -788,7 +801,7 @@ public class Game {
                 String talkshit = talkingmethod.nextLine();
                 if (world.isRoom(talkshit)){
                     player.move(world.getRoom(talkshit));
-                    talk();
+                    talk("bla");
                 }
 
             }

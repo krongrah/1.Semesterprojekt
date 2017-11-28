@@ -60,9 +60,9 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Pane fx:id="testPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Pane fx:id="talkTestPane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
                <children>
-                  <Button mnemonicParsing="false" text="Button" />
+                  <ListView fx:id="talkListView" onMouseClicked="#talkMenuSelect" prefHeight="240.0" prefWidth="300.0" />
                </children>
             </Pane>
          </children>

@@ -7,6 +7,7 @@ package BackEnd;
 
 import Acquaintance.IBackEnd;
 import Acquaintance.IFoundation;
+import java.util.Set;
 
 /**
  *
@@ -28,9 +29,12 @@ public class BackEndFacade implements IBackEnd{
     
     }    
 
+    public Set<String> talkMenu(){
+    return game.talkMenu();
+    }
     
-    public void talk(){
-    game.talk();
+    public void talk(String string){
+    game.talk(string);
     }
     
     public void search(){

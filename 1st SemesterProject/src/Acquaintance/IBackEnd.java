@@ -5,6 +5,8 @@
  */
 package Acquaintance;
 
+import java.util.Set;
+
 /**
  *
  * @author Krongrah
@@ -12,12 +14,14 @@ package Acquaintance;
 public interface IBackEnd {
     void injectFoundation(IFoundation foundation);
     void play();
-    void talk();
+    void talk(String string);
     void search();
     void inspect();
     void save();
     void drink();
     void arrest();
     void convict();
+    Set<String> talkMenu();
+    
     
 }
