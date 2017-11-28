@@ -12,8 +12,8 @@ package BackEnd.WorldFill;
  */
 public class HostileNPC extends NPC {
 
-    private int health;
-    private int damage;
+    int health;
+    int damage;
     private double aggression;
     
     /**
@@ -94,5 +94,12 @@ public class HostileNPC extends NPC {
     
     public String getFightScream(){
     return getDialogue().getFightScream();
+    }
+    
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 }
