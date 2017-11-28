@@ -788,6 +788,9 @@ public class Game {
     String test(){
     return "ye boi!";
     }
+    public PC getPlayer(){
+    return player;
+    }
     }
 
 

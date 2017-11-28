@@ -27,5 +27,6 @@ public interface IBackEnd {
     Set<String> convictMenu();
     Set<String> searchMenu();
     Set<String> inspectMenu();
+    String getCurrentRoom();
     
 }
