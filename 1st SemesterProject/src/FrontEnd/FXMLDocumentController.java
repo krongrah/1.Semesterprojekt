@@ -66,7 +66,7 @@ public class FXMLDocumentController implements Initializable {
     private Pane testPane;
     private ListView<?> listView;
     @FXML
-    private ListView<?> talkListView;
+    private ListView<String> talkListView;
     @FXML
     private Pane talkTestPane;
     
@@ -81,7 +81,7 @@ public class FXMLDocumentController implements Initializable {
             }
         };
         System.setOut(new PrintStream(o, true));
-        testPane.setVisible(false);
+        
     }  
         
     void importBackEnd(IBackEnd backEnd){
@@ -107,15 +107,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void drinkGUI(ActionEvent event) {
        backEnd.drink();
-       List<String> list=new ArrayList();
-       list.add("1");
-       list.add("2");
-       list.add("3");
-       list.add("4");
-       ListView listv=new ListView(FXCollections.observableArrayList(list));
-       gridPane.add(listv, 1, 1);
        //listv.addEventHandler(EventType.ROOT, eventHandler);//todo
-       
+       talkTestPane.setVisible(false);
     }
 
     @FXML
@@ -136,6 +129,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void talkMenuSelect(MouseEvent event) {
-        talkListView.getSelectionModel().getSelectedItem();
+        backEnd.talk(talkListView.getSelectionModel().getSelectedItem());
+        talkTestPane.setVisible(false);
     }
 }
