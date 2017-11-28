@@ -23,11 +23,17 @@ public class Clue {
         isConvictable = _isConvictable;
     }
 
-    //getters
+    /**
+     * Gets clue name
+     * @return name
+     */
     public String getName() {
         return name;
     }
-
+/**
+ * Gets clue description
+ * @return description
+ */
     public String getDescription() {
         return description;
     }
