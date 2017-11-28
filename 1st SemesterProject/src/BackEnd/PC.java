@@ -27,7 +27,7 @@ public class PC {
     private int drunkness;
     private int points;
     private Set<Item> inventory = new HashSet<>();
-    private Set<Item> desk = new HashSet<>();
+    private Map<String,Item> inventoryMap=new HashMap<>();
     private Map<String,Clue> journal = new HashMap<>();
     private Map<String,Clue> evidence = new HashMap<>();
     private int maxInventoryCapacity = 2;
@@ -48,9 +48,15 @@ public class PC {
             stuff.add(thing.getName() + ":\n"+thing.getDescription() + "\n");
         }
     }
+    public Set<String> displayInventoryMap(){
+    return inventoryMap.keySet();
+    }
 
     public Set<Item> getInventory() {
         return inventory;
+    }
+    public Map<String,Item>getInventoryMap(){
+    return inventoryMap;
     }
 
     public void displayJournal() {
@@ -66,21 +72,26 @@ public class PC {
             System.out.println(thing.getDescription());
         }
     }
+    public void inspectItemMap(String item){
+        System.out.println(inventoryMap.get(item).getDescription());
+    }
 
     public void moveToRoom(Item thing, Room currentRoom) {
         inventory.remove(thing);
+        inventoryMap.remove(thing.getName());
         currentRoom.addItemsToRoom(thing);
     }
 
     //methods for adding to cluelist and inventory
     public String addToInventory(Item thing, Room currentRoom) {
 
-        if (inventory.size() < maxInventoryCapacity) {
+        if (inventoryMap.size() < maxInventoryCapacity) {
             if (thing.getCollectible()) {
                 
                 currentRoom.removeItemFromRoom(thing);
                 currentRoom.removeItemFromRoomMap(thing.getName());
                 inventory.add(thing);
+                inventoryMap.put(thing.getName(), thing);
                 return("You placed it in your bag.");
             } else {
                 return("You can't seem to get a hold of it.");
@@ -138,12 +149,7 @@ public class PC {
     }
 
     public boolean inventoryContains(String name) {
-        for (Item thing : inventory) {
-            if (thing.getName().equalsIgnoreCase(name)) {
-                return true;
-            }
-        }
-        return false;
+        return inventoryMap.containsKey(name);
     }
 
     public int getDrunkness() {

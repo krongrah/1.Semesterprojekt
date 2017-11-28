@@ -14,6 +14,7 @@ import BackEnd.Command.Parser;
 import BackEnd.Command.CommandWord;
 import BackEnd.Command.Command;
 import java.util.Iterator;
+import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -153,7 +154,7 @@ public class Game {
             System.out.println("There is no door!");
         } else {
             if (nextRoom == world.getRoom("Partner's Home")) {
-                if (player.getInventory().contains(world.getItem("Key To Partner's Home"))) {
+                if (player.getInventoryMap().containsKey("Key To Partner's Home")) {
                     player.move(nextRoom);
                     System.out.println(player.getRoom().getLongDescription());
                     getInfo();
@@ -201,13 +202,13 @@ public class Game {
 
     public void drink() {
         System.out.println("drinking");
-        for (Item drink : player.getInventory()) {
+        for (Entry drink : player.getInventoryMap().entrySet()) {
             if (drink instanceof Beverage) {
-                System.out.println("You drink some " + drink.getName() + ", you start to feel all your problems disappear");
+                System.out.println("You drink some " + ((Beverage)drink).getName() + ", you start to feel all your problems disappear");
                 player.addDrunkness(((Beverage) drink).getAlcoholContent());
                 ((Beverage) drink).removeSip();
                 if(((Beverage) drink).getNumberOfSips()==0){
-                player.getInventory().remove(drink);
+                player.getInventoryMap().remove(drink);
                     System.out.println("You emptied your bottle and tossed it away.");
                 }
                 System.out.println(player.getDrunkness());
@@ -495,7 +496,7 @@ public class Game {
             return;
         }
         //if inventory is empty
-        if (player.getInventory().isEmpty()) {
+        if (player.getInventoryMap().isEmpty()) {
             System.out.println("You can't drop anything because you don't have anything on you.");
         } else {
             //if second word is room
