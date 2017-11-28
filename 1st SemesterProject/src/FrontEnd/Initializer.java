@@ -23,7 +23,7 @@ public class Initializer extends Application{
      * despite the controller being instantiated by the start method, in a foreign class.
      */
     private static IBackEnd backEnd;
-    Initializer(){}
+    public Initializer(){}
     
     /**
      * This method starts the GUI and injects the backEnd into th controller.
@@ -56,7 +56,7 @@ public class Initializer extends Application{
      * This method injects the backEnd into this object.
      * @param backEnd The reference to the backEnd, created in the driver.
      */
-    void injectBackEnd(IBackEnd backEnd){
+    public void injectBackEnd(IBackEnd backEnd){
     this.backEnd=backEnd;
     
     }

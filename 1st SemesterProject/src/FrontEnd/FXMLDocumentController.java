@@ -27,6 +27,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 
 /**
  *
@@ -61,6 +62,8 @@ public class FXMLDocumentController implements Initializable {
     private Button inspect;
     @FXML
     private GridPane gridPane;
+    @FXML
+    private Pane testPane;
     
     
     @Override
@@ -116,7 +119,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void saveGUI(ActionEvent event) {
-        backEnd.save();
+        //backEnd.save();
+        testPane.setVisible(false);
     }
 
     @FXML
