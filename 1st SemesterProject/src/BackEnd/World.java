@@ -81,14 +81,14 @@ public class World implements Serializable {
         
         Room leftStreet = new Room(" on left street", "Left Street",true);
         Room rightStreet = new Room(" on Right street", "Right Street", true);
-        Room bar = new Room(" in the bar", "Bar");
+        Room bar = new Room(" in the bar", "Bar", false);
         Room hoboAlley = new Room(" in the Hobo Alley, try not to get stabbed", "Hobo Alley", true);
         Room crimeScene = new Room(" at the crime scene", "Crime Scene", true);
-        Room partnerHome = new Room(" in your deceased partners house", "Partner's Home");
-        Room home = new Room(" in your home", "Home");
-        Room pd = new Room(" in the Police Department", "Police Department");
-        Room jail = new Room(" visiting the jail, in the pd", "Jail");
-        Room court = new Room(" in court", "Court");
+        Room partnerHome = new Room(" in your deceased partners house", "Partner's Home", false);
+        Room home = new Room(" in your home", "Home", false);
+        Room pd = new Room(" in the Police Department", "Police Department", false);
+        Room jail = new Room(" visiting the jail, in the pd", "Jail", false);
+        Room court = new Room(" in court", "Court", false);
 
       
 
@@ -170,10 +170,10 @@ public class World implements Serializable {
         
         
         
-        Hobo hobo1 = (Hobo) new Hobo("No-Teeth Terry", hobo1Dialogue, hobo1Statement, 2);
-        Hobo hobo2 = (Hobo) new Hobo("Dirty Darryl", hobo2Dialogue, hobo2Statement, 2);
-        Hobo hobo3 = (Hobo) new Hobo("Heroin Harry", hobo3Dialogue, hobo3Statement, 1);
-        Hobo hobo4 = (Hobo) new Hobo("Insane Dwayne", hobo4Dialogue, hobo4Statement, 1);
+        Hobo hobo1 =  new Hobo("No-Teeth Terry", hobo1Dialogue, hobo1Statement, 2);
+        Hobo hobo2 =  new Hobo("Dirty Darryl", hobo2Dialogue, hobo2Statement, 2);
+        Hobo hobo3 =  new Hobo("Heroin Harry", hobo3Dialogue, hobo3Statement, 1);
+        Hobo hobo4 =  new Hobo("Insane Dwayne", hobo4Dialogue, hobo4Statement, 1);
         NPC commissioner = new NPC("Commissioner Curt", commissionerDialogue, null, 0);
         NPC bartender = new NPC("Bartender Bert", bartenderDialogue, bartenderStatement, 2);
         HostileNPC wife = new HostileNPC("Wife", wifeDialogue, null, 0, 50, 5, 0.5);
