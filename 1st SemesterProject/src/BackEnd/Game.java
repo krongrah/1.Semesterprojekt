@@ -261,18 +261,7 @@ public class Game {
             lose();
         }
             switch (player.getMovementChecker()) {
-                case 12: 
-                    rollRooms();
-                    
-                    player.getRoom().moveNpc(world.getHostileNPC("Dirty Darryl"), world.getRoom("Right Street"));
-                    player.getRoom().moveNpc(world.getHostileNPC("Heroin Harry"), world.getRoom("Hobo Alley"));
-                    break;
-                case 28:
-                    player.getRoom().moveNpc(world.getHostileNPC("Insane Dwayne"), world.getRoom("Hobo Alley"));
-                    player.getRoom().moveNpc(world.getHostileNPC("Dirty Darryl"), world.getRoom("Left Street"));
-                    player.getRoom().moveNpc(world.getHostileNPC("Heroing Harry"), world.getRoom("Crime Scene"));
-                    player.getRoom().moveNpc(world.getHostileNPC("No-Teeth Terry"), world.getRoom("Hobo Alley"));
-                    break;
+
 
                 
             } 
@@ -787,7 +776,7 @@ public class Game {
     }
     String test(){
     return "ye boi!";
-    }
+    } 
     }
 
 

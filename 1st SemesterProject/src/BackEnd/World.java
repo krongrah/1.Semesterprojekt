@@ -17,6 +17,9 @@ import BackEnd.WorldFill.NPC;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import BackEnd.WorldFill.Hobo;
+import java.util.ArrayList;
+
 
 /**
  *
@@ -29,6 +32,7 @@ public class World implements Serializable {
     private Map<String,Item> items=new HashMap<>();
     private Map<String,Clue> clues=new HashMap<>();
     private Map<String,Room> rooms=new HashMap<>();
+    private ArrayList<Hobo> hobos = new ArrayList<Hobo>();
 
     public World(){
     createWorld();
@@ -166,10 +170,10 @@ public class World implements Serializable {
         
         
         
-        HostileNPC hobo1 = new HostileNPC("No-Teeth Terry", hobo1Dialogue, hobo1Statement, 2);
-        HostileNPC hobo2 = new HostileNPC("Dirty Darryl", hobo2Dialogue, hobo2Statement, 2);
-        HostileNPC hobo3 = new HostileNPC("Heroin Harry", hobo3Dialogue, hobo3Statement, 1);
-        HostileNPC hobo4 = new HostileNPC("Insane Dwayne", hobo4Dialogue, hobo4Statement, 1);
+        Hobo hobo1 = (Hobo) new HostileNPC("No-Teeth Terry", hobo1Dialogue, hobo1Statement, 2);
+        Hobo hobo2 = (Hobo) new HostileNPC("Dirty Darryl", hobo2Dialogue, hobo2Statement, 2);
+        Hobo hobo3 = (Hobo) new HostileNPC("Heroin Harry", hobo3Dialogue, hobo3Statement, 1);
+        Hobo hobo4 = (Hobo) new HostileNPC("Insane Dwayne", hobo4Dialogue, hobo4Statement, 1);
         NPC commissioner = new NPC("Commissioner Curt", commissionerDialogue, null, 0);
         NPC bartender = new NPC("Bartender Bert", bartenderDialogue, bartenderStatement, 2);
         HostileNPC wife = new HostileNPC("Wife", wifeDialogue, null, 0, 50, 5, 0.5);
@@ -271,6 +275,10 @@ public class World implements Serializable {
         clues.put(murderWeaponClue.getName(), murderWeaponClue);
         clues.put(corpseClue.getName(), corpseClue);
         
+        hobos.add(hobo1);
+        hobos.add(hobo2);
+        hobos.add(hobo3);
+        hobos.add(hobo4);
         
     }
     
@@ -295,6 +303,9 @@ public class World implements Serializable {
     }
     public Map getTheCluse (){
     return clues;
+    }
+    public ArrayList<Hobo> getHobos(){
+        return hobos;
     }
 
 }
