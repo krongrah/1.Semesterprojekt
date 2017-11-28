@@ -102,4 +102,9 @@ public class BackEndFacade implements IBackEnd{
         return game.inspectMenu();
     }
     
+    @Override
+    public String getCurrentRoom(){        
+        return game.getPlayer().getRoom().getRoomName();
+    }
+    
 }   

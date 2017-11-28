@@ -769,12 +769,16 @@ public class Game {
     }
 
     public int rollRooms(){
-        int r = (int) (Math.random() * 2 + 5);
+        int r = (int) (Math.random() * (5 - 1)) + 1;
         return r; 
     }
     String test(){
     return "ye boi!";
-    } 
+    }
+    public PC getPlayer(){
+    return player;
+    }
+    
     
     public void NpcMover(){
       for(Hobo hobo: world.getHobos()){
