@@ -14,14 +14,18 @@ import java.io.ObjectOutputStream;
  * @author Krongrah
  */
 
-class SaveFile {
+public class SaveFile {
     static GameState savedGame = new GameState();
     
     public static void saveFile() throws IOException{
         try(ObjectOutputStream oos = new ObjectOutputStream(
-          new FileOutputStream(new File("saveFile.data")))) {
+          new FileOutputStream(new File("saveFile.txt")))) {
                 oos.writeObject(savedGame);
         }
+    }
+    
+    public static void loadFile(){
+        
     }
 }
 
