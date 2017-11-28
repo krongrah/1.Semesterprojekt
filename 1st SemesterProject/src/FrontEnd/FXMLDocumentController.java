@@ -44,8 +44,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextArea textOutput;
     @FXML
-    private TextField textInput;
-    @FXML
     private ProgressBar badCopBar;
     @FXML
     private ProgressBar GoodCopBar;
@@ -64,11 +62,19 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private GridPane gridPane;
     private Pane testPane;
-    private ListView<?> listView;
-    @FXML
     private ListView<String> talkListView;
     @FXML
-    private Pane talkTestPane;
+    private Pane menuPane;
+    @FXML
+    private ListView<String> arrestList;
+    @FXML
+    private ListView<String> talkList;
+    @FXML
+    private ListView<String> searchList;
+    @FXML
+    private ListView<String> convictList;
+    @FXML
+    private ListView<String> inspectList;
     
     
     @Override
@@ -90,46 +96,76 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void talkGui(ActionEvent event) {
-        talkTestPane.setVisible(true);
+        talkListView.setVisible(true);
         talkListView.setItems(FXCollections.observableList(new ArrayList(backEnd.talkMenu())));
     }
 
     @FXML
     private void searchGui(ActionEvent event) {
-      backEnd.search();
+      searchList.setVisible(true);
+        searchList.setItems(FXCollections.observableList(new ArrayList(backEnd.searchMenu())));
+
     }
 
     @FXML
     private void ConvictGUI(ActionEvent event) {
-      backEnd.convict();
+      convictList.setVisible(true);
+        convictList.setItems(FXCollections.observableList(new ArrayList(backEnd.convictMenu())));
+
     }
 
     @FXML
     private void drinkGUI(ActionEvent event) {
        backEnd.drink();
-       //listv.addEventHandler(EventType.ROOT, eventHandler);//todo
-       talkTestPane.setVisible(false);
     }
 
     @FXML
     private void ArrestGUI(ActionEvent event) {
-        backEnd.arrest();
+        arrestList.setVisible(true);
+        arrestList.setItems(FXCollections.observableList(new ArrayList(backEnd.arrestMenu())));
+
     }
 
     @FXML
     private void saveGUI(ActionEvent event) {
         //backEnd.save();
-        testPane.setVisible(false);
+        //todo
     }
 
     @FXML
     private void inspectGUI(ActionEvent event) {
-        backEnd.inspect();
+        inspectList.setVisible(true);
+        inspectList.setItems(FXCollections.observableList(new ArrayList(backEnd.inspectMenu())));
+
     }
 
     @FXML
     private void talkMenuSelect(MouseEvent event) {
         backEnd.talk(talkListView.getSelectionModel().getSelectedItem());
-        talkTestPane.setVisible(false);
+        talkListView.setVisible(false);
+    }
+
+    @FXML
+    private void arrestMenuSelect(MouseEvent event) {
+        backEnd.arrest(arrestList.getSelectionModel().getSelectedItem());
+        arrestList.setVisible(false);
+    }
+
+    @FXML
+    private void searchMenuSelect(MouseEvent event) {
+        backEnd.search(searchList.getSelectionModel().getSelectedItem());
+        searchList.setVisible(false);
+    }
+
+    @FXML
+    private void convictMenuSelect(MouseEvent event) {
+        backEnd.convict(convictList.getSelectionModel().getSelectedItem());
+        convictList.setVisible(false);
+    }
+
+    @FXML
+    private void inspectMenuSelect(MouseEvent event) {
+        backEnd.inspect(inspectList.getSelectionModel().getSelectedItem());
+        inspectList.setVisible(false);
     }
 }

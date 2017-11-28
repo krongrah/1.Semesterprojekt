@@ -83,11 +83,11 @@ public class Game {
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         } else if (commandWord == CommandWord.SEARCH) {
-            search();
+            search("");
         } else if (commandWord == CommandWord.TALK) {
-            talk("bla");
+            talk("");
         } else if (commandWord == CommandWord.ARREST) {
-            arrest();
+            arrest("");
         } else if (commandWord == CommandWord.INSPECT) {
             inspect(command);
         } else if (commandWord == CommandWord.DROP) {
@@ -95,7 +95,7 @@ public class Game {
         } else if (commandWord == CommandWord.LIE) {
             System.out.println("Lying is bad, and you should feel bad.");
         } else if (commandWord == CommandWord.CONVICT) {
-            convict();
+            convict("");
         } else if (commandWord == CommandWord.DRINK) {
             drink();
         } else if (commandWord == CommandWord.DRUNKNESS){
@@ -111,6 +111,14 @@ public class Game {
         parser.showCommands();
     }
 
+    Set<String> inspectMenu(){
+     System.out.println("Who do you wish to talk to?");
+     return player.getRoom().getNPCsInRoomMap().keySet();
+     //todo
+     }
+    
+    
+    
     private void inspect(Command command) {
         if (!command.hasSecondWord()) {
             System.out.println("Inspect what? inventory or journal");
@@ -382,7 +390,14 @@ public class Game {
         getInfo();
     }
     
-    public void convict() {
+    Set<String> convictMenu(){
+     System.out.println("Who do you wish to talk to?");
+     return player.getRoom().getNPCsInRoomMap().keySet();
+     //todo
+     }
+    
+    public void convict(String clue) {
+            //todo
         remover();
         if (player.getRoom() == world.getRoom("Police Department")) {
             boolean run = true;
@@ -577,69 +592,14 @@ public class Game {
                         player.addToJournal(target.giveClue());
                     }
      }
-//        
-//        boolean sucess = false;
-//        remover();
-//        do {
-//
-//            
-//            for (NPC npc : player.getRoom().getNPCsInRoom()) {
-//                System.out.println(npc.getName());
-//            }
-//            //have the player enter a name
-//            Scanner talking = new Scanner(System.in);
-//            String target = talking.nextLine().toLowerCase();
-//            if (target.equalsIgnoreCase("exit")) {
-//                sucess = true;
-//                break;
-//            }
-//            //go through NPCs for matches to the input.
-//            boolean success = false;
-//            for (NPC npc : player.getRoom().getNPCsInRoom()) {
-//
-//                if (target.equals(npc.getName().toLowerCase())) {
-//                    npc.getLine();
-//                    success = true;
-//                    if (npc.getClueCount() == npc.getClueRelease()) {
-//                        player.addToJournal(npc.giveClue());
-//                    }
-//                    boolean sucess1 = false;
-//                    do {
-//                        System.out.println("Do you want to keep talking?  Yes/No");
-//
-//                        Scanner talking1 = new Scanner(System.in);
-//                        String target1 = talking1.nextLine().toLowerCase();
-//
-//                        if (target1.equalsIgnoreCase("Yes")) {
-//                            npc.getLine();
-//                            sucess1 = false;
-//                            if (npc.getClueCount() == npc.getClueRelease()) {
-//                                player.addToJournal(npc.giveClue());
-//                            }
-//                        }
-//
-//                        if (target1.equalsIgnoreCase("No")) {
-//                            System.out.println("You decided not to talk anymore");
-//                            sucess1 = true;
-//                            sucess = true;
-//                        }
-//                    } while (!sucess1);
-//                    break;
-//                }
-//
-//            }
-//            if (!success) {
-//                System.out.println("There isnt anyone here by that name");
-//
-//            }
-//        } while (!sucess);
-//
-//        //if no matches are found, print this line:
-//    }
 
-    //todo the search is a mess
-    //add to cluelist
-     void search() {
+     Set<String> searchMenu(){
+     System.out.println("Who do you wish to talk to?");
+     return player.getRoom().getNPCsInRoomMap().keySet();
+     //todo
+     }
+     
+     void search(String item) {
         remover();
 
         //prints all items in the room.
@@ -702,7 +662,12 @@ public class Game {
         }
     }
 
-    public void arrest() {
+     Set<String> arrestMenu(){
+     System.out.println("Who do you wish to talk to?");
+     return player.getRoom().getNPCsInRoomMap().keySet();
+     }
+     
+    public void arrest(String name) {
         remover();
         System.out.println("You have decided to begin arresting people, god bless you");
         System.out.println("Are you sure?   Yes/No");
@@ -767,14 +732,14 @@ public class Game {
                 player.addToJournal(world.getClue("Badge"));
                 player.addToJournal(world.getClue("Dirty Darryl's Statement"));
                 player.move(world.getRoom("Crime Scene"));
-                arrest();
+                arrest("");
                 wantToQuit = true;
             }
             if (testerr.equals("convict")){
                 player.addToJournal(world.getClue("Badge"));
                 player.addToJournal(world.getClue("Dirty Darryl's Statement"));
                 player.move(world.getRoom("Police Department"));
-                convict();
+                convict("");
                 wantToQuit = true;
             }
             if (testerr.equals("drink")) {
@@ -791,7 +756,7 @@ public class Game {
                 String thisisshit = whatareyouevendoing.nextLine();
                 if (world.isRoom(thisisshit)){
                     player.move(world.getRoom(thisisshit));
-                    search();
+                    search("");
                 }
 
             }
