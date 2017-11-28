@@ -193,10 +193,7 @@ public class Game {
             System.out.println("You are all alone.");
         } else {
             System.out.println("The other people here are:");
-            for (NPC npc : player.getRoom().getNPCsInRoom()) {
-                System.out.println(npc.getName());
-                
-            }
+            System.out.println(player.getRoom().getNPCsInRoomMap().keySet());
         }
     }
 
@@ -290,24 +287,13 @@ public class Game {
         return ((int) (Math.random() * 11) - 5);
     }
     private void updateCrimeScene(){        
-        Iterator<NPC> iterator = world.getRoom("Crime Scene").getNPCsInRoom().iterator();
-
-    while(iterator.hasNext()) {
-        NPC npc = iterator.next();
-        if(npc.getName().equals("Coroner")){
-                iterator.remove();
-            }else{        
-        world.getRoom("Hobo Alley").addNpcToRoom(npc);
-        iterator.remove();
-        world.getHostileNPC(npc.getName()).setAggression(0.3);
-                }          
+            world.getRoom("Crime Scene").removeItemFromRoomMap("Coroner");
+            world.getRoom("Crime Scene").addItemsToRoom(world.getItem("corpseOutline"));
+            world.getRoom("Crime Scene").removeItemFromRoomMap("Corpse");
+            for(String name:world.getRoom("Crime Scene").getNPCsInRoomMap().keySet()){
+            world.getRoom("Crime Scene").moveNpc(world.getNPC(name), world.getRoom("Hobo Alley"));
+            world.getHostileNPC(name).setAggression(0.3);
             }
-    Item corpseOutline = new Item("Corpse Outline", "its was a dead guy, he looked like he was stabbed"
-                + " brutally multiple times.\n When you looked closer you noticed"
-                + " his face is covered in spit", true, false, world.getClue("Corpse"));
-        world.getRoom("Crime Scene").addItemsToRoom(corpseOutline);
-        world.getRoom("Crime Scene").removeItemFromRoomMap("Corpse");
-        
         }
     
     public void fightLoop(HostileNPC enemy) {
@@ -445,8 +431,8 @@ public class Game {
                             System.out.println(evidence + " has been added to Evidence list");
                             if (player.isEvidence2()) {
                                 System.out.print("Judge: We have found ");
-                                for(NPC npc:world.getRoom("Jail").getNPCsInRoom()){
-                                System.out.print(npc.getName()+(" "));
+                                for(Entry<String,NPC> npc:world.getRoom("Jail").getNPCsInRoomMap().entrySet()){
+                                System.out.print(npc.getValue().getName()+(" "));
                                 }
                                 System.out.print("guilty of murder.");
 
@@ -664,9 +650,7 @@ public class Game {
             System.out.println("You decided not to accuse anyone... for now");
         } else if (victim.equalsIgnoreCase("yes")) {
             System.out.println("These are the people you can accuse:");
-            for (NPC npc : player.getRoom().getNPCsInRoom()) {
-                System.out.println(npc.getName());
-            }
+            System.out.println(player.getRoom().getNPCsInRoomMap().keySet());
             Scanner choose = new Scanner(System.in);
             String person = choose.nextLine();
             boolean success = false;
@@ -680,14 +664,14 @@ public class Game {
 //            }else{
 //                System.out.println("That person isn't here");
 //            }
-            for (NPC npc : player.getRoom().getNPCsInRoom()) {
-                if (person.equals(npc.getName().toLowerCase())) {
-                    if (npc.getAlibi()) {
+            for (Entry<String,NPC> npc : player.getRoom().getNPCsInRoomMap().entrySet()) {
+                if (person.equals(npc.getValue().getName().toLowerCase())) {
+                    if (npc.getValue().getAlibi()) {
                         lose();
                         success = true;
                         break;
                     } else {
-                        goToJail(npc);
+                        goToJail(npc.getValue());
                         updateCrimeScene();
                     }
                     success = true;

@@ -69,7 +69,10 @@ public class World implements Serializable {
             + " what you have done", true, true, bloodSplatteredBadgeClue);
         Item partnerKey = new Item("Key To Partner's Home", "This key belongs to your deceased partner, "
             + "and it allows you to enter his home.", false, true, null);
-    
+        Item corpseOutline = new Item("Corpse Outline", "its was a dead guy, he looked like he was stabbed"
+                + " brutally multiple times.\n When you looked closer you noticed"
+                + " his face is covered in spit", true, false, corpseClue);
+
         
         Beverage whiskey=new Beverage("Whiskey","This bottle is your favorite drink, and the reason you love coming home.",false, true, null,2,5);
         Beverage gin = new Beverage ("Half-empty Gin", "its a half-empty bottle of gin, some idiot wasted his drink", false, true, null,1,7);
@@ -97,43 +100,43 @@ public class World implements Serializable {
             "Welcome to the murder scene, make yourself at home.",
             "The victim is your partner, Detective Prickard. He was a dick, and the world is a better place without him.",
             "The victim was stabbed several times, and died from blood loss. It appears to be a crime of passion, due to the many stab wounds the spit on the victim’s face.",
-            "The victim was surprised by the attack, so I believe he knew his killer. (update cluelist)",
-            "I’ll get the cleaning team here know, so we can get this shit of the street. (loop; if played, NPC will disappear on next loading.)"
+            "The victim was surprised by the attack, so I believe he knew his killer.",
+            "I’ll get the cleaning team here know, so we can get this shit of the street."
         };
         String[] wifeLine = {
             "What are you doing here? You love your job more than me, so go do your job and leave me alone.",
             "You are always out drinking, you sad piece of shit.",
             "Where were you even last night? You came home covered in shit all worked up?",
-            "Go away, I want a good day. (end of dialogue: loop)"
+            "Go away, I want a good day."
         };
         String[] bartenderLine = {
             "Isn't it a bit early for you to be here?",
             "Detective Prickard is dead? I can’t say I’m surprised, he didn’t seem to get along with anyone, especially not you. (add to cluelist)",
-            "I think you should get back at work now. (loop)"
+            "I think you should get back at work now."
         };
         String[] hobo1Line = {
             "Coppers don’t often come up to ‘dese parts",
-            "I ‘eard a drunk fella’ shoutin’ at ’em.	(clue)",
-            "Bugger off. (loop)"
+            "I ‘eard a drunk fella’ shoutin’ at ’em.",
+            "Bugger off."
         };
         String[] hobo2Line = {
             "We don’ take kindly to your kind ‘roun’ ‘ere!",
-            "What de’ ye’ stinkin’ cops wan’ over ‘ere? (clue)",
-            "Ay ain’t tellin’ ye’ nutin’, stupid cop. (loop)"
+            "What de’ ye’ stinkin’ cops wan’ over ‘ere?",
+            "Ay ain’t tellin’ ye’ nutin’, stupid cop."
         };
         String[] hobo3Line = {
-            "It gats’ ta’ be Darryl! He be lookin’ funny at me! (clue)",
-            "Gat any smack? (loop)"
+            "It gats’ ta’ be Darryl! He be lookin’ funny at me!",
+            "Gat any smack?"
         };
         String[] hobo4Line = {
             "I bet your ass killed him, cops can’t help killing.",
-            "I think you guilty, the voice in my head told me so. (loop)",};
+            "I think you guilty, the voice in my head told me so.",};
         String[] commissionerLine1 = {
             "Detective, there has been a murder in the Hobo Alley, get over there ASAP. no time to wait for your partner, detective Prickard.",
-            "Get your fat ass out of here! (loop)"
+            "Get your fat ass out of here!"
         };
         String[] commissionerLine2 = {
-            "Did you find his badge? We need it for the memorial. (loop)"
+            "Did you find his badge? We need it for the memorial."
 
         };
         String coronerAlibi = "The coroners fingerprints and footprints are everywhere  on the crimescene"
@@ -147,9 +150,9 @@ public class World implements Serializable {
         String hobo4Alibi = "This guy is insane... theres i no other way around it.";
 
         //Fight Screams System.out.println((char)27 + "[31mThis text would show up red" + (char)27 + "[0m");
-        String fightScreamHobo1=(char)27 + "[31mYou arrested my friend, i can't bite you but i can punch you!"+ (char)27 + "[0m";
+        String fightScreamHobo1=(char)27 + "[31mYou arrested my friend, I can't bite you but I can punch you!"+ (char)27 + "[0m";
         String fightScreamHobo2=(char)27 + "[31mYou arrested my friend, imma mess ya suit, n' ya face up now!"+ (char)27 + "[0m";
-        String fightScreamHobo3=(char)27 + "[31mYou arrested my friend, i am gonna, kill you and sell your badge for heroin!"+ (char)27 + "[0m";
+        String fightScreamHobo3=(char)27 + "[31mYou arrested my friend, I am gonna, kill you and sell your badge for heroin!"+ (char)27 + "[0m";
         String fightScreamHobo4=(char)27 + "[31mMonkey goes UH-UH-AH-AH! I like CAAAKEE!!"+ (char)27 + "[0m";
         String fightScreamWife =(char)27 + "[31mThis is for coming home stinking like Booze, again!"+ (char)27 + "[0m";
         
@@ -263,6 +266,7 @@ public class World implements Serializable {
         items.put(corpse.getName(), corpse);
         items.put(badge.getName(), badge);
         items.put(gun.getName(), gun);
+        items.put(corpseOutline.getName(), corpseOutline);
         
         clues.put(hobo1Statement.getName(), hobo1Statement);
         clues.put(hobo2Statement.getName(), hobo2Statement);

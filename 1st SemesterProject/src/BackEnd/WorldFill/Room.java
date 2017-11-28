@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * @author Michael Kolling and David J. Barnes
@@ -16,8 +17,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
 
     private String description;
     private HashMap<String, Room> exits;
-    private Map<String,Item> ItemsInRoomMap = new HashMap<>();
-    private Set<NPC> NPCsInRoom = new HashSet<>();
+    private Map<String,Item> ItemsInRoom = new HashMap<>();
     private Map<String, NPC> NPCsInRoomMap = new HashMap<>();
     private String roomName;
     private boolean hoboAccessable;
@@ -69,7 +69,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
      */
     
     public Map<String,Item> getItemsInRoomMap() {
-        return ItemsInRoomMap;
+        return ItemsInRoom;
     }
     
 
@@ -78,7 +78,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
      * Example of use: bar.addItemsToRoom(beer);
      */
     public void addItemsToRoom(Item item) {
-        this.ItemsInRoomMap.put(item.getName(), item);
+        this.ItemsInRoom.put(item.getName(), item);
     }
 
     
@@ -88,14 +88,9 @@ public class Room {   //rooms have a description/name and map with strings to ro
     * Example of use: bar.removeItemFromRoom(beer);
     */ 
     public void removeItemFromRoomMap(String string){
-        this.ItemsInRoomMap.remove(string);
+        this.ItemsInRoom.remove(string);
     }
-    /**
-     * @return the npcsInRoom Set.
-     */
-    public Set<NPC> getNPCsInRoom() {
-        return NPCsInRoom;
-    }
+
     /**
     * 
     * @return the NPCsInRoomMap
@@ -109,7 +104,6 @@ public class Room {   //rooms have a description/name and map with strings to ro
      * Example of use: bar.addNpcToRoom(bartender);
      */
     public void addNpcToRoom(NPC npc) {
-        this.NPCsInRoom.add(npc);
         this.NPCsInRoomMap.put(npc.getName(), npc);
         npc.setCurrentRoomName(this.roomName);          
     }
@@ -133,10 +127,8 @@ public class Room {   //rooms have a description/name and map with strings to ro
     
     public void moveNpc(NPC npc, Room newRoom){
         
-        if(this.getNPCsInRoom().contains(npc)){
-        this.NPCsInRoom.remove(npc);
+        if(this.getNPCsInRoomMap().containsKey(npc.getName())){
         this.NPCsInRoomMap.remove(npc.getName());
-        newRoom.NPCsInRoom.add(npc);
         newRoom.NPCsInRoomMap.put(npc.getName(), npc);
         npc.setCurrentRoomName(this.roomName);
         }
@@ -178,7 +170,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     }
 
     /**
-     * @return the name instance varible of the room.
+     * @return the name instance variable of the room.
      */
     public String getRoomName() {
         return roomName;
@@ -188,10 +180,10 @@ public class Room {   //rooms have a description/name and map with strings to ro
      * 
      * @return Returns the fighter the player might fight.
      * this method finds a random number between 0 and 1, if the number is lower than
-     * HostileNPC agression, then you fight. 
+     * HostileNPC aggression, then you fight. 
      */
     public HostileNPC getJumped() {
-        for (NPC fighter : NPCsInRoom) {
+        for (Entry fighter : NPCsInRoomMap.entrySet()) {
             if (fighter instanceof HostileNPC) {
                 if (Math.random()<((HostileNPC) fighter).getAggression()) {
                     return (HostileNPC) fighter;
@@ -202,7 +194,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     }
 
     /**
-     * @return instance varible HoboAccessable, used to if a hobo can walk into a room.
+     * @return instance variable HoboAccessable, used to if a hobo can walk into a room.
      */
     public boolean isHoboAccessable() {
         return hoboAccessable;
