@@ -81,14 +81,14 @@ public class World implements Serializable {
         
         Room leftStreet = new Room(" on left street", "Left Street",true);
         Room rightStreet = new Room(" on Right street", "Right Street", true);
-        Room bar = new Room(" in the bar", "Bar");
+        Room bar = new Room(" in the bar", "Bar", false);
         Room hoboAlley = new Room(" in the Hobo Alley, try not to get stabbed", "Hobo Alley", true);
         Room crimeScene = new Room(" at the crime scene", "Crime Scene", true);
-        Room partnerHome = new Room(" in your deceased partners house", "Partner's Home");
-        Room home = new Room(" in your home", "Home");
-        Room pd = new Room(" in the Police Department", "Police Department");
-        Room jail = new Room(" visiting the jail, in the pd", "Jail");
-        Room court = new Room(" in court", "Court");
+        Room partnerHome = new Room(" in your deceased partners house", "Partner's Home", false);
+        Room home = new Room(" in your home", "Home", false);
+        Room pd = new Room(" in the Police Department", "Police Department", false);
+        Room jail = new Room(" visiting the jail, in the pd", "Jail", false);
+        Room court = new Room(" in court", "Court", false);
 
       
 
