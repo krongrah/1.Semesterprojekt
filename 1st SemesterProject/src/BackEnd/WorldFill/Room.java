@@ -2,9 +2,7 @@ package BackEnd.WorldFill;
 
 
 
-import BackEnd.WorldFill.NPC;
-import BackEnd.WorldFill.HostileNPC;
-import BackEnd.WorldFill.Item;
+
 import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -18,7 +16,6 @@ public class Room {   //rooms have a description/name and map with strings to ro
 
     private String description;
     private HashMap<String, Room> exits;
-    private Set<Item> ItemsInRoom = new HashSet<>();
     private Map<String,Item> ItemsInRoomMap = new HashMap<>();
     private Set<NPC> NPCsInRoom = new HashSet<>();
     private Map<String, NPC> NPCsInRoomMap = new HashMap<>();
@@ -70,9 +67,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     /**
      * @return the ItemsInRoom Set
      */
-    public Set<Item> getItemsInRoom() {
-        return ItemsInRoom;
-    }
+    
     public Map<String,Item> getItemsInRoomMap() {
         return ItemsInRoomMap;
     }
@@ -83,7 +78,6 @@ public class Room {   //rooms have a description/name and map with strings to ro
      * Example of use: bar.addItemsToRoom(beer);
      */
     public void addItemsToRoom(Item item) {
-        this.ItemsInRoom.add(item);
         this.ItemsInRoomMap.put(item.getName(), item);
     }
 
@@ -93,9 +87,6 @@ public class Room {   //rooms have a description/name and map with strings to ro
     * @param item you want to be removed from itemsInRoom Set.
     * Example of use: bar.removeItemFromRoom(beer);
     */ 
-    public void removeItemFromRoom(Item item) {
-        this.ItemsInRoom.remove(item);
-    }
     public void removeItemFromRoomMap(String string){
         this.ItemsInRoomMap.remove(string);
     }

@@ -88,7 +88,6 @@ public class PC {
         if (inventoryMap.size() < maxInventoryCapacity) {
             if (thing.getCollectible()) {
                 
-                currentRoom.removeItemFromRoom(thing);
                 currentRoom.removeItemFromRoomMap(thing.getName());
                 inventory.add(thing);
                 inventoryMap.put(thing.getName(), thing);

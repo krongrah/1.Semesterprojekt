@@ -306,7 +306,6 @@ public class Game {
                 + " brutally multiple times.\n When you looked closer you noticed"
                 + " his face is covered in spit", true, false, world.getClue("Corpse"));
         world.getRoom("Crime Scene").addItemsToRoom(corpseOutline);
-        world.getRoom("Crime Scene").removeItemFromRoom(world.getItem("Corpse"));
         world.getRoom("Crime Scene").removeItemFromRoomMap("Corpse");
         
         }
