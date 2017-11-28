@@ -488,7 +488,8 @@ public class Game {
                 Scanner pick = new Scanner(System.in);
 
                 System.out.println("Select the item to be dropped to the room or type \"nothing\" to exit drop");
-                for (Item thing : player.getInventory()) {
+                for (Entry<String,Item> item : player.getInventoryMap().entrySet()) {
+                    Item thing=item.getValue();
                     System.out.println(thing.getName());
                     String newItem = pick.nextLine().toLowerCase();
                     boolean success = false;
@@ -527,7 +528,8 @@ public class Game {
                 Scanner pick = new Scanner(System.in);
 
                 System.out.println("Select the item to be dropped to in the desk or type \"nothing\" to exit drop");
-                for (Item thing : player.getInventory()) {
+                for (Entry<String, Item> item : player.getInventoryMap().entrySet()) {
+                    Item thing=item.getValue();
                     System.out.println(thing.getName());
                     String newItem = pick.nextLine().toLowerCase();
                     boolean success = false;

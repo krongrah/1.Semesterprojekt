@@ -10,7 +10,6 @@ import BackEnd.WorldFill.Clue;
 import BackEnd.WorldFill.Item;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -26,8 +25,7 @@ public class PC {
     private int movementChecker;
     private int drunkness;
     private int points;
-    private Set<Item> inventory = new HashSet<>();
-    private Map<String,Item> inventoryMap=new HashMap<>();
+    private Map<String,Item> inventory=new HashMap<>();
     private Map<String,Clue> journal = new HashMap<>();
     private Map<String,Clue> evidence = new HashMap<>();
     private int maxInventoryCapacity = 2;
@@ -43,20 +41,14 @@ public class PC {
 
     //Checking methods
     public void displayInventory() {
-        List<String> stuff=new ArrayList();
-        for (Item thing : inventory) {
-            stuff.add(thing.getName() + ":\n"+thing.getDescription() + "\n");
-        }
+        System.out.println(inventory.keySet());
     }
     public Set<String> displayInventoryMap(){
-    return inventoryMap.keySet();
+    return inventory.keySet();
     }
 
-    public Set<Item> getInventory() {
-        return inventory;
-    }
     public Map<String,Item>getInventoryMap(){
-    return inventoryMap;
+    return inventory;
     }
 
     public void displayJournal() {
@@ -67,30 +59,24 @@ public class PC {
         }
 
     //getters for the descriptions
-    public void inspectItem(Item thing) {
-        if (inventory.contains(thing)) {
-            System.out.println(thing.getDescription());
-        }
-    }
+
     public void inspectItemMap(String item){
-        System.out.println(inventoryMap.get(item).getDescription());
+        System.out.println(inventory.get(item).getDescription());
     }
 
     public void moveToRoom(Item thing, Room currentRoom) {
-        inventory.remove(thing);
-        inventoryMap.remove(thing.getName());
+        inventory.remove(thing.getName());
         currentRoom.addItemsToRoom(thing);
     }
 
     //methods for adding to cluelist and inventory
     public String addToInventory(Item thing, Room currentRoom) {
 
-        if (inventoryMap.size() < maxInventoryCapacity) {
+        if (inventory.size() < maxInventoryCapacity) {
             if (thing.getCollectible()) {
                 
                 currentRoom.removeItemFromRoomMap(thing.getName());
-                inventory.add(thing);
-                inventoryMap.put(thing.getName(), thing);
+                inventory.put(thing.getName(),thing);
                 return("You placed it in your bag.");
             } else {
                 return("You can't seem to get a hold of it.");
@@ -148,7 +134,7 @@ public class PC {
     }
 
     public boolean inventoryContains(String name) {
-        return inventoryMap.containsKey(name);
+        return inventory.containsKey(name);
     }
 
     public int getDrunkness() {
