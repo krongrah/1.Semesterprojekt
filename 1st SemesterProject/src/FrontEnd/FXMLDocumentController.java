@@ -209,11 +209,13 @@ public class FXMLDocumentController implements Initializable {
         Image Home = new Image("file:src/Texures/Home.png");
         Image Jail = new Image("file:src/Texures/Jail.png");
         Image PartnerHouse= new Image("file:src/Texures/PartnerHouse.png");
+        Image rightstreet= new Image("file:src/Texures/rightstreet.png");
+        Image Leftstreet= new Image("file:src/Texures/Leftstreet.png");
     if(backEnd.getCurrentRoom().equals("Bar")){
         roomPicture.setImage(Bar);
     }
     else if (backEnd.getCurrentRoom().equals("Left Street")){
-        roomPicture.setImage(null);
+        roomPicture.setImage(Leftstreet);
     }
     else if (backEnd.getCurrentRoom().equals("Home")){
         roomPicture.setImage(Home);
@@ -234,7 +236,7 @@ public class FXMLDocumentController implements Initializable {
         roomPicture.setImage(null);
     }
     else if (backEnd.getCurrentRoom().equals("Right Street")){
-        roomPicture.setImage(null);
+        roomPicture.setImage(rightstreet);
     }
     else if (backEnd.getCurrentRoom().equals("Crime Scene")){
         roomPicture.setImage(null);
