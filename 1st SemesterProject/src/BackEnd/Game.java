@@ -176,7 +176,10 @@ public class Game {
         Checker();
         remover();
     }
-
+/**
+ * Moves the player from room to room.
+ * @param e is the direction you want to move (north, west, south, east)
+ */
     public void UIGo(String e){
         Room nextRoom = player.getRoom().getExit(e);
 if (nextRoom == world.getRoom("Partner's Home")) {
