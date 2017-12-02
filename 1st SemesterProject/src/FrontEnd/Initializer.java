@@ -43,6 +43,7 @@ public class Initializer extends Application implements IFrontEnd{
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        c.startRooms();
     }
 
     /**

@@ -7,6 +7,8 @@ package BackEnd;
 
 import Acquaintance.IBackEnd;
 import Acquaintance.IFoundation;
+import BackEnd.Command.Command;
+import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -107,4 +109,27 @@ public class BackEndFacade implements IBackEnd{
         return game.getPlayer().getRoom().getRoomName();
     }
     
-}   
+    @Override
+    public String[] getExits(){
+        String[] exits = new String[game.getPlayer().getRoom().getExit().size()];
+        game.getPlayer().getRoom().getExit().keySet().toArray(exits);
+     return exits;
+    }
+    
+    @Override
+    public void UIGoNorth(){
+    game.UIGoNorth();
+    }
+    @Override
+    public void UIGoSouth(){
+    game.UIGoSouth();
+    }
+    @Override
+    public void UIGoEast(){
+    game.UIGoEast();
+    }
+    @Override
+    public void UIGoWest(){
+    game.UIGoWest();
+    }
+}

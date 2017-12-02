@@ -5,6 +5,7 @@
  */
 package Acquaintance;
 
+import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -28,5 +29,9 @@ public interface IBackEnd {
     Set<String> searchMenu();
     Set<String> inspectMenu();
     String getCurrentRoom();
-    
+    String[] getExits();
+    void UIGoNorth();
+    void UIGoSouth();
+    void UIGoEast();
+    void UIGoWest();
 }

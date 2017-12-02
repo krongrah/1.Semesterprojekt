@@ -177,6 +177,88 @@ public class Game {
         remover();
     }
 
+    public void UIGoNorth(){
+        String e="north";
+        Room nextRoom = player.getRoom().getExit(e);
+
+      
+                player.moveBack();
+                player.move(nextRoom);
+                System.out.println(player.getRoom().getLongDescription());
+                getInfo();
+                HostileNPC enemy = player.getRoom().getJumped();
+                if (enemy != null) {
+                    fightLoop(enemy);
+                }
+            
+        
+        Checker();
+        remover();
+    }
+    public void UIGoSouth(){
+        String e="south";
+        Room nextRoom = player.getRoom().getExit(e);
+
+      
+                player.moveBack();
+                player.move(nextRoom);
+                System.out.println(player.getRoom().getLongDescription());
+                getInfo();
+                HostileNPC enemy = player.getRoom().getJumped();
+                if (enemy != null) {
+                    fightLoop(enemy);
+                }
+            
+        
+        Checker();
+        remover();
+    }
+    public void UIGoEast(){
+        String e="east";
+        Room nextRoom = player.getRoom().getExit(e);
+
+      
+                player.moveBack();
+                player.move(nextRoom);
+                System.out.println(player.getRoom().getLongDescription());
+                getInfo();
+                HostileNPC enemy = player.getRoom().getJumped();
+                if (enemy != null) {
+                    fightLoop(enemy);
+                }
+            
+        
+        Checker();
+        remover();
+    }
+    public void UIGoWest(){
+        String e="west";
+        Room nextRoom = player.getRoom().getExit(e);
+
+            if (nextRoom == world.getRoom("Partner's Home")) {
+                if (player.getInventoryMap().containsKey("Key To Partner's Home")) {
+                    player.move(nextRoom);
+                    System.out.println(player.getRoom().getLongDescription());
+                    getInfo();
+                } else {
+                    System.out.println("The door is locked. You need a key to enter here.");
+                }
+            } else {
+                
+                player.moveBack();
+                player.move(nextRoom);
+                System.out.println(player.getRoom().getLongDescription());
+                getInfo();
+                HostileNPC enemy = player.getRoom().getJumped();
+                if (enemy != null) {
+                    fightLoop(enemy);
+                }
+            }
+        
+        Checker();
+        remover();
+    }
+    
     // Quits the game
     private boolean quit(Command command) {
         if (command.hasSecondWord()) {
@@ -764,7 +846,7 @@ public class Game {
     public PC getPlayer(){
     return player;
     }
-    
+   
     
     public void NpcMover(){
       for(Hobo hobo: world.getHobos()){
