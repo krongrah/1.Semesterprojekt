@@ -30,8 +30,5 @@ public interface IBackEnd {
     Set<String> inspectMenu();
     String getCurrentRoom();
     String[] getExits();
-    void UIGoNorth();
-    void UIGoSouth();
-    void UIGoEast();
-    void UIGoWest();
+    void UIGo(String e);
 }

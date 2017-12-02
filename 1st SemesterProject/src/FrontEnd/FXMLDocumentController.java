@@ -260,7 +260,7 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void GoArrowNorth(MouseEvent event) {
-        backEnd.UIGoNorth();
+        backEnd.UIGo("north");
         updateRoomImage();
         startRooms();
        
@@ -269,21 +269,21 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void GoArrowWest(MouseEvent event) {
-        backEnd.UIGoWest();
+        backEnd.UIGo("west");
         updateRoomImage();
         startRooms();
     }
 
     @FXML
     private void GoArrowSouth(MouseEvent event) {
-        backEnd.UIGoSouth();
+        backEnd.UIGo("south");
         updateRoomImage();
         startRooms();
     }
 
     @FXML
     private void GoArrowEast(MouseEvent event) {
-        backEnd.UIGoEast();
+        backEnd.UIGo("east");
         updateRoomImage();
         startRooms();
     }

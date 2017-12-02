@@ -117,19 +117,8 @@ public class BackEndFacade implements IBackEnd{
     }
     
     @Override
-    public void UIGoNorth(){
-    game.UIGoNorth();
+    public void UIGo(String e){
+    game.UIGo(e);
     }
-    @Override
-    public void UIGoSouth(){
-    game.UIGoSouth();
-    }
-    @Override
-    public void UIGoEast(){
-    game.UIGoEast();
-    }
-    @Override
-    public void UIGoWest(){
-    game.UIGoWest();
-    }
+      
 }

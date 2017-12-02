@@ -177,65 +177,10 @@ public class Game {
         remover();
     }
 
-    public void UIGoNorth(){
-        String e="north";
+    public void UIGo(String e){
         Room nextRoom = player.getRoom().getExit(e);
-
-      
-                player.moveBack();
-                player.move(nextRoom);
-                System.out.println(player.getRoom().getLongDescription());
-                getInfo();
-                HostileNPC enemy = player.getRoom().getJumped();
-                if (enemy != null) {
-                    fightLoop(enemy);
-                }
-            
-        
-        Checker();
-        remover();
-    }
-    public void UIGoSouth(){
-        String e="south";
-        Room nextRoom = player.getRoom().getExit(e);
-
-      
-                player.moveBack();
-                player.move(nextRoom);
-                System.out.println(player.getRoom().getLongDescription());
-                getInfo();
-                HostileNPC enemy = player.getRoom().getJumped();
-                if (enemy != null) {
-                    fightLoop(enemy);
-                }
-            
-        
-        Checker();
-        remover();
-    }
-    public void UIGoEast(){
-        String e="east";
-        Room nextRoom = player.getRoom().getExit(e);
-
-      
-                player.moveBack();
-                player.move(nextRoom);
-                System.out.println(player.getRoom().getLongDescription());
-                getInfo();
-                HostileNPC enemy = player.getRoom().getJumped();
-                if (enemy != null) {
-                    fightLoop(enemy);
-                }
-            
-        
-        Checker();
-        remover();
-    }
-    public void UIGoWest(){
-        String e="west";
-        Room nextRoom = player.getRoom().getExit(e);
-
-            if (nextRoom == world.getRoom("Partner's Home")) {
+if (nextRoom == world.getRoom("Partner's Home")) {
+    
                 if (player.getInventoryMap().containsKey("Key To Partner's Home")) {
                     player.move(nextRoom);
                     System.out.println(player.getRoom().getLongDescription());
@@ -254,10 +199,12 @@ public class Game {
                     fightLoop(enemy);
                 }
             }
+            
         
         Checker();
         remover();
     }
+   
     
     // Quits the game
     private boolean quit(Command command) {
