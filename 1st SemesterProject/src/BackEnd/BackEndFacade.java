@@ -7,8 +7,6 @@ package BackEnd;
 
 import Acquaintance.IBackEnd;
 import Acquaintance.IFoundation;
-import BackEnd.Command.Command;
-import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -40,15 +38,16 @@ public class BackEndFacade implements IBackEnd{
     }
     
     @Override
-    public void search(String string){
+    public boolean search(String string){
         if (game.search(string)){
-        if(game.ask()){
-        game.pickup(string);
+        return true;
         }
+        else{
+        return false;
         }
     }
-    public void pickUpAsk(){
-    
+    public void pickUpAsk(String answer){
+    game.pickup(answer);
     }
     
     

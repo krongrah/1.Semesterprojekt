@@ -5,7 +5,6 @@
  */
 package Acquaintance;
 
-import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -19,7 +18,7 @@ public interface IBackEnd {
     void save();
     void drink();
     void talk(String string);
-    void search(String string);
+    boolean search(String string);
     void inspect(String string);
     void arrest(String string);
     void convict(String string);
@@ -31,4 +30,5 @@ public interface IBackEnd {
     String getCurrentRoom();
     String[] getExits();
     void UIGo(String e);
+    void pickUpAsk(String answer);
 }

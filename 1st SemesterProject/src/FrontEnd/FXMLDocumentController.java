@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
@@ -44,7 +45,7 @@ import javafx.scene.layout.Pane;
  */
 public class FXMLDocumentController implements Initializable {
     private IBackEnd backEnd;
-    
+    private List<String> ask = Arrays.asList("Yes", "No");
     @FXML
     private Button talk;
     @FXML
@@ -68,8 +69,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button inspect;
     @FXML
-    private Pane testPane;
-    @FXML
     private ListView<String> arrestList;
     @FXML
     private ListView<String> talkList;
@@ -91,6 +90,8 @@ public class FXMLDocumentController implements Initializable {
     private ImageView arrowEast;
     @FXML
     private GridPane gridPaneList;
+    @FXML
+    private ListView<String> pickUpList;
     
     
     @Override
@@ -187,7 +188,10 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void searchMenuSelect(MouseEvent event) {
-        backEnd.search(searchList.getSelectionModel().getSelectedItem());
+        if(backEnd.search(searchList.getSelectionModel().getSelectedItem())){
+        pickUpList.setVisible(true);
+        pickUpList.setItems(FXCollections.observableList(ask));//todo
+        }
         searchList.setVisible(false);
     }
 
@@ -286,5 +290,11 @@ public class FXMLDocumentController implements Initializable {
         backEnd.UIGo("east");
         updateRoomImage();
         startRooms();
+    }
+
+    @FXML
+    private void pickUpSelect(MouseEvent event) {
+        backEnd.pickUpAsk(pickUpList.getSelectionModel().getSelectedItem());//todo
+        pickUpList.setVisible(false);
     }
 }

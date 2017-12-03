@@ -24,6 +24,7 @@ public class Game {
     private PC player;
     private World world=new World();
     private HiScoreManager manager=new HiScoreManager();
+    private String temp;
     // Constructor calls createRooms and creates new Parser
     public Game() {
         
@@ -641,6 +642,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
          
                                  if (item.getCollectible()) {
                             System.out.println("Do you want to pick this item up? Yes/No");
+                            temp=name;
                             return true;
       
 
@@ -654,15 +656,18 @@ if (nextRoom == world.getRoom("Partner's Home")) {
                         }
          
      }
-     void pickup(String string){
-     
-        Item item =world.getItem(string);
-                                
+     void pickup(String answer){
+        if(answer.equals("No")){
+            System.out.println("You decided not not to pick the item up.");
+        }else{
+        Item item =world.getItem(temp);
+            System.out.println("You picked up the "+temp+".");
         if (item.getIsClue()) {
         player.addToJournal(item.giveClue());
         }
         player.addToInventory(item, player.getRoom());
-    
+        }
+        temp=null;
     }
 
      boolean ask(){
