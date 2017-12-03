@@ -20,7 +20,7 @@ public interface IBackEnd {
     void talk(String string);
     boolean search(String string);
     void inspect(String string);
-    void arrest(String string);
+    boolean arrest(String string);
     void convict(String string);
     Set<String> talkMenu();
     Set<String> arrestMenu();

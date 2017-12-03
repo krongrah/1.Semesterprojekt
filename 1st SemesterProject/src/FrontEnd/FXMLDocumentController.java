@@ -156,9 +156,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void ArrestGUI(ActionEvent event) {
-        arrestList.setVisible(true);
-        arrestList.setItems(FXCollections.observableList(new ArrayList(backEnd.arrestMenu())));
+        List<String> list=new ArrayList(backEnd.arrestMenu());
+        if(list!=null){
 
+        arrestList.setVisible(true);
+        arrestList.setItems(FXCollections.observableList(list));
+        }
     }
 
     @FXML
@@ -182,8 +185,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void arrestMenuSelect(MouseEvent event) {
-        backEnd.arrest(arrestList.getSelectionModel().getSelectedItem());
+        String selection=arrestList.getSelectionModel().getSelectedItem();
+        if(selection!="No one"){    //todo is this okay?
+        backEnd.arrest(selection);
+        }
         arrestList.setVisible(false);
+
     }
 
     @FXML

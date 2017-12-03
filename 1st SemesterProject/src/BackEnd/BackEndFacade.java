@@ -63,8 +63,8 @@ public class BackEndFacade implements IBackEnd{
     }
     
     @Override
-    public void arrest(String string){
-    game.arrest(string);
+    public boolean arrest(String string){
+    return game.arrest(string);
     }
     
     @Override
