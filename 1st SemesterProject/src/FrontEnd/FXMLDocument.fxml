@@ -45,7 +45,7 @@
         </rowConstraints>
          <children>
             <Button fx:id="talk" mnemonicParsing="false" onAction="#talkGui" text="Talk" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-            <Button fx:id="convict" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ConvictGUI" text="Convict" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
+            <Button fx:id="convict" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ConvictGUI" text="Convict" visible="false" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
             <Button fx:id="drink" mnemonicParsing="false" onAction="#drinkGUI" text="Drink" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
             <Button fx:id="search" mnemonicParsing="false" onAction="#searchGui" text="Search" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
             <Button fx:id="arrest" mnemonicParsing="false" onAction="#ArrestGUI" text="Arrest" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
@@ -120,5 +120,7 @@
       <ListView fx:id="convictList" onMouseClicked="#convictMenuSelect" prefHeight="82.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
       <ListView fx:id="inspectList" onMouseClicked="#inspectMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
       <ListView fx:id="pickUpList" onMouseClicked="#pickUpSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <ListView fx:id="inventoryList" onMouseClicked="#inventorySelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <ListView fx:id="journalList" onMouseClicked="#journalSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    </children>
 </GridPane>

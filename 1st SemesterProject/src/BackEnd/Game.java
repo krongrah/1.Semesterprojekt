@@ -13,9 +13,13 @@ import BackEnd.WorldFill.Item;
 import BackEnd.Command.Parser;
 import BackEnd.Command.CommandWord;
 import BackEnd.Command.Command;
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Game {
 
@@ -140,6 +144,23 @@ public class Game {
 //            player.diplayDesk(currentRoom);
 //        }     todo remove?
     }
+    void journal(String string){
+    
+    }
+    void inventory(String string){
+    
+    }
+    void save(){
+        try {
+            Foundation.SaveFile.saveFile();
+        } catch (IOException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("Saving");
+    }
+    
+    
+    
     //Checks if directions has an exit and moves to next room
     private void goRoom(Command command) {
         if (!command.hasSecondWord()) {
@@ -231,21 +252,27 @@ if (nextRoom == world.getRoom("Partner's Home")) {
     }
 
     public void drink() {
-        System.out.println("drinking");
-        for (Entry drink : player.getInventoryMap().entrySet()) {
-            if (drink instanceof Beverage) {
-                System.out.println("You drink some " + ((Beverage)drink).getName() + ", you start to feel all your problems disappear");
-                player.addDrunkness(((Beverage) drink).getAlcoholContent());
-                ((Beverage) drink).removeSip();
-                if(((Beverage) drink).getNumberOfSips()==0){
-                player.getInventoryMap().remove(drink);
-                    System.out.println("You emptied your bottle and tossed it away.");
-                }
-                System.out.println(player.getDrunkness());
-                break;
-            }
+        try {
+            //        System.out.println("drinking");
+//        for (Entry drink : player.getInventoryMap().entrySet()) {
+//            if (drink instanceof Beverage) {
+//                System.out.println("You drink some " + ((Beverage)drink).getName() + ", you start to feel all your problems disappear");
+//                player.addDrunkness(((Beverage) drink).getAlcoholContent());
+//                ((Beverage) drink).removeSip();
+//                if(((Beverage) drink).getNumberOfSips()==0){
+//                player.getInventoryMap().remove(drink);
+//                    System.out.println("You emptied your bottle and tossed it away.");
+//                }
+//                System.out.println(player.getDrunkness());
+//                break;
+//            }
+//        }
+Foundation.SaveFile.loadFile();
+        } catch (IOException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public void goToJail(NPC scum) {
@@ -675,24 +702,44 @@ if (nextRoom == world.getRoom("Partner's Home")) {
      }
      
      Set<String> arrestMenu(){
-     System.out.println("Who do you wish to talk to?");
-     return player.getRoom().getNPCsInRoomMap().keySet();
+      if(!player.getRoom().getNPCsInRoomMap().isEmpty()){    
+     System.out.println("Who do you wish arrest?");
+     Set<String>victims=new HashSet(player.getRoom().getNPCsInRoomMap().keySet());
+     victims.add("No one");
+     return victims;}
+     else{
+         System.out.println("There are no one here for you to arrest.");
+     return null;
+     }
      }
      
-    public void arrest(String name) {
+    public boolean arrest(String name) {
         remover();
-        System.out.println("You have decided to begin arresting people, god bless you");
-        System.out.println("Are you sure?   Yes/No");
-        Scanner accusing = new Scanner(System.in);
-        String victim = accusing.nextLine().toLowerCase();
-        if (victim.equalsIgnoreCase("no")) {
-            System.out.println("You decided not to accuse anyone... for now");
-        } else if (victim.equalsIgnoreCase("yes")) {
-            System.out.println("These are the people you can accuse:");
-            System.out.println(player.getRoom().getNPCsInRoomMap().keySet());
-            Scanner choose = new Scanner(System.in);
-            String person = choose.nextLine();
-            boolean success = false;
+        
+            if (player.getRoom().getNPCsInRoomMap().get(name).getAlibi()) {
+                        lose();
+                        return false;
+                    } else {
+                        goToJail(player.getRoom().getNPCsInRoomMap().get(name));
+                        updateCrimeScene();
+                        return true;
+                    }
+        }
+        
+        
+        
+//        System.out.println("You have decided to begin arresting people, god bless you");
+//        System.out.println("Are you sure?   Yes/No");
+//        Scanner accusing = new Scanner(System.in);
+//        String victim = accusing.nextLine().toLowerCase();
+//        if (victim.equalsIgnoreCase("no")) {
+//            System.out.println("You decided not to accuse anyone... for now");
+//        } else if (victim.equalsIgnoreCase("yes")) {
+//            System.out.println("These are the people you can accuse:");
+//            System.out.println(player.getRoom().getNPCsInRoomMap().keySet());
+//            Scanner choose = new Scanner(System.in);
+//            String person = choose.nextLine();
+//            boolean success = false;
 //            if(currentRoom.getNPCsInRoomMap().containsKey(person)){
 //            if (currentRoom.getNPCsInRoomMap().get(person).getAlibi()) {
 //                        lose();
@@ -703,29 +750,29 @@ if (nextRoom == world.getRoom("Partner's Home")) {
 //            }else{
 //                System.out.println("That person isn't here");
 //            }
-            for (Entry<String,NPC> npc : player.getRoom().getNPCsInRoomMap().entrySet()) {
-                if (person.equals(npc.getValue().getName().toLowerCase())) {
-                    if (npc.getValue().getAlibi()) {
-                        lose();
-                        success = true;
-                        break;
-                    } else {
-                        goToJail(npc.getValue());
-                        updateCrimeScene();
-                    }
-                    success = true;
-                    break;
-                }
+//            for (Entry<String,NPC> npc : player.getRoom().getNPCsInRoomMap().entrySet()) {
+//                if (person.equals(npc.getValue().getName().toLowerCase())) {
+//                    if (npc.getValue().getAlibi()) {
+//                        lose();
+//                        success = true;
+//                        break;
+//                    } else {
+//                        goToJail(npc.getValue());
+//                        updateCrimeScene();
+//                    }
+//                    success = true;
+//                    break;
+//                }
+//
+//            }
+//            if (!success) {
+//                System.out.println("If you're not going to be serious about this, find another job.");
+//            }
+//        } else {
+//            System.out.println("Can't you just answer a simple Yes/No question?");
+//        }
 
-            }
-            if (!success) {
-                System.out.println("If you're not going to be serious about this, find another job.");
-            }
-        } else {
-            System.out.println("Can't you just answer a simple Yes/No question?");
-        }
-
-    }
+    
     public void tester(){
               System.out.println("write the method or room you would like to test");
  

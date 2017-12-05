@@ -92,6 +92,10 @@ public class FXMLDocumentController implements Initializable {
     private GridPane gridPaneList;
     @FXML
     private ListView<String> pickUpList;
+    @FXML
+    private ListView<String> inventoryList;
+    @FXML
+    private ListView<String> journalList;
     
     private Image Bar = new Image("file:src/Texures/Bar.png");
     private Image PD = new Image("file:src/Texures/PD.png");
@@ -158,15 +162,18 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void ArrestGUI(ActionEvent event) {
-        arrestList.setVisible(true);
-        arrestList.setItems(FXCollections.observableList(new ArrayList(backEnd.arrestMenu())));
+        List<String> list=new ArrayList(backEnd.arrestMenu());
+        if(list!=null){
 
+        arrestList.setVisible(true);
+        arrestList.setItems(FXCollections.observableList(list));
+        }
     }
 
     @FXML
     private void saveGUI(ActionEvent event) {
-        //backEnd.save();
-        //todo
+        backEnd.save();
+        
     }
 
     @FXML
@@ -184,8 +191,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void arrestMenuSelect(MouseEvent event) {
-        backEnd.arrest(arrestList.getSelectionModel().getSelectedItem());
+        String selection=arrestList.getSelectionModel().getSelectedItem();
+        if(selection!="No one"){    //todo is this okay?
+        backEnd.arrest(selection);
+        }
         arrestList.setVisible(false);
+
     }
 
     @FXML
@@ -295,7 +306,19 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void pickUpSelect(MouseEvent event) {
-        backEnd.pickUpAsk(pickUpList.getSelectionModel().getSelectedItem());//todo
+        backEnd.pickUpAsk(pickUpList.getSelectionModel().getSelectedItem());
         pickUpList.setVisible(false);
+    }
+
+    @FXML
+    private void inventorySelect(MouseEvent event) {
+        backEnd.inventory(inventoryList.getSelectionModel().getSelectedItem());
+        inventoryList.setVisible(false);
+    }
+
+    @FXML
+    private void journalSelect(MouseEvent event) {
+        backEnd.journal(journalList.getSelectionModel().getSelectedItem());
+        journalList.setVisible(false);
     }
 }

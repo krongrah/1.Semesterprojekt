@@ -21,7 +21,7 @@ public interface IBackEnd {
     void talk(String string);
     boolean search(String string);
     void inspect(String string);
-    void arrest(String string);
+    boolean arrest(String string);
     void convict(String string);
     Set<String> talkMenu();
     Set<String> arrestMenu();
@@ -32,4 +32,6 @@ public interface IBackEnd {
     void UIGo(String e);
     Set getMapExits();
     void pickUpAsk(String answer);
+    void journal(String string);
+    void inventory(String string);
 }
