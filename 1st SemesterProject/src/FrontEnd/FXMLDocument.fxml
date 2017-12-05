@@ -45,7 +45,7 @@
         </rowConstraints>
          <children>
             <Button fx:id="talk" mnemonicParsing="false" onAction="#talkGui" text="Talk" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-            <Button fx:id="convict" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ConvictGUI" text="Convict" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
+            <Button fx:id="convict" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ConvictGUI" text="Convict" visible="false" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
             <Button fx:id="drink" mnemonicParsing="false" onAction="#drinkGUI" text="Drink" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
             <Button fx:id="search" mnemonicParsing="false" onAction="#searchGui" text="Search" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
             <Button fx:id="arrest" mnemonicParsing="false" onAction="#ArrestGUI" text="Arrest" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
