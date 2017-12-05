@@ -52,9 +52,9 @@ public class BackEndFacade implements IBackEnd{
     
     
     @Override
-    public void inspect(String string){
-    //game.inspect(string);
-    //todo
+    public Set<String> inspect(String string){
+    return game.inspect(string);
+    
     }
     
     @Override

@@ -19,7 +19,7 @@ public interface IBackEnd {
     void drink();
     void talk(String string);
     boolean search(String string);
-    void inspect(String string);
+    Set<String> inspect(String string);
     boolean arrest(String string);
     void convict(String string);
     Set<String> talkMenu();

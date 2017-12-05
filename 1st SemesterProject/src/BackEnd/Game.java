@@ -25,7 +25,7 @@ public class Game {
     private PC player;
     private World world=new World();
     private HiScoreManager manager=new HiScoreManager();
-    private String temp;
+    private String temp;//todo make better
     // Constructor calls createRooms and creates new Parser
     public Game() {
         
@@ -92,7 +92,7 @@ public class Game {
         } else if (commandWord == CommandWord.ARREST) {
             arrest("");
         } else if (commandWord == CommandWord.INSPECT) {
-            inspect(command);
+            //inspect(command);
         } else if (commandWord == CommandWord.DROP) {
             drop(command);
         } else if (commandWord == CommandWord.LIE) {
@@ -115,37 +115,36 @@ public class Game {
     }
 
     Set<String> inspectMenu(){
-     System.out.println("Who do you wish to talk to?");
-     return player.getRoom().getNPCsInRoomMap().keySet();
-     //todo
+     System.out.println("Which menu do you wish to inspect?");
+     Set<String>menus=new HashSet();
+     menus.add("Inventory");
+     menus.add("Journal");
+     return menus;
      }
     
     
     
-    private void inspect(Command command) {
-        //todo
-        if (!command.hasSecondWord()) {
-            System.out.println("Inspect what? inventory or journal");
-            return;
+    Set<String> inspect(String string) {
+        
+        Set<String>test=new HashSet();
+        if (string.equals("Inventory")) {
+            if(player.displayInventoryMap().isEmpty()){
+            
+                System.out.println("Your inventory is empty.");
+            }return player.displayInventoryMap();
         }
-
-        String what = command.getSecondWord();
-
-        if (what.equals("inventory")) {
-            player.displayInventory();
+        else{
+            if(player.displayJournal().isEmpty()){
+                System.out.println("Your journal is empty.");
+            }
+            return player.displayJournal();
         }
-        if (what.equals("journal")) {
-            player.displayJournal();
-        }
-//        if (what.equals("desk")) {
-//            player.diplayDesk(currentRoom);
-//        }     todo remove?
     }
-    void journal(String string){
-    
+    void journal(String entry){
+    player.inspectEntryMap(entry);
     }
-    void inventory(String string){
-    
+    void inventory(String item){
+    player.inspectItemMap(item);
     }
     void save(){
         System.out.println("Saving");

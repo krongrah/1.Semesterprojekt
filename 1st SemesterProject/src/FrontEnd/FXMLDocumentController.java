@@ -214,9 +214,22 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void inspectMenuSelect(MouseEvent event) {
-        backEnd.inspect(inspectList.getSelectionModel().getSelectedItem());
+        String string=inspectList.getSelectionModel().getSelectedItem();
+        ObservableList list=FXCollections.observableList(new ArrayList(backEnd.inspect(string)));
+        if(!list.isEmpty()){
+        if(string.equals("Inventory")){
+        inventoryList.setVisible(true);
+        inventoryList.setItems(list);
+        }else{
+        journalList.setVisible(true);
+        journalList.setItems(list);
+        
+        }
+        backEnd.inspect(string);
         inspectList.setVisible(false);
-    }
+    }else{
+        inspectList.setVisible(false);
+        }}
 
     public void updateRoomImage(){
         Image Bar = new Image("file:src/Texures/Bar.png");

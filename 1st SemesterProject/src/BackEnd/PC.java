@@ -51,16 +51,16 @@ public class PC {
     return inventory;
     }
 
-    public void displayJournal() {
-        List<String> evidenceStuff=new ArrayList();
-        for (Entry<String,Clue> ClueItem : journal.entrySet()) {
-        evidenceStuff.add(ClueItem.getKey() + ":\n"+ClueItem.getValue().getDescription() + "\n");
-        }
+    public Set<String> displayJournal() {
+        return journal.keySet();
         }
 
     //getters for the descriptions
 
-    public void inspectItemMap(String item){
+    public void inspectItemMap(String entry){
+        System.out.println(journal.get(entry).getDescription());
+    }
+    public void inspectEntryMap(String item){
         System.out.println(inventory.get(item).getDescription());
     }
 
