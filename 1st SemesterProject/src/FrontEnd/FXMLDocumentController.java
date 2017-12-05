@@ -97,7 +97,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ListView<String> journalList;
     
-    
+    private Image Bar = new Image("file:src/Texures/Bar.png");
+    private Image PD = new Image("file:src/Texures/PD.png");
+    private Image Home = new Image("file:src/Texures/Home.png");
+    private Image Jail = new Image("file:src/Texures/Jail.png");
+    private Image PartnerHouse= new Image("file:src/Texures/PartnerHouse.png");
+    private Image rightstreet= new Image("file:src/Texures/rightstreet.png");
+    private Image Leftstreet= new Image("file:src/Texures/Leftstreet.png");
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -109,11 +116,6 @@ public class FXMLDocumentController implements Initializable {
             }
         };
         System.setOut(new PrintStream(o, true));
-        arrowEast.setVisible(false);
-        arrowNorth.setVisible(false);
-        arrowSouth.setVisible(false);
-        arrowWest.setVisible(false);
-        
     }
         
     void resetArrows(){
@@ -232,56 +234,61 @@ public class FXMLDocumentController implements Initializable {
         }}
 
     public void updateRoomImage(){
-        Image Bar = new Image("file:src/Texures/Bar.png");
-        Image PD = new Image("file:src/Texures/PD.png");
-        Image Home = new Image("file:src/Texures/Home.png");
-        Image Jail = new Image("file:src/Texures/Jail.png");
-        Image PartnerHouse= new Image("file:src/Texures/PartnerHouse.png");
-        Image rightstreet= new Image("file:src/Texures/rightstreet.png");
-        Image Leftstreet= new Image("file:src/Texures/Leftstreet.png");
-    if(backEnd.getCurrentRoom().equals("Bar")){
-        roomPicture.setImage(Bar);
-    }
-    else if (backEnd.getCurrentRoom().equals("Left Street")){
-        roomPicture.setImage(Leftstreet);
-    }
-    else if (backEnd.getCurrentRoom().equals("Home")){
-        roomPicture.setImage(Home);
-    }
-    else if (backEnd.getCurrentRoom().equals("Police Department")){
-        roomPicture.setImage(PD);
-    }
-    else if (backEnd.getCurrentRoom().equals("Partner's Home")){
-        roomPicture.setImage(PartnerHouse);
-    }
-    else if (backEnd.getCurrentRoom().equals("Jail")){
-        roomPicture.setImage(Jail);
-    }
-    else if (backEnd.getCurrentRoom().equals("Court")){
-        roomPicture.setImage(null);
-    }
-    else if (backEnd.getCurrentRoom().equals("Hobo Alley")){
-        roomPicture.setImage(null);
-    }
-    else if (backEnd.getCurrentRoom().equals("Right Street")){
-        roomPicture.setImage(rightstreet);
-    }
-    else if (backEnd.getCurrentRoom().equals("Crime Scene")){
-        roomPicture.setImage(null);
-    }
+
+        switch (backEnd.getCurrentRoom()) {
+            case "Bar":
+                roomPicture.setImage(Bar);
+                break;
+            case "Left Street":
+                roomPicture.setImage(Leftstreet);
+                break;
+            case "Home":
+                roomPicture.setImage(Home);
+                break;
+            case "Police Department":
+                roomPicture.setImage(PD);
+                break;
+            case "Partner's Home":
+                roomPicture.setImage(PartnerHouse);
+                break;
+            case "Jail":
+                roomPicture.setImage(Jail);
+                break;
+            case "Court":
+                roomPicture.setImage(null);
+                break;
+            case "Hobo Alley":
+                roomPicture.setImage(null);
+                break;
+            case "Right Street":
+                roomPicture.setImage(rightstreet);
+                break;
+            case "Crime Scene":
+                roomPicture.setImage(null);
+                break;
+            default:
+                break;
+        }
     }
     
     public void startRooms(){
+        updateRoomImage();
         resetArrows();
-        for (String exit : backEnd.getExits()) {
-            if(exit.contains("north")){
-                arrowNorth.setVisible(true);
-            }else if(exit.contains("south")){
-                arrowSouth.setVisible(true);
-            }else if(exit.contains("east")){
-            arrowEast.setVisible(true);
-            }else if(exit.contains("west")){
-            arrowWest.setVisible(true);
+        for (Iterator it = backEnd.getMapExits().iterator(); it.hasNext();) {
+            String exit = (String) it.next();
+            switch (exit){
+                case "north":
+                    arrowNorth.setVisible(true);
+                    break;
+                case "east":
+                    arrowEast.setVisible(true);
+                    break;
+                case "south":
+                    arrowSouth.setVisible(true);
+                    break;
+                case "west":
+                    arrowWest.setVisible(true);
+                    break;
             }
         }
     }
@@ -289,30 +296,24 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void GoArrowNorth(MouseEvent event) {
         backEnd.UIGo("north");
-        updateRoomImage();
         startRooms();
-       
         }
         
-
     @FXML
     private void GoArrowWest(MouseEvent event) {
         backEnd.UIGo("west");
-        updateRoomImage();
         startRooms();
     }
 
     @FXML
     private void GoArrowSouth(MouseEvent event) {
         backEnd.UIGo("south");
-        updateRoomImage();
         startRooms();
     }
 
     @FXML
     private void GoArrowEast(MouseEvent event) {
         backEnd.UIGo("east");
-        updateRoomImage();
         startRooms();
     }
 
