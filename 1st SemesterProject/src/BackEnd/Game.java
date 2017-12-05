@@ -250,8 +250,8 @@ if (nextRoom == world.getRoom("Partner's Home")) {
         }
     }
 
-    public void drink() {
-        try {
+  //  public void drink() {
+//try {
             //        System.out.println("drinking");
 //        for (Entry drink : player.getInventoryMap().entrySet()) {
 //            if (drink instanceof Beverage) {
@@ -266,13 +266,13 @@ if (nextRoom == world.getRoom("Partner's Home")) {
 //                break;
 //            }
 //        }
-Foundation.SaveFile.loadFile();
-        } catch (IOException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//Foundation.SaveFile.loadFile();
+//        } catch (IOException ex) {
+//            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     public void goToJail(NPC scum) {
         remover();
