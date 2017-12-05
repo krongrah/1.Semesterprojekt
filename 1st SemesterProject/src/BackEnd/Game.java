@@ -141,6 +141,18 @@ public class Game {
 //            player.diplayDesk(currentRoom);
 //        }     todo remove?
     }
+    void journal(String string){
+    
+    }
+    void inventory(String string){
+    
+    }
+    void save(){
+        System.out.println("Saving");
+    }
+    
+    
+    
     //Checks if directions has an exit and moves to next room
     private void goRoom(Command command) {
         if (!command.hasSecondWord()) {
