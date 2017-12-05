@@ -120,5 +120,7 @@
       <ListView fx:id="convictList" onMouseClicked="#convictMenuSelect" prefHeight="82.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
       <ListView fx:id="inspectList" onMouseClicked="#inspectMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
       <ListView fx:id="pickUpList" onMouseClicked="#pickUpSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <ListView fx:id="inventoryList" onMouseClicked="#inventorySelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <ListView fx:id="journalList" onMouseClicked="#journalSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    </children>
 </GridPane>

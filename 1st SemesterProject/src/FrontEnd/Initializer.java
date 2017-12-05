@@ -51,8 +51,9 @@ public class Initializer extends Application implements IFrontEnd{
      * @param args the command line arguments
      */
     public void begin(String[] args) {
-        backEnd.play();
+        
         launch(args);
+        backEnd.play();
     }
     /**
      * This method injects the backEnd into this object.

@@ -74,8 +74,8 @@ public class BackEndFacade implements IBackEnd{
     
     @Override
     public void save(){
-    //game.save();
-    //todo
+    game.save();
+    
     }
 
     @Override
@@ -118,6 +118,16 @@ public class BackEndFacade implements IBackEnd{
     @Override
     public void UIGo(String e){
     game.UIGo(e);
+    }
+
+    @Override
+    public void journal(String string) {
+        game.journal(string);
+    }
+
+    @Override
+    public void inventory(String string) {
+        game.inventory(string);
     }
       
 }

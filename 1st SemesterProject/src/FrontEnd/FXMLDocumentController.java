@@ -92,6 +92,10 @@ public class FXMLDocumentController implements Initializable {
     private GridPane gridPaneList;
     @FXML
     private ListView<String> pickUpList;
+    @FXML
+    private ListView<String> inventoryList;
+    @FXML
+    private ListView<String> journalList;
     
     
     @Override
@@ -166,8 +170,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void saveGUI(ActionEvent event) {
-        //backEnd.save();
-        //todo
+        backEnd.save();
+        
     }
 
     @FXML
@@ -301,7 +305,19 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void pickUpSelect(MouseEvent event) {
-        backEnd.pickUpAsk(pickUpList.getSelectionModel().getSelectedItem());//todo
+        backEnd.pickUpAsk(pickUpList.getSelectionModel().getSelectedItem());
         pickUpList.setVisible(false);
+    }
+
+    @FXML
+    private void inventorySelect(MouseEvent event) {
+        backEnd.inventory(inventoryList.getSelectionModel().getSelectedItem());
+        inventoryList.setVisible(false);
+    }
+
+    @FXML
+    private void journalSelect(MouseEvent event) {
+        backEnd.journal(journalList.getSelectionModel().getSelectedItem());
+        journalList.setVisible(false);
     }
 }

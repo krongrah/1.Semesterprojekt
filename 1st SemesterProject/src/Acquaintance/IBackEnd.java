@@ -31,4 +31,6 @@ public interface IBackEnd {
     String[] getExits();
     void UIGo(String e);
     void pickUpAsk(String answer);
+    void journal(String string);
+    void inventory(String string);
 }
