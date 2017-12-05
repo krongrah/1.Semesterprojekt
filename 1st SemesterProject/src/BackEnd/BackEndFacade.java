@@ -7,6 +7,7 @@ package BackEnd;
 
 import Acquaintance.IBackEnd;
 import Acquaintance.IFoundation;
+import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -107,12 +108,10 @@ public class BackEndFacade implements IBackEnd{
     public String getCurrentRoom(){        
         return game.getPlayer().getRoom().getRoomName();
     }
-    
+      
     @Override
-    public String[] getExits(){
-        String[] exits = new String[game.getPlayer().getRoom().getExit().size()];
-        game.getPlayer().getRoom().getExit().keySet().toArray(exits);
-     return exits;
+    public Set getMapExits(){
+        return game.getPlayer().getRoom().getExit().keySet();
     }
     
     @Override
