@@ -250,7 +250,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
         }
     }
 
-  //  public void drink() {
+    public void drink() {
 //try {
             //        System.out.println("drinking");
 //        for (Entry drink : player.getInventoryMap().entrySet()) {
@@ -272,7 +272,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
 //        } catch (ClassNotFoundException ex) {
 //            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-//    }
+   }
 
     public void goToJail(NPC scum) {
         remover();
