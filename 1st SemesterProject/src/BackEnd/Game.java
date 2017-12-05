@@ -13,10 +13,13 @@ import BackEnd.WorldFill.Item;
 import BackEnd.Command.Parser;
 import BackEnd.Command.CommandWord;
 import BackEnd.Command.Command;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Game {
 
@@ -148,6 +151,11 @@ public class Game {
     
     }
     void save(){
+        try {
+            Foundation.SaveFile.saveFile();
+        } catch (IOException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("Saving");
     }
     
@@ -244,21 +252,27 @@ if (nextRoom == world.getRoom("Partner's Home")) {
     }
 
     public void drink() {
-        System.out.println("drinking");
-        for (Entry drink : player.getInventoryMap().entrySet()) {
-            if (drink instanceof Beverage) {
-                System.out.println("You drink some " + ((Beverage)drink).getName() + ", you start to feel all your problems disappear");
-                player.addDrunkness(((Beverage) drink).getAlcoholContent());
-                ((Beverage) drink).removeSip();
-                if(((Beverage) drink).getNumberOfSips()==0){
-                player.getInventoryMap().remove(drink);
-                    System.out.println("You emptied your bottle and tossed it away.");
-                }
-                System.out.println(player.getDrunkness());
-                break;
-            }
+        try {
+            //        System.out.println("drinking");
+//        for (Entry drink : player.getInventoryMap().entrySet()) {
+//            if (drink instanceof Beverage) {
+//                System.out.println("You drink some " + ((Beverage)drink).getName() + ", you start to feel all your problems disappear");
+//                player.addDrunkness(((Beverage) drink).getAlcoholContent());
+//                ((Beverage) drink).removeSip();
+//                if(((Beverage) drink).getNumberOfSips()==0){
+//                player.getInventoryMap().remove(drink);
+//                    System.out.println("You emptied your bottle and tossed it away.");
+//                }
+//                System.out.println(player.getDrunkness());
+//                break;
+//            }
+//        }
+Foundation.SaveFile.loadFile();
+        } catch (IOException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public void goToJail(NPC scum) {
