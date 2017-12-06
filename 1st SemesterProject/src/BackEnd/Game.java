@@ -444,13 +444,21 @@ if (nextRoom == world.getRoom("Partner's Home")) {
     
     Set<String> convictMenu(){
         remover();
-     System.out.println("Which piece of evidence to you wish to convict with?");
+     if (player.getRoom() == world.getRoom("Police Department")) {  
+          
+        if(!player.getJournal().isEmpty()){
+         System.out.println("Which piece of evidence to you wish to convict with?");
      return player.getJournal().keySet();
+     }else{
+         System.out.println("You don't have any evidence.");
+         return null;
      }
+     }else {
+            System.out.println("You are not near the commisioner, so you can't do this.");
+     return null;   
+     }}
     
     public int convict(String clue) {
-          if (player.getRoom() == world.getRoom("Police Department")) {  
-            if(!player.getJournal().isEmpty()){
             if (!clue.equals("Blood Splattered Badge evidence")) {
                          
             if(player.getJournal().get(clue).isConvictable()){
@@ -462,23 +470,22 @@ if (nextRoom == world.getRoom("Partner's Home")) {
             for(Entry<String,NPC> npc:world.getRoom("Jail").getNPCsInRoomMap().entrySet()){
             System.out.print(npc.getValue().getName()+(" "));
             }
-            System.out.print("guilty of murder.");
+            System.out.println("guilty of murder.");
 
             win();                
             return 1;   
                 
+            }
+            return 0;
             }else{
             System.out.println(clue + " is not good enough to use in Court");
-            }}}else{
+            return 0;
+            }}else{
             System.out.println("Commisioner: Where did you find this? This evidence could be used to convict anyone.");
             return 2;
-            }}else{
-                System.out.println("You don't have any evidence.");
-            }  
-    }else {
-            System.out.println("You are not near the commisioner, so you can't do this.");
-        }
-    return 0;
+            } 
+    
+    
     }
     
     
