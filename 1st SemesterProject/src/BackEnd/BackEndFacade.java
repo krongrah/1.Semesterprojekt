@@ -59,8 +59,8 @@ public class BackEndFacade implements IBackEnd{
     }
     
     @Override
-    public void convict(String string){
-    game.convict(string);
+    public int convict(String string){
+    return game.convict(string);
     }
     
     @Override

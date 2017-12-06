@@ -187,17 +187,17 @@ public class World implements Serializable {
         crimeScene.addNpcToRoom(hobo3);
         crimeScene.addNpcToRoom(hobo4);
 
-        hoboAlley.addItemsToRoom(murderWeapon);
-        crimeScene.addItemsToRoom(bloodSplatter);
-        crimeScene.addItemsToRoom(corpse);
-        pd.addItemsToRoom(gun);
-        bar.addItemsToRoom(beer);
-        home.addItemsToRoom(whiskey);
-        pd.addItemsToRoom(partnerKey);
-        hoboAlley.addItemsToRoom(gin);
-        pd.addItemsToRoom(coffee);
-        rightStreet.addItemsToRoom(beerKeg);
-        leftStreet.addItemsToRoom(wine);
+        hoboAlley.addItemToRoom(murderWeapon);
+        crimeScene.addItemToRoom(bloodSplatter);
+        crimeScene.addItemToRoom(corpse);
+        pd.addItemToRoom(gun);
+        bar.addItemToRoom(beer);
+        home.addItemToRoom(whiskey);
+        pd.addItemToRoom(partnerKey);
+        hoboAlley.addItemToRoom(gin);
+        pd.addItemToRoom(coffee);
+        rightStreet.addItemToRoom(beerKeg);
+        leftStreet.addItemToRoom(wine);
         
         
 

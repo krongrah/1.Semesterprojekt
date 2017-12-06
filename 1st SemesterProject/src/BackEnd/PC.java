@@ -58,15 +58,15 @@ public class PC {
     //getters for the descriptions
 
     public void inspectItemMap(String entry){
-        System.out.println(journal.get(entry).getDescription());
+        System.out.println(inventory.get(entry).getDescription());
     }
     public void inspectEntryMap(String item){
-        System.out.println(inventory.get(item).getDescription());
+        System.out.println(journal.get(item).getDescription());
     }
 
     public void moveToRoom(Item thing, Room currentRoom) {
         inventory.remove(thing.getName());
-        currentRoom.addItemsToRoom(thing);
+        currentRoom.addItemToRoom(thing);
     }
 
     //methods for adding to cluelist and inventory

@@ -105,6 +105,8 @@ public class FXMLDocumentController implements Initializable {
     private Image PartnerHouse= new Image("file:src/Texures/PartnerHouse.png");
     private Image rightstreet= new Image("file:src/Texures/rightstreet.png");
     private Image Leftstreet= new Image("file:src/Texures/Leftstreet.png");
+    @FXML
+    private ListView<String> badgeList;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -117,6 +119,18 @@ public class FXMLDocumentController implements Initializable {
         }
         };
         System.setOut(new PrintStream(o, true));
+    }
+        
+    void closeMenus(){
+     arrestList.setVisible(false);
+     talkList.setVisible(false);
+     searchList.setVisible(false);
+     convictList.setVisible(false);
+     inspectList.setVisible(false);
+     pickUpList.setVisible(false);
+     inventoryList.setVisible(false);
+     journalList.setVisible(false);
+    
     }
     
     void resetArrows(){
@@ -132,6 +146,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void talkGui(ActionEvent event) {
+        closeMenus();
         Set<String> set=backEnd.talkMenu();
         if(set!=null){
         gridPaneList.setVisible(true);
@@ -142,7 +157,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void searchGui(ActionEvent event) {
-      Set<String> set=backEnd.searchMenu();
+      closeMenus();
+        Set<String> set=backEnd.searchMenu();
         if(set!=null){
         searchList.setVisible(true);
         searchList.setItems(FXCollections.observableList(new ArrayList(set)));
@@ -151,18 +167,23 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void ConvictGUI(ActionEvent event) {
-      convictList.setVisible(true);
-        convictList.setItems(FXCollections.observableList(new ArrayList(backEnd.convictMenu())));
-
+      closeMenus();
+        Set<String> set=backEnd.convictMenu();
+        if(set!=null){
+        convictList.setVisible(true);
+        convictList.setItems(FXCollections.observableList(new ArrayList(set)));
+        } 
     }
 
     @FXML
     private void drinkGUI(ActionEvent event) {
-       backEnd.drink();
+       closeMenus();
+        backEnd.drink();
     }
 
     @FXML
     private void ArrestGUI(ActionEvent event) {
+        closeMenus();
         List<String> list=new ArrayList(backEnd.arrestMenu());
         if(list!=null){
 
@@ -173,12 +194,14 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void saveGUI(ActionEvent event) {
+        closeMenus();
         backEnd.save();
         
     }
 
     @FXML
     private void inspectGUI(ActionEvent event) {
+        closeMenus();
         inspectList.setVisible(true);
         inspectList.setItems(FXCollections.observableList(new ArrayList(backEnd.inspectMenu())));
 
@@ -197,6 +220,7 @@ public class FXMLDocumentController implements Initializable {
         backEnd.arrest(selection);
         }
         arrestList.setVisible(false);
+        convict.setVisible(true);
 
     }
 
@@ -211,7 +235,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void convictMenuSelect(MouseEvent event) {
-        backEnd.convict(convictList.getSelectionModel().getSelectedItem());
+        System.out.println(backEnd.convict(convictList.getSelectionModel().getSelectedItem()));
         convictList.setVisible(false);
     }
 
@@ -334,5 +358,10 @@ public class FXMLDocumentController implements Initializable {
     private void journalSelect(MouseEvent event) {
         backEnd.journal(journalList.getSelectionModel().getSelectedItem());
         journalList.setVisible(false);
+    }
+
+    @FXML
+    private void badgeSelect(MouseEvent event) {
+        
     }
 }
