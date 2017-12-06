@@ -104,6 +104,8 @@ public class FXMLDocumentController implements Initializable {
     private Image PartnerHouse= new Image("file:src/Texures/PartnerHouse.png");
     private Image rightstreet= new Image("file:src/Texures/rightstreet.png");
     private Image Leftstreet= new Image("file:src/Texures/Leftstreet.png");
+    @FXML
+    private ListView<String> badgeList;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -196,6 +198,7 @@ public class FXMLDocumentController implements Initializable {
         backEnd.arrest(selection);
         }
         arrestList.setVisible(false);
+        convict.setVisible(true);
 
     }
 
@@ -210,7 +213,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void convictMenuSelect(MouseEvent event) {
-        backEnd.convict(convictList.getSelectionModel().getSelectedItem());
+        System.out.println(backEnd.convict(convictList.getSelectionModel().getSelectedItem()));
         convictList.setVisible(false);
     }
 
@@ -333,5 +336,10 @@ public class FXMLDocumentController implements Initializable {
     private void journalSelect(MouseEvent event) {
         backEnd.journal(journalList.getSelectionModel().getSelectedItem());
         journalList.setVisible(false);
+    }
+
+    @FXML
+    private void badgeSelect(MouseEvent event) {
+        
     }
 }

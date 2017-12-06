@@ -15,6 +15,7 @@ import BackEnd.Command.CommandWord;
 import BackEnd.Command.Command;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
@@ -281,7 +282,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
         player.move(world.getRoom("Jail"));
         System.out.println("Commissioner: Good job, now you need to go find "
                 + "some better evidence to convict this bastard. I will be in the Police department.");
-        world.getRoom("Home").addItemsToRoom(world.getItem("Badge"));
+        world.getRoom("Home").addItemToRoom(world.getItem("Badge"));
         parser.addFinishers();
         
     }
@@ -346,12 +347,13 @@ if (nextRoom == world.getRoom("Partner's Home")) {
         return ((int) (Math.random() * 11) - 5);
     }
     private void updateCrimeScene(){        
-            world.getRoom("Crime Scene").removeItemFromRoomMap("Coroner");
-            world.getRoom("Crime Scene").addItemsToRoom(world.getItem("corpseOutline"));
+            world.getRoom("Crime Scene").removeNpcFromRoom(world.getNPC("Coroner"));
+            world.getRoom("Crime Scene").addItemToRoom(world.getItem("Corpse Outline"));
             world.getRoom("Crime Scene").removeItemFromRoomMap("Corpse");
-            for(String name:world.getRoom("Crime Scene").getNPCsInRoomMap().keySet()){
-            world.getRoom("Crime Scene").moveNpc(world.getNPC(name), world.getRoom("Hobo Alley"));
-            world.getHostileNPC(name).setAggression(0.3);
+            
+            
+            for(String hobo:world.getRoom("Crime Scene").getNPCsInRoomMap().keySet()){
+            world.getHostileNPC(hobo).setAggression(0.3);
             }
         }
     
@@ -441,95 +443,65 @@ if (nextRoom == world.getRoom("Partner's Home")) {
     }
     
     Set<String> convictMenu(){
-     System.out.println("Who do you wish to talk to?");
-     return player.getRoom().getNPCsInRoomMap().keySet();
-     //todo
+        remover();
+     System.out.println("Which piece of evidence to you wish to convict with?");
+     return player.getJournal().keySet();
      }
     
-    public void convict(String clue) {
-            //todo
-        remover();
-        if (player.getRoom() == world.getRoom("Police Department")) {
-            boolean run = true;
-            boolean confess=false;
-            do {
-                Scanner convicting = new Scanner(System.in);
-                System.out.println("Select a clue.");
-                player.displayJournal();
-                String evidence = convicting.nextLine().toLowerCase();
-                if (!evidence.equalsIgnoreCase("exit")) {
-                    if (player.getJournal().containsKey(evidence)) {
-                        if (evidence.equalsIgnoreCase("Blood Splattered Badge evidence")) {
-                            System.out.println("Commisioner: Where did you find this? This evidence could be used to convict anyone.");
-                            do {
-                                System.out.println("(You can now Lie or Confess, if you lie an inocent man will be imprisoned, if you confess you'll be.)(lie/confess)");
+    public int convict(String clue) {
+          if (player.getRoom() == world.getRoom("Police Department")) {  
+            if(!player.getJournal().isEmpty()){
+            if (!clue.equals("Blood Splattered Badge evidence")) {
+                         
+            if(player.getJournal().get(clue).isConvictable()){
+            
+            player.addToevidence(clue);
+            System.out.println(clue+" has been added to Evidence list");
+            if (player.isEvidence2()) {
+            System.out.print("Judge: We have found ");
+            for(Entry<String,NPC> npc:world.getRoom("Jail").getNPCsInRoomMap().entrySet()){
+            System.out.print(npc.getValue().getName()+(" "));
+            }
+            System.out.print("guilty of murder.");
 
-                                Scanner willing = new Scanner(System.in);
-                                String will = willing.nextLine().toLowerCase();
-
-                                if (will.equals("confess")) {
-                                    System.out.println("You told the truth and confessed to your crime.");
-                                    player.addPoints(20);
-                                    confess=true;
-                                    win();
-                                    break;
-                                } else if (will.equals("lie")) {
-                                    System.out.println("You lied");
-                                    player.removePoints(40);
-                                    break;
-                                } else {
-                                    System.out.println("This is serious.");
-                                }
-                            } while (true);
-                            if(confess){
-                            break;
-                            }
-                        }
-                        if (player.getJournal().get(evidence).isConvictable()) {
-                            player.addToevidence(evidence);
-                            System.out.println(evidence + " has been added to Evidence list");
-                            if (player.isEvidence2()) {
-                                System.out.print("Judge: We have found ");
-                                for(Entry<String,NPC> npc:world.getRoom("Jail").getNPCsInRoomMap().entrySet()){
-                                System.out.print(npc.getValue().getName()+(" "));
-                                }
-                                System.out.print("guilty of murder.");
-
-                                win();
-                                break;
-                            } else {
-                                while (true) {
-                                    System.out.println("Do you want to add another piece of evidence?");
-                                    Scanner willing = new Scanner(System.in);
-                                    String will = willing.nextLine().toLowerCase();
-
-                                    if (will.equals("yes")) {
-                                        run = true;
-                                        break;
-                                    }
-                                    if (will.equals("no")) {
-                                        run = false;
-                                        break;
-                                    } else {
-                                        System.out.println("I don't understand");
-                                    }
-                                }
-                            }
-                        } else {
-                            System.out.println(evidence + " is not good enough to use in Court");
-                        }
-                    } else {
-                        System.out.println("That is not evidence.");
-                    }
-                } else {
-                    run = false;
-                }
-            } while (run);
-        } else {
+            win();                
+            return 1;   
+                
+            }else{
+            System.out.println(clue + " is not good enough to use in Court");
+            }}}else{
+            System.out.println("Commisioner: Where did you find this? This evidence could be used to convict anyone.");
+            return 2;
+            }}else{
+                System.out.println("You don't have any evidence.");
+            }  
+    }else {
             System.out.println("You are not near the commisioner, so you can't do this.");
         }
-
+    return 0;
     }
+    
+    
+    void funvict(String clue){
+        
+
+             
+                              
+                                if (clue.equals("confess")) {
+                                    System.out.println("You told the truth and confessed to your crime.");
+                                    player.addPoints(20);
+                                    win();
+                                    ;
+                                } else if (clue.equals("lie")) {
+                                    System.out.println("You lied");
+                                    player.removePoints(40);
+                                    
+                                } 
+                        
+                        
+                    
+                }
+    
     
      void drop(Command command) {
         remover();
@@ -719,8 +691,8 @@ if (nextRoom == world.getRoom("Partner's Home")) {
                         lose();
                         return false;
                     } else {
-                        goToJail(player.getRoom().getNPCsInRoomMap().get(name));
-                        updateCrimeScene();
+                updateCrimeScene();        
+                goToJail(player.getRoom().getNPCsInRoomMap().get(name));
                         return true;
                     }
         }

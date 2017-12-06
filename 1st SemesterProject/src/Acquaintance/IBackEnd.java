@@ -22,7 +22,7 @@ public interface IBackEnd {
     boolean search(String string);
     Set<String> inspect(String string);
     boolean arrest(String string);
-    void convict(String string);
+    int convict(String string);
     Set<String> talkMenu();
     Set<String> arrestMenu();
     Set<String> convictMenu();
@@ -34,4 +34,5 @@ public interface IBackEnd {
     void pickUpAsk(String answer);
     void journal(String string);
     void inventory(String string);
+    
 }

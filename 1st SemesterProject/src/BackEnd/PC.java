@@ -66,7 +66,7 @@ public class PC {
 
     public void moveToRoom(Item thing, Room currentRoom) {
         inventory.remove(thing.getName());
-        currentRoom.addItemsToRoom(thing);
+        currentRoom.addItemToRoom(thing);
     }
 
     //methods for adding to cluelist and inventory

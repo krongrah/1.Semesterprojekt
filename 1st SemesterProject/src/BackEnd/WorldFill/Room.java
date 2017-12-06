@@ -72,11 +72,11 @@ public class Room {   //rooms have a description/name and map with strings to ro
     }
     
 
-    /** Adds items to the ItemsInRoom Set.
-     * @param item you want to add to ItemsInRoom Set.
-     * Example of use: bar.addItemsToRoom(beer);
+    /** Adds items to the ItemsInRoom Map.
+     * @param item you want to add to ItemsInRoom Map.
+     * Example of use: bar.addItemToRoom(beer);
      */
-    public void addItemsToRoom(Item item) {
+    public void addItemToRoom(Item item) {
         this.ItemsInRoom.put(item.getName(), item);
     }
 
