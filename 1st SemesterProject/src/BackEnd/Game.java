@@ -243,10 +243,10 @@ if (nextRoom == world.getRoom("Partner's Home")) {
     private void getInfo() {
 
         if (player.getRoom().getNPCsInRoomMap().isEmpty()) {
-            System.out.println("You are all alone.");
+            System.out.println("You are all alone."+ "\n");
         } else {
             System.out.println("The other people here are:");
-            System.out.println(player.getRoom().getNPCsInRoomMap().keySet());
+            System.out.println(player.getRoom().getNPCsInRoomMap().keySet()+"\n");
         }
     }
 

@@ -60,10 +60,10 @@ public class World implements Serializable {
                 + " in blood", true, false, bloodsplatterClue);
         Item gun = new Item("Gun", "Its a smith and wesson, your best friend",
                 false, true, corpseClue);
-        Item corpse = new Item("Corpse", "its a dead guy, he looks to be stabbed"
+        Item corpse = new Item("Corpse", "it's a dead guy, he looks to be stabbed"
                 + " brutally multiple times.\n When you look closer you notice"
                 + " his face is covered in spit", true, false, corpseClue);
-        Item badge = new Item("Badge", "Its your"
+        Item badge = new Item("Badge", "It's your"
             + " former partners badge covered in blood, odd that you would find"
             + " this here. \n A wave of guilt washes over you as you realise"
             + " what you have done", true, true, bloodSplatteredBadgeClue);
@@ -99,7 +99,7 @@ public class World implements Serializable {
         String[] coronerLine =  {
             "Welcome to the murder scene, make yourself at home.",
             "The victim is your partner, Detective Prickard. He was a dick, and the world is a better place without him.",
-            "The victim was stabbed several times, and died from blood loss. It appears to be a crime of passion, due to the many stab wounds the spit on the victim’s face.",
+            "The victim was stabbed several times, and died from blood loss. It appears to be a crime of passion, due to the many stab wounds the spit on the victim's face.",
             "The victim was surprised by the attack, so I believe he knew his killer.",
             "I’ll get the cleaning team here know, so we can get this shit of the street."
         };
@@ -111,25 +111,25 @@ public class World implements Serializable {
         };
         String[] bartenderLine = {
             "Isn't it a bit early for you to be here?",
-            "Detective Prickard is dead? I can’t say I’m surprised, he didn’t seem to get along with anyone, especially not you. (add to cluelist)",
+            "Detective Prickard is dead? I can't say I'm surprised, he didn't seem to get along with anyone, especially not you. (add to cluelist)",
             "I think you should get back at work now."
         };
         String[] hobo1Line = {
-            "Coppers don’t often come up to ‘dese parts",
-            "I ‘eard a drunk fella’ shoutin’ at ’em.",
+            "Coppers don't often come up to 'dese parts",
+            "I 'eard a drunk fella' shoutin' at 'em.",
             "Bugger off."
         };
         String[] hobo2Line = {
-            "We don’ take kindly to your kind ‘roun’ ‘ere!",
-            "What de’ ye’ stinkin’ cops wan’ over ‘ere?",
-            "Ay ain’t tellin’ ye’ nutin’, stupid cop."
+            "We don' take kindly to your kind 'roun' 'ere!",
+            "What de' ye' stinkin' cops wan' over 'ere?",
+            "Ay ain't tellin' ye' nutin', stupid cop."
         };
         String[] hobo3Line = {
-            "It gats’ ta’ be Darryl! He be lookin’ funny at me!",
+            "It gats' ta' be Darryl! He be lookin' funny at me!",
             "Gat any smack?"
         };
         String[] hobo4Line = {
-            "I bet your ass killed him, cops can’t help killing.",
+            "I bet your ass killed him, cops can't help killing.",
             "I think you guilty, the voice in my head told me so.",};
         String[] commissionerLine1 = {
             "Detective, there has been a murder in the Hobo Alley, get over there ASAP. no time to wait for your partner, detective Prickard.",
@@ -150,11 +150,11 @@ public class World implements Serializable {
         String hobo4Alibi = "This guy is insane... theres i no other way around it.";
 
         //Fight Screams System.out.println((char)27 + "[31mThis text would show up red" + (char)27 + "[0m");
-        String fightScreamHobo1=(char)27 + "[31mYou arrested my friend, I can't bite you but I can punch you!"+ (char)27 + "[0m";
-        String fightScreamHobo2=(char)27 + "[31mYou arrested my friend, imma mess ya suit, n' ya face up now!"+ (char)27 + "[0m";
-        String fightScreamHobo3=(char)27 + "[31mYou arrested my friend, I am gonna, kill you and sell your badge for heroin!"+ (char)27 + "[0m";
-        String fightScreamHobo4=(char)27 + "[31mMonkey goes UH-UH-AH-AH! I like CAAAKEE!!"+ (char)27 + "[0m";
-        String fightScreamWife =(char)27 + "[31mThis is for coming home stinking like Booze, again!"+ (char)27 + "[0m";
+        String fightScreamHobo1= "You arrested my friend, I can't bite you but I can punch you!";
+        String fightScreamHobo2= "You arrested my friend, imma mess ya suit, n' ya face up now!";
+        String fightScreamHobo3= "You arrested my friend, I am gonna, kill you and sell your badge for heroin!";
+        String fightScreamHobo4= "Monkey goes UH-UH-AH-AH! I like CAAAKEE!!";
+        String fightScreamWife = "This is for coming home stinking like Booze, again!";
         
         //add dialogue to dialogue object
         Dialogue coronerDialogue = new Dialogue(coronerLine, coronerAlibi, true);
@@ -168,11 +168,6 @@ public class World implements Serializable {
 
         //create clues
      
-        
-        
-        
-        
-        
         Hobo hobo1 =  new Hobo("No-Teeth Terry", hobo1Dialogue, hobo1Statement, 2);
         Hobo hobo2 =  new Hobo("Dirty Darryl", hobo2Dialogue, hobo2Statement, 2);
         Hobo hobo3 =  new Hobo("Heroin Harry", hobo3Dialogue, hobo3Statement, 1);

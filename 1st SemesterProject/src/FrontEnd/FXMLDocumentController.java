@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -109,15 +110,15 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         OutputStream o = new OutputStream() {
-            @Override
-            public void write(int b) throws IOException {
+    @Override
+    public void write(int b) throws IOException {
                 textOutput.appendText(String.valueOf((char) b));
-                
-            }
+                textOutput.setWrapText(true);
+        }
         };
         System.setOut(new PrintStream(o, true));
     }
-        
+    
     void resetArrows(){
         arrowEast.setVisible(false);
         arrowNorth.setVisible(false);
@@ -234,7 +235,6 @@ public class FXMLDocumentController implements Initializable {
         }}
 
     public void updateRoomImage(){
-
         switch (backEnd.getCurrentRoom()) {
             case "Bar":
                 roomPicture.setImage(Bar);
@@ -269,6 +269,7 @@ public class FXMLDocumentController implements Initializable {
             default:
                 break;
         }
+       
     }
     
     public void startRooms(){

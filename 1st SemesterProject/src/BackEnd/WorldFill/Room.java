@@ -140,7 +140,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
 
  */
     public String getLongDescription() {
-        return "You are" + description + ".\n" + getExitString();
+        return "You are" + description;
     }
    
 

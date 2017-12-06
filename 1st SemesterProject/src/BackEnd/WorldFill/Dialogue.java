@@ -42,19 +42,17 @@ public class Dialogue {
         this.fightScream = fightScream;
     }
 
-    public void getLine() {
+    public String getLine() {
         if (!condition1) {
-            System.out.println(dialogue1[lineIndex]);
             if (lineIndex < dialogue1.length - 1) {
                 lineIndex++;
-
             }
+            return dialogue1[lineIndex];
         } else {
-            System.out.println(dialogue1[lineIndex]);
             if (lineIndex < dialogue2.length - 1) {
                 lineIndex++;
-
             }
+        return dialogue1[lineIndex];
         }
 
     }
