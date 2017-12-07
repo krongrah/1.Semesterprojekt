@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import static javafx.application.Application.launch;
+import javafx.application.Platform;
 
 /**
  *
@@ -38,12 +39,12 @@ public class Initializer extends Application implements IFrontEnd{
         Parent root = (Parent) loader.load();
         FXMLDocumentController c = loader.getController();
         c.importBackEnd(backEnd);
-
         
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         c.startRooms();
+        
     }
 
     /**
@@ -63,6 +64,8 @@ public class Initializer extends Application implements IFrontEnd{
     this.backEnd=backEnd;
     
     }
+ 
+    
 
 
     

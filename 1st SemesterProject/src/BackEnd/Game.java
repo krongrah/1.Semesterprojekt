@@ -685,7 +685,14 @@ if (nextRoom == world.getRoom("Partner's Home")) {
         }
         temp=null;
     }
-
+     String endScore(){
+         if(player.getPoints()>=100){
+         return "You were rated a "+(player.getPoints()-100)+"% good cop.";
+         }else{
+         return "You were rated a "+(100-player.getPoints())+"% bad cop.";
+         }
+         
+     }
      
      Set<String> arrestMenu(){
       if(!player.getRoom().getNPCsInRoomMap().isEmpty()){    
@@ -831,7 +838,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
         list.add(0, player.getDrunkenness());
         if(player.getPoints()<100){
         list.add(1,null);
-        list.add(2, player.getPoints());
+        list.add(2, 100-player.getPoints());
         }else{
         list.add(1, player.getPoints()-100);
         list.add(2, null);

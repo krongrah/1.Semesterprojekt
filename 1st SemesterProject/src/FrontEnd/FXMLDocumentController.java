@@ -107,6 +107,12 @@ public class FXMLDocumentController implements Initializable {
     private Image Leftstreet= new Image("file:src/Texures/Leftstreet.png");
     @FXML
     private ListView<String> badgeList;
+    @FXML
+    private BorderPane LoseScreen;
+    @FXML
+    private TextArea loseText;
+    @FXML
+    private TextField loseScore;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -220,9 +226,11 @@ public class FXMLDocumentController implements Initializable {
     private void arrestMenuSelect(MouseEvent event) {
         String selection=arrestList.getSelectionModel().getSelectedItem();
         if(selection!="No one"){    //todo is this okay?
-        backEnd.arrest(selection);
+        if(backEnd.arrest(selection)){
         convict.setVisible(true);
-        
+        }else{
+        showLoseScreen();
+        }
         }
         arrestList.setVisible(false);
         updateHUD();
@@ -387,6 +395,13 @@ public class FXMLDocumentController implements Initializable {
     }
     private void showWinScreen(){
     //todo
+    //winScreen.setVisible(true);
+    //winScore.setText(backEnd.endScore());
+    
+    }
+    private void showLoseScreen(){
+    LoseScreen.setVisible(true);
+    loseScore.setText(backEnd.endScore());
     }
     private void updateHUD(){
         Drunkmeter.setProgress(backEnd.getHUD().get(0)/100.0);
@@ -398,5 +413,10 @@ public class FXMLDocumentController implements Initializable {
         badCopBar.setProgress(0);
         
         }
+    }
+
+    @FXML
+    private void Quit(ActionEvent event) {
+        Platform.exit();
     }
 }

@@ -124,5 +124,23 @@
       <ListView fx:id="inventoryList" onMouseClicked="#inventorySelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <ListView fx:id="journalList" onMouseClicked="#journalSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <ListView fx:id="badgeList" onMouseClicked="#badgeSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <BorderPane fx:id="LoseScreen" style="-fx-background-color: crimson;" visible="false" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowSpan="5" GridPane.vgrow="ALWAYS">
+         <center>
+            <VBox alignment="CENTER" minWidth="120.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="You Lost!" />
+                  <TextField fx:id="loseScore" />
+                  <TextArea fx:id="loseText" prefHeight="200.0" prefWidth="477.0" />
+                  <Button mnemonicParsing="false" onAction="#Quit" text="Quit" />
+               </children>
+            </VBox>
+         </center>
+         <left>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
    </children>
 </GridPane>

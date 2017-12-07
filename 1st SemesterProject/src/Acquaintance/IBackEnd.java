@@ -37,5 +37,6 @@ public interface IBackEnd {
     void inventory(String string);
     boolean badgeResponse(String answer);
     List<Integer>getHUD();
+    String endScore();
     
 }

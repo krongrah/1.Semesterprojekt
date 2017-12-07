@@ -139,6 +139,11 @@ public class BackEndFacade implements IBackEnd{
     public List<Integer> getHUD() {
         return game.getHUD();
     }
+
+    @Override
+    public String endScore() {
+        return game.endScore();
+    }
     
       
 }
