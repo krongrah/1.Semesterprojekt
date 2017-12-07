@@ -113,6 +113,16 @@ public class FXMLDocumentController implements Initializable {
     private TextArea loseText;
     @FXML
     private TextField loseScore;
+    @FXML
+    private BorderPane winScreen;
+    @FXML
+    private TextField winScore;
+    @FXML
+    private TextArea winText;
+    @FXML
+    private ListView<?> winGoodHiScore;
+    @FXML
+    private ListView<?> winBadHighScore;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -155,7 +165,6 @@ public class FXMLDocumentController implements Initializable {
         closeMenus();
         Set<String> set=backEnd.talkMenu();
         if(set!=null){
-        gridPaneList.setVisible(true);
         talkList.setVisible(true);
         talkList.setItems(FXCollections.observableList(new ArrayList(set)));
         }   
@@ -394,10 +403,11 @@ public class FXMLDocumentController implements Initializable {
         updateHUD();
     }
     private void showWinScreen(){
-    //todo
-    //winScreen.setVisible(true);
-    //winScore.setText(backEnd.endScore());
     
+    winScreen.setVisible(true);
+    winScore.setText(backEnd.endScore());
+    //load hiscores
+    //todo
     }
     private void showLoseScreen(){
     LoseScreen.setVisible(true);

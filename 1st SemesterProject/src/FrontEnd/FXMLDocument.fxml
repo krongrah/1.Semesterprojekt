@@ -115,22 +115,51 @@
             </ImageView>
          </center>
       </BorderPane>
-      <ListView fx:id="talkList" onMouseClicked="#talkMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-      <ListView fx:id="arrestList" onMouseClicked="#arrestMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-      <ListView fx:id="searchList" onMouseClicked="#searchMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-      <ListView fx:id="convictList" onMouseClicked="#convictMenuSelect" prefHeight="82.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-      <ListView fx:id="inspectList" onMouseClicked="#inspectMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-      <ListView fx:id="pickUpList" onMouseClicked="#pickUpSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <ListView fx:id="inventoryList" onMouseClicked="#inventorySelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <ListView fx:id="journalList" onMouseClicked="#journalSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <ListView fx:id="badgeList" onMouseClicked="#badgeSelect" prefHeight="220.0" prefWidth="397.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <BorderPane fx:id="LoseScreen" style="-fx-background-color: crimson;" visible="false" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowSpan="5" GridPane.vgrow="ALWAYS">
+      <Pane GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
+      <BorderPane fx:id="winScreen" layoutX="10.0" layoutY="10.0" style="-fx-background-color: deepskyblue;" visible="false" GridPane.columnSpan="3" GridPane.rowSpan="5">
          <center>
-            <VBox alignment="CENTER" minWidth="120.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="You Won!" />
+                  <TextField fx:id="winScore" />
+                  <TextArea fx:id="winText" prefHeight="124.0" prefWidth="200.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="winGoodHiScore" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="winBadHighScore" prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </HBox>
+                  <Button mnemonicParsing="false" onAction="#Quit" text="Quit" />
+               </children>
+            </VBox>
+         </center>
+         <left>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
+      <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <children>
+            <ListView fx:id="talkList" onMouseClicked="#talkMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
+            <ListView fx:id="arrestList" onMouseClicked="#arrestMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
+            <ListView fx:id="searchList" onMouseClicked="#searchMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
+            <ListView fx:id="convictList" onMouseClicked="#convictMenuSelect" prefHeight="82.0" prefWidth="397.0" visible="false" />
+            <ListView fx:id="inspectList" onMouseClicked="#inspectMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
+            <ListView fx:id="pickUpList" onMouseClicked="#pickUpSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
+            <ListView fx:id="inventoryList" onMouseClicked="#inventorySelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
+            <ListView fx:id="journalList" onMouseClicked="#journalSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
+            <ListView fx:id="badgeList" onMouseClicked="#badgeSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
+         </children>
+      </StackPane>
+      <BorderPane fx:id="LoseScreen" style="-fx-background-color: crimson;" visible="false" GridPane.columnSpan="3" GridPane.rowSpan="5">
+         <center>
+            <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
                   <Label text="You Lost!" />
                   <TextField fx:id="loseScore" />
-                  <TextArea fx:id="loseText" prefHeight="200.0" prefWidth="477.0" />
+                  <TextArea fx:id="loseText" prefHeight="123.0" prefWidth="200.0" />
                   <Button mnemonicParsing="false" onAction="#Quit" text="Quit" />
                </children>
             </VBox>

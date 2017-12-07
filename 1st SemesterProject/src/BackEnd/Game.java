@@ -253,7 +253,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
         }
     }
 
-    public void drink() {
+    public void drink() {//todo doesn't seem to work
 //try {
         for (Entry drink : player.getInventoryMap().entrySet()) {
             if (drink instanceof Beverage) {
