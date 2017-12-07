@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -61,7 +62,7 @@
       </VBox>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="16.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
          <children>
-            <ProgressBar fx:id="badCopBar" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
+            <ProgressBar fx:id="badCopBar" focusTraversable="false" maxWidth="1.7976931348623157E308" nodeOrientation="RIGHT_TO_LEFT" progress="0.0" HBox.hgrow="ALWAYS" />
             <ProgressBar fx:id="GoodCopBar" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
