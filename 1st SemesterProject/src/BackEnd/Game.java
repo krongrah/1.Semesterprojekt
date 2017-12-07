@@ -459,7 +459,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
      }}
     
     public int convict(String clue) {
-            if (!clue.equals("Blood Splattered Badge evidence")) {
+            if (!clue.equals("Badge")) {
                          
             if(player.getJournal().get(clue).isConvictable()){
             
@@ -486,7 +486,11 @@ if (nextRoom == world.getRoom("Partner's Home")) {
             return 2;
             } 
     }
-    
+    /**
+     * This method is called when the player decides whether to tell the truth or lie about the badge. 
+     * @param answer The parameter is "Yes" or "No", where yes is lying and no is confessing.
+     * @return This function returns true if the player wins the game, and false if the player continues the game.
+     */
     boolean badgeResponse(String answer){
                                 if (answer.equals("No")) {
                                     System.out.println("You told the truth and confessed to your crime.");
@@ -496,6 +500,17 @@ if (nextRoom == world.getRoom("Partner's Home")) {
                                 } else {
                                     System.out.println("You lied");
                                     player.removePoints(40);
+                                    player.addToevidence("Badge");
+            System.out.println("Badge has been added to Evidence list");
+            if (player.isEvidence2()) {
+            System.out.print("Judge: We have found ");
+            for(Entry<String,NPC> npc:world.getRoom("Jail").getNPCsInRoomMap().entrySet()){
+            System.out.print(npc.getValue().getName()+(" "));
+            }
+            System.out.println("guilty of murder.");
+            win();
+            return true;
+            }
                                     return false;
                                 } 
                 }
