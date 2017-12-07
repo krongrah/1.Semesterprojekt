@@ -278,7 +278,6 @@ public class World implements Serializable {
         hobos.add(hobo2);
         hobos.add(hobo3);
         hobos.add(hobo4);
-        hoboAlley.addItemToRoom(badge);//for testing
     }
     
     public NPC getNPC(String name){
