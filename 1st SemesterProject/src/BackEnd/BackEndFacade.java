@@ -128,5 +128,10 @@ public class BackEndFacade implements IBackEnd{
     public void inventory(String string) {
         game.inventory(string);
     }
+
+    @Override
+    public boolean badgeResponse(String answer) {
+        return game.badgeResponse(answer);
+    }
       
 }

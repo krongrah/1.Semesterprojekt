@@ -481,32 +481,23 @@ if (nextRoom == world.getRoom("Partner's Home")) {
             System.out.println(clue + " is not good enough to use in Court");
             return 0;
             }}else{
-            System.out.println("Commisioner: Where did you find this? This evidence could be used to convict anyone.");
+            System.out.println("Commisioner: Where did you find this? This evidence could be used to convict anyone."
+                    + "\nDid you find this on the perpetrator?");
             return 2;
             } 
-    
-    
     }
     
-    
-    void funvict(String clue){
-        
-
-             
-                              
-                                if (clue.equals("confess")) {
+    boolean badgeResponse(String answer){
+                                if (answer.equals("No")) {
                                     System.out.println("You told the truth and confessed to your crime.");
                                     player.addPoints(20);
                                     win();
-                                    ;
-                                } else if (clue.equals("lie")) {
+                                    return true;
+                                } else {
                                     System.out.println("You lied");
                                     player.removePoints(40);
-                                    
+                                    return false;
                                 } 
-                        
-                        
-                    
                 }
     
     

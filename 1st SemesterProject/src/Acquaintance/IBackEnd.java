@@ -34,5 +34,6 @@ public interface IBackEnd {
     void pickUpAsk(String answer);
     void journal(String string);
     void inventory(String string);
+    boolean badgeResponse(String answer);
     
 }

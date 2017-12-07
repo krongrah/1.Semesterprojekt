@@ -46,7 +46,7 @@ import javafx.scene.layout.Pane;
  */
 public class FXMLDocumentController implements Initializable {
     private IBackEnd backEnd;
-    private List<String> ask = Arrays.asList("Yes", "No");
+    private List<String> ask = Arrays.asList("Yes", "No");//todo is it better to add them on separate lines?
     @FXML
     private Button talk;
     @FXML
@@ -235,7 +235,13 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void convictMenuSelect(MouseEvent event) {
-        System.out.println(backEnd.convict(convictList.getSelectionModel().getSelectedItem()));
+        int convictResult=backEnd.convict(convictList.getSelectionModel().getSelectedItem());
+        if(convictResult==1){
+          showWinScreen();  
+        }else if(convictResult==2){
+        badgeList.setVisible(true);
+        badgeList.setItems(FXCollections.observableList(ask));
+        }
         convictList.setVisible(false);
     }
 
@@ -362,6 +368,10 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void badgeSelect(MouseEvent event) {
-        
+        backEnd.badgeResponse(badgeList.getSelectionModel().getSelectedItem());
+        badgeList.setVisible(false);
+    }
+    private void showWinScreen(){
+    //todo
     }
 }
