@@ -8,6 +8,7 @@ package BackEnd;
 import Acquaintance.IBackEnd;
 import Acquaintance.IFoundation;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -133,5 +134,11 @@ public class BackEndFacade implements IBackEnd{
     public boolean badgeResponse(String answer) {
         return game.badgeResponse(answer);
     }
+
+    @Override
+    public List<Integer> getHUD() {
+        return game.getHUD();
+    }
+    
       
 }

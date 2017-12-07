@@ -23,7 +23,7 @@ public class PC {
 
     //player attributes
     private int movementChecker;
-    private int drunkness;
+    private int drunkenness;
     private int points;
     private Map<String,Item> inventory=new HashMap<>();
     private Map<String,Clue> journal = new HashMap<>();
@@ -35,7 +35,7 @@ public class PC {
     //constructor
     PC(){
         points = 90;
-        drunkness = 9999;
+        drunkenness = 100;
         movementChecker = 0;
     }
 
@@ -137,16 +137,16 @@ public class PC {
         return inventory.containsKey(name);
     }
 
-    public int getDrunkness() {
-        return drunkness;
+    public int getDrunkenness() {
+        return drunkenness;
     }
 
-    public void removeDrunkness(int drunkValue) {
-        drunkness -= drunkValue;
+    public void removeDrunkenness(int drunkValue) {
+        drunkenness -= drunkValue;
     }
 
-    public void addDrunkness(int drunkvalue) {
-        drunkness += drunkvalue;
+    public void addDrunkenness(int drunkvalue) {
+        drunkenness += drunkvalue;
     } 
     public void passTime(int timer){
         movementChecker += timer;

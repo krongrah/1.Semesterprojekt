@@ -179,6 +179,7 @@ public class FXMLDocumentController implements Initializable {
     private void drinkGUI(ActionEvent event) {
        closeMenus();
         backEnd.drink();
+        updateHUD();
     }
 
     @FXML
@@ -196,6 +197,7 @@ public class FXMLDocumentController implements Initializable {
     private void saveGUI(ActionEvent event) {
         closeMenus();
         backEnd.save();
+        updateHUD();
         
     }
 
@@ -211,6 +213,7 @@ public class FXMLDocumentController implements Initializable {
     private void talkMenuSelect(MouseEvent event) {
         backEnd.talk(talkList.getSelectionModel().getSelectedItem());
         talkList.setVisible(false);
+        updateHUD();
     }
 
     @FXML
@@ -218,10 +221,11 @@ public class FXMLDocumentController implements Initializable {
         String selection=arrestList.getSelectionModel().getSelectedItem();
         if(selection!="No one"){    //todo is this okay?
         backEnd.arrest(selection);
+        convict.setVisible(true);
+        
         }
         arrestList.setVisible(false);
-        convict.setVisible(true);
-
+        updateHUD();
     }
 
     @FXML
@@ -231,6 +235,7 @@ public class FXMLDocumentController implements Initializable {
         pickUpList.setItems(FXCollections.observableList(ask));//todo
         }
         searchList.setVisible(false);
+        updateHUD();
     }
 
     @FXML
@@ -243,6 +248,7 @@ public class FXMLDocumentController implements Initializable {
         badgeList.setItems(FXCollections.observableList(ask));
         }
         convictList.setVisible(false);
+        updateHUD();
     }
 
     @FXML
@@ -328,50 +334,69 @@ public class FXMLDocumentController implements Initializable {
     private void GoArrowNorth(MouseEvent event) {
         backEnd.UIGo("north");
         startRooms();
+        updateHUD();
         }
         
     @FXML
     private void GoArrowWest(MouseEvent event) {
         backEnd.UIGo("west");
         startRooms();
+        updateHUD();
     }
 
     @FXML
     private void GoArrowSouth(MouseEvent event) {
         backEnd.UIGo("south");
         startRooms();
+        updateHUD();
     }
 
     @FXML
     private void GoArrowEast(MouseEvent event) {
         backEnd.UIGo("east");
         startRooms();
+        updateHUD();
     }
 
     @FXML
     private void pickUpSelect(MouseEvent event) {
         backEnd.pickUpAsk(pickUpList.getSelectionModel().getSelectedItem());
         pickUpList.setVisible(false);
+        updateHUD();
     }
 
     @FXML
     private void inventorySelect(MouseEvent event) {
         backEnd.inventory(inventoryList.getSelectionModel().getSelectedItem());
         inventoryList.setVisible(false);
+        updateHUD();
     }
 
     @FXML
     private void journalSelect(MouseEvent event) {
         backEnd.journal(journalList.getSelectionModel().getSelectedItem());
         journalList.setVisible(false);
+        updateHUD();
     }
 
     @FXML
     private void badgeSelect(MouseEvent event) {
         backEnd.badgeResponse(badgeList.getSelectionModel().getSelectedItem());
         badgeList.setVisible(false);
+        updateHUD();
     }
     private void showWinScreen(){
     //todo
+    }
+    private void updateHUD(){
+        Drunkmeter.setProgress(backEnd.getHUD().get(0)/100.0);
+        if(backEnd.getHUD().get(1)==null){
+        badCopBar.setProgress(backEnd.getHUD().get(2)/100.0);
+        GoodCopBar.setProgress(0);
+        }else{
+        GoodCopBar.setProgress(backEnd.getHUD().get(1)/100.0);
+        badCopBar.setProgress(0);
+        
+        }
     }
 }

@@ -14,8 +14,10 @@ import BackEnd.Command.Parser;
 import BackEnd.Command.CommandWord;
 import BackEnd.Command.Command;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
@@ -253,20 +255,20 @@ if (nextRoom == world.getRoom("Partner's Home")) {
 
     public void drink() {
 //try {
-            //        System.out.println("drinking");
-//        for (Entry drink : player.getInventoryMap().entrySet()) {
-//            if (drink instanceof Beverage) {
-//                System.out.println("You drink some " + ((Beverage)drink).getName() + ", you start to feel all your problems disappear");
-//                player.addDrunkness(((Beverage) drink).getAlcoholContent());
-//                ((Beverage) drink).removeSip();
-//                if(((Beverage) drink).getNumberOfSips()==0){
-//                player.getInventoryMap().remove(drink);
-//                    System.out.println("You emptied your bottle and tossed it away.");
-//                }
-//                System.out.println(player.getDrunkness());
-//                break;
-//            }
-//        }
+        for (Entry drink : player.getInventoryMap().entrySet()) {
+            if (drink instanceof Beverage) {
+                System.out.println("You drink some " + ((Beverage)drink).getName() + ", you start to feel all your problems disappear");
+                player.addDrunkenness(((Beverage) drink).getAlcoholContent());
+                ((Beverage) drink).removeSip();
+                if(((Beverage) drink).getNumberOfSips()==0){
+                player.getInventoryMap().remove(drink);
+                    System.out.println("You emptied your bottle and tossed it away.");
+                }
+                break;
+            }
+        }
+        System.out.println(player.getDrunkenness());
+                
 //Foundation.SaveFile.loadFile();
 //        } catch (IOException ex) {
 //            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
@@ -308,14 +310,14 @@ if (nextRoom == world.getRoom("Partner's Home")) {
     }
 
     public void Checker() {
-        if (player.getDrunkness() == 15) {
+        if (player.getDrunkenness() == 15) {
             System.out.println("you feel your buzz start to fade, you need a drink");
         }
-        if (player.getDrunkness() == 5) {
+        if (player.getDrunkenness() == 5) {
             System.out.println("You start to feel your hands again, if you dont drink soon you might die");
         }
 
-        if (player.getDrunkness() == 0) {
+        if (player.getDrunkenness() == 0) {
             System.out.println("You feel completely sober, you fall down to the floor and die, knowing nobody loved you.");
             lose();
         }
@@ -340,7 +342,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
     }
         
     public void drunkness() {
-        System.out.println(player.getDrunkness());
+        System.out.println(player.getDrunkenness());
     }
     
     private int damageRandomizer() {
@@ -459,6 +461,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
      }}
     
     public int convict(String clue) {
+        remover();
             if (!clue.equals("Badge")) {
                          
             if(player.getJournal().get(clue).isConvictable()){
@@ -616,6 +619,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
         }
     }
      Set<String> talkMenu(){
+         remover();
      if(!player.getRoom().getNPCsInRoomMap().isEmpty()){    
      System.out.println("Who do you wish to talk to?");
      return player.getRoom().getNPCsInRoomMap().keySet();}
@@ -636,6 +640,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
      }
 
      Set<String> searchMenu(){
+         remover();
         if(!player.getRoom().getItemsInRoomMap().isEmpty()){    
      System.out.println("You found these items.\nWhat do you want to look at?");
      return player.getRoom().getItemsInRoomMap().keySet();
@@ -681,9 +686,6 @@ if (nextRoom == world.getRoom("Partner's Home")) {
         temp=null;
     }
 
-     boolean ask(){
-     return true;
-     }
      
      Set<String> arrestMenu(){
       if(!player.getRoom().getNPCsInRoomMap().isEmpty()){    
@@ -814,10 +816,32 @@ if (nextRoom == world.getRoom("Partner's Home")) {
     
     }
     public void remover() {
-        player.removeDrunkness(1);
+        player.removeDrunkenness(1);
         player.passTime(2);
-        
     }
+    
+    /**
+     * This method returns an List with the player's points and drunkenness, intended for updating the HeadsUpDisplay(HUD) 
+     * @return An List with 3 integers, on index 0 is the player's drunkenness, on index 1, 
+     * the player's good cop points and on index 2 the player's bad cop points. if the player is currently a good cop, bad cop will be null, 
+     * and vice versa. 
+     */
+    public List<Integer> getHUD(){
+        List<Integer> list=new ArrayList();
+        list.add(0, player.getDrunkenness());
+        if(player.getPoints()<100){
+        list.add(1,null);
+        list.add(2, player.getPoints());
+        }else{
+        list.add(1, player.getPoints()-100);
+        list.add(2, null);
+        }
+        
+        return list;
+    }
+    
+    
+    
     public HiScoreManager getHiScoreManager(){
     return manager;
     }
