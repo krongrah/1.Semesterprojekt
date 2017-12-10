@@ -39,6 +39,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 /**
  *
@@ -100,6 +101,9 @@ public class FXMLDocumentController implements Initializable {
     
     private Image Bar = new Image("file:src/Texures/Bar.png");
     private Image PD = new Image("file:src/Texures/PD.png");
+    private Image Court = new Image("file:src/Texures/Court.png");
+    private Image CrimeScene = new Image("file:src/Texures/Crimescene.png");
+    private Image hoboAlley = new Image("file:src/Texures/Hoboalley.png");
     private Image Home = new Image("file:src/Texures/Home.png");
     private Image Jail = new Image("file:src/Texures/Jail.png");
     private Image PartnerHouse= new Image("file:src/Texures/PartnerHouse.png");
@@ -123,6 +127,8 @@ public class FXMLDocumentController implements Initializable {
     private ListView<?> winGoodHiScore;
     @FXML
     private ListView<?> winBadHighScore;
+    @FXML
+    private StackPane stackPane;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -135,9 +141,11 @@ public class FXMLDocumentController implements Initializable {
         }
         };
         System.setOut(new PrintStream(o, true));
+        stackPane.setVisible(false);
     }
         
     void closeMenus(){
+     stackPane.setVisible(true);
      arrestList.setVisible(false);
      talkList.setVisible(false);
      searchList.setVisible(false);
@@ -308,16 +316,16 @@ public class FXMLDocumentController implements Initializable {
                 roomPicture.setImage(Jail);
                 break;
             case "Court":
-                roomPicture.setImage(null);
+                roomPicture.setImage(Court);
                 break;
             case "Hobo Alley":
-                roomPicture.setImage(null);
+                roomPicture.setImage(hoboAlley);
                 break;
             case "Right Street":
                 roomPicture.setImage(rightstreet);
                 break;
             case "Crime Scene":
-                roomPicture.setImage(null);
+                roomPicture.setImage(CrimeScene);
                 break;
             default:
                 break;
@@ -413,7 +421,8 @@ public class FXMLDocumentController implements Initializable {
     LoseScreen.setVisible(true);
     loseScore.setText(backEnd.endScore());
     }
-    private void updateHUD(){
+    protected void updateHUD(){
+        stackPane.setVisible(false);
         Drunkmeter.setProgress(backEnd.getHUD().get(0)/100.0);
         if(backEnd.getHUD().get(1)==null){
         badCopBar.setProgress(backEnd.getHUD().get(2)/100.0);

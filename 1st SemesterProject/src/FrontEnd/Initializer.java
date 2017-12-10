@@ -44,6 +44,7 @@ public class Initializer extends Application implements IFrontEnd{
         stage.setScene(scene);
         stage.show();
         c.startRooms();
+        c.updateHUD();
         
     }
 
