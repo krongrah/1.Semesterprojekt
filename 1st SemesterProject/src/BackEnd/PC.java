@@ -35,7 +35,7 @@ public class PC {
     //constructor
     PC(){
         points = 90;
-        drunkenness = 100;
+        drunkenness = 99;
         movementChecker = 0;
     }
 

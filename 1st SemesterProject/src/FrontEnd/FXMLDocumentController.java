@@ -467,6 +467,9 @@ public class FXMLDocumentController implements Initializable {
         badCopBar.setProgress(0);
         
         }
+        if(Drunkmeter.getProgress()==0||Drunkmeter.getProgress()==1.0){
+        showLoseScreen();
+        }
     }
 
     @FXML
