@@ -258,7 +258,6 @@ if (nextRoom == world.getRoom("Partner's Home")) {
     }
 
     public void drink() {//todo doesn't seem to work
-//try {
         for (Entry drink : player.getInventoryMap().entrySet()) {
             if (drink instanceof Beverage) {
                 System.out.println("You drink some " + ((Beverage)drink).getName() + ", you start to feel all your problems disappear");
@@ -272,13 +271,6 @@ if (nextRoom == world.getRoom("Partner's Home")) {
             }
         }
         System.out.println(player.getDrunkenness());
-                
-//Foundation.SaveFile.loadFile();
-//        } catch (IOException ex) {
-//            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-//        }
    }
 
     public void goToJail(NPC scum) {
