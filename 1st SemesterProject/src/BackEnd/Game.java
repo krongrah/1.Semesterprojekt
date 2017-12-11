@@ -673,11 +673,10 @@ if (nextRoom == world.getRoom("Partner's Home")) {
             System.out.println("You decided not not to pick the item up.");
         }else{
         Item item =world.getItem(temp);
-            System.out.println("You picked up the "+temp+".");
         if (item.getIsClue()) {
         player.addToJournal(item.giveClue());
         }
-        player.addToInventory(item, player.getRoom());
+            System.out.println(player.addToInventory(item, player.getRoom()));
         }
         temp=null;
     }

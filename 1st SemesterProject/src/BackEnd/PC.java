@@ -82,7 +82,7 @@ public class PC {
                 return("You can't seem to get a hold of it.");
             }
         } else {
-            return("Your inventory are full");
+            return("Your inventory is full");
         }
 
     }
