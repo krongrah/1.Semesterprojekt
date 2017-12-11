@@ -82,7 +82,7 @@ public class World implements Serializable {
         Beverage beer = new Beverage("Beer", "It's a well known brand called pisswasser", false, true, null, 2, 2);
     
         
-        Room leftStreet = new Room(" on left street", "Left Street",true);
+        Room leftStreet = new Room(" on left street", "Left Street", true);
         Room rightStreet = new Room(" on Right street", "Right Street", true);
         Room bar = new Room(" in the bar", "Bar", false);
         Room hoboAlley = new Room(" in the Hobo Alley, try not to get stabbed", "Hobo Alley", true);

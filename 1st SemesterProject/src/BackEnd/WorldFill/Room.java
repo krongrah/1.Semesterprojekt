@@ -26,17 +26,6 @@ public class Room {   //rooms have a description/name and map with strings to ro
      * 
      * @param description is the description of the room. Example: " in the bar"
      * @param roomName is the name of the room Example: "Bar"
-     */
-    public Room(String description, String roomName) {
-        this.description = description;
-        this.roomName = roomName;
-        exits = new HashMap<String, Room>();
-        this.hoboAccessable=false;
-    }
-    /**
-     * 
-     * @param description is the description of the room. Example: " in the bar"
-     * @param roomName is the name of the room Example: "Bar"
      * @param hoboAccessable is used to define if hobos can walk in this room.
      */
     public Room(String description, String roomName, boolean hoboAccessable) {
@@ -83,7 +72,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
     
     /**
     * Removes items from room set
-    * @param item you want to be removed from itemsInRoom Set.
+    * @param string is the item name you want to be removed from itemsInRoom Set.
     * Example of use: bar.removeItemFromRoom(beer);
     */ 
     public void removeItemFromRoomMap(String string){
@@ -129,7 +118,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
         if(this.getNPCsInRoomMap().containsKey(npc.getName())){
         this.NPCsInRoom.remove(npc.getName());
         newRoom.NPCsInRoom.put(npc.getName(), npc);
-        npc.setCurrentRoomName(this.roomName);
+        npc.setCurrentRoomName(newRoom.getRoomName());
         }
     }
 /**

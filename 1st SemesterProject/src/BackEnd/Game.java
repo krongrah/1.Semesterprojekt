@@ -16,6 +16,7 @@ import BackEnd.Command.Command;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Scanner;
@@ -31,7 +32,9 @@ public class Game {
     private World world=new World();
     private HiScoreManager manager=new HiScoreManager();
     private String temp;//todo make better
+    private boolean hobosOnTheMove= false;
     // Constructor calls createRooms and creates new Parser
+    
     public Game() {
         
  
@@ -175,7 +178,8 @@ public class Game {
         String direction = command.getSecondWord();
 
         Room nextRoom = player.getRoom().getExit(direction);
-
+        Checker();
+        remover();
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
@@ -199,14 +203,15 @@ public class Game {
                 }
             }
         }
-        Checker();
-        remover();
+        
     }
 /**
  * Moves the player from room to room.
  * @param e is the direction you want to move (north, west, south, east)
  */
     public boolean UIGo(String e){
+        Checker();
+        remover();
         Room nextRoom = player.getRoom().getExit(e);
 if (nextRoom == world.getRoom("Partner's Home")) {
     
@@ -229,10 +234,6 @@ if (nextRoom == world.getRoom("Partner's Home")) {
                     return true;
                 }
             }
-            
-        
-        Checker();
-        remover();
         return false;
     }
    
@@ -325,24 +326,11 @@ if (nextRoom == world.getRoom("Partner's Home")) {
             System.out.println("You feel completely sober, you fall down to the floor and die, knowing nobody loved you.");
             lose();
         }
-            switch (player.getMovementChecker()) {
-                case 6: 
-                NpcMover();
-                break;
-            
-            case 16:
-                NpcMover();
-                break;
-            
-            case 30:
-                NpcMover();
-                break;
-            default:
-                break;
+        
+        if(player.getDrunkenness()%1==0&&hobosOnTheMove==true){
+        NpcMover();
+        }
 
-
-                
-            } 
     }
         
     public void drunkness() {
@@ -361,6 +349,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
             for(String hobo:world.getRoom("Crime Scene").getNPCsInRoomMap().keySet()){
             world.getHostileNPC(hobo).setAggression(0.3);
             }
+            hobosOnTheMove = true;
         }
     
     public void fightLoop(HostileNPC enemy) {
@@ -869,12 +858,29 @@ if (nextRoom == world.getRoom("Partner's Home")) {
     return player;
     }
    
-    
-    public void NpcMover(){
+    public void NpcMover() {
+        for (Hobo hobo : world.getHobos()) {
+            List<String> exits = new ArrayList<>();
+            exits.add("Stay");
+            for (Iterator it = world.getRoom(hobo.getCurrentRoomName()).getExit().keySet().iterator(); it.hasNext();) {
+                String direction = (String) it.next();
+                if (world.getRoom(hobo.getCurrentRoomName()).getExit(direction).isHoboAccessable()) {
+                    exits.add(direction);
+                }
+            }
+            int lenght = exits.size();
+            int roll = (int) (Math.random() * (lenght - 0));
+            if (!exits.get(roll).equals("Stay")) {
+                world.getRoom(hobo.getCurrentRoomName()).moveNpc(hobo, world.getRoom(hobo.getCurrentRoomName()).getExit(exits.get(roll)));
+            }
+        }
+    }
+        
+    public void NpcMover2(){
       for(Hobo hobo: world.getHobos()){
                    boolean success3 = false; 
                 
-                    do {
+                    
                     switch (rollRooms()) {
                         case 1:
                             if(world.getRoom(hobo.getCurrentRoomName()).getExit().containsKey("south") == true){
@@ -890,16 +896,16 @@ if (nextRoom == world.getRoom("Partner's Home")) {
                         case 2:
                             if(world.getRoom(hobo.getCurrentRoomName()).getExit().containsKey("north") == true){
                                 if (world.getRoom(world.getRoom(hobo.getCurrentRoomName()).getExit("north").getRoomName()).isHoboAccessable() == true){
-                                    world.getRoom(hobo.getCurrentRoomName()).moveNpc(hobo, world.getRoom(hobo.getCurrentRoomName()).getExit("south"));
+                                    world.getRoom(hobo.getCurrentRoomName()).moveNpc(hobo, world.getRoom(hobo.getCurrentRoomName()).getExit("north"));
                                     success3 = true;
                                     break;
-                                }
+                                } 
                             }
                             
                         case 3:
                             if(world.getRoom(hobo.getCurrentRoomName()).getExit().containsKey("west") == true){
                                 if (world.getRoom(world.getRoom(hobo.getCurrentRoomName()).getExit("west").getRoomName()).isHoboAccessable() == true){
-                                    world.getRoom(hobo.getCurrentRoomName()).moveNpc(hobo, world.getRoom(hobo.getCurrentRoomName()).getExit("south"));
+                                    world.getRoom(hobo.getCurrentRoomName()).moveNpc(hobo, world.getRoom(hobo.getCurrentRoomName()).getExit("west"));
                                     success3 = true;
                                     break;
                                 }
@@ -908,7 +914,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
                         case 4:
                             if(world.getRoom(hobo.getCurrentRoomName()).getExit().containsKey("east") == true){
                                 if (world.getRoom(world.getRoom(hobo.getCurrentRoomName()).getExit("east").getRoomName()).isHoboAccessable() == true){
-                                    world.getRoom(hobo.getCurrentRoomName()).moveNpc(hobo, world.getRoom(hobo.getCurrentRoomName()).getExit("south"));
+                                    world.getRoom(hobo.getCurrentRoomName()).moveNpc(hobo, world.getRoom(hobo.getCurrentRoomName()).getExit("east"));
                                     success3 = true;
                                     break;
                                 }
@@ -916,16 +922,14 @@ if (nextRoom == world.getRoom("Partner's Home")) {
                             
                         default:
                             break;
-                    }
+                    
                       
-                    } while(!success3);   
-                
-               
             } 
         
-            
-        }
-  
+      }
     }
+}
+  
+    
 
 
