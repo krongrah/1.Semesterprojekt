@@ -57,6 +57,7 @@
             <Button fx:id="save" mnemonicParsing="false" onAction="#saveGUI" text="Save" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
             <Button fx:id="inspect" mnemonicParsing="false" onAction="#inspectGUI" text="Inspect" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
             <ProgressIndicator fx:id="Drunkmeter" progress="0.0" />
+            <Button layoutX="154.0" layoutY="53.0" mnemonicParsing="false" onAction="#dropGUI" text="Drop" GridPane.columnIndex="2" />
          </children>
       </GridPane>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
@@ -155,6 +156,7 @@
             <ListView fx:id="inventoryList" onMouseClicked="#inventorySelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
             <ListView fx:id="journalList" onMouseClicked="#journalSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
             <ListView fx:id="badgeList" onMouseClicked="#badgeSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
+            <ListView fx:id="dropList" layoutX="10.0" layoutY="10.0" onMouseClicked="#dropMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
          </children>
       </StackPane>
       <BorderPane fx:id="LoseScreen" style="-fx-background-color: crimson;" visible="false" GridPane.columnSpan="3" GridPane.rowSpan="5">

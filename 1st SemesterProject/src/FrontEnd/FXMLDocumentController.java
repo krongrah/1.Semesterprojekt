@@ -124,9 +124,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextArea winText;
     @FXML
-    private ListView<?> winGoodHiScore;
+    private ListView<String> winGoodHiScore;
     @FXML
-    private ListView<?> winBadHighScore;
+    private ListView<String> winBadHighScore;
     @FXML
     private StackPane stackPane;
     @FXML
@@ -141,6 +141,8 @@ public class FXMLDocumentController implements Initializable {
     private ProgressBar enemyHealth;
     @FXML
     private TextArea fightOutput;
+    @FXML
+    private ListView<String> dropList;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -512,4 +514,24 @@ public class FXMLDocumentController implements Initializable {
     return string;
     
     }
+
+    @FXML
+    private void dropGUI(ActionEvent event) {
+       closeMenus();
+        Set<String> set=backEnd.dropMenu();
+        if(set!=null){
+        dropList.setVisible(true);
+        dropList.setItems(FXCollections.observableList(new ArrayList(set)));
+        }  
+        
+        
+    }
+
+    @FXML
+    private void dropMenuSelect(MouseEvent event) {
+        if (input(dropList)!=null){
+        backEnd.drop(input(dropList));
+        dropList.setVisible(false);
+        updateHUD();
+    }} 
 }

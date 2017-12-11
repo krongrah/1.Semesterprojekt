@@ -148,6 +148,16 @@ public class BackEndFacade implements IBackEnd{
     public void load() {
         game.load();
     }
+
+    @Override
+    public void drop(String string) {
+      game.drop(string);
+    }
+
+    @Override
+    public Set<String> dropMenu() {
+    return game.dropMenu();
+    }
     
       
 }
