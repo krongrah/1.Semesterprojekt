@@ -245,6 +245,7 @@ public class FXMLDocumentController implements Initializable {
         if(selection!="No one"){    //todo is this okay?
         if(backEnd.arrest(selection)){
         convict.setVisible(true);
+        startRooms();
         }else{
         showLoseScreen();
         }
