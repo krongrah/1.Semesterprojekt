@@ -716,6 +716,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
                         lose();
                         return false;
                     } else {
+                world.getNPC("Commissioner Curt").getDialogue().fulfillCondition();
                 updateCrimeScene();        
                 goToJail(player.getRoom().getNPCsInRoomMap().get(name));
                         return true;
