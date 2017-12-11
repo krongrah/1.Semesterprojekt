@@ -46,7 +46,9 @@ public class NPC {
  * Prints out a dialog line
  */
     public void getLine() {
-        System.out.println(name +": "+ dialogue.getLine()+"\n");
+        System.out.print(name +": ");
+        dialogue.getLine();
+        System.out.println("\n");
     }
 
     /**
