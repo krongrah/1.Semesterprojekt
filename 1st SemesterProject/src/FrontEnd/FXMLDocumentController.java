@@ -156,6 +156,7 @@ public class FXMLDocumentController implements Initializable {
         };
         System.setOut(new PrintStream(o, true));
         stackPane.setVisible(false);
+        introScreen.setVisible(true);
     }
         
     void closeMenus(){
