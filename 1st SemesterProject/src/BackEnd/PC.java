@@ -31,11 +31,11 @@ public class PC {
     private int maxInventoryCapacity = 2;
     private int currentHealth = 100;
     private Room currentRoom, lastRoom;
-
+    private String name="Derp";
     //constructor
     PC(){
         points = 90;
-        drunkenness = 100;
+        drunkenness = 99;
         movementChecker = 0;
     }
 
@@ -63,6 +63,9 @@ public class PC {
     public void inspectEntryMap(String item){
         System.out.println(journal.get(item).getDescription());
     }
+    public String getName(){
+    return name;
+    }
 
     public void moveToRoom(Item thing, Room currentRoom) {
         inventory.remove(thing.getName());
@@ -82,7 +85,7 @@ public class PC {
                 return("You can't seem to get a hold of it.");
             }
         } else {
-            return("Your inventory are full");
+            return("Your inventory is full");
         }
 
     }
@@ -164,6 +167,9 @@ public class PC {
     }
     Room getRoom(){
     return currentRoom;
+    }
+    public void setName(String string){
+    name=string;
     }
 }
     

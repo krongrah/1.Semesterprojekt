@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -21,8 +22,10 @@ class HiScore {
     private File file = new File("HiScore.txt");
     
     ArrayList<String> pullHiScore() {
+        
         file.mkdir();//makes directory if none exists
         try {
+            
             Scanner input = new Scanner(file);
             while (input.hasNextLine()) {
                 hiScoreList.add(input.nextLine());

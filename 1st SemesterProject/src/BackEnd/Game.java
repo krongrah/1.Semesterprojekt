@@ -76,6 +76,9 @@ public class Game {
         System.out.println(player.getRoom().getLongDescription());
         getInfo();
     }
+    void setName(String string){
+    player.setName(string);
+    }
     
     // Excecutes commands
     private boolean processCommand(Command command) {
@@ -102,7 +105,7 @@ public class Game {
         } else if (commandWord == CommandWord.INSPECT) {
             //inspect(command);
         } else if (commandWord == CommandWord.DROP) {
-            drop(command);
+            //drop(command);
         } else if (commandWord == CommandWord.LIE) {
             System.out.println("Lying is bad, and you should feel bad.");
         } else if (commandWord == CommandWord.CONVICT) {
@@ -259,7 +262,6 @@ if (nextRoom == world.getRoom("Partner's Home")) {
     }
 
     public void drink() {//todo doesn't seem to work
-//try {
         for (Entry drink : player.getInventoryMap().entrySet()) {
             if (drink instanceof Beverage) {
                 System.out.println("You drink some " + ((Beverage)drink).getName() + ", you start to feel all your problems disappear");
@@ -272,14 +274,10 @@ if (nextRoom == world.getRoom("Partner's Home")) {
                 break;
             }
         }
-        System.out.println(player.getDrunkenness());
-                
-//Foundation.SaveFile.loadFile();
-//        } catch (IOException ex) {
-//            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        //System.out.println(player.getDrunkenness());
+        int test=(int)(Math.random()*200);
+        manager.addScore("test", test);
+        manager.seeList();
    }
 
     public void goToJail(NPC scum) {
@@ -295,23 +293,17 @@ if (nextRoom == world.getRoom("Partner's Home")) {
     }
 
     public void lose() {
-        System.out.println("You lost.");
-        if (player.getPoints() >= 100) {
-            System.out.println("You lost the game. you were rated a " + (player.getPoints() - 100) + " percent good cop.");
-        } else {
-            System.out.println("You lost the game. you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
-        }
-        wantToQuit = true;
+        
     }
 
     public void win() {
-        if (player.getPoints() >= 100) {
-            System.out.println("Congratulations, you won the game! you were rated a " + (player.getPoints() - 100) + " percent good cop.");
-        } else {
-            System.out.println("Congratulations, you won the game! you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
-        }
+        manager.retrieve();
+        manager.addScore(player.getName(), player.getPoints());
         //todo make highscore application
-        wantToQuit = true;
+    }
+    public List<List<String>>getScores(){
+    return manager.getScores();
+        
     }
 
     public void Checker() {
@@ -512,105 +504,25 @@ if (nextRoom == world.getRoom("Partner's Home")) {
                 }
     
     
-     void drop(Command command) {
+    
+    
+    
+    Set<String>dropMenu(){
+             remover();
+     if(!player.getInventoryMap().isEmpty()){
+             System.out.println("These are the items in your inventory.");
+     return player.getInventoryMap().keySet();
+        }
+     else{
+         System.out.println("Your inventory is empty.");
+     return null;
+    }}
+    
+     void drop(String string) {
         remover();
-        String where = command.getSecondWord();
-        //if no second word    
-        if (!command.hasSecondWord()) {
-            System.out.println("Drop where? to room or desk");
-            return;
-        }
-        //if inventory is empty
-        if (player.getInventoryMap().isEmpty()) {
-            System.out.println("You can't drop anything because you don't have anything on you.");
-        } else {
-            //if second word is room
-            if (where.equals("room")) {
-                Scanner pick = new Scanner(System.in);
-
-                System.out.println("Select the item to be dropped to the room or type \"nothing\" to exit drop");
-                for (Entry<String,Item> item : player.getInventoryMap().entrySet()) {
-                    Item thing=item.getValue();
-                    System.out.println(thing.getName());
-                    String newItem = pick.nextLine().toLowerCase();
-                    boolean success = false;
-                    while (!success) {
-
-                        if (newItem.equals(thing.getName())) {
-                            player.moveToRoom(thing, player.getRoom());
-                            success = true;
-                        }
-
-                        if (newItem.equals("nothing")) {
-                            success = true;
-                            break;
-                        } else {
-                            System.out.println("Drop what? or nothing at all? type the item you want to drop or \"nothing\" to exit.");
-                            String newItem2 = pick.nextLine().toLowerCase();
-                            if (newItem2.equals("nothing")) {
-                                success = true;
-                                break;
-                            }
-                            if (newItem2.equals(thing.getName())) {
-                                player.moveToRoom(thing, player.getRoom());
-                                success = true;
-                            } else if (!newItem2.equals("nothing") || !newItem2.equals(thing.getName())) {
-                                System.out.println("I did not understand that, try again");
-
-                            }
-                        }
-                    }
-
-                }
-            }
-
-            // if second word is desk and you are in PD
-            if (where.equals("desk") && player.getRoom() == world.getRoom("Police Department")) {
-                Scanner pick = new Scanner(System.in);
-
-                System.out.println("Select the item to be dropped to in the desk or type \"nothing\" to exit drop");
-                for (Entry<String, Item> item : player.getInventoryMap().entrySet()) {
-                    Item thing=item.getValue();
-                    System.out.println(thing.getName());
-                    String newItem = pick.nextLine().toLowerCase();
-                    boolean success = false;
-                    while (!success) {
-
-                        if (newItem.equals(thing.getName())) {
-                            //player.moveToDesk(thing);
-                            success = true;
-                        }
-
-                        if (newItem.equals("nothing")) {
-                            success = true;
-                            break;
-                        } else {
-                            System.out.println("Drop what? or nothing at all? type the item you want to drop or \"nothing\" to exit.");
-                            String newItem2 = pick.nextLine().toLowerCase();
-                            if (newItem2.equals("nothing")) {
-                                success = true;
-                                break;
-                            }
-                            if (newItem2.equals(thing.getName())) {
-                                //player.moveToDesk(thing);
-                                success = true;
-                            } else if (!newItem2.equals("nothing") || !newItem2.equals(thing.getName())) {
-                                System.out.println("I did not understand that, try again");
-
-                            }
-                        }
-                    }
-
-                }
-
-            }
-            // if second word is desk and not in PD
-            if (where.equals("desk") && player.getRoom() != world.getRoom("Police Department")) {
-                System.out.println("You can't reach your desk when you aren't in the police department.");
-            }
-
-        }
-    }
+        player.moveToRoom(world.getItem(string),player.getRoom());
+     }
+        
      Set<String> talkMenu(){
          remover();
      if(!player.getRoom().getNPCsInRoomMap().isEmpty()){    
@@ -630,6 +542,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
         if (target.getClueCount() == target.getClueRelease()) {
                         player.addToJournal(target.giveClue());
                     }
+        
      }
 
      Set<String> searchMenu(){
@@ -670,11 +583,10 @@ if (nextRoom == world.getRoom("Partner's Home")) {
             System.out.println("You decided not not to pick the item up.");
         }else{
         Item item =world.getItem(temp);
-            System.out.println("You picked up the "+temp+".");
         if (item.getIsClue()) {
         player.addToJournal(item.giveClue());
         }
-        player.addToInventory(item, player.getRoom());
+            System.out.println(player.addToInventory(item, player.getRoom()));
         }
         temp=null;
     }

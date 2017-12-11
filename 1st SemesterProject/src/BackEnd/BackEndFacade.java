@@ -27,7 +27,6 @@ public class BackEndFacade implements IBackEnd{
     @Override
     public void play(){
         game.getHiScoreManager().pull(foundation);
-        game.play();
     
     }    
 
@@ -147,6 +146,26 @@ public class BackEndFacade implements IBackEnd{
     @Override
     public void load() {
         game.load();
+    }
+
+    @Override
+    public void drop(String string) {
+      game.drop(string);
+    }
+
+    @Override
+    public Set<String> dropMenu() {
+    return game.dropMenu();
+    }
+
+    @Override
+    public List<List<String>> getScores() {
+        return game.getScores();
+    }
+
+    @Override
+    public void setName(String string) {
+       game.setName(string);
     }
     
       

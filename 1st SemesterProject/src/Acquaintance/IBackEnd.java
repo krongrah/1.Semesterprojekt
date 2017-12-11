@@ -19,6 +19,7 @@ public interface IBackEnd {
     void save();
     void drink();
     void talk(String string);
+    void drop(String string);
     boolean search(String string);
     Set<String> inspect(String string);
     boolean arrest(String string);
@@ -28,6 +29,7 @@ public interface IBackEnd {
     Set<String> convictMenu();
     Set<String> searchMenu();
     Set<String> inspectMenu();
+    Set<String> dropMenu();
     String getCurrentRoom();
     boolean UIGo(String e);
     Set getMapExits();
@@ -38,5 +40,8 @@ public interface IBackEnd {
     List<Integer>getHUD();
     String endScore();
     void load();
+    List<List<String>>getScores();
+    void setName(String string);
+    
     
 }

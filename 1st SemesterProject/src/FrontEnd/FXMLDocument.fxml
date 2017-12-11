@@ -52,6 +52,7 @@
             <Button fx:id="save" mnemonicParsing="false" onAction="#saveGUI" text="Save" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
             <Button fx:id="inspect" mnemonicParsing="false" onAction="#inspectGUI" text="Inspect" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
             <ProgressIndicator fx:id="Drunkmeter" progress="0.0" />
+            <Button layoutX="154.0" layoutY="53.0" mnemonicParsing="false" onAction="#dropGUI" text="Drop" GridPane.columnIndex="2" />
          </children>
       </GridPane>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
@@ -102,7 +103,7 @@
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </right>
       </BorderPane>
-      <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="159.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
+      <BorderPane fx:id="mapPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="159.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
          <top>
             <ImageView fx:id="arrowNorth" fitHeight="46.0" fitWidth="50.0" onMouseClicked="#GoArrowNorth" pickOnBounds="true" preserveRatio="true" rotate="180.0" BorderPane.alignment="CENTER">
                <image>
@@ -150,6 +151,7 @@
             <ListView fx:id="inventoryList" onMouseClicked="#inventorySelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
             <ListView fx:id="journalList" onMouseClicked="#journalSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
             <ListView fx:id="badgeList" onMouseClicked="#badgeSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
+            <ListView fx:id="dropList" layoutX="10.0" layoutY="10.0" onMouseClicked="#dropMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
          </children>
       </StackPane>
       <BorderPane fx:id="LoseScreen" style="-fx-background-color: crimson;" visible="false" GridPane.columnSpan="3" GridPane.rowSpan="5">
@@ -170,17 +172,28 @@
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </right>
       </BorderPane>
-      <BorderPane fx:id="introScreen" layoutX="10.0" layoutY="10.0" style="-fx-background-color: royalBlue;" visible="false" GridPane.columnSpan="3" GridPane.rowSpan="5">
+      <BorderPane fx:id="introScreen" layoutX="10.0" layoutY="10.0" style="-fx-background-color: royalBlue;" GridPane.columnSpan="3" GridPane.rowSpan="5">
          <center>
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#newGame" text="New Game" />
+                  <Label prefHeight="124.0" prefWidth="200.0" text="Life of Detective Dindunuffin" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="newGame" mnemonicParsing="false" onAction="#newGame" text="New Game" />
+                  <Pane prefHeight="17.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="nameField" layoutX="17.0" layoutY="-5.0" onKeyPressed="#enter" promptText="Enter your name" visible="false" />
+                     </children></Pane>
+                  <Button fx:id="loadGame" mnemonicParsing="false" onAction="#loadGame" text="Load Game" />
+                  <Pane prefHeight="17.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="doneButton" layoutX="71.0" layoutY="-5.0" mnemonicParsing="false" onAction="#doneButton" text="Enter" visible="false" />
+                     </children></Pane>
+                  <Button fx:id="hiScore" mnemonicParsing="false" onAction="#hiScore" text="Hi Score" />
                   <Pane prefHeight="17.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" onAction="#loadGame" text="Load Game" />
-                  <Pane prefHeight="17.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" onAction="#hiScore" text="Hi Score" />
-                  <Pane prefHeight="17.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" onAction="#Quit" text="Quit" />
+                  <Button fx:id="quit" mnemonicParsing="false" onAction="#Quit" text="Quit" />
                </children>
             </VBox>
          </center>
@@ -239,5 +252,48 @@
             </GridPane>
          </children>
       </GridPane>
+      <BorderPane fx:id="HiScoreScreen" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnSpan="3" GridPane.rowSpan="5">
+         <center>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ListView fx:id="GoodScore" prefHeight="200.0" prefWidth="200.0" />
+                  <ListView fx:id="badScore" prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </HBox>
+         </center>
+         <left>
+            <Pane prefHeight="603.0" prefWidth="120.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Pane prefHeight="603.0" prefWidth="120.0" BorderPane.alignment="CENTER" />
+         </right>
+         <top>
+            <GridPane BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="244.0" minWidth="10.0" prefWidth="236.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="10.0" prefWidth="129.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="235.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Good Cop High Score" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label text="Bad Cop High Score" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#Back" text="Back" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+               </children>
+            </GridPane>
+         </top>
+      </BorderPane>
    </children>
 </GridPane>

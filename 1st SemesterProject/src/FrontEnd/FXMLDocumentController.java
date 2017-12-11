@@ -35,6 +35,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -124,9 +125,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private TextArea winText;
     @FXML
-    private ListView<?> winGoodHiScore;
+    private ListView<String> winGoodHiScore;
     @FXML
-    private ListView<?> winBadHighScore;
+    private ListView<String> winBadHighScore;
     @FXML
     private StackPane stackPane;
     @FXML
@@ -141,10 +142,31 @@ public class FXMLDocumentController implements Initializable {
     private ProgressBar enemyHealth;
     @FXML
     private TextArea fightOutput;
+    @FXML
+    private ListView<String> dropList;
+    @FXML
+    private BorderPane mapPane;
+    @FXML
+    private BorderPane HiScoreScreen;
+    @FXML
+    private ListView<String> GoodScore;
+    @FXML
+    private ListView<String> badScore;
+    @FXML
+    private Button newGame;
+    @FXML
+    private TextField nameField;
+    @FXML
+    private Button loadGame;
+    @FXML
+    private Button hiScore;
+    @FXML
+    private Button quit;
+    @FXML
+    private Button doneButton;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         OutputStream o = new OutputStream() {
     @Override
     public void write(int b) throws IOException {
@@ -249,16 +271,17 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void talkMenuSelect(MouseEvent event) {
-        backEnd.talk(talkList.getSelectionModel().getSelectedItem());
+        if (input(talkList)!=null){
+        backEnd.talk(input(talkList));
         talkList.setVisible(false);
         updateHUD();
-    }
+    }}
 
     @FXML
     private void arrestMenuSelect(MouseEvent event) {
-        String selection=arrestList.getSelectionModel().getSelectedItem();
-        if(selection!="No one"){    //todo is this okay?
-        if(backEnd.arrest(selection)){
+        if (input(arrestList)!=null){
+        if(input(arrestList)!="No one"){    //todo is this okay?
+        if(backEnd.arrest(input(arrestList))){
         convict.setVisible(true);
         startRooms();
         }else{
@@ -267,21 +290,27 @@ public class FXMLDocumentController implements Initializable {
         }
         arrestList.setVisible(false);
         updateHUD();
-    }
+    }}
 
     @FXML
     private void searchMenuSelect(MouseEvent event) {
-        if(backEnd.search(searchList.getSelectionModel().getSelectedItem())){
+        if (input(searchList)!=null){
+            if(backEnd.search(input(searchList))){
         pickUpList.setVisible(true);
         pickUpList.setItems(FXCollections.observableList(ask));//todo
-        }
+        
+            }else{
+                updateHUD();
+            }
         searchList.setVisible(false);
-        updateHUD();
-    }
+        
+    }}
 
     @FXML
     private void convictMenuSelect(MouseEvent event) {
-        int convictResult=backEnd.convict(convictList.getSelectionModel().getSelectedItem());
+        if (input(convictList)!=null){
+        int convictResult=backEnd.convict(input(convictList));
+        
         if(convictResult==1){
           showWinScreen();  
         }else if(convictResult==2){
@@ -290,14 +319,14 @@ public class FXMLDocumentController implements Initializable {
         }
         convictList.setVisible(false);
         updateHUD();
-    }
+    }}
 
     @FXML
     private void inspectMenuSelect(MouseEvent event) {
-        String string=inspectList.getSelectionModel().getSelectedItem();
-        ObservableList list=FXCollections.observableList(new ArrayList(backEnd.inspect(string)));
+        if (input(inspectList)!=null){
+        ObservableList list=FXCollections.observableList(new ArrayList(backEnd.inspect(input(inspectList))));
         if(!list.isEmpty()){
-        if(string.equals("Inventory")){
+        if(input(inspectList).equals("Inventory")){
         inventoryList.setVisible(true);
         inventoryList.setItems(list);
         }else{
@@ -305,11 +334,11 @@ public class FXMLDocumentController implements Initializable {
         journalList.setItems(list);
         
         }
-        backEnd.inspect(string);
+        backEnd.inspect(input(inspectList));
         inspectList.setVisible(false);
     }else{
         inspectList.setVisible(false);
-        }}
+        }}}
 
     public void updateRoomImage(){
         switch (backEnd.getCurrentRoom()) {
@@ -410,36 +439,42 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void pickUpSelect(MouseEvent event) {
-        backEnd.pickUpAsk(pickUpList.getSelectionModel().getSelectedItem());
+        if (input(pickUpList)!=null){
+        backEnd.pickUpAsk(input(pickUpList));
         pickUpList.setVisible(false);
         updateHUD();
-    }
+    }}
 
     @FXML
     private void inventorySelect(MouseEvent event) {
-        backEnd.inventory(inventoryList.getSelectionModel().getSelectedItem());
+        if (input(inventoryList)!=null){
+        backEnd.inventory(input(inventoryList));
         inventoryList.setVisible(false);
         updateHUD();
-    }
+    }}
 
     @FXML
     private void journalSelect(MouseEvent event) {
-        backEnd.journal(journalList.getSelectionModel().getSelectedItem());
+        if (input(journalList)!=null){
+        backEnd.journal(input(journalList));
         journalList.setVisible(false);
         updateHUD();
-    }
+    }}
 
     @FXML
     private void badgeSelect(MouseEvent event) {
-        backEnd.badgeResponse(badgeList.getSelectionModel().getSelectedItem());
+        if (input(badgeList)!=null){
+        backEnd.badgeResponse(input(badgeList));
         badgeList.setVisible(false);
         updateHUD();
-    }
+    }}
     private void showWinScreen(){
     
     winScreen.setVisible(true);
     winScore.setText(backEnd.endScore());
-    //load hiscores
+    mapPane.setVisible(false);
+    winGoodHiScore.setItems(FXCollections.observableList(backEnd.getScores().get(0)));
+    winBadHighScore.setItems(FXCollections.observableList(backEnd.getScores().get(1)));
     //todo
     }
     private void showLoseScreen(){
@@ -457,6 +492,9 @@ public class FXMLDocumentController implements Initializable {
         badCopBar.setProgress(0);
         
         }
+        if(Drunkmeter.getProgress()==0||Drunkmeter.getProgress()==1.0){
+        showLoseScreen();
+        }
     }
 
     @FXML
@@ -466,7 +504,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void newGame(ActionEvent event) {
-        introScreen.setVisible(false);
+        nameField.setVisible(true);
+        newGame.setVisible(false);
+        loadGame.setVisible(false);
+        hiScore.setVisible(false);
+        quit.setVisible(false);
+        doneButton.setVisible(true);
     }
 
     @FXML
@@ -477,7 +520,10 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void hiScore(ActionEvent event) {
-        //todo
+        GoodScore.setItems(FXCollections.observableList(backEnd.getScores().get(0)));
+        badScore.setItems(FXCollections.observableList(backEnd.getScores().get(1)));
+        HiScoreScreen.setVisible(true);
+        
     }
 
     @FXML
@@ -493,5 +539,47 @@ public class FXMLDocumentController implements Initializable {
     }
     private void combat(){
     fightScreen.setVisible(true);
+    }
+    private String input(ListView<String> input){
+        String string=input.getSelectionModel().getSelectedItem();
+    return string;
+    
+    }
+
+    @FXML
+    private void dropGUI(ActionEvent event) {
+       closeMenus();
+        Set<String> set=backEnd.dropMenu();
+        if(set!=null){
+        dropList.setVisible(true);
+        dropList.setItems(FXCollections.observableList(new ArrayList(set)));
+        }  
+        
+        
+    }
+
+    @FXML
+    private void dropMenuSelect(MouseEvent event) {
+        if (input(dropList)!=null){
+        backEnd.drop(input(dropList));
+        dropList.setVisible(false);
+        updateHUD();
+    }} 
+
+    @FXML
+    private void Back(ActionEvent event) {
+        HiScoreScreen.setVisible(false);
+    }
+
+    @FXML
+    private void enter(KeyEvent event) {
+
+    }
+
+    @FXML
+    private void doneButton(ActionEvent event) {
+            
+        backEnd.setName(nameField.getText());
+        introScreen.setVisible(false);
     }
 }

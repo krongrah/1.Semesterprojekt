@@ -7,6 +7,7 @@ package Foundation;
 
 import java.util.ArrayList;
 import Acquaintance.IFoundation;
+import java.util.List;
 
 /**
  *

@@ -101,7 +101,7 @@ public class World implements Serializable {
             "The victim is your partner, Detective Prickard. He was a dick, and the world is a better place without him.",
             "The victim was stabbed several times, and died from blood loss. It appears to be a crime of passion, due to the many stab wounds the spit on the victim's face.",
             "The victim was surprised by the attack, so I believe he knew his killer.",
-            "I’ll get the cleaning team here know, so we can get this shit of the street."
+            "I'll get the cleaning team here now, so we can get this shit of the street."
         };
         String[] wifeLine = {
             "What are you doing here? You love your job more than me, so go do your job and leave me alone.",
@@ -111,7 +111,7 @@ public class World implements Serializable {
         };
         String[] bartenderLine = {
             "Isn't it a bit early for you to be here?",
-            "Detective Prickard is dead? I can't say I'm surprised, he didn't seem to get along with anyone, especially not you. (add to cluelist)",
+            "Detective Prickard is dead? I can't say I'm surprised, he didn't seem to get along with anyone, especially not you.",
             "I think you should get back at work now."
         };
         String[] hobo1Line = {
