@@ -115,8 +115,8 @@ public class BackEndFacade implements IBackEnd{
     }
     
     @Override
-    public void UIGo(String e){
-    game.UIGo(e);
+    public boolean UIGo(String e){
+    return game.UIGo(e);
     }
 
     @Override

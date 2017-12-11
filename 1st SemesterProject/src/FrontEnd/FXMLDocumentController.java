@@ -131,6 +131,16 @@ public class FXMLDocumentController implements Initializable {
     private StackPane stackPane;
     @FXML
     private BorderPane introScreen;
+    @FXML
+    private GridPane ControlPanel;
+    @FXML
+    private GridPane fightScreen;
+    @FXML
+    private ProgressBar playerHealth;
+    @FXML
+    private ProgressBar enemyHealth;
+    @FXML
+    private TextArea fightOutput;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -140,6 +150,8 @@ public class FXMLDocumentController implements Initializable {
     public void write(int b) throws IOException {
                 textOutput.appendText(String.valueOf((char) b));
                 textOutput.setWrapText(true);
+                fightOutput.appendText(String.valueOf((char) b));
+                fightOutput.setWrapText(true);
         }
         };
         System.setOut(new PrintStream(o, true));
@@ -359,28 +371,37 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void GoArrowNorth(MouseEvent event) {
-        backEnd.UIGo("north");
+        if(backEnd.UIGo("north")){
+        combat();
+        }
         startRooms();
         updateHUD();
         }
         
     @FXML
     private void GoArrowWest(MouseEvent event) {
-        backEnd.UIGo("west");
+        if(backEnd.UIGo("west")){
+        combat();
+        }
         startRooms();
         updateHUD();
     }
 
     @FXML
     private void GoArrowSouth(MouseEvent event) {
-        backEnd.UIGo("south");
+        if(backEnd.UIGo("south")){
+        combat();
+        }
         startRooms();
         updateHUD();
     }
 
     @FXML
     private void GoArrowEast(MouseEvent event) {
-        backEnd.UIGo("east");
+        
+        if(backEnd.UIGo("east")){
+        combat();
+        }
         startRooms();
         updateHUD();
     }
@@ -455,5 +476,20 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void hiScore(ActionEvent event) {
         //todo
+    }
+
+    @FXML
+    private void fight(ActionEvent event) {
+    }
+
+    @FXML
+    private void run(ActionEvent event) {
+    }
+
+    @FXML
+    private void calm(ActionEvent event) {
+    }
+    private void combat(){
+    fightScreen.setVisible(true);
     }
 }

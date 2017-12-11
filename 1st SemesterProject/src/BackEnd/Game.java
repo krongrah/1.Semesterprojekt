@@ -16,7 +16,6 @@ import BackEnd.Command.Command;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Scanner;
@@ -207,7 +206,7 @@ public class Game {
  * Moves the player from room to room.
  * @param e is the direction you want to move (north, west, south, east)
  */
-    public void UIGo(String e){
+    public boolean UIGo(String e){
         Room nextRoom = player.getRoom().getExit(e);
 if (nextRoom == world.getRoom("Partner's Home")) {
     
@@ -227,12 +226,14 @@ if (nextRoom == world.getRoom("Partner's Home")) {
                 HostileNPC enemy = player.getRoom().getJumped();
                 if (enemy != null) {
                     fightLoop(enemy);
+                    return true;
                 }
             }
             
         
         Checker();
         remover();
+        return false;
     }
    
     

@@ -29,7 +29,7 @@ public interface IBackEnd {
     Set<String> searchMenu();
     Set<String> inspectMenu();
     String getCurrentRoom();
-    void UIGo(String e);
+    boolean UIGo(String e);
     Set getMapExits();
     void pickUpAsk(String answer);
     void journal(String string);
