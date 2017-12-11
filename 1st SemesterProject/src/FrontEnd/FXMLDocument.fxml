@@ -108,7 +108,7 @@
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </right>
       </BorderPane>
-      <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="159.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
+      <BorderPane fx:id="mapPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="159.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
          <top>
             <ImageView fx:id="arrowNorth" fitHeight="46.0" fitWidth="50.0" onMouseClicked="#GoArrowNorth" pickOnBounds="true" preserveRatio="true" rotate="180.0" BorderPane.alignment="CENTER">
                <image>

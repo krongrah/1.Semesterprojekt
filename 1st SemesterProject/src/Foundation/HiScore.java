@@ -22,8 +22,10 @@ class HiScore {
     private File file = new File("HiScore.txt");
     
     ArrayList<String> pullHiScore() {
+        
         file.mkdir();//makes directory if none exists
         try {
+            
             Scanner input = new Scanner(file);
             while (input.hasNextLine()) {
                 hiScoreList.add(input.nextLine());

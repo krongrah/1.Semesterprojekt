@@ -270,7 +270,10 @@ if (nextRoom == world.getRoom("Partner's Home")) {
                 break;
             }
         }
-        System.out.println(player.getDrunkenness());
+        //System.out.println(player.getDrunkenness());
+        int test=(int)(Math.random()*200);
+        manager.addScore("test", test);
+        manager.seeList();
    }
 
     public void goToJail(NPC scum) {
@@ -286,23 +289,17 @@ if (nextRoom == world.getRoom("Partner's Home")) {
     }
 
     public void lose() {
-        System.out.println("You lost.");
-        if (player.getPoints() >= 100) {
-            System.out.println("You lost the game. you were rated a " + (player.getPoints() - 100) + " percent good cop.");
-        } else {
-            System.out.println("You lost the game. you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
-        }
-        wantToQuit = true;
+        
     }
 
     public void win() {
-        if (player.getPoints() >= 100) {
-            System.out.println("Congratulations, you won the game! you were rated a " + (player.getPoints() - 100) + " percent good cop.");
-        } else {
-            System.out.println("Congratulations, you won the game! you were rated a " + (100 - player.getPoints()) + " percent bad cop.");
-        }
+        manager.retrieve();
+        manager.addScore(player.getName(), player.getPoints());
         //todo make highscore application
-        wantToQuit = true;
+    }
+    public List<List<String>>getScores(){
+    return manager.getScores();
+        
     }
 
     public void Checker() {
@@ -553,6 +550,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
         if (target.getClueCount() == target.getClueRelease()) {
                         player.addToJournal(target.giveClue());
                     }
+        
      }
 
      Set<String> searchMenu(){

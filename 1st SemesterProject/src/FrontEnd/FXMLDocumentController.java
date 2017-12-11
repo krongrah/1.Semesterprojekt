@@ -143,6 +143,8 @@ public class FXMLDocumentController implements Initializable {
     private TextArea fightOutput;
     @FXML
     private ListView<String> dropList;
+    @FXML
+    private BorderPane mapPane;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -451,7 +453,9 @@ public class FXMLDocumentController implements Initializable {
     
     winScreen.setVisible(true);
     winScore.setText(backEnd.endScore());
-    //load hiscores
+    mapPane.setVisible(false);
+    winGoodHiScore.setItems(FXCollections.observableList(backEnd.getScores().get(0)));
+    winBadHighScore.setItems(FXCollections.observableList(backEnd.getScores().get(1)));
     //todo
     }
     private void showLoseScreen(){

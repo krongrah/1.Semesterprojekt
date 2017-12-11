@@ -40,6 +40,7 @@ public interface IBackEnd {
     List<Integer>getHUD();
     String endScore();
     void load();
+    List<List<String>>getScores();
     
     
 }
