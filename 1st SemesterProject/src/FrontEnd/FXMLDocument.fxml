@@ -177,9 +177,7 @@
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
                   <Label prefHeight="124.0" prefWidth="200.0" text="Life of Detective Dindunuffin" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font size="31.0" />
-                     </font>
+                     
                   </Label>
                   <Button fx:id="newGame" mnemonicParsing="false" onAction="#newGame" text="New Game" />
                   <Pane prefHeight="17.0" prefWidth="200.0">
@@ -281,14 +279,10 @@
               </rowConstraints>
                <children>
                   <Label text="Good Cop High Score" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
+                     
                   </Label>
                   <Label text="Bad Cop High Score" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
+                     
                   </Label>
                   <Button alignment="CENTER" mnemonicParsing="false" onAction="#Back" text="Back" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                </children>
