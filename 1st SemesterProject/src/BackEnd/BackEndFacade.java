@@ -7,7 +7,6 @@ package BackEnd;
 
 import Acquaintance.IBackEnd;
 import Acquaintance.IFoundation;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -143,6 +142,11 @@ public class BackEndFacade implements IBackEnd{
     @Override
     public String endScore() {
         return game.endScore();
+    }
+
+    @Override
+    public void load() {
+        game.load();
     }
     
       

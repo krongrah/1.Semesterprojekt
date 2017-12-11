@@ -5,7 +5,6 @@
  */
 package Acquaintance;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -38,5 +37,6 @@ public interface IBackEnd {
     boolean badgeResponse(String answer);
     List<Integer>getHUD();
     String endScore();
+    void load();
     
 }

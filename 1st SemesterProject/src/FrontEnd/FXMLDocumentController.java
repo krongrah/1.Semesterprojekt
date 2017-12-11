@@ -129,6 +129,8 @@ public class FXMLDocumentController implements Initializable {
     private ListView<?> winBadHighScore;
     @FXML
     private StackPane stackPane;
+    @FXML
+    private BorderPane introScreen;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -437,5 +439,21 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void Quit(ActionEvent event) {
         Platform.exit();
+    }
+
+    @FXML
+    private void newGame(ActionEvent event) {
+        introScreen.setVisible(false);
+    }
+
+    @FXML
+    private void loadGame(ActionEvent event) {
+        backEnd.load();
+        introScreen.setVisible(false);
+    }
+
+    @FXML
+    private void hiScore(ActionEvent event) {
+        //todo
     }
 }
