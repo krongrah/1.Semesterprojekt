@@ -162,6 +162,11 @@ public class BackEndFacade implements IBackEnd{
     public List<List<String>> getScores() {
         return game.getScores();
     }
+
+    @Override
+    public void setName(String string) {
+       game.setName(string);
+    }
     
       
 }

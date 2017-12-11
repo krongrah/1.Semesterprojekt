@@ -168,6 +168,9 @@ public class PC {
     Room getRoom(){
     return currentRoom;
     }
+    public void setName(String string){
+    name=string;
+    }
 }
     
     

@@ -41,6 +41,7 @@ public interface IBackEnd {
     String endScore();
     void load();
     List<List<String>>getScores();
+    void setName(String string);
     
     
 }

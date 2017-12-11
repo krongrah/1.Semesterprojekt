@@ -35,6 +35,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -145,10 +146,27 @@ public class FXMLDocumentController implements Initializable {
     private ListView<String> dropList;
     @FXML
     private BorderPane mapPane;
+    @FXML
+    private BorderPane HiScoreScreen;
+    @FXML
+    private ListView<String> GoodScore;
+    @FXML
+    private ListView<String> badScore;
+    @FXML
+    private Button newGame;
+    @FXML
+    private TextField nameField;
+    @FXML
+    private Button loadGame;
+    @FXML
+    private Button hiScore;
+    @FXML
+    private Button quit;
+    @FXML
+    private Button doneButton;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         OutputStream o = new OutputStream() {
     @Override
     public void write(int b) throws IOException {
@@ -485,7 +503,12 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void newGame(ActionEvent event) {
-        introScreen.setVisible(false);
+        nameField.setVisible(true);
+        newGame.setVisible(false);
+        loadGame.setVisible(false);
+        hiScore.setVisible(false);
+        quit.setVisible(false);
+        doneButton.setVisible(true);
     }
 
     @FXML
@@ -496,7 +519,10 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void hiScore(ActionEvent event) {
-        //todo
+        GoodScore.setItems(FXCollections.observableList(backEnd.getScores().get(0)));
+        badScore.setItems(FXCollections.observableList(backEnd.getScores().get(1)));
+        HiScoreScreen.setVisible(true);
+        
     }
 
     @FXML
@@ -538,4 +564,21 @@ public class FXMLDocumentController implements Initializable {
         dropList.setVisible(false);
         updateHUD();
     }} 
+
+    @FXML
+    private void Back(ActionEvent event) {
+        HiScoreScreen.setVisible(false);
+    }
+
+    @FXML
+    private void enter(KeyEvent event) {
+
+    }
+
+    @FXML
+    private void doneButton(ActionEvent event) {
+            
+        backEnd.setName(nameField.getText());
+        introScreen.setVisible(false);
+    }
 }

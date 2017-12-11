@@ -73,6 +73,9 @@ public class Game {
         System.out.println(player.getRoom().getLongDescription());
         getInfo();
     }
+    void setName(String string){
+    player.setName(string);
+    }
     
     // Excecutes commands
     private boolean processCommand(Command command) {
