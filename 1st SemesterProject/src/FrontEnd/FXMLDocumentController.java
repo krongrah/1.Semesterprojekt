@@ -528,14 +528,23 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void fight(ActionEvent event) {
+        if(backEnd.fight()){
+            fightScreen.setVisible(false);
+    }
     }
 
     @FXML
     private void run(ActionEvent event) {
+        if(backEnd.run()){
+            fightScreen.setVisible(false);
+    }
     }
 
     @FXML
     private void calm(ActionEvent event) {
+        if(backEnd.calm()){
+            fightScreen.setVisible(false);
+    }
     }
     private void combat(){
     fightScreen.setVisible(true);
