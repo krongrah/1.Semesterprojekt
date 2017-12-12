@@ -45,6 +45,5 @@ public interface IBackEnd {
     int fight();
     int run();
     int calm();
-    void combat();
     
 }

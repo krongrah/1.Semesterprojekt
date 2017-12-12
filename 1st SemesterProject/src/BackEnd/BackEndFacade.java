@@ -183,10 +183,6 @@ public class BackEndFacade implements IBackEnd{
         return game.calm();
     }
 
-    @Override
-    public void combat() {
-        game.combat();
-    }
     
       
 }

@@ -533,6 +533,7 @@ public class FXMLDocumentController implements Initializable {
             fightScreen.setVisible(false);
     }else if(f==0){
         showLoseScreen();
+        fightScreen.setVisible(false);
     }
     }
 
@@ -541,8 +542,11 @@ public class FXMLDocumentController implements Initializable {
     int f=backEnd.run();
         if(f==2){
             fightScreen.setVisible(false);
+            startRooms();
+
     }else if(f==0){
         showLoseScreen();
+        fightScreen.setVisible(false);
     }
     }
 
@@ -553,12 +557,12 @@ public class FXMLDocumentController implements Initializable {
             fightScreen.setVisible(false);
     }else if(f==0){
         showLoseScreen();
+        fightScreen.setVisible(false);
     }
     }
     
     private void combat(){
     fightScreen.setVisible(true);
-    backEnd.combat();
     }
     private String input(ListView<String> input){
         String string=input.getSelectionModel().getSelectedItem();
