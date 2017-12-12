@@ -172,6 +172,11 @@ public class FXMLDocumentController implements Initializable {
     private Label labelName;
     @FXML
     private ImageView fightImage;
+    
+    private Image combatImageDirty = new Image("file:src/Texures/combatImageDirty.png");    
+    private Image combatImageHeroin = new Image("file:src/Texures/combatImageHeroin.png");    
+    private Image combatImageInsane = new Image("file:src/Texures/combatImageInsane.png");    
+    private Image combatImageNoTeeth = new Image("file:src/Texures/combatImageNoTeeth.png");    
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
