@@ -167,6 +167,21 @@ public class BackEndFacade implements IBackEnd{
     public void setName(String string) {
        game.setName(string);
     }
+
+    @Override
+    public boolean fight() {
+        return game.fight();
+    }
+
+    @Override
+    public boolean run() {
+        return game.run();
+    }
+
+    @Override
+    public boolean calm() {
+        return game.calm();
+    }
     
       
 }

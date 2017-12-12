@@ -42,6 +42,9 @@ public interface IBackEnd {
     void load();
     List<List<String>>getScores();
     void setName(String string);
+    boolean fight();
+    boolean run();
+    boolean calm();
     
     
 }

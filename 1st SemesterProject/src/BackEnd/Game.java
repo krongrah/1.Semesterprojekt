@@ -426,6 +426,15 @@ if (nextRoom == world.getRoom("Partner's Home")) {
         player.setCurrentHealth(playerHp);
         getInfo();
     }
+    boolean fight(){
+    return true;
+    }
+    boolean run(){
+    return true;
+    }
+    boolean calm(){
+    return true;
+    }
     
     Set<String> convictMenu(){
      if (player.getRoom() == world.getRoom("Police Department")) {  
