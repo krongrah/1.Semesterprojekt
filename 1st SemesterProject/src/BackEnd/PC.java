@@ -22,6 +22,8 @@ import java.util.Set;
 public class PC {
 
     //player attributes
+    private int minutes;
+    private int hours;
     private int movementChecker;
     private int drunkenness;
     private int points;
@@ -37,6 +39,8 @@ public class PC {
         points = 90;
         drunkenness = 99;
         movementChecker = 0;
+        hours = 12;
+        minutes = 0;
     }
 
     //Checking methods
@@ -153,6 +157,7 @@ public class PC {
     } 
     public void passTime(int timer){
         movementChecker += timer;
+        minutes += timer;
     }
     public int getMovementChecker() {
         return movementChecker;
@@ -170,6 +175,21 @@ public class PC {
     }
     public void setName(String string){
     name=string;
+    }
+    public void timeOfTheDay(){
+        System.out.println("The time of the day is " + hours + " hours and " + minutes + " minutes" );
+    }
+    public int returnHours(){
+        return hours;
+    }
+    public void setHour(int newHour){
+        hours = newHour;
+    }
+    public int getMinutes(){
+        return minutes;
+    }
+    public void setMinutes(int newMinutes){
+        minutes = newMinutes;
     }
 }
     
