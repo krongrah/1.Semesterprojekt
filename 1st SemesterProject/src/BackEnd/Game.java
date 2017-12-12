@@ -214,6 +214,7 @@ public class Game {
  * @param e is the direction you want to move (north, west, south, east)
  */
     public boolean UIGo(String e){
+        timeloop(2);
         Room nextRoom = player.getRoom().getExit(e);
 if (nextRoom == world.getRoom("Partner's Home")) {
     
@@ -710,11 +711,6 @@ if (nextRoom == world.getRoom("Partner's Home")) {
             }
     
     }
-    public void remover() {
-        player.removeDrunkenness(1);
-        player.passTime(1);
- 
-    }
     
     /**
      * This method returns an List with the player's points and drunkenness, intended for updating the HeadsUpDisplay(HUD) 
@@ -735,8 +731,6 @@ if (nextRoom == world.getRoom("Partner's Home")) {
         
         return list;
     }
-    
-    
     
     public HiScoreManager getHiScoreManager(){
     return manager;
@@ -769,6 +763,11 @@ if (nextRoom == world.getRoom("Partner's Home")) {
                 world.getRoom(hobo.getCurrentRoomName()).moveNpc(hobo, world.getRoom(hobo.getCurrentRoomName()).getExit(exits.get(roll)));
             }
         }
+    }
+    public void remover() {
+        player.removeDrunkenness(1);
+        player.passTime(1);
+ 
     }
     public void ProperTimer(){
         if (player.getMinutes() >= 60){
