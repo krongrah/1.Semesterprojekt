@@ -561,9 +561,9 @@ public class FXMLDocumentController implements Initializable {
     }else if(f==0){
         showLoseScreen();
         fightScreen.setVisible(false);
-    }
+    }else{
         updateHealth();
-    }
+    }}
 
     @FXML
     private void calm(ActionEvent event) {

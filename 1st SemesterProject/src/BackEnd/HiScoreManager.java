@@ -55,10 +55,10 @@ public class HiScoreManager {
     
     void addScore(String name, int points){
         if(points<100){
-    String pointString =String.format("%03d", (100-points));
+    String pointString =String.format("%02d", (100-points));
     badHiScore.add(pointString+"% "+name);
     }else{
-    String pointString =String.format("%03d", (points-100));
+    String pointString =String.format("%02d", (points-100));
     goodHiScore.add(pointString+"% "+name);
             }
     sort();

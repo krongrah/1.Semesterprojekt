@@ -12,17 +12,17 @@ package BackEnd.WorldFill;
 public class Dialogue {
 
     //Attributes
-    private String[] dialogue1;
+    private String[] dialogue1=null;
     private boolean condition = false;
-    private String[] dialogue2 = null;
+    private String[] dialogue2;
     private String alibi;
     private String fightScream;
     private boolean isValid;
     private int lineIndex = 0;
 
     //single dialogue constructor
-    public Dialogue(String[] dialogue1, String alibi, boolean isValid) {
-        this.dialogue1 = dialogue1;
+    public Dialogue(String[] dialogue2, String alibi, boolean isValid) {
+        this.dialogue2 = dialogue2;
         this.alibi = alibi;
         this.isValid = isValid;
         condition=true;
@@ -36,11 +36,12 @@ public class Dialogue {
         this.alibi = alibi;
         this.isValid = isValid;
     }
-    public Dialogue(String[] dialogue1, String alibi, boolean isValid, String fightScream) {
-        this.dialogue1 = dialogue1;
+    public Dialogue(String[] dialogue2, String alibi, boolean isValid, String fightScream) {
+        this.dialogue2 = dialogue2;
         this.alibi = alibi;
         this.isValid = isValid;
         this.fightScream = fightScream;
+        this.condition=true;
     }
 
     public void getLine() {
