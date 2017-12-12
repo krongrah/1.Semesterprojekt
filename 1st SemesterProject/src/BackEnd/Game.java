@@ -93,7 +93,7 @@ public class Game {
         if (commandWord == CommandWord.HELP) {
             printHelp();
         } else if (commandWord == CommandWord.GO) {
-            goRoom(command);
+            //goRoom(command);
         } else if (commandWord == CommandWord.QUIT) {
             wantToQuit = quit(command);
         } else if (commandWord == CommandWord.SEARCH) {
@@ -173,42 +173,42 @@ public class Game {
     
     
     //Checks if directions has an exit and moves to next room
-    private void goRoom(Command command) {
-        if (!command.hasSecondWord()) {
-            System.out.println("Go where?");
-            return;
-        }
-
-        String direction = command.getSecondWord();
-
-        Room nextRoom = player.getRoom().getExit(direction);
-        timeloop(2);
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
-        } else {
-            if (nextRoom == world.getRoom("Partner's Home")) {
-                if (player.getInventoryMap().containsKey("Key To Partner's Home")) {
-                    player.move(nextRoom);
-                    System.out.println(player.getRoom().getLongDescription());
-                    getInfo();
-                } else {
-                    System.out.println("The door is locked. You need a key to enter here.");
-                }
-            } else {
-                
-                player.moveBack();
-                player.move(nextRoom);
-
-                System.out.println(player.getRoom().getLongDescription());
-                getInfo();
-                HostileNPC enemy = player.getRoom().getJumped();
-                if (enemy != null) {
-                    fightLoop(enemy);
-                }
-            }
-        }
-        
-    }
+//    private void goRoom(Command command) {
+//        if (!command.hasSecondWord()) {
+//            System.out.println("Go where?");
+//            return;
+//        }
+//
+//        String direction = command.getSecondWord();
+//
+//        Room nextRoom = player.getRoom().getExit(direction);
+//        timeloop(2);
+//        if (nextRoom == null) {
+//            System.out.println("There is no door!");
+//        } else {
+//            if (nextRoom == world.getRoom("Partner's Home")) {
+//                if (player.getInventoryMap().containsKey("Key To Partner's Home")) {
+//                    player.move(nextRoom);
+//                    System.out.println(player.getRoom().getLongDescription());
+//                    getInfo();
+//                } else {
+//                    System.out.println("The door is locked. You need a key to enter here.");
+//                }
+//            } else {
+//                
+//                player.moveBack();
+//                player.move(nextRoom);
+//
+//                System.out.println(player.getRoom().getLongDescription());
+//                getInfo();
+//                HostileNPC enemy =getJumped();
+//                if (enemy != null) {
+//                    fightLoop(enemy);
+//                }
+//            }
+//        }
+//        
+//    }
 /**
  * Moves the player from room to room.
  * @param e is the direction you want to move (north, west, south, east)
@@ -230,13 +230,29 @@ if (nextRoom == world.getRoom("Partner's Home")) {
                 player.move(nextRoom);
                 System.out.println(player.getRoom().getLongDescription());
                 getInfo();
-                HostileNPC enemy = player.getRoom().getJumped();
+                HostileNPC enemy =getJumped();
                 if (enemy != null) {
-                    fightLoop(enemy);
                     return true;
                 }
             }
         return false;
+    }
+        /**
+     * 
+     * @return Returns the fighter the player might fight.
+     * this method finds a random number between 0 and 1, if the number is lower than
+     * HostileNPC aggression, then you fight. 
+     */
+    public HostileNPC getJumped() {
+        for (String fighter : player.getRoom().getNPCsInRoomMap().keySet()) {
+            if (world.getHostileNPC(fighter)!=null) {
+                if (Math.random()<(world.getHostileNPC(fighter).getAggression())) {
+                     System.out.println(fighter);
+                    return world.getHostileNPC(fighter);
+                }
+            }
+        }
+        return null;
     }
    
     

@@ -233,10 +233,13 @@ public class World implements Serializable {
         hostileNpcs.put(hobo2.getName(), hobo2);
         hostileNpcs.put(hobo3.getName(), hobo3);
         hostileNpcs.put(hobo4.getName(), hobo4);
+        hostileNpcs.put(wife.getName(), wife);
         npcs.put(coroner.getName(), coroner);
         npcs.put(commissioner.getName(), commissioner);
-        npcs.put(wife.getName(), wife);
         npcs.put(bartender.getName(), bartender);
+        for(String string:hostileNpcs.keySet()){
+        npcs.put(string, hostileNpcs.get(string));
+        }
         
         rooms.put(rightStreet.getRoomName(), rightStreet);
         rooms.put(leftStreet.getRoomName(), leftStreet);
