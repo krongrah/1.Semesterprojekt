@@ -28,6 +28,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
@@ -99,7 +100,6 @@ public class FXMLDocumentController implements Initializable {
     private ListView<String> inventoryList;
     @FXML
     private ListView<String> journalList;
-    
     private Image Bar = new Image("file:src/Texures/Bar.png");
     private Image PD = new Image("file:src/Texures/PD.png");
     private Image Court = new Image("file:src/Texures/Court.png");
@@ -164,6 +164,14 @@ public class FXMLDocumentController implements Initializable {
     private Button quit;
     @FXML
     private Button doneButton;
+    @FXML
+    private Label labelStartHealt;
+    @FXML
+    private Label startDamage;
+    @FXML
+    private Label labelName;
+    @FXML
+    private ImageView fightImage;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {

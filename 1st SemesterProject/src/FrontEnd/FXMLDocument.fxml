@@ -176,18 +176,21 @@
          <center>
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
-                  <Label prefHeight="124.0" prefWidth="200.0" text="Life of Detective Dindunuffin" textAlignment="CENTER" wrapText="true">
-                     
-                  </Label>
+                  <ImageView fitHeight="318.0" fitWidth="355.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Texures/TLDDlogo.png" />
+                     </image>
+                  </ImageView>
+                  <Pane prefHeight="17.0" prefWidth="200.0" />
                   <Button fx:id="newGame" mnemonicParsing="false" onAction="#newGame" text="New Game" />
                   <Pane prefHeight="17.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="nameField" layoutX="17.0" layoutY="-5.0" onKeyPressed="#enter" promptText="Enter your name" visible="false" />
+                        <TextField fx:id="nameField" alignment="CENTER" layoutX="215.0" onKeyPressed="#enter" prefHeight="25.0" prefWidth="173.0" promptText="Enter your name" visible="false" />
                      </children></Pane>
                   <Button fx:id="loadGame" mnemonicParsing="false" onAction="#loadGame" text="Load Game" />
                   <Pane prefHeight="17.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="doneButton" layoutX="71.0" layoutY="-5.0" mnemonicParsing="false" onAction="#doneButton" text="Enter" visible="false" />
+                        <Button fx:id="doneButton" contentDisplay="CENTER" layoutX="253.0" mnemonicParsing="false" onAction="#doneButton" prefHeight="25.0" prefWidth="97.0" text="Enter" visible="false" />
                      </children></Pane>
                   <Button fx:id="hiScore" mnemonicParsing="false" onAction="#hiScore" text="Hi Score" />
                   <Pane prefHeight="17.0" prefWidth="200.0" />
@@ -196,24 +199,17 @@
             </VBox>
          </center>
          <left>
-            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <Pane prefHeight="603.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
          </left>
          <right>
-            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <Pane prefHeight="603.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
          </right>
-         <top>
-            <ImageView fitHeight="318.0" fitWidth="355.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-               <image>
-                  <Image url="@../Texures/TLDDlogo.png" />
-               </image>
-            </ImageView>
-         </top>
       </BorderPane>
       <GridPane fx:id="fightScreen" style="-fx-background-color: white;" visible="false" GridPane.columnSpan="3" GridPane.rowSpan="5">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="10.0" prefWidth="165.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.0" minWidth="10.0" prefWidth="265.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="269.0" minWidth="10.0" prefWidth="120.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="10.0" prefWidth="116.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="335.0" minWidth="10.0" prefWidth="285.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="269.0" minWidth="10.0" prefWidth="183.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="495.0" minHeight="10.0" prefHeight="422.0" vgrow="SOMETIMES" />
@@ -221,7 +217,6 @@
           <RowConstraints maxHeight="292.0" minHeight="10.0" prefHeight="162.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" />
             <HBox prefHeight="0.0" prefWidth="600.0" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                <children>
                   <ProgressBar fx:id="playerHealth" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
@@ -233,7 +228,7 @@
                   <TextArea fx:id="fightOutput" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
-            <GridPane alignment="CENTER" GridPane.rowIndex="2">
+            <GridPane alignment="CENTER" prefHeight="162.0" prefWidth="137.0" GridPane.rowIndex="2">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -248,6 +243,34 @@
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#calm" text="Calm" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
+            <GridPane prefHeight="162.0" prefWidth="128.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="44.0" minWidth="10.0" prefWidth="13.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="48.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="121.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="85.0" minHeight="8.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="102.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="HP:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="labelStartHealt" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label text="Damage:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="startDamage" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label text="Name:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label fx:id="labelName" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            <Pane prefHeight="422.0" prefWidth="388.0" GridPane.columnSpan="3">
+               <children>
+                  <ImageView fx:id="fightImage" fitHeight="422.0" fitWidth="600.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
          </children>
       </GridPane>
       <BorderPane fx:id="HiScoreScreen" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnSpan="3" GridPane.rowSpan="5">
