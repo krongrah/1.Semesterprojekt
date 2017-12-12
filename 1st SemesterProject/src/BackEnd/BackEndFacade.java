@@ -183,6 +183,16 @@ public class BackEndFacade implements IBackEnd{
         return game.calm();
     }
 
+    @Override
+    public double getEnemyHealth() {
+        return game.enemyHealthPercent();
+    }
+
+    @Override
+    public double getPlayerHealth() {
+        return game.playerHealthPercent();
+    }
+
     
       
 }

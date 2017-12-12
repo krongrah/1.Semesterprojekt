@@ -45,5 +45,6 @@ public interface IBackEnd {
     int fight();
     int run();
     int calm();
-    
+    double getEnemyHealth();
+    double getPlayerHealth();
 }

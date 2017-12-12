@@ -534,8 +534,9 @@ public class FXMLDocumentController implements Initializable {
     }else if(f==0){
         showLoseScreen();
         fightScreen.setVisible(false);
-    }
-    }
+    }else{
+        updateHealth();
+    }}
 
     @FXML
     private void run(ActionEvent event) {
@@ -548,6 +549,7 @@ public class FXMLDocumentController implements Initializable {
         showLoseScreen();
         fightScreen.setVisible(false);
     }
+        updateHealth();
     }
 
     @FXML
@@ -559,11 +561,19 @@ public class FXMLDocumentController implements Initializable {
         showLoseScreen();
         fightScreen.setVisible(false);
     }
+        updateHealth();
+    }
+    private void updateHealth(){
+        playerHealth.setProgress(backEnd.getPlayerHealth());
+        enemyHealth.setProgress(backEnd.getEnemyHealth());
+        
     }
     
     private void combat(){
     fightScreen.setVisible(true);
+    updateHealth();
     }
+    
     private String input(ListView<String> input){
         String string=input.getSelectionModel().getSelectedItem();
     return string;

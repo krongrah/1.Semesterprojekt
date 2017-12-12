@@ -234,7 +234,7 @@ public class Game {
             getInfo();
             enemy = getJumped();
             if (enemy != null) {
-                enemy.getFightScream();
+                System.out.println(enemy.getFightScream());
                 System.out.println("You are now fighting " + enemy.getName() + ".");
 
                 if (player.inventoryContains("Gun")) {
@@ -257,7 +257,6 @@ public class Game {
         for (String fighter : player.getRoom().getNPCsInRoomMap().keySet()) {
             if (world.getHostileNPC(fighter) != null) {
                 if (Math.random() < (world.getHostileNPC(fighter).getAggression())) {
-                    System.out.println(fighter);
                     return world.getHostileNPC(fighter);
                 }
             }
@@ -348,8 +347,14 @@ public class Game {
         }
         hobosOnTheMove = true;
     }
-
+    
+    double playerHealthPercent(){
+        return (player.getCurrentHealth()/100.0);
+    }
  
+    double enemyHealthPercent(){
+        return (enemy.getHealth()/(enemy.getTotalHealth()*1.0));
+    }
 
     void combatEnd() {
         player.setDamage(10);
