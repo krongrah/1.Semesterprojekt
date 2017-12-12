@@ -109,11 +109,15 @@ public class World implements Serializable {
             "Where were you even last night? You came home covered in shit all worked up?",
             "Go away, I want a good day."
         };
-        String[] bartenderLine = {
+        String[] bartenderLine1 = {
             "Isn't it a bit early for you to be here?",
-            "Detective Prickard is dead? I can't say I'm surprised, he didn't seem to get along with anyone, especially not you.",
             "I think you should get back at work now."
         };
+        String[] bartenderLine2 = {
+            "Detective Prickard is dead? I can't say I'm surprised, he didn't seem to get along with anyone, especially not you.",
+            "I'm sorry about your partner... And his death, I suppose."
+        };
+        
         String[] hobo1Line = {
             "Coppers don't often come up to 'dese parts",
             "I 'eard a drunk fella' shoutin' at 'em.",
@@ -159,7 +163,7 @@ public class World implements Serializable {
         //add dialogue to dialogue object
         Dialogue coronerDialogue = new Dialogue(coronerLine, coronerAlibi, true);
         Dialogue wifeDialogue = new Dialogue(wifeLine, wifeAlibi, true, fightScreamWife);
-        Dialogue bartenderDialogue = new Dialogue(bartenderLine, bartenderAlibi, true);
+        Dialogue bartenderDialogue = new Dialogue(bartenderLine1,bartenderLine2, bartenderAlibi, true);
         Dialogue hobo1Dialogue = new Dialogue(hobo1Line, hobo1Alibi, false, fightScreamHobo1);
         Dialogue hobo2Dialogue = new Dialogue(hobo2Line, hobo2Alibi, false, fightScreamHobo2);
         Dialogue hobo3Dialogue = new Dialogue(hobo3Line, hobo3Alibi, false, fightScreamHobo3);
@@ -173,7 +177,7 @@ public class World implements Serializable {
         Hobo hobo3 =  new Hobo("Heroin Harry", hobo3Dialogue, hobo3Statement, 1);
         Hobo hobo4 =  new Hobo("Insane Dwayne", hobo4Dialogue, hobo4Statement, 1);
         NPC commissioner = new NPC("Commissioner Curt", commissionerDialogue, null, 0);
-        NPC bartender = new NPC("Bartender Bert", bartenderDialogue, bartenderStatement, 2);
+        NPC bartender = new NPC("Bartender Bert", bartenderDialogue, bartenderStatement, 1);
         HostileNPC wife = new HostileNPC("Wife", wifeDialogue, null, 0, 50, 5, 1);
         NPC coroner = new NPC("Coroner", coronerDialogue, coronerStatement, 4);
         

@@ -218,6 +218,9 @@ public class Game {
     public boolean UIGo(String e) {
         timeloop(2);
         Room nextRoom = player.getRoom().getExit(e);
+        if(nextRoom==world.getRoom("Crime Scene")){
+        world.getNPC("Bartender Bert").fulfillCondition();
+        }
         if (nextRoom == world.getRoom("Partner's Home")) {
 
             if (player.getInventoryMap().containsKey("Key To Partner's Home")) {
@@ -551,7 +554,7 @@ public class Game {
         //Gives the player a list of NPCs in the room
         NPC target = player.getRoom().getNPCsInRoomMap().get(name);
         target.getLine();
-        if (target.getClueCount() == target.getClueRelease()) {
+        if (/*target.getClueCount() == target.getClueRelease()*/target.getClue()) {
             player.addToJournal(target.giveClue());
         }
 
@@ -632,7 +635,7 @@ public class Game {
             lose();
             return false;
         } else {
-            world.getNPC("Commissioner Curt").getDialogue().fulfillCondition();
+            world.getNPC("Commissioner Curt").fulfillCondition();
             updateCrimeScene();
             goToJail(player.getRoom().getNPCsInRoomMap().get(name));
             return true;

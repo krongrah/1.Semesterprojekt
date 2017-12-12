@@ -13,7 +13,7 @@ public class Dialogue {
 
     //Attributes
     private String[] dialogue1;
-    private boolean condition1 = false;
+    private boolean condition = false;
     private String[] dialogue2 = null;
     private String alibi;
     private String fightScream;
@@ -25,6 +25,7 @@ public class Dialogue {
         this.dialogue1 = dialogue1;
         this.alibi = alibi;
         this.isValid = isValid;
+        condition=true;
 
     }
 
@@ -43,7 +44,7 @@ public class Dialogue {
     }
 
     public void getLine() {
-        if (!condition1) {
+        if (!condition) {
             System.out.println(dialogue1[lineIndex]);
             if (lineIndex < dialogue1.length - 1) {
                 lineIndex++;
@@ -57,10 +58,11 @@ public class Dialogue {
 
     }
 
-    public void fulfillCondition() {
-        condition1 = true;
+    void fulfillCondition() {
+        if(!condition){
+        condition = true;
         lineIndex = 0;
-    }
+        }}
 
     public boolean getAlibi() {
         System.out.println(alibi);
@@ -73,6 +75,9 @@ public class Dialogue {
      */
     public String getFightScream() {
         return fightScream;
+    }
+    public boolean getCondition(){
+    return condition;
     }
 
 }
