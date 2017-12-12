@@ -42,6 +42,9 @@ public interface IBackEnd {
     void load();
     List<List<String>>getScores();
     void setName(String string);
-    
-    
+    int fight();
+    int run();
+    int calm();
+    double getEnemyHealth();
+    double getPlayerHealth();
 }

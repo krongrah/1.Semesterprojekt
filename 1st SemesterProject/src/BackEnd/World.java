@@ -174,7 +174,7 @@ public class World implements Serializable {
         Hobo hobo4 =  new Hobo("Insane Dwayne", hobo4Dialogue, hobo4Statement, 1);
         NPC commissioner = new NPC("Commissioner Curt", commissionerDialogue, null, 0);
         NPC bartender = new NPC("Bartender Bert", bartenderDialogue, bartenderStatement, 2);
-        HostileNPC wife = new HostileNPC("Wife", wifeDialogue, null, 0, 50, 5, 0.5);
+        HostileNPC wife = new HostileNPC("Wife", wifeDialogue, null, 0, 50, 5, 1);
         NPC coroner = new NPC("Coroner", coronerDialogue, coronerStatement, 4);
         
         

@@ -541,18 +541,52 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void fight(ActionEvent event) {
-    }
+        int f=backEnd.fight();
+        if(f==2){
+            fightScreen.setVisible(false);
+    }else if(f==0){
+        showLoseScreen();
+        fightScreen.setVisible(false);
+    }else{
+        updateHealth();
+    }}
 
     @FXML
     private void run(ActionEvent event) {
+    int f=backEnd.run();
+        if(f==2){
+            fightScreen.setVisible(false);
+            startRooms();
+
+    }else if(f==0){
+        showLoseScreen();
+        fightScreen.setVisible(false);
+    }
+        updateHealth();
     }
 
     @FXML
     private void calm(ActionEvent event) {
+     int f=backEnd.calm();
+        if(f==2){
+            fightScreen.setVisible(false);
+    }else if(f==0){
+        showLoseScreen();
+        fightScreen.setVisible(false);
     }
+        updateHealth();
+    }
+    private void updateHealth(){
+        playerHealth.setProgress(backEnd.getPlayerHealth());
+        enemyHealth.setProgress(backEnd.getEnemyHealth());
+        
+    }
+    
     private void combat(){
     fightScreen.setVisible(true);
+    updateHealth();
     }
+    
     private String input(ListView<String> input){
         String string=input.getSelectionModel().getSelectedItem();
     return string;

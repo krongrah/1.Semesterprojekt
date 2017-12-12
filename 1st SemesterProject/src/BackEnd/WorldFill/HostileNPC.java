@@ -14,6 +14,7 @@ public class HostileNPC extends NPC {
 
     int health;
     int damage;
+    int totalHealth;
     private double aggression;
     
     /**
@@ -22,15 +23,16 @@ public class HostileNPC extends NPC {
      * @param dialogue The HostileNPC's dialog strings.
      * @param clue the clue given in dialog [If any]
      * @param clueRelease How many times the player has to talk to the NPC before getting a clue.
-     * @param health Health of the Hostile NPC, used for fighting.
+     * @param totalHealth Health of the Hostile NPC, used for fighting.
      * @param damage The damage the NPC can deal to the player.
-     * @param aggression The chance of getting jumped, when you enter a room. 0= not posible, 0.5= 50% chance, 1 = always
+     * @param aggression The chance of getting jumped, when you enter a room. 0= not possible, 0.5= 50% chance, 1 = always
      */
-    public HostileNPC(String newName, Dialogue dialogue, Clue clue, int clueRelease, int health, int damage, double aggression) {
+    public HostileNPC(String newName, Dialogue dialogue, Clue clue, int clueRelease, int totalHealth, int damage, double aggression) {
         super(newName, dialogue, clue, clueRelease);
-        this.health = health;
+        this.totalHealth = totalHealth;
         this.damage = damage;
         this.aggression=aggression;
+        this.health=totalHealth;
     }
     
     
@@ -47,9 +49,10 @@ public class HostileNPC extends NPC {
      */
     public HostileNPC(String newName, Dialogue dialogue, Clue clue, int clueRelease) {
         super(newName, dialogue, clue, clueRelease);
-        this.health = 50;
+        this.totalHealth = 50;
         this.damage = 7;
         this.aggression=0;
+        this.health=totalHealth;
     }
 /**
  * 
@@ -73,7 +76,7 @@ public class HostileNPC extends NPC {
         return aggression;
     }
 /**
- * Used during combat to end combat in a peacefull way.
+ * Used during combat to end combat in a peaceful way.
  * @set aggression to -1
  */ 
     public void calmDown() {
@@ -98,6 +101,9 @@ public class HostileNPC extends NPC {
     
     public void setHealth(int health) {
         this.health = health;
+    }
+    public int getTotalHealth(){
+    return totalHealth;
     }
     public void setDamage(int damage) {
         this.damage = damage;
