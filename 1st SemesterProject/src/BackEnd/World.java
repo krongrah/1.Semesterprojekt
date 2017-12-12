@@ -77,7 +77,7 @@ public class World implements Serializable {
         Beverage whiskey=new Beverage("Whiskey","This bottle is your favorite drink, and the reason you love coming home.",false, true, null,2,5);
         Beverage gin = new Beverage ("Half-empty Gin", "its a half-empty bottle of gin, some idiot wasted his drink", false, true, null,1,7);
         Beverage beerKeg = new Beverage ("Keg Of beer", "Its a keg of beer, nobody will notice if you take this", false, true, null, 4,4);
-        Beverage coffee = new Beverage ("Coffee", "A normal looking drink of coffee, expect you can smell a faint vodka odor", false, true, null, 2,6);
+        Beverage coffee = new Beverage ("Coffee", "A normal looking drink of coffee, expect you can smell a strong vodka odor", false, true, null, 2,6);
         Beverage wine = new Beverage ("Wine", "the fancy people left out a glass of wine", false, true, null, 3,7);
         Beverage beer = new Beverage("Beer", "It's a well known brand called pisswasser", false, true, null, 2, 2);
     
@@ -233,10 +233,13 @@ public class World implements Serializable {
         hostileNpcs.put(hobo2.getName(), hobo2);
         hostileNpcs.put(hobo3.getName(), hobo3);
         hostileNpcs.put(hobo4.getName(), hobo4);
+        hostileNpcs.put(wife.getName(), wife);
         npcs.put(coroner.getName(), coroner);
         npcs.put(commissioner.getName(), commissioner);
-        npcs.put(wife.getName(), wife);
         npcs.put(bartender.getName(), bartender);
+        for(String string:hostileNpcs.keySet()){
+        npcs.put(string, hostileNpcs.get(string));
+        }
         
         rooms.put(rightStreet.getRoomName(), rightStreet);
         rooms.put(leftStreet.getRoomName(), leftStreet);

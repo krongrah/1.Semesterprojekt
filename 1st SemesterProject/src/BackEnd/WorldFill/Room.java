@@ -164,22 +164,7 @@ public class Room {   //rooms have a description/name and map with strings to ro
         return roomName;
     }
     
-    /**
-     * 
-     * @return Returns the fighter the player might fight.
-     * this method finds a random number between 0 and 1, if the number is lower than
-     * HostileNPC aggression, then you fight. 
-     */
-    public HostileNPC getJumped() {
-        for (Entry fighter : NPCsInRoom.entrySet()) {
-            if (fighter instanceof HostileNPC) {
-                //if (Math.random()<((HostileNPC) fighter).getAggression()) {
-                    return (HostileNPC) fighter;
-               // }
-            }
-        }
-        return null;
-    }
+
 
     /**
      * @return instance variable HoboAccessable, used to if a hobo can walk into a room.
