@@ -233,6 +233,13 @@ if (nextRoom == world.getRoom("Partner's Home")) {
                 getInfo();
                 HostileNPC enemy =getJumped();
                 if (enemy != null) {
+                        enemy.getFightScream();
+        System.out.println("You are now fighting " + enemy.getName() + ".");
+        
+        if (player.inventoryContains("Gun")) {
+            player.setDamage(30);
+            System.out.println("You draw your gun.");
+        }
                     return true;
                 }
             }
@@ -278,7 +285,7 @@ if (nextRoom == world.getRoom("Partner's Home")) {
         player.timeOfTheDay();
     }
 
-    public void drink() {//todo doesn't seem to work
+    public void drink() {
        timeloop(1);
         for (Item drink : player.getInventoryMap().values()) {
             if (drink instanceof Beverage) {
@@ -349,20 +356,11 @@ if (nextRoom == world.getRoom("Partner's Home")) {
         int random1;
         int random2;
         
-        Scanner fightCommander = new Scanner(System.in);
-        String fightCommand;
-        System.out.println("You are now fighting a " + enemy.getName() + ". For your options, type 'help'.");
-        enemy.getFightScream();
-
-        if (player.inventoryContains("gun")) {
-            playerDmg = 30;
-            System.out.println("You draw your gun.");
-        }
+        
         while (keepFighting) {
             timeloop(1);
-            fightCommand = fightCommander.nextLine().toLowerCase();
 
-            switch (fightCommand) {
+            switch ("test") {
                 case "run":
                     if (Math.random() < 0.7) {
                         keepFighting = false;
@@ -424,14 +422,21 @@ if (nextRoom == world.getRoom("Partner's Home")) {
         player.setCurrentHealth(playerHp);
         getInfo();
     }
-    boolean fight(){
-    return true;
+    
+    void combat(){
+
     }
-    boolean run(){
-    return true;
+    int fight(){
+        timeloop(1);
+    return 2;
     }
-    boolean calm(){
-    return true;
+    int run(){
+        timeloop(1);
+    return 2;
+    }
+    int calm(){
+        timeloop(1);
+    return 2;
     }
     
     Set<String> convictMenu(){

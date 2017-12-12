@@ -169,18 +169,23 @@ public class BackEndFacade implements IBackEnd{
     }
 
     @Override
-    public boolean fight() {
+    public int fight() {
         return game.fight();
     }
 
     @Override
-    public boolean run() {
+    public int run() {
         return game.run();
     }
 
     @Override
-    public boolean calm() {
+    public int calm() {
         return game.calm();
+    }
+
+    @Override
+    public void combat() {
+        game.combat();
     }
     
       

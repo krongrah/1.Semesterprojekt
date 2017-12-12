@@ -528,26 +528,37 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void fight(ActionEvent event) {
-        if(backEnd.fight()){
+        int f=backEnd.fight();
+        if(f==2){
             fightScreen.setVisible(false);
+    }else if(f==0){
+        showLoseScreen();
     }
     }
 
     @FXML
     private void run(ActionEvent event) {
-        if(backEnd.run()){
+    int f=backEnd.run();
+        if(f==2){
             fightScreen.setVisible(false);
+    }else if(f==0){
+        showLoseScreen();
     }
     }
 
     @FXML
     private void calm(ActionEvent event) {
-        if(backEnd.calm()){
+     int f=backEnd.calm();
+        if(f==2){
             fightScreen.setVisible(false);
+    }else if(f==0){
+        showLoseScreen();
     }
     }
+    
     private void combat(){
     fightScreen.setVisible(true);
+    backEnd.combat();
     }
     private String input(ListView<String> input){
         String string=input.getSelectionModel().getSelectedItem();

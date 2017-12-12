@@ -32,6 +32,7 @@ public class PC {
     private Map<String,Clue> evidence = new HashMap<>();
     private int maxInventoryCapacity = 2;
     private int currentHealth = 100;
+    private int damage=10;
     private Room currentRoom, lastRoom;
     private String name="Derp";
     //constructor
@@ -190,6 +191,12 @@ public class PC {
     }
     public void setMinutes(int newMinutes){
         minutes = newMinutes;
+    }
+    public void setDamage(int damage){
+    this.damage=damage;
+    }
+    public int getDamage(){
+    return damage;
     }
 }
     
