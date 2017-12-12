@@ -65,6 +65,10 @@ public class NPC {
     public void setDialogue(Dialogue dialogue_) { 
         dialogue = dialogue_;
     }
+    public void fulfillCondition(){
+    dialogue.fulfillCondition();
+    askForClueCounter=0;
+    }
 
     /**
      * Gets clueCount
@@ -74,12 +78,25 @@ public class NPC {
         askForClueCounter++;    
         return askForClueCounter;
     }
+    
+    public boolean getClue(){
+    askForClueCounter++;
+    if(askForClueCounter==clueRelease&& dialogue.getCondition()){
+        System.out.println("got clue");
+    return true;
+    }
+        System.out.println(askForClueCounter);
+    return false;
+    }
     /**
-    * gets when the clue is realsed
+    * gets when the clue is released
     * @return clueRealse
     */
     public int getClueRelease() {
+        if(dialogue.getCondition()){
         return clueRelease;
+        }
+        return -1;
     }
 /**
  * gets clue
