@@ -262,7 +262,9 @@ if (nextRoom == world.getRoom("Partner's Home")) {
     }
 
     public void drink() {//todo doesn't seem to work
-        for (Entry drink : player.getInventoryMap().entrySet()) {
+        for (Item drink : player.getInventoryMap().values()) {
+            System.out.println(drink);
+            
             if (drink instanceof Beverage) {
                 System.out.println("You drink some " + ((Beverage)drink).getName() + ", you start to feel all your problems disappear");
                 player.addDrunkenness(((Beverage) drink).getAlcoholContent());
@@ -272,12 +274,10 @@ if (nextRoom == world.getRoom("Partner's Home")) {
                     System.out.println("You emptied your bottle and tossed it away.");
                 }
                 break;
-            }
+            }else{System.out.println("not a drink");}
         }
-        //System.out.println(player.getDrunkenness());
-        int test=(int)(Math.random()*200);
-        manager.addScore("test", test);
-        manager.seeList();
+        System.out.println(player.getDrunkenness());
+       
    }
 
     public void goToJail(NPC scum) {
