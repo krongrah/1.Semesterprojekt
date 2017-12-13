@@ -314,7 +314,7 @@ public class FXMLDocumentController implements Initializable {
         if (input(searchList)!=null){
             if(backEnd.search(input(searchList))){
         pickUpList.setVisible(true);
-        pickUpList.setItems(FXCollections.observableList(ask));//todo
+        pickUpList.setItems(FXCollections.observableList(ask));
         
             }else{
                 updateHUD();
