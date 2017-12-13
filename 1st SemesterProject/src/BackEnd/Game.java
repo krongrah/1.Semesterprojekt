@@ -4,6 +4,7 @@ package BackEnd;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
+import Acquaintance.IFoundation;
 import BackEnd.WorldFill.Room;
 import BackEnd.WorldFill.Hobo;
 import BackEnd.WorldFill.NPC;
@@ -13,6 +14,7 @@ import BackEnd.WorldFill.Item;
 import BackEnd.Command.Parser;
 import BackEnd.Command.CommandWord;
 import BackEnd.Command.Command;
+import Foundation.SaveFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -159,8 +161,9 @@ public class Game {
     }
 
     void save() {
-        
-        System.out.println("Saving");
+//        GameState gamestate = new GameState(player, world);
+//        IFoundation.saveFile(gamestate);
+//        System.out.println("Saving");
     }
 
     void load() {

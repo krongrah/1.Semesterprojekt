@@ -7,8 +7,7 @@ package Foundation;
 
 import java.util.ArrayList;
 import Acquaintance.IFoundation;
-import BackEnd.PC;
-import BackEnd.World;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -19,7 +18,7 @@ public class FoundationFacade implements IFoundation{
 
     private HiScore hiscore=new HiScore();
     private SaveFile save=new SaveFile();
-    
+    SaveFile saveFile;
 
 
     @Override
@@ -29,15 +28,24 @@ public class FoundationFacade implements IFoundation{
 
     @Override
     public ArrayList<String> getHiScoreList() {
-return hiscore.pullHiScore();
+    return hiscore.pullHiScore();
         }
-
     
-
-
+  
+  public boolean save(List aList)  {
+    return saveFile.saveGame(aList);
+  }
+  
+  public List load()  {
+    return saveFile.loadGame();
+  }
+  
+  public boolean saveMap(HashMap aMap){
+    return this.saveFile.saveMap(aMap);
+  }
+  
+  public HashMap loadMap(){
+    return this.saveFile.loadMap();
+  }
     
-
-    
-    
-
 }

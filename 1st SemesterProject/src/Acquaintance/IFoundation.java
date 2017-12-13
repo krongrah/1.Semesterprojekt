@@ -6,6 +6,7 @@
 package Acquaintance;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,4 +16,8 @@ import java.util.List;
 public interface IFoundation {
    void saveHiScoreList(ArrayList<String> list);
    ArrayList<String> getHiScoreList();
+   boolean save(List aList);
+   List load();
+   boolean saveMap(HashMap aMap);
+   HashMap loadMap();
 }
