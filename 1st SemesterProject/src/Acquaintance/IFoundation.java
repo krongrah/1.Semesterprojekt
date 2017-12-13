@@ -17,5 +17,5 @@ public interface IFoundation {
    void saveHiScoreList(ArrayList<String> list);
    ArrayList<String> getHiScoreList();
    Object save(Object gameState);
-   Object load();
+   Object getSavedGame();
 }

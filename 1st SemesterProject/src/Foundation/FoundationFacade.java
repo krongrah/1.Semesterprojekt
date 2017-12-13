@@ -36,7 +36,9 @@ public class FoundationFacade implements IFoundation{
     return saveFile.saveGame(gameState);
   }
   
-  public Object load()  {
-    return saveFile.loadGame();
+  public Object getSavedGame()  {
+    return saveFile.getSavedGame();
   }
 }
+
+  

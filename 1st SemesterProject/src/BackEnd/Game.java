@@ -36,6 +36,10 @@ public class Game {
         player.move(world.getRoom("Bar"));
 
     }
+    public Game(GameState gameState){
+    player=gameState.getPlayer();
+    world=gameState.getWorld();
+    }
 
 
     // Prints the welcome message and the current room
@@ -93,7 +97,7 @@ public class Game {
          return gamestate;
     }
     void load() {
-        //todo
+       
     }
 
     /**

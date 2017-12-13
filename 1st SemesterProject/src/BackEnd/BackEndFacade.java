@@ -146,6 +146,10 @@ public class BackEndFacade implements IBackEnd{
     public void load() {
         game.load();
     }
+    
+    public void getSavedGame(){
+        Game game = new Game((GameState) foundation.getSavedGame());
+    }
 
     @Override
     public void drop(String string) {

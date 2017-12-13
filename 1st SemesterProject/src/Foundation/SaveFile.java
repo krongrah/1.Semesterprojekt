@@ -55,7 +55,7 @@ public class SaveFile implements Serializable{
     return false;
   }
   
-  public Object loadGame()
+  public Object getSavedGame()
   {
     Object gameState = new Object();
     
