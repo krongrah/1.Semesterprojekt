@@ -65,39 +65,28 @@ public class NPC {
     public void setDialogue(Dialogue dialogue_) { 
         dialogue = dialogue_;
     }
+    
+    /**
+     * Resets the clueCounter for the NPC and sets the dialogue condition to true.
+     */
+    
     public void fulfillCondition(){
     dialogue.fulfillCondition();
     askForClueCounter=0;
     }
 
     /**
-     * Gets clueCount
-     * @return askForClueCounter
+     * increments the clue counter and returns true if the Clue should be given.
+     * @return true if the clue of the NPC should be given, else returns false.
      */
-    public int getClueCount() {
-        askForClueCounter++;    
-        return askForClueCounter;
-    }
-    
     public boolean getClue(){
     askForClueCounter++;
     if(askForClueCounter==clueRelease&& dialogue.getCondition()){
-        System.out.println("got clue");
     return true;
     }
-        System.out.println(askForClueCounter);
     return false;
     }
-    /**
-    * gets when the clue is released
-    * @return clueRealse
-    */
-    public int getClueRelease() {
-        if(dialogue.getCondition()){
-        return clueRelease;
-        }
-        return -1;
-    }
+
 /**
  * gets clue
  * @return clue

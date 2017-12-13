@@ -30,7 +30,7 @@ public class Beverage extends Item {
     }
     
     public void removeSip(){
-        numberOfSips -= numberOfSips;
+        numberOfSips --;
     }
     
 }

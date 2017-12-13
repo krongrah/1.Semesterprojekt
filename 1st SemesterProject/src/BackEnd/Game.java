@@ -296,7 +296,7 @@ public class Game {
                 player.addDrunkenness(((Beverage) drink).getAlcoholContent());
                 ((Beverage) drink).removeSip();
                 if (((Beverage) drink).getNumberOfSips() <= 0) {
-                    player.getInventoryMap().remove(drink);
+                    player.getInventoryMap().remove(drink.getName());
                     System.out.println("You emptied your bottle and tossed it away.");
                 }
                 break;
