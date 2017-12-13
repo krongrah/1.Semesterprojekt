@@ -389,7 +389,7 @@ public class Game {
         
 
         if (player.getCurrentHealth() <= 0) {
-            System.out.println("You died.");
+            endMessage="You got killed by "+enemy.getName()+".";
             lose();
             return 0;
         }
@@ -422,7 +422,7 @@ public class Game {
                 }
 
         if (player.getCurrentHealth() <= 0) {
-            System.out.println("You died.");
+            endMessage="You got killed by "+enemy.getName()+".";
             lose();
             return 0;
         }
@@ -445,7 +445,7 @@ public class Game {
                 }
 
         if (player.getCurrentHealth() <= 0) {
-            System.out.println("You died.");
+            endMessage="You got killed by "+enemy.getName()+".";
             lose();
             return 0;
         }
@@ -477,12 +477,8 @@ public class Game {
                 player.addToevidence(clue);
                 System.out.println(clue + " has been added to Evidence list");
                 if (player.isEvidence2()) {
-                    System.out.print("Judge: We have found ");
-                    for (Entry<String, NPC> npc : world.getRoom("Jail").getNPCsInRoomMap().entrySet()) {
-                        System.out.print(npc.getValue().getName() + (" "));
-                    }
-                    System.out.println("guilty of murder.");
 
+                    convictWin();
                     win();
                     return 1;
 
@@ -498,6 +494,20 @@ public class Game {
             return 2;
         }
     }
+    
+    private void convictWin(){
+                        String criminals="";
+                    for (String npc : world.getRoom("Jail").getNPCsInRoomMap().keySet()) {
+                        criminals.concat((npc + (", ")));
+                        
+                        
+                    }
+                    String reverse=new StringBuffer(criminals).reverse().toString();
+                    reverse.replaceFirst(",", ""); 
+                    reverse.replaceFirst(",", " and");
+                    String criminalsDone=new StringBuffer(reverse).reverse().toString();
+                    endMessage="Judge: We have found "+criminals+"guilty of murder.";
+    }
 
     /**
      * This method is called when the player decides whether to tell the truth
@@ -510,7 +520,7 @@ public class Game {
      */
     boolean badgeResponse(String answer) {
         if (answer.equals("No")) {
-            System.out.println("You told the truth and confessed to your crime.");
+            endMessage="You told the truth and confessed to your crime.";
             player.addPoints(20);
             win();
             return true;
@@ -845,15 +855,15 @@ public class Game {
             player.setHour(player.returnHours() + 1);
             player.setMinutes(0);
             if (player.getDrunkenness() >= 100) {
-                System.out.println("You are completely smashed and pass out on the floor");
+                endMessage="You are completely smashed and pass out on the floor";
 
             }
-            if (player.getDrunkenness() == 5) {
+            if (player.getDrunkenness() < 10) {
                 System.out.println("You start to feel your hands again, if you dont drink soon you might die");
             }
 
             if (player.getDrunkenness() <= 0) {
-                System.out.println("You feel completely sober, you fall down to the floor and die, knowing nobody loved you.");
+                endMessage="You feel completely sober, you fall down to the floor and die, knowing nobody loved you.";
                 lose();
             }
         }
