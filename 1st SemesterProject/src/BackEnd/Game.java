@@ -53,17 +53,12 @@ public class Game {
         System.out.println("testing? Y/N");
         Scanner testing = new Scanner(System.in);
         String tester = testing.nextLine().toLowerCase();
-        if (tester.equals("y")) {
-            tester();
-        }
         printWelcome();
-
         boolean finished = false;
         while (!finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
             System.out.println("");
-
         }
         System.out.println("Thank you for playing.  Good bye.");
     }
@@ -84,14 +79,11 @@ public class Game {
 
     // Excecutes commands
     private boolean processCommand(Command command) {
-
         CommandWord commandWord = command.getCommandWord();
-
         if (commandWord == CommandWord.UNKNOWN) {
             System.out.println("I don't know what you mean...");
             return false;
         }
-
         if (commandWord == CommandWord.HELP) {
             printHelp();
         } else if (commandWord == CommandWord.GO) {
@@ -122,7 +114,6 @@ public class Game {
 
     // Calls parser to show all possible commands
     private void printHelp() {
-
         System.out.println("Your command words are:");
         parser.showCommands();
     }
@@ -137,7 +128,6 @@ public class Game {
 
     Set<String> inspect(String string) {
         timeloop(1);
-
         Set<String> test = new HashSet();
         if (string.equals("Inventory")) {
             if (player.displayInventoryMap().isEmpty()) {
@@ -173,43 +163,7 @@ public class Game {
         //todo
     }
 
-    //Checks if directions has an exit and moves to next room
-//    private void goRoom(Command command) {
-//        if (!command.hasSecondWord()) {
-//            System.out.println("Go where?");
-//            return;
-//        }
-//
-//        String direction = command.getSecondWord();
-//
-//        Room nextRoom = player.getRoom().getExit(direction);
-//        timeloop(2);
-//        if (nextRoom == null) {
-//            System.out.println("There is no door!");
-//        } else {
-//            if (nextRoom == world.getRoom("Partner's Home")) {
-//                if (player.getInventoryMap().containsKey("Key To Partner's Home")) {
-//                    player.move(nextRoom);
-//                    System.out.println(player.getRoom().getLongDescription());
-//                    getInfo();
-//                } else {
-//                    System.out.println("The door is locked. You need a key to enter here.");
-//                }
-//            } else {
-//                
-//                player.moveBack();
-//                player.move(nextRoom);
-//
-//                System.out.println(player.getRoom().getLongDescription());
-//                getInfo();
-//                HostileNPC enemy =getJumped();
-//                if (enemy != null) {
-//                    fightLoop(enemy);
-//                }
-//            }
-//        }
-//        
-//    }
+
     /**
      * Moves the player from room to room.
      *
@@ -222,7 +176,6 @@ public class Game {
         world.getNPC("Bartender Bert").fulfillCondition();
         }
         if (nextRoom == world.getRoom("Partner's Home")) {
-
             if (player.getInventoryMap().containsKey("Key To Partner's Home")) {
                 player.move(nextRoom);
                 System.out.println(player.getRoom().getLongDescription());
@@ -231,7 +184,6 @@ public class Game {
                 System.out.println("The door is locked. You need a key to enter here.");
             }
         } else {
-
             player.move(nextRoom);
             System.out.println(player.getRoom().getLongDescription());
             getInfo();
@@ -239,7 +191,6 @@ public class Game {
             if (enemy != null) {
                 System.out.println(enemy.getFightScream());
                 System.out.println("You are now fighting " + enemy.getName() + ".");
-
                 if (player.inventoryContains("Gun")) {
                     player.setDamage(30);
                     System.out.println("You draw your gun.");
@@ -278,18 +229,19 @@ public class Game {
     }
     
     public void help(){
-        System.out.println("Your job is to discover and solve the murder. During your quest, you must avoid getting sober at all cost, by drinking whatever drinks you can find.");
+        System.out.println("Your job is to discover and solve the murder. "
+                + "During your quest, you must avoid getting sober at all cost, "
+                + "by drinking whatever drinks you can find.");
     }
 
     private void getInfo() {
-
         if (player.getRoom().getNPCsInRoomMap().isEmpty()) {
             System.out.println("You are all alone." + "\n");
         } else {
             System.out.println("The other people here are:");
             String people=player.getRoom().getNPCsInRoomMap().keySet().toString();
             System.out.println(people.substring(1, (people.length()-1)) + "\n");
-}
+        }
     }
 
     public void drink() {
@@ -316,16 +268,12 @@ public class Game {
                 + "some better evidence to convict this bastard. I will be in the Police department.");
         world.getRoom("Home").addItemToRoom(world.getItem("Badge"));
         parser.addFinishers();
-
     }
     
     public String getTime(){
     return player.getTime();
     }
 
-    public void lose() {
-
-    }
 
     public void win() {
         manager.retrieve();
@@ -335,7 +283,6 @@ public class Game {
 
     public List<List<String>> getScores() {
         return manager.getScores();
-
     }
 
     public void drunkness() {
@@ -390,12 +337,8 @@ public class Game {
                 player.setCurrentHealth(player.getCurrentHealth()-(enemy.getDamage() + random2));
                 }
                 
-        
-        
-
         if (player.getCurrentHealth() <= 0) {
             endMessage="You got killed by "+enemy.getName()+".";
-            lose();
             return 0;
         }
         return 1;
@@ -411,7 +354,6 @@ public class Game {
     
     int run() {
         timeloop(1);
-        
                 if (Math.random() < 0.7) {
                     
                     System.out.println("You ran away like a coward.");
@@ -428,7 +370,6 @@ public class Game {
 
         if (player.getCurrentHealth() <= 0) {
             endMessage="You got killed by "+enemy.getName()+".";
-            lose();
             return 0;
         }
         return 1;
@@ -448,10 +389,8 @@ public class Game {
                     System.out.println("You failed to calm your opponent, and got "
                             + "struck. you took " + (enemy.getDamage() + random) + " damage.");
                 }
-
         if (player.getCurrentHealth() <= 0) {
             endMessage="You got killed by "+enemy.getName()+".";
-            lose();
             return 0;
         }
         return 1;
@@ -504,8 +443,6 @@ public class Game {
                         String criminals="";
                     for (String npc : world.getRoom("Jail").getNPCsInRoomMap().keySet()) {
                         criminals.concat((npc + (", ")));
-                        
-                        
                     }
                     String reverse=new StringBuffer(criminals).reverse().toString();
                     reverse.replaceFirst(",", ""); 
@@ -574,7 +511,6 @@ public class Game {
     }
 
     void talk(String name) {
-        
         //Gives the player a list of NPCs in the room
         NPC target = player.getRoom().getNPCsInRoomMap().get(name);
         target.getLine();
@@ -593,19 +529,16 @@ public class Game {
             System.out.println("You can't find anything.");
             return null;
         }
-
     }
 
     boolean search(String name) {
         timeloop(2);
         Item item = world.getItem(name);
         System.out.println("\n" + item.getDescription() + "\n");
-
         if (item.getCollectible()) {
             System.out.println("Do you want to pick this item up? Yes/No");
             temp = name;
             return true;
-
         } else {
             System.out.println("This item can't be picked up.");
             if (item.getIsClue()) {
@@ -614,7 +547,6 @@ public class Game {
             }
             return false;
         }
-
     }
 
     void pickup(String answer) {
@@ -637,7 +569,6 @@ public class Game {
         } else {
             return "You were rated a " + (100 - player.getPoints()) + "% bad cop.";
         }
-
     }
     String endMessage(){
     return endMessage;
@@ -656,11 +587,8 @@ public class Game {
     }
 
     public boolean arrest(String name) {
-        
-
         if (player.getRoom().getNPCsInRoomMap().get(name).getAlibi()!=null) {
             endMessage=player.getRoom().getNPCsInRoomMap().get(name).getAlibi();
-            lose();
             return false;
         } else {
             world.getNPC("Commissioner Curt").fulfillCondition();
@@ -670,110 +598,7 @@ public class Game {
             }
             timeloop(10);
             return true;
-            
         }
-        
-        
-    }
-
-//        System.out.println("You have decided to begin arresting people, god bless you");
-//        System.out.println("Are you sure?   Yes/No");
-//        Scanner accusing = new Scanner(System.in);
-//        String victim = accusing.nextLine().toLowerCase();
-//        if (victim.equalsIgnoreCase("no")) {
-//            System.out.println("You decided not to accuse anyone... for now");
-//        } else if (victim.equalsIgnoreCase("yes")) {
-//            System.out.println("These are the people you can accuse:");
-//            System.out.println(player.getRoom().getNPCsInRoomMap().keySet());
-//            Scanner choose = new Scanner(System.in);
-//            String person = choose.nextLine();
-//            boolean success = false;
-//            if(currentRoom.getNPCsInRoomMap().containsKey(person)){
-//            if (currentRoom.getNPCsInRoomMap().get(person).getAlibi()) {
-//                        lose();
-//                    } else {
-//                        goToJail(currentRoom.getNPCsInRoomMap().get(person));
-//                        updateCrimeScene();
-//                    }
-//            }else{
-//                System.out.println("That person isn't here");
-//            }
-//            for (Entry<String,NPC> npc : player.getRoom().getNPCsInRoomMap().entrySet()) {
-//                if (person.equals(npc.getValue().getName().toLowerCase())) {
-//                    if (npc.getValue().getAlibi()) {
-//                        lose();
-//                        success = true;
-//                        break;
-//                    } else {
-//                        goToJail(npc.getValue());
-//                        updateCrimeScene();
-//                    }
-//                    success = true;
-//                    break;
-//                }
-//
-//            }
-//            if (!success) {
-//                System.out.println("If you're not going to be serious about this, find another job.");
-//            }
-//        } else {
-//            System.out.println("Can't you just answer a simple Yes/No question?");
-//        }
-    public void tester() {
-        System.out.println("write the method or room you would like to test");
-
-        Scanner roomster = new Scanner(System.in);
-        String testerr = roomster.nextLine();
-        if (world.isRoom(testerr)) {
-            System.out.println("you are now in" + testerr);
-            player.move(world.getRoom(testerr));
-        }
-        if (testerr.equals("fight")) {
-            //fightLoop((HostileNPC) world.getNPC("Wife"));
-        }
-        if (testerr.equals("arrest")) {
-            player.addToJournal(world.getClue("Badge"));
-            player.addToJournal(world.getClue("Dirty Darryl's Statement"));
-            player.move(world.getRoom("Crime Scene"));
-            arrest("");
-            wantToQuit = true;
-        }
-        if (testerr.equals("convict")) {
-            player.addToJournal(world.getClue("Badge"));
-            player.addToJournal(world.getClue("Dirty Darryl's Statement"));
-            player.move(world.getRoom("Police Department"));
-            convict("");
-            wantToQuit = true;
-        }
-        if (testerr.equals("drink")) {
-            player.move(world.getRoom("Bar"));
-            player.addToInventory(world.getItem("Beer"), player.getRoom());
-            drink();
-            System.out.println("this is how drunk you are");
-            drunkness();
-            wantToQuit = true;
-        }
-        if (testerr.equals("search")) {
-            System.out.println("where do you want to search");
-            Scanner whatareyouevendoing = new Scanner(System.in);
-            String thisisshit = whatareyouevendoing.nextLine();
-            if (world.isRoom(thisisshit)) {
-                player.move(world.getRoom(thisisshit));
-                search("");
-            }
-
-        }
-        if (testerr.equalsIgnoreCase("talk")) {
-            System.out.println("where do you want to talk");
-            Scanner talkingmethod = new Scanner(System.in);
-            String talkshit = talkingmethod.nextLine();
-            if (world.isRoom(talkshit)) {
-                player.move(world.getRoom(talkshit));
-                talk("bla");
-            }
-
-        }
-
     }
 
     /**
@@ -813,10 +638,6 @@ public class Game {
         return r;
     }
 
-    String test() {
-        return "ye boi!";
-    }
-
     public PC getPlayer() {
         return player;
     }
@@ -854,8 +675,6 @@ public class Game {
 
     public void remover() {
         player.removeDrunkenness(1);
-        
-
     }
 
     public void ProperTimer() {
@@ -864,15 +683,12 @@ public class Game {
             player.setMinutes(0);
             if (player.getDrunkenness() >= 100) {
                 endMessage="You are completely smashed and pass out on the floor";
-
             }
             if (player.getDrunkenness() < 10) {
                 System.out.println("You start to feel your hands again, if you dont drink soon you might die");
             }
-
             if (player.getDrunkenness() <= 0) {
                 endMessage="You feel completely sober, you fall down to the floor and die, knowing nobody loved you.";
-                lose();
             }
         }
          if (player.getMinutes()%3== 0 && hobosOnTheMove == true) {
