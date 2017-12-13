@@ -195,6 +195,22 @@ public class BackEndFacade implements IBackEnd{
 public String[] getEnemyData() {
         return game.getEnemyData();
     }
+
+    @Override
+    public void printWelcome() {
+        game.printWelcome();
+    }
+
+    @Override
+    public String getTime() {
+        return game.getTime();
+    }
+
+    @Override
+    public String getDrunkenness() {
+        return game.getDrunkenness();
+    }
+    
    
       
 }

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -18,7 +22,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FrontEnd.FXMLDocumentController">
+<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FrontEnd.FXMLDocumentController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="203.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="397.0" />
@@ -26,12 +30,29 @@
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="1.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="12.0" prefHeight="25.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="310.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="167.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="115.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="12.0" prefHeight="38.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="289.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="175.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+         <children>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="16.0" prefWidth="600.0">
+               <children>
+                  <ProgressBar fx:id="badCopBar" focusTraversable="false" maxWidth="1.7976931348623157E308" nodeOrientation="RIGHT_TO_LEFT" progress="0.0" HBox.hgrow="ALWAYS" />
+                  <ProgressBar fx:id="GoodCopBar" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="watch" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="38.0" text="watch" HBox.hgrow="ALWAYS" />
+                  <ProgressIndicator fx:id="Drunkmeter" prefHeight="0.0" prefWidth="34.0" progress="0.0" visible="false" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="drunkMeter" text="drunkMeter" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
       <GridPane fx:id="ControlPanel" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -51,8 +72,8 @@
             <Button fx:id="arrest" mnemonicParsing="false" onAction="#ArrestGUI" text="Arrest" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
             <Button fx:id="save" mnemonicParsing="false" onAction="#saveGUI" text="Save" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
             <Button fx:id="inspect" mnemonicParsing="false" onAction="#inspectGUI" text="Inspect" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-            <ProgressIndicator fx:id="Drunkmeter" progress="0.0" />
             <Button layoutX="154.0" layoutY="53.0" mnemonicParsing="false" onAction="#dropGUI" text="Drop" GridPane.columnIndex="2" />
+            <Button mnemonicParsing="false" onAction="#helpGUI" text="Help" />
          </children>
       </GridPane>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
@@ -60,12 +81,6 @@
             <TextArea fx:id="textOutput" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="121.0" prefWidth="442.0" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
-      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="16.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
-         <children>
-            <ProgressBar fx:id="badCopBar" focusTraversable="false" maxWidth="1.7976931348623157E308" nodeOrientation="RIGHT_TO_LEFT" progress="0.0" HBox.hgrow="ALWAYS" />
-            <ProgressBar fx:id="GoodCopBar" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
-         </children>
-      </HBox>
       <GridPane fx:id="gridPaneList" prefHeight="320.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="203.0" />
@@ -103,7 +118,7 @@
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </right>
       </BorderPane>
-      <BorderPane fx:id="mapPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="159.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
+      <BorderPane fx:id="mapPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
          <top>
             <ImageView fx:id="arrowNorth" fitHeight="46.0" fitWidth="50.0" onMouseClicked="#GoArrowNorth" pickOnBounds="true" preserveRatio="true" rotate="180.0" BorderPane.alignment="CENTER">
                <image>
@@ -172,7 +187,7 @@
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </right>
       </BorderPane>
-      <BorderPane fx:id="introScreen" layoutX="10.0" layoutY="10.0" style="-fx-background-color: royalBlue;" GridPane.columnSpan="3" GridPane.rowSpan="5">
+      <BorderPane fx:id="introScreen" layoutX="10.0" layoutY="10.0" style="-fx-background-color: royalBlue;" visible="false" GridPane.columnSpan="3" GridPane.rowSpan="5">
          <center>
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>

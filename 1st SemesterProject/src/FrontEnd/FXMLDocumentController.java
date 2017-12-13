@@ -177,6 +177,10 @@ public class FXMLDocumentController implements Initializable {
     private Image combatImageHeroin = new Image("file:src/Texures/combatImageHeroin.png");    
     private Image combatImageInsane = new Image("file:src/Texures/combatImageInsane.png");    
     private Image combatImageNoTeeth = new Image("file:src/Texures/combatImageNoTeeth.png");    
+    @FXML
+    private Label watch;
+    @FXML
+    private Label drunkMeter;
         
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -497,6 +501,8 @@ public class FXMLDocumentController implements Initializable {
     protected void updateHUD(){
         stackPane.setVisible(false);
         Drunkmeter.setProgress(backEnd.getHUD().get(0)/100.0);
+        watch.setText(backEnd.getTime());
+        drunkMeter.setText(backEnd.getDrunkenness());
         if(backEnd.getHUD().get(1)==null){
         badCopBar.setProgress(backEnd.getHUD().get(2)/100.0);
         GoodCopBar.setProgress(0);
@@ -636,15 +642,21 @@ public class FXMLDocumentController implements Initializable {
         HiScoreScreen.setVisible(false);
     }
 
-    @FXML
-    private void enter(KeyEvent event) {
-
-    }
 
     @FXML
     private void doneButton(ActionEvent event) {
             
         backEnd.setName(nameField.getText());
         introScreen.setVisible(false);
+        backEnd.printWelcome();
+    }
+
+    @FXML
+    private void helpGUI(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void enter(KeyEvent event) {
     }
 }

@@ -177,8 +177,8 @@ public class PC {
     public void setName(String string){
     name=string;
     }
-    public void timeOfTheDay(){
-        System.out.println("The time of the day is " + hours + " hours and " + minutes + " minutes" );
+    public String getTime(){
+        return (String.format("%02d", hours)+":"+String.format("%02d", minutes));
     }
     public int returnHours(){
         return hours;

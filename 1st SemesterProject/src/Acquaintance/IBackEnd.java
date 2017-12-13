@@ -48,4 +48,7 @@ public interface IBackEnd {
     double getEnemyHealth();
     double getPlayerHealth();
     String[] getEnemyData();
+    void printWelcome();
+    String getTime();
+    String getDrunkenness();
 }
