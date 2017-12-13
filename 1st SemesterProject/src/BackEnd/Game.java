@@ -44,7 +44,7 @@ public class Game {
         parser = new Parser();
         player = new PC();
         player.move(world.getRoom("Bar"));
-        
+
     }
 
     // Keeps game running requesting new command and ends the game
@@ -127,7 +127,7 @@ public class Game {
     }
 
     Set<String> inspect(String string) {
-        timeloop(1);
+        timeLoop(1);
         Set<String> test = new HashSet();
         if (string.equals("Inventory")) {
             if (player.displayInventoryMap().isEmpty()) {
@@ -156,13 +156,11 @@ public class Game {
 //        GameState gamestate = new GameState(player, world);
 //        IFoundation.saveFile(gamestate);
 //        System.out.println("Saving");
-
     }
 
     void load() {
         //todo
     }
-
 
     /**
      * Moves the player from room to room.
@@ -170,10 +168,10 @@ public class Game {
      * @param e is the direction you want to move (north, west, south, east)
      */
     public boolean UIGo(String e) {
-        timeloop(2);
+        timeLoop(2);
         Room nextRoom = player.getRoom().getExit(e);
-        if(nextRoom==world.getRoom("Crime Scene")){
-        world.getNPC("Bartender Bert").fulfillCondition();
+        if (nextRoom == world.getRoom("Crime Scene")) {
+            world.getNPC("Bartender Bert").fulfillCondition();
         }
         if (nextRoom == world.getRoom("Partner's Home")) {
             if (player.getInventoryMap().containsKey("Key To Partner's Home")) {
@@ -227,8 +225,8 @@ public class Game {
             return true;
         }
     }
-    
-    public void help(){
+
+    public void help() {
         System.out.println("Your job is to discover and solve the murder. "
                 + "During your quest, you must avoid getting sober at all cost, "
                 + "by drinking whatever drinks you can find.");
@@ -239,13 +237,13 @@ public class Game {
             System.out.println("You are all alone." + "\n");
         } else {
             System.out.println("The other people here are:");
-            String people=player.getRoom().getNPCsInRoomMap().keySet().toString();
-            System.out.println(people.substring(1, (people.length()-1)) + "\n");
+            String people = player.getRoom().getNPCsInRoomMap().keySet().toString();
+            System.out.println(people.substring(1, (people.length() - 1)) + "\n");
         }
     }
 
     public void drink() {
-        timeloop(1);
+        timeLoop(1);
         for (Item drink : player.getInventoryMap().values()) {
             if (drink instanceof Beverage) {
                 System.out.println("You drink some " + ((Beverage) drink).getName() + ", you start to feel all your problems disappear");
@@ -269,11 +267,10 @@ public class Game {
         world.getRoom("Home").addItemToRoom(world.getItem("Badge"));
         parser.addFinishers();
     }
-    
-    public String getTime(){
-    return player.getTime();
-    }
 
+    public String getTime() {
+        return player.getTime();
+    }
 
     public void win() {
         manager.retrieve();
@@ -303,94 +300,94 @@ public class Game {
         }
         hobosOnTheMove = true;
     }
-    
-    double playerHealthPercent(){
-        return (player.getCurrentHealth()/100.0);
+
+    double playerHealthPercent() {
+        return (player.getCurrentHealth() / 100.0);
     }
- 
-    double enemyHealthPercent(){
-        return (enemy.getHealth()/(enemy.getTotalHealth()*1.0));
+
+    double enemyHealthPercent() {
+        return (enemy.getHealth() / (enemy.getTotalHealth() * 1.0));
     }
 
     void combatEnd() {
         player.setDamage(10);
         getInfo();
-        enemy=null;
+        enemy = null;
     }
 
     int fight() {
-        timeloop(1);
-        
-                int random1 = damageRandomizer();
-                int random2 = damageRandomizer();
-                System.out.println("You strike your opponent and deal " + (player.getDamage() + random1) + " damage.");
-                enemy.setHealth(enemy.getHealth()-(player.getDamage() + random1));
-                if (enemy.getHealth() <= 0) {
-                    System.out.println("You defeated you oppoent!");
-                    player.removePoints(15);
-                    player.getRoom().removeNpcFromRoom(enemy);
-                    combatEnd();
-                    return 2;
-                }else {
-                    System.out.println("Your opponent retaliates.");
-                    System.out.println("Your take " + (enemy.getDamage() + random2) + " damage.");
-                player.setCurrentHealth(player.getCurrentHealth()-(enemy.getDamage() + random2));
-                }
-                
+        timeLoop(1);
+
+        int random1 = damageRandomizer();
+        int random2 = damageRandomizer();
+        System.out.println("You strike your opponent and deal " + (player.getDamage() + random1) + " damage.");
+        enemy.setHealth(enemy.getHealth() - (player.getDamage() + random1));
+        if (enemy.getHealth() <= 0) {
+            System.out.println("You defeated you oppoent!");
+            player.removePoints(15);
+            player.getRoom().removeNpcFromRoom(enemy);
+            combatEnd();
+            return 2;
+        } else {
+            System.out.println("Your opponent retaliates.");
+            System.out.println("Your take " + (enemy.getDamage() + random2) + " damage.");
+            player.setCurrentHealth(player.getCurrentHealth() - (enemy.getDamage() + random2));
+        }
+
         if (player.getCurrentHealth() <= 0) {
-            endMessage="You got killed by "+enemy.getName()+".";
+            endMessage = "You got killed by " + enemy.getName() + ".";
             return 0;
         }
         return 1;
     }
 
-    	  public String[] getEnemyData(){
-     String[] enemyData = new String[3];
-        enemyData[0]=enemy.getName();
-        enemyData[1]=Integer.toString(enemy.getDamage());
-        enemyData[2]=Integer.toString(enemy.getHealth());
+    public String[] getEnemyData() {
+        String[] enemyData = new String[3];
+        enemyData[0] = enemy.getName();
+        enemyData[1] = Integer.toString(enemy.getDamage());
+        enemyData[2] = Integer.toString(enemy.getHealth());
         return enemyData;
     }
-    
+
     int run() {
-        timeloop(1);
-                if (Math.random() < 0.7) {
-                    
-                    System.out.println("You ran away like a coward.");
-                    player.moveBack();
-                    System.out.println(player.getRoom().getLongDescription());
-                    combatEnd();
-                    return 2;
-                } else {
-                    System.out.println("Your opponent didn't let you escape, and you got hit.");
-                    int random = damageRandomizer();
-                    System.out.println("Your take " + (enemy.getDamage() + random) + " damage.");
-                player.setCurrentHealth(player.getCurrentHealth()-(enemy.getDamage() + random));
-                }
+        timeLoop(1);
+        if (Math.random() < 0.7) {
+
+            System.out.println("You ran away like a coward.");
+            player.moveBack();
+            System.out.println(player.getRoom().getLongDescription());
+            combatEnd();
+            return 2;
+        } else {
+            System.out.println("Your opponent didn't let you escape, and you got hit.");
+            int random = damageRandomizer();
+            System.out.println("Your take " + (enemy.getDamage() + random) + " damage.");
+            player.setCurrentHealth(player.getCurrentHealth() - (enemy.getDamage() + random));
+        }
 
         if (player.getCurrentHealth() <= 0) {
-            endMessage="You got killed by "+enemy.getName()+".";
+            endMessage = "You got killed by " + enemy.getName() + ".";
             return 0;
         }
         return 1;
     }
 
     int calm() {
-        timeloop(1);
-                        if (Math.random() < 0.1) {
-                    System.out.println("You managed to calm down your opponent.");
-                    enemy.calmDown();
-                    player.addPoints(10);
-                    combatEnd();
-                    return 2;
-                } else {
-                    int random = damageRandomizer();
-                    player.setCurrentHealth(player.getCurrentHealth()-(enemy.getDamage() + random));
-                    System.out.println("You failed to calm your opponent, and got "
-                            + "struck. you took " + (enemy.getDamage() + random) + " damage.");
-                }
+        timeLoop(1);
+        if (Math.random() < 0.1) {
+            System.out.println("You managed to calm down your opponent.");
+            enemy.calmDown();
+            player.addPoints(10);
+            combatEnd();
+            return 2;
+        } else {
+            int random = damageRandomizer();
+            player.setCurrentHealth(player.getCurrentHealth() - (enemy.getDamage() + random));
+            System.out.println("You failed to calm your opponent, and got "
+                    + "struck. you took " + (enemy.getDamage() + random) + " damage.");
+        }
         if (player.getCurrentHealth() <= 0) {
-            endMessage="You got killed by "+enemy.getName()+".";
+            endMessage = "You got killed by " + enemy.getName() + ".";
             return 0;
         }
         return 1;
@@ -413,7 +410,7 @@ public class Game {
     }
 
     public int convict(String clue) {
-        timeloop(10);
+        timeLoop(10);
         if (!clue.equals("Badge")) {
 
             if (player.getJournal().get(clue).isConvictable()) {
@@ -438,17 +435,17 @@ public class Game {
             return 2;
         }
     }
-    
-    private void convictWin(){
-                        String criminals="";
-                    for (String npc : world.getRoom("Jail").getNPCsInRoomMap().keySet()) {
-                        criminals.concat((npc + (", ")));
-                    }
-                    String reverse=new StringBuffer(criminals).reverse().toString();
-                    reverse.replaceFirst(",", ""); 
-                    reverse.replaceFirst(",", " and");
-                    String criminalsDone=new StringBuffer(reverse).reverse().toString();
-                    endMessage="Judge: We have found "+criminals+"guilty of murder.";
+
+    private void convictWin() {
+        String criminals = "";
+        for (String npc : world.getRoom("Jail").getNPCsInRoomMap().keySet()) {
+            criminals.concat((npc + (", ")));
+        }
+        String reverse = new StringBuffer(criminals).reverse().toString();
+        reverse.replaceFirst(",", "");
+        reverse.replaceFirst(",", " and");
+        String criminalsDone = new StringBuffer(reverse).reverse().toString();
+        endMessage = "Judge: We have found " + criminals + "guilty of murder.";
     }
 
     /**
@@ -462,7 +459,7 @@ public class Game {
      */
     boolean badgeResponse(String answer) {
         if (answer.equals("No")) {
-            endMessage="You told the truth and confessed to your crime.";
+            endMessage = "You told the truth and confessed to your crime.";
             player.addPoints(20);
             win();
             return true;
@@ -495,7 +492,7 @@ public class Game {
     }
 
     void drop(String string) {
-        timeloop(1);
+        timeLoop(1);
         player.moveToRoom(world.getItem(string), player.getRoom());
     }
 
@@ -517,7 +514,7 @@ public class Game {
         if (target.getClue()) {
             player.addToJournal(target.giveClue());
         }
-        timeloop(1);
+        timeLoop(1);
     }
 
     Set<String> searchMenu() {
@@ -532,7 +529,7 @@ public class Game {
     }
 
     boolean search(String name) {
-        timeloop(2);
+        timeLoop(2);
         Item item = world.getItem(name);
         System.out.println("\n" + item.getDescription() + "\n");
         if (item.getCollectible()) {
@@ -550,7 +547,7 @@ public class Game {
     }
 
     void pickup(String answer) {
-        timeloop(1);
+        timeLoop(1);
         if (answer.equals("No")) {
             System.out.println("You decided not not to pick the item up.");
         } else {
@@ -570,8 +567,9 @@ public class Game {
             return "You were rated a " + (100 - player.getPoints()) + "% bad cop.";
         }
     }
-    String endMessage(){
-    return endMessage;
+
+    String endMessage() {
+        return endMessage;
     }
 
     Set<String> arrestMenu() {
@@ -587,16 +585,16 @@ public class Game {
     }
 
     public boolean arrest(String name) {
-        if (player.getRoom().getNPCsInRoomMap().get(name).getAlibi()!=null) {
-            endMessage=player.getRoom().getNPCsInRoomMap().get(name).getAlibi();
+        if (player.getRoom().getNPCsInRoomMap().get(name).getAlibi() != null) {
+            endMessage = player.getRoom().getNPCsInRoomMap().get(name).getAlibi();
             return false;
         } else {
             world.getNPC("Commissioner Curt").fulfillCondition();
             goToJail(player.getRoom().getNPCsInRoomMap().get(name));
-            if(!hobosOnTheMove){
-            updateCrimeScene();
+            if (!hobosOnTheMove) {
+                updateCrimeScene();
             }
-            timeloop(10);
+            timeLoop(10);
             return true;
         }
     }
@@ -623,10 +621,11 @@ public class Game {
 
         return list;
     }
-    public String getDrunkenness(){
-        String percent=String.format("%02d",player.getDrunkenness());
-        String drunkenness=("Drunkenness: "+percent+"%");
-    return drunkenness;
+
+    public String getDrunkenness() {
+        String percent = String.format("%02d", player.getDrunkenness());
+        String drunkenness = ("Drunkenness: " + percent + "%");
+        return drunkenness;
     }
 
     public HiScoreManager getHiScoreManager() {
@@ -654,13 +653,12 @@ public class Game {
                     exits.add(direction);
                 }
             }
-            
+
 //            int i = 0;//test
 //            for(String test : exits){//test
 //                System.out.println(i + " " + test);//test
 //                i++;//test
 //                }//test
-            
             int lenght = exits.size();
 //            System.out.println(lenght + " lenght");//test
             int roll = (int) (Math.random() * (lenght - 0));
@@ -677,30 +675,30 @@ public class Game {
         player.removeDrunkenness(1);
     }
 
-    public void ProperTimer() {
+    public void properTimer() {
         if (player.getMinutes() >= 60) {
             player.setHour(player.returnHours() + 1);
             player.setMinutes(0);
             if (player.getDrunkenness() >= 100) {
-                endMessage="You are completely smashed and pass out on the floor";
+                endMessage = "You are completely smashed and pass out on the floor";
             }
             if (player.getDrunkenness() < 10) {
                 System.out.println("You start to feel your hands again, if you dont drink soon you might die");
             }
             if (player.getDrunkenness() <= 0) {
-                endMessage="You feel completely sober, you fall down to the floor and die, knowing nobody loved you.";
+                endMessage = "You feel completely sober, you fall down to the floor and die, knowing nobody loved you.";
             }
         }
-         if (player.getMinutes()%3== 0 && hobosOnTheMove == true) {
-                NpcMover();
-            }
+        if (player.getMinutes() % 3 == 0 && hobosOnTheMove == true) {
+            NpcMover();
+        }
     }
 
-    public void timeloop(int runtimes) {
+    public void timeLoop(int runtimes) {
         int i;
         for (i = 0; i < runtimes; i++) {
             player.passTime(1);
-            ProperTimer();
+            properTimer();
             remover();
         }
     }
