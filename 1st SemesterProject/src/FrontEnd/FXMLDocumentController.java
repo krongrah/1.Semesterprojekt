@@ -657,7 +657,7 @@ updateHUD();
 
     @FXML
     private void helpGUI(ActionEvent event) {
-        
+        backEnd.help();
     }
 
     @FXML

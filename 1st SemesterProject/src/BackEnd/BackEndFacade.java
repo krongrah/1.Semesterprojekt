@@ -210,6 +210,11 @@ public String[] getEnemyData() {
     public String getDrunkenness() {
         return game.getDrunkenness();
     }
+
+    @Override
+    public void help() {
+        game.help();
+    }
     
    
       

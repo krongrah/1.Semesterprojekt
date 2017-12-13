@@ -270,6 +270,13 @@ public class Game {
             return true;
         }
     }
+    
+    public void help(){
+        System.out.println("Your job is to discover and solve the murder.");
+        System.out.println("During your quest, you must avoid getting sober at all cost, ");
+        System.out.println("by drinking whatever drinks you can find.");
+        System.out.println("");
+    }
 
     private void getInfo() {
 
