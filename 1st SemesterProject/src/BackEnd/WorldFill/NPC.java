@@ -55,7 +55,7 @@ public class NPC {
      * gets Alibi
      * @return getDialogue().getAlibi()
      */
-    public boolean getAlibi() {
+    public String getAlibi() {
         return getDialogue().getAlibi();
     }
     /**

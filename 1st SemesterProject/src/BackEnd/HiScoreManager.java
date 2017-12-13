@@ -92,37 +92,6 @@ public class HiScoreManager {
     if(badHiScore.size()>hiScoreMax){
     badHiScore=badHiScore.subList(0, hiScoreMax);
     }
-    
-    
-//        //moves all but the first 5 Strings to tempList
-//    Iterator<String> iterator=hiScore.iterator();
-//    int counter=0;
-//    while(iterator.hasNext()){
-//    if(counter>4){
-//    tempList.add(iterator.next());
-//    iterator.remove();
-//    }
-//    counter++;
-//    }
-//    
-//            //sorts tempList
-//        Collections.sort(tempList);
-//        
-//        //deletes all but the first 5 strings
-//    Iterator<String> tempIterator=tempList.iterator();
-//    int tempCounter=0;
-//    while(tempIterator.hasNext()){
-//    if(tempCounter>4){
-//    tempIterator.remove();
-//    }
-//    tempCounter++;
-//    }    
-//        //moves the content from the tempList to the mainList
-//        for(String string:tempList){
-//        hiScore.add(string);
-//        }
-//
-    //todo
     }
    
     

@@ -263,7 +263,7 @@ public class FXMLDocumentController implements Initializable {
     private void ArrestGUI(ActionEvent event) {
         closeMenus();
         List<String> list=new ArrayList(backEnd.arrestMenu());
-        if(list!=null){
+        if(!list.isEmpty()){
 
         arrestList.setVisible(true);
         arrestList.setItems(FXCollections.observableList(list));
@@ -314,7 +314,7 @@ public class FXMLDocumentController implements Initializable {
         if (input(searchList)!=null){
             if(backEnd.search(input(searchList))){
         pickUpList.setVisible(true);
-        pickUpList.setItems(FXCollections.observableList(ask));//todo
+        pickUpList.setItems(FXCollections.observableList(ask));
         
             }else{
                 updateHUD();
@@ -333,10 +333,10 @@ public class FXMLDocumentController implements Initializable {
         }else if(convictResult==2){
         badgeList.setVisible(true);
         badgeList.setItems(FXCollections.observableList(ask));
-        }
+        }else{
         convictList.setVisible(false);
         updateHUD();
-    }}
+    }}}
 
     @FXML
     private void inspectMenuSelect(MouseEvent event) {
@@ -479,12 +479,18 @@ public class FXMLDocumentController implements Initializable {
     }}
 
     @FXML
-    private void badgeSelect(MouseEvent event) {
+private void badgeSelect(MouseEvent event) {
         if (input(badgeList)!=null){
         backEnd.badgeResponse(input(badgeList));
+        if(input(badgeList).equals("No")){
+        showWinScreen();
+        }else{
         badgeList.setVisible(false);
-        updateHUD();
-    }}
+        
+    }
+updateHUD();
+}}
+
     private void showWinScreen(){
     
     winScreen.setVisible(true);
@@ -492,11 +498,16 @@ public class FXMLDocumentController implements Initializable {
     mapPane.setVisible(false);
     winGoodHiScore.setItems(FXCollections.observableList(backEnd.getScores().get(0)));
     winBadHighScore.setItems(FXCollections.observableList(backEnd.getScores().get(1)));
-    //todo
+    winText.setText(backEnd.endMessage());
+        winText.setWrapText(true);
+
     }
     private void showLoseScreen(){
     LoseScreen.setVisible(true);
     loseScore.setText(backEnd.endScore());
+    loseText.setText(backEnd.endMessage());
+        loseText.setWrapText(true);
+
     }
     protected void updateHUD(){
         stackPane.setVisible(false);
@@ -651,7 +662,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void helpGUI(ActionEvent event) {
-        
+        backEnd.help();
     }
 
     @FXML
