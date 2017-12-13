@@ -5,11 +5,13 @@
  */
 package BackEnd.WorldFill;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Krongrah
  */
-public class NPC {
+public class NPC implements Serializable{
 
     // NPC attributes
     private String name;
