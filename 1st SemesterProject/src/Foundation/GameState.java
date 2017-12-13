@@ -5,7 +5,10 @@
  */
 package Foundation;
 
+import BackEnd.PC;
+import BackEnd.World;
 import java.io.Serializable;
+import javafx.scene.input.TransferMode;
 
 /**
  *
@@ -14,4 +17,10 @@ import java.io.Serializable;
 class GameState implements Serializable{
     BackEnd.PC player;
     BackEnd.World world;
+    
+    GameState(PC player, World world){
+    this.player=player;
+    this.world=world;
+              
+    }
 }

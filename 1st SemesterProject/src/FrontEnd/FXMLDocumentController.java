@@ -619,8 +619,6 @@ public class FXMLDocumentController implements Initializable {
         dropList.setVisible(true);
         dropList.setItems(FXCollections.observableList(new ArrayList(set)));
         }  
-        
-        
     }
 
     @FXML
