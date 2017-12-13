@@ -4,18 +4,12 @@ package BackEnd;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-import Acquaintance.IFoundation;
 import BackEnd.WorldFill.Room;
 import BackEnd.WorldFill.Hobo;
 import BackEnd.WorldFill.NPC;
 import BackEnd.WorldFill.HostileNPC;
 import BackEnd.WorldFill.Beverage;
 import BackEnd.WorldFill.Item;
-import BackEnd.Command.Parser;
-import BackEnd.Command.CommandWord;
-import BackEnd.Command.Command;
-import Foundation.SaveFile;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -23,12 +17,9 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Game {
 
-    private Parser parser;
     boolean wantToQuit = false;
     private PC player;
     private World world = new World();
@@ -41,32 +32,11 @@ public class Game {
 
     public Game() {
 
-        parser = new Parser();
         player = new PC();
         player.move(world.getRoom("Bar"));
         
     }
 
-    // Keeps game running requesting new command and ends the game
-    // when processCommand returns true
-    public void play() {
-        System.out.println("testing? Y/N");
-        Scanner testing = new Scanner(System.in);
-        String tester = testing.nextLine().toLowerCase();
-        if (tester.equals("y")) {
-            tester();
-        }
-        printWelcome();
-
-        boolean finished = false;
-        while (!finished) {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
-            System.out.println("");
-
-        }
-        System.out.println("Thank you for playing.  Good bye.");
-    }
 
     // Prints the welcome message and the current room
     void printWelcome() {
@@ -82,50 +52,7 @@ public class Game {
         player.setName(string);
     }
 
-    // Excecutes commands
-    private boolean processCommand(Command command) {
-
-        CommandWord commandWord = command.getCommandWord();
-
-        if (commandWord == CommandWord.UNKNOWN) {
-            System.out.println("I don't know what you mean...");
-            return false;
-        }
-
-        if (commandWord == CommandWord.HELP) {
-            printHelp();
-        } else if (commandWord == CommandWord.GO) {
-            //goRoom(command);
-        } else if (commandWord == CommandWord.QUIT) {
-            wantToQuit = quit(command);
-        } else if (commandWord == CommandWord.SEARCH) {
-            search("");
-        } else if (commandWord == CommandWord.TALK) {
-            talk("");
-        } else if (commandWord == CommandWord.ARREST) {
-            arrest("");
-        } else if (commandWord == CommandWord.INSPECT) {
-            //inspect(command);
-        } else if (commandWord == CommandWord.DROP) {
-            //drop(command);
-        } else if (commandWord == CommandWord.LIE) {
-            System.out.println("Lying is bad, and you should feel bad.");
-        } else if (commandWord == CommandWord.CONVICT) {
-            convict("");
-        } else if (commandWord == CommandWord.DRINK) {
-            drink();
-        } else if (commandWord == CommandWord.DRUNKNESS) {
-            drunkness();
-        }
-        return wantToQuit;
-    }
-
-    // Calls parser to show all possible commands
-    private void printHelp() {
-
-        System.out.println("Your command words are:");
-        parser.showCommands();
-    }
+    
 
     Set<String> inspectMenu() {
         System.out.println("Which menu do you wish to inspect?");
@@ -267,15 +194,6 @@ public class Game {
         return null;
     }
 
-    // Quits the game
-    private boolean quit(Command command) {
-        if (command.hasSecondWord()) {
-            System.out.println("Quit what?");
-            return false;
-        } else {
-            return true;
-        }
-    }
     
     public void help(){
         System.out.println("Your job is to discover and solve the murder. During your quest, you must avoid getting sober at all cost, by drinking whatever drinks you can find.");
@@ -315,7 +233,6 @@ public class Game {
         System.out.println("Commissioner: Good job, now you need to go find "
                 + "some better evidence to convict this bastard. I will be in the Police department.");
         world.getRoom("Home").addItemToRoom(world.getItem("Badge"));
-        parser.addFinishers();
 
     }
     
