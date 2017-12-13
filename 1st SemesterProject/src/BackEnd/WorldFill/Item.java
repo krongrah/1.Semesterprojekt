@@ -5,7 +5,9 @@
  */
 package BackEnd.WorldFill;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
 
     // creating the shared attributes
     private String name;

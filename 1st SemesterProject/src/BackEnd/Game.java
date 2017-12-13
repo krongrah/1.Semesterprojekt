@@ -88,12 +88,10 @@ public class Game {
         player.inspectItemMap(item);
     }
 
-    GameState save() {
+    Object save() {
         GameState gamestate = new GameState(player, world);
-        return gamestate;
-
-}
-
+         return gamestate;
+    }
     void load() {
         //todo
     }

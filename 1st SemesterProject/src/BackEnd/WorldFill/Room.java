@@ -1,5 +1,6 @@
 package BackEnd.WorldFill;
 
+import java.io.Serializable;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.util.Map;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-public class Room {   //rooms have a description/name and map with strings to rooms, serving as exits.
+public class Room implements Serializable{   //rooms have a description/name and map with strings to rooms, serving as exits.
 
     private String description;
     private HashMap<String, Room> exits;

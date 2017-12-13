@@ -5,11 +5,13 @@
  */
 package BackEnd.WorldFill;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Krongrah
  */
-public class Dialogue {
+public class Dialogue implements Serializable{
 
     //Attributes
     private String[] dialogue1=null;

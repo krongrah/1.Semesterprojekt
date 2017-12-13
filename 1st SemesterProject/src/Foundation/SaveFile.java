@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,7 +24,7 @@ import javafx.scene.chart.PieChart.Data;
  * @author Krongrah
  */
 
-public class SaveFile {
+public class SaveFile implements Serializable{
     
    public boolean saveGame(Object gameState)
   {
@@ -42,12 +43,15 @@ public class SaveFile {
       out.writeObject(gameState);
       out.close();
       fileOut.close();
+      System.out.println("game saved");
+      
       return true;
     }
     catch (IOException i)
     {
       i.printStackTrace();
     }
+      
     return false;
   }
   

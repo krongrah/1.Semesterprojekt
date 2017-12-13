@@ -16,6 +16,6 @@ import java.util.List;
 public interface IFoundation {
    void saveHiScoreList(ArrayList<String> list);
    ArrayList<String> getHiScoreList();
-   boolean save(Object gameState);
+   Object save(Object gameState);
    Object load();
 }

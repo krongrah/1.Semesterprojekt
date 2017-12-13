@@ -5,11 +5,13 @@
  */
 package BackEnd.WorldFill;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Krongrah
  */
-public class Clue {
+public class Clue implements Serializable{
 
     //Attributes
     private String name;

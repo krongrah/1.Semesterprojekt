@@ -5,11 +5,13 @@
  */
 package BackEnd.WorldFill;
 
+import java.io.Serializable;
+
 /**
  *
  * @author sebastian
  */
-public class Hobo extends HostileNPC {
+public class Hobo extends HostileNPC implements Serializable {
 
     public Hobo(String newName, Dialogue dialogue, Clue clue, int clueRelease, int health, int damage, double aggression) {
         super(newName, dialogue, clue, clueRelease, health, damage, aggression);
