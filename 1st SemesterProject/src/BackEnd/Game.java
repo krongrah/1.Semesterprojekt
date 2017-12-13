@@ -644,8 +644,8 @@ public class Game {
             return false;
         } else {
             world.getNPC("Commissioner Curt").fulfillCondition();
-            updateCrimeScene();
             goToJail(player.getRoom().getNPCsInRoomMap().get(name));
+            updateCrimeScene();
             return true;
         }
     }
@@ -791,26 +791,40 @@ public class Game {
     }
 
     public void NpcMover() {
+//        System.out.println("NPCMover entered");//test
         for (Hobo hobo : world.getHobos()) {
+            Room currentRoom = world.getRoom(hobo.getCurrentRoomName());
+//            System.out.println(hobo.getName()+" Chosen in "+hobo.getCurrentRoomName());//test
             List<String> exits = new ArrayList<>();
             exits.add("Stay");
-            for (Iterator it = world.getRoom(hobo.getCurrentRoomName()).getExit().keySet().iterator(); it.hasNext();) {
+            for (Iterator it = currentRoom.getExit().keySet().iterator(); it.hasNext();) {
                 String direction = (String) it.next();
-                if (world.getRoom(hobo.getCurrentRoomName()).getExit(direction).isHoboAccessable()) {
+                if (currentRoom.getExit(direction).isHoboAccessable()) {
                     exits.add(direction);
                 }
             }
+            
+//            int i = 0;//test
+//            for(String test : exits){//test
+//                System.out.println(i + " " + test);//test
+//                i++;//test
+//                }//test
+            
             int lenght = exits.size();
+//            System.out.println(lenght + " lenght");//test
             int roll = (int) (Math.random() * (lenght - 0));
+//            System.out.println("rolled "+ roll);//test
             if (!exits.get(roll).equals("Stay")) {
-                world.getRoom(hobo.getCurrentRoomName()).moveNpc(hobo, world.getRoom(hobo.getCurrentRoomName()).getExit(exits.get(roll)));
+                currentRoom.moveNpc(hobo, currentRoom.getExit(exits.get(roll)));
+//                System.out.println("Moved to "+ currentRoom.getExit(exits.get(roll)).getRoomName()+"\n");//test
             }
+//            else{System.out.println("stay");} //test
         }
     }
 
     public void remover() {
         player.removeDrunkenness(1);
-        player.passTime(1);
+        
 
     }
 
@@ -831,7 +845,7 @@ public class Game {
                 lose();
             }
 
-            if (player.getDrunkenness() % 1 == 0 && hobosOnTheMove == true) {
+            if (player.getMinutes()%1== 0 && hobosOnTheMove == true) {
                 NpcMover();
             }
 
@@ -841,6 +855,7 @@ public class Game {
     public void timeloop(int runtimes) {
         int i;
         for (i = 0; i < runtimes; i++) {
+            player.passTime(1);
             ProperTimer();
             remover();
         }
@@ -893,7 +908,6 @@ public class Game {
                     break;
 
             }
-
         }
     }
 }
