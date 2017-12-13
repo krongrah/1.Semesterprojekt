@@ -160,14 +160,14 @@ public class Game {
         player.inspectItemMap(item);
     }
 
-    void save() {
-        try {
-            Foundation.SaveFile.saveFile();
-        } catch (IOException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.out.println("Saving");
-    }
+//    void save() {
+//        try {
+//            Foundation.SaveFile.saveFile();
+//        } catch (IOException ex) {
+//            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        System.out.println("Saving");
+//    }
 
     void load() {
         //todo
