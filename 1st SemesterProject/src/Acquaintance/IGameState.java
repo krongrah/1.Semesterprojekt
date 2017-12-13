@@ -17,6 +17,5 @@ public interface IGameState {
     World world = null;
     
     public BackEnd.PC getPlayer();
-    
     public BackEnd.World getWorld();
 }

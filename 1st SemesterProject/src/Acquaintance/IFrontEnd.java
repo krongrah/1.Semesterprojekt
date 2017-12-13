@@ -4,14 +4,12 @@
  * and open the template in the editor.
  */
 package Acquaintance;
-import FrontEnd.Initializer;
 /**
  *
  * @author Krongrah
  */
 public interface IFrontEnd {
     void injectBackEnd(IBackEnd backEnd);
-
     public void begin(String[] args);
     
 }

@@ -15,7 +15,6 @@ import java.util.Set;
 public interface IBackEnd {
     void injectFoundation(IFoundation foundation);
     void play();
-
     void save();
     void drink();
     void talk(String string);
