@@ -111,7 +111,6 @@ public class Game {
             world.getNPC("Bartender Bert").fulfillCondition();
         }
         if (nextRoom == world.getRoom("Partner's Home")) {
-
             if (player.getInventory().containsKey("Key To Partner's Home")) {
                 player.move(nextRoom);
                 System.out.println(player.getRoom().getLongDescription());
