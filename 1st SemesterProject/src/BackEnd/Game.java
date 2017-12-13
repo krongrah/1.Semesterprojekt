@@ -295,15 +295,13 @@ public class Game {
                 System.out.println("You drink some " + ((Beverage) drink).getName() + ", you start to feel all your problems disappear");
                 player.addDrunkenness(((Beverage) drink).getAlcoholContent());
                 ((Beverage) drink).removeSip();
-                if (((Beverage) drink).getNumberOfSips() == 0) {
+                if (((Beverage) drink).getNumberOfSips() <= 0) {
                     player.getInventoryMap().remove(drink);
                     System.out.println("You emptied your bottle and tossed it away.");
                 }
                 break;
             }
         }
-        System.out.println(player.getDrunkenness());
-
     }
 
     public void goToJail(NPC scum) {
@@ -810,7 +808,7 @@ public class Game {
         if (player.getMinutes() >= 60) {
             player.setHour(player.returnHours() + 1);
             player.setMinutes(0);
-            if (player.getDrunkenness() == 100) {
+            if (player.getDrunkenness() >= 100) {
                 System.out.println("You are completely smashed and pass out on the floor");
 
             }
@@ -818,7 +816,7 @@ public class Game {
                 System.out.println("You start to feel your hands again, if you dont drink soon you might die");
             }
 
-            if (player.getDrunkenness() == 0) {
+            if (player.getDrunkenness() <= 0) {
                 System.out.println("You feel completely sober, you fall down to the floor and die, knowing nobody loved you.");
                 lose();
             }
