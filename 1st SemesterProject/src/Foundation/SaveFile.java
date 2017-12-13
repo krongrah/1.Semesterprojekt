@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Foundation;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -26,11 +27,7 @@ public class SaveFile {
           new FileOutputStream("saveFile.txt"));
                 oos.writeObject(savedGame);
                 oos.writeObject(savedGame);
-        } 
-        catch (IOException e) {
-            System.out.println("Error while saving.");
-            e.printStackTrace(System.out);
-        }
+            }
     }
     
     public static GameState loadFile(){
@@ -50,4 +47,3 @@ public class SaveFile {
         }
     }
 }
-

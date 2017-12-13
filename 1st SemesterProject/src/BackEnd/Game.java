@@ -41,6 +41,7 @@ public class Game {
         parser = new Parser();
         player = new PC();
         player.move(world.getRoom("Bar"));
+        
     }
 
     // Keeps game running requesting new command and ends the game
@@ -64,14 +65,11 @@ public class Game {
         System.out.println("Thank you for playing.  Good bye.");
     }
 
-    // Prints the welcome message, the help command, and the current room
-    private void printWelcome() {
-        //todo
+    // Prints the welcome message and the current room
+    void printWelcome() {
         System.out.println();
         System.out.println("Welcome to the life of detective Dindunuffin.");
         System.out.println("The commissioner wants you in the police department.");
-        System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
-        System.out.println("Use the \"talk\" command to talk to the Bartender.");
         System.out.println();
         System.out.println(player.getRoom().getLongDescription());
         getInfo();
@@ -285,7 +283,6 @@ public class Game {
             System.out.println("The other people here are:");
             System.out.println(player.getRoom().getNPCsInRoomMap().keySet() + "\n");
         }
-        player.timeOfTheDay();
     }
 
     public void drink() {
@@ -296,7 +293,7 @@ public class Game {
                 player.addDrunkenness(((Beverage) drink).getAlcoholContent());
                 ((Beverage) drink).removeSip();
                 if (((Beverage) drink).getNumberOfSips() <= 0) {
-                    player.getInventoryMap().remove(drink);
+                    player.getInventoryMap().remove(drink.getName());
                     System.out.println("You emptied your bottle and tossed it away.");
                 }
                 break;
@@ -313,6 +310,10 @@ public class Game {
         world.getRoom("Home").addItemToRoom(world.getItem("Badge"));
         parser.addFinishers();
 
+    }
+    
+    public String getTime(){
+    return player.getTime();
     }
 
     public void lose() {
@@ -769,6 +770,11 @@ public class Game {
         }
 
         return list;
+    }
+    public String getDrunkenness(){
+        String percent=String.format("%02d",player.getDrunkenness());
+        String drunkenness=("Drunkenness: "+percent+"%");
+    return drunkenness;
     }
 
     public HiScoreManager getHiScoreManager() {
