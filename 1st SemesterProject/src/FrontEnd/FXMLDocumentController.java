@@ -263,7 +263,7 @@ public class FXMLDocumentController implements Initializable {
     private void ArrestGUI(ActionEvent event) {
         closeMenus();
         List<String> list=new ArrayList(backEnd.arrestMenu());
-        if(list.isEmpty()){//todo
+        if(!list.isEmpty()){
 
         arrestList.setVisible(true);
         arrestList.setItems(FXCollections.observableList(list));

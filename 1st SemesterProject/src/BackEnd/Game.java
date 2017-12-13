@@ -569,14 +569,14 @@ public class Game {
     }
 
     void talk(String name) {
-        timeloop(1);
+        
         //Gives the player a list of NPCs in the room
         NPC target = player.getRoom().getNPCsInRoomMap().get(name);
         target.getLine();
-        if (/*target.getClueCount() == target.getClueRelease()*/target.getClue()) {
+        if (target.getClue()) {
             player.addToJournal(target.giveClue());
         }
-
+        timeloop(1);
     }
 
     Set<String> searchMenu() {
@@ -646,12 +646,12 @@ public class Game {
             return victims;
         } else {
             System.out.println("There are no one here for you to arrest.");
-            return null;
+            return new HashSet();
         }
     }
 
     public boolean arrest(String name) {
-        timeloop(10);
+        
 
         if (player.getRoom().getNPCsInRoomMap().get(name).getAlibi()!=null) {
             endMessage=player.getRoom().getNPCsInRoomMap().get(name).getAlibi();
@@ -660,8 +660,12 @@ public class Game {
         } else {
             world.getNPC("Commissioner Curt").fulfillCondition();
             goToJail(player.getRoom().getNPCsInRoomMap().get(name));
+            if(!hobosOnTheMove){
             updateCrimeScene();
+            }
+            timeloop(10);
             return true;
+            
         }
         
         
@@ -813,7 +817,6 @@ public class Game {
     }
 
     public void NpcMover() {
-//        System.out.println("NPCMover entered");//test
         for (Hobo hobo : world.getHobos()) {
             Room currentRoom = world.getRoom(hobo.getCurrentRoomName());
 //            System.out.println(hobo.getName()+" Chosen in "+hobo.getCurrentRoomName());//test
