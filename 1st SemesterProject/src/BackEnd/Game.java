@@ -395,6 +395,14 @@ public class Game {
         return 1;
     }
 
+    	  public String[] getEnemyData(){
+     String[] enemyData = new String[3];
+        enemyData[0]=enemy.getName();
+        enemyData[1]=Integer.toString(enemy.getDamage());
+        enemyData[2]=Integer.toString(enemy.getHealth());
+        return enemyData;
+    }
+    
     int run() {
         timeloop(1);
         

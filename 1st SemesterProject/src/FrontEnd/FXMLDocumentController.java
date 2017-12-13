@@ -583,6 +583,24 @@ public class FXMLDocumentController implements Initializable {
     }
     
     private void combat(){
+        labelName.setText(backEnd.getEnemyData()[0]);
+        startDamage.setText(backEnd.getEnemyData()[1]);
+        labelStartHealt.setText(backEnd.getEnemyData()[2]);
+            switch(backEnd.getEnemyData()[0]){
+                case "Dirty Darryl":
+                    fightImage.setImage(combatImageDirty);
+                    break;
+                case "Heroin Harry":
+                    fightImage.setImage(combatImageHeroin);
+                    break;
+                case "No-Teeth Terry":
+                    fightImage.setImage(combatImageNoTeeth);
+                    break;
+                case "Insane Dwayne":
+                    fightImage.setImage(combatImageInsane);
+                    break;
+    }
+        
     fightScreen.setVisible(true);
     updateHealth();
     }

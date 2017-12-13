@@ -47,4 +47,5 @@ public interface IBackEnd {
     int calm();
     double getEnemyHealth();
     double getPlayerHealth();
+    String[] getEnemyData();
 }

@@ -192,7 +192,9 @@ public class BackEndFacade implements IBackEnd{
     public double getPlayerHealth() {
         return game.playerHealthPercent();
     }
-
-    
+public String[] getEnemyData() {
+        return game.getEnemyData();
+    }
+   
       
 }
