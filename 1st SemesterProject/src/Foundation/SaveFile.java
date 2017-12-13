@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Foundation;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -14,32 +15,21 @@ import java.io.FileInputStream;
  *
  * @author Krongrah
  */
-
-public class SaveFile {
-    static GameState savedGame = new GameState();
     
-    public static void saveFile() throws IOException{
-        try {
-            ObjectOutputStream oos = new ObjectOutputStream(
-          new FileOutputStream("saveFile.txt"));
+public class SaveFile {
+    GameState savedGame = new GameState();
+    
+    public void saveFile() throws IOException{
+        try (
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("SaveFile"))){
                 oos.writeObject(savedGame);
-        } 
-        catch (IOException e) {
-            System.out.println("Error while saving.");
-            e.printStackTrace(System.out);
-        }
+            }
     }
     
-    public static void loadFile(){
-        FileInputStream fis = null;
-        ObjectInputStream ois = null;
-        try {
-            fis = new FileInputStream("saveFile.txt");
-            ois = new ObjectInputStream(fis);
-        } 
-        catch (IOException ex) {
-            System.out.println("Error while loading.");
+    public GameState loadFile() throws Exception{
+        System.out.println("Loading..");
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("SaveFile"))){
+            return (GameState) ois.readObject();
         }
     }
 }
-
