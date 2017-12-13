@@ -5,6 +5,7 @@
  */
 package Foundation;
 
+import BackEnd.GameState;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -21,7 +22,6 @@ public class SaveFile {
     GameState savedGame;
     
     public static void saveFile(GameState savedGame) throws IOException{
-        this.saveGame=savedGame;
         try {
             ObjectOutputStream oos = new ObjectOutputStream(
           new FileOutputStream("saveFile.txt"));

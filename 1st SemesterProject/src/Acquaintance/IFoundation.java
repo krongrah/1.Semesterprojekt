@@ -15,5 +15,4 @@ import java.util.List;
 public interface IFoundation {
    void saveHiScoreList(ArrayList<String> list);
    ArrayList<String> getHiScoreList();
-
 }

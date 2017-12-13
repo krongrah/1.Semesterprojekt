@@ -7,6 +7,8 @@ package Foundation;
 
 import java.util.ArrayList;
 import Acquaintance.IFoundation;
+import BackEnd.PC;
+import BackEnd.World;
 import java.util.List;
 
 /**
@@ -29,6 +31,8 @@ public class FoundationFacade implements IFoundation{
     public ArrayList<String> getHiScoreList() {
 return hiscore.pullHiScore();
         }
+
+    
 
 
     

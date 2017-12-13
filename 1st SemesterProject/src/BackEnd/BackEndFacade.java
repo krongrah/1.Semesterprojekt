@@ -72,11 +72,11 @@ public class BackEndFacade implements IBackEnd{
     game.drink();
     }
     
-//    @Override
-//    public void save(){
-//    game.save();
-//    
-//    }
+    @Override
+    public void save(){
+    game.save();
+    
+    }
 
     @Override
     public Set<String> talkMenu(){
