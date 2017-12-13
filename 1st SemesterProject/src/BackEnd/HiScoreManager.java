@@ -8,7 +8,6 @@ package BackEnd;
 import Acquaintance.IFoundation;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -18,11 +17,12 @@ import java.util.List;
 public class HiScoreManager {
     private List<String> goodHiScore=new ArrayList<>();
     private List<String> badHiScore=new ArrayList<>();
-    private List<String> tempList=new ArrayList<>();
     private IFoundation foundation;
     private int hiScoreMax=5;
     
-    
+    /**
+     * Stores combines the good and the bad high score lists into one, which is then stored in the foundation.
+     */
     private void store(){
 //    ArrayList<String> combinedList=new ArrayList<>();
 //    for(String string1:goodHiScore){
@@ -34,7 +34,9 @@ public class HiScoreManager {
     }
     
 
-   
+   /**
+    * retrieves a list of high scores from the foundation and splits it into the good and the bad list.
+    */
     void retrieve(){
     //retrive the combined list and split it into good and bad.
 //        ArrayList<String>list=foundation.getHiScoreList();
@@ -45,14 +47,21 @@ public class HiScoreManager {
 //        goodHiScore.add(list.get(j));
 //        }
         
-        
     }
     
-    
+    /**
+     * injects the foundation into this class.
+     * @param foundation 
+     */
     void pull(IFoundation foundation){
     this.foundation=foundation;
     }
     
+    /**
+     * Adds a score to the relevant high score list and then sorts and stores the lists.
+     * @param name is the name of the player.
+     * @param points is the amount of points the player has collected.
+     */
     void addScore(String name, int points){
         if(points<100){
     String pointString =String.format("%02d", (100-points));
@@ -64,15 +73,12 @@ public class HiScoreManager {
     sort();
     store();
     }
-    
-    void seeList(){
-    for(String string:goodHiScore){
-        System.out.println(string);
-        }
-    for(String string:badHiScore){
-        System.out.println(string);
-        }
-    }
+
+    /**
+     * 
+     * @return returns a list containing two lists of strings, 
+     * with the good High score on index 0, and the bad one on index 1.
+     */
     List<List<String>>getScores(){
         List<List<String>> scores=new ArrayList<>();
         scores.add(goodHiScore);
@@ -80,8 +86,12 @@ public class HiScoreManager {
         return scores;
     }
 
+    /**
+     * Sorts both high score list via a borrowed sort method, then reverses them 
+     * to get the top on index 0. finally it cuts of the bottom of the lists, 
+     * so only the best (hiScoreMax) scores are stored.
+     */
     private void sort(){
-    //sort both lists
     Collections.sort(goodHiScore);
     Collections.sort(badHiScore);
     Collections.reverse(goodHiScore);

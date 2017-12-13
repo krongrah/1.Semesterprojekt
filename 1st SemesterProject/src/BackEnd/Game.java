@@ -64,18 +64,19 @@ public class Game {
 
     Set<String> inspect(String string) {
         timeLoop(1);
+        
         Set<String> test = new HashSet();
         if (string.equals("Inventory")) {
-            if (player.displayInventoryMap().isEmpty()) {
+            if (player.getInventory().isEmpty()) {
 
                 System.out.println("Your inventory is empty.");
             }
-            return player.displayInventoryMap();
+            return player.getInventory().keySet();
         } else {
-            if (player.displayJournal().isEmpty()) {
+            if (player.getJournal().isEmpty()) {
                 System.out.println("Your journal is empty.");
             }
-            return player.displayJournal();
+            return player.getJournal().keySet();
         }
     }
 
@@ -109,7 +110,7 @@ public class Game {
             world.getNPC("Bartender Bert").fulfillCondition();
         }
         if (nextRoom == world.getRoom("Partner's Home")) {
-            if (player.getInventoryMap().containsKey("Key To Partner's Home")) {
+            if (player.getInventory().containsKey("Key To Partner's Home")) {
                 player.move(nextRoom);
                 System.out.println(player.getRoom().getLongDescription());
                 getInfo();
@@ -168,13 +169,13 @@ public class Game {
 
     public void drink() {
         timeLoop(1);
-        for (Item drink : player.getInventoryMap().values()) {
+        for (Item drink : player.getInventory().values()) {
             if (drink instanceof Beverage) {
                 System.out.println("You drink some " + ((Beverage) drink).getName() + ", you start to feel all your problems disappear");
                 player.addDrunkenness(((Beverage) drink).getAlcoholContent());
                 ((Beverage) drink).removeSip();
                 if (((Beverage) drink).getNumberOfSips() <= 0) {
-                    player.getInventoryMap().remove(drink.getName());
+                    player.getInventory().remove(drink.getName());
                     System.out.println("You emptied your bottle and tossed it away.");
                 }
                 break;
@@ -406,9 +407,9 @@ public class Game {
     }
 
     Set<String> dropMenu() {
-        if (!player.getInventoryMap().isEmpty()) {
+        if (!player.getInventory().isEmpty()) {
             System.out.println("These are the items in your inventory.");
-            return player.getInventoryMap().keySet();
+            return player.getInventory().keySet();
         } else {
             System.out.println("Your inventory is empty.");
             return null;
