@@ -160,7 +160,6 @@ public class Game {
 
     void save() {
         
-        System.out.println("Saving");
     }
 
     void load() {

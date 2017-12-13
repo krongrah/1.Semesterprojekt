@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import jdk.nashorn.internal.codegen.CompilerConstants;
 
 /**
@@ -21,29 +22,36 @@ import jdk.nashorn.internal.codegen.CompilerConstants;
 public class SaveFile {
     GameState savedGame;
     
-    public static void saveFile(GameState savedGame) throws IOException{
+    public void saveFile(GameState savedGame) throws FileNotFoundException, ClassNotFoundException, IOException{
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(
-          new FileOutputStream("saveFile.txt"));
-                oos.writeObject(savedGame);
-                oos.writeObject(savedGame);
-            }
+            
+            // write object to file
+            FileOutputStream fos = new FileOutputStream("SaveFile.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(savedGame);
+            oos.close();
+            
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
-    public static GameState loadFile(){
+    public GameState loadFile(){
         
-        FileInputStream fis = null;
-        ObjectInputStream ois = null;
+       // read object from file
         try {
-            
-            fis = new FileInputStream("saveFile.txt");
-            ois = new ObjectInputStream(fis);
+            FileInputStream fis = new FileInputStream("SaveFile.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
             savedGame = (GameState) ois.readObject();
+            ois.close();
             
-            return ;
-        } 
-        catch (IOException ex) {
+        } catch (IOException ex) {
             System.out.println("Error while loading.");
+        } catch (ClassNotFoundException ex) {
         }
+        
+        return savedGame;
     }
 }
