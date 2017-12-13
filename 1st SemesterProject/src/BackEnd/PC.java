@@ -9,11 +9,8 @@ import BackEnd.WorldFill.Room;
 import BackEnd.WorldFill.Clue;
 import BackEnd.WorldFill.Item;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 /**
@@ -23,11 +20,11 @@ import java.util.Set;
 public class PC implements Serializable{
 
     //player attributes
-    private int minutes;
-    private int hours;
-    private int movementChecker;
-    private int drunkenness;
-    private int points;
+    private int minutes=0;
+    private int hours=12;
+    private int movementChecker=0;
+    private int drunkenness=99;
+    private int points=90;
     private Map<String,Item> inventory=new HashMap<>();
     private Map<String,Clue> journal = new HashMap<>();
     private Map<String,Clue> evidence = new HashMap<>();
@@ -35,31 +32,14 @@ public class PC implements Serializable{
     private int currentHealth = 100;
     private int damage=10;
     private Room currentRoom, lastRoom;
-    private String name="Derp";
+    private String name;
+    private Item itemToBePickedUp;
     //constructor
-    PC(){
-        points = 90;
-        drunkenness = 99;
-        movementChecker = 0;
-        hours = 12;
-        minutes = 0;
-    }
+    PC(){}
 
-    //Checking methods
-    public void displayInventory() {
-        System.out.println(inventory.keySet());
-    }
-    public Set<String> displayInventoryMap(){
-    return inventory.keySet();
-    }
-
-    public Map<String,Item>getInventoryMap(){
+    public Map<String,Item>getInventory(){
     return inventory;
     }
-
-    public Set<String> displayJournal() {
-        return journal.keySet();
-        }
 
     //getters for the descriptions
 
@@ -199,6 +179,15 @@ public class PC implements Serializable{
     public int getDamage(){
     return damage;
     }
+    Item getItemToBePickedUp(){
+        Item holder=itemToBePickedUp;
+        itemToBePickedUp=null;
+        return holder;
+    }
+    void setItemToBePickedUp(Item itemToBePickedUp){
+    this.itemToBePickedUp=itemToBePickedUp;
+    }
+    
 }
     
     
