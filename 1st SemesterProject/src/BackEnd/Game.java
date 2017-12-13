@@ -277,8 +277,9 @@ public class Game {
             System.out.println("You are all alone." + "\n");
         } else {
             System.out.println("The other people here are:");
-            System.out.println(player.getRoom().getNPCsInRoomMap().keySet() + "\n");
-        }
+            String people=player.getRoom().getNPCsInRoomMap().keySet().toString();
+            System.out.println(people.substring(1, (people.length()-1)) + "\n");
+}
     }
 
     public void drink() {

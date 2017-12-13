@@ -333,10 +333,10 @@ public class FXMLDocumentController implements Initializable {
         }else if(convictResult==2){
         badgeList.setVisible(true);
         badgeList.setItems(FXCollections.observableList(ask));
-        }
+        }else{
         convictList.setVisible(false);
         updateHUD();
-    }}
+    }}}
 
     @FXML
     private void inspectMenuSelect(MouseEvent event) {
@@ -479,12 +479,18 @@ public class FXMLDocumentController implements Initializable {
     }}
 
     @FXML
-    private void badgeSelect(MouseEvent event) {
+private void badgeSelect(MouseEvent event) {
         if (input(badgeList)!=null){
         backEnd.badgeResponse(input(badgeList));
+        if(input(badgeList).equals("No")){
+        showWinScreen();
+        }else{
         badgeList.setVisible(false);
-        updateHUD();
-    }}
+        
+    }
+updateHUD();
+}}
+
     private void showWinScreen(){
     
     winScreen.setVisible(true);
