@@ -668,4 +668,9 @@ updateHUD();
     @FXML
     private void enter(KeyEvent event) {
     }
+
+    @FXML
+    private void loadGameClick(MouseEvent event) {
+        
+    }
 }
