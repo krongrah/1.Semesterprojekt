@@ -36,6 +36,7 @@ public class Game {
     private String temp;//todo make better
     private boolean hobosOnTheMove = false;
     private HostileNPC enemy;
+    private String endMessage;
     // Constructor calls createRooms and creates new Parser
 
     public Game() {
@@ -161,9 +162,11 @@ public class Game {
     }
 
     void save() {
+
 //        GameState gamestate = new GameState(player, world);
 //        IFoundation.saveFile(gamestate);
 //        System.out.println("Saving");
+
     }
 
     void load() {
@@ -273,6 +276,10 @@ public class Game {
             return true;
         }
     }
+    
+    public void help(){
+        System.out.println("Your job is to discover and solve the murder. During your quest, you must avoid getting sober at all cost, by drinking whatever drinks you can find.");
+    }
 
     private void getInfo() {
 
@@ -280,8 +287,9 @@ public class Game {
             System.out.println("You are all alone." + "\n");
         } else {
             System.out.println("The other people here are:");
-            System.out.println(player.getRoom().getNPCsInRoomMap().keySet() + "\n");
-        }
+            String people=player.getRoom().getNPCsInRoomMap().keySet().toString();
+            System.out.println(people.substring(1, (people.length()-1)) + "\n");
+}
     }
 
     public void drink() {
@@ -386,7 +394,7 @@ public class Game {
         
 
         if (player.getCurrentHealth() <= 0) {
-            System.out.println("You died.");
+            endMessage="You got killed by "+enemy.getName()+".";
             lose();
             return 0;
         }
@@ -419,7 +427,7 @@ public class Game {
                 }
 
         if (player.getCurrentHealth() <= 0) {
-            System.out.println("You died.");
+            endMessage="You got killed by "+enemy.getName()+".";
             lose();
             return 0;
         }
@@ -442,7 +450,7 @@ public class Game {
                 }
 
         if (player.getCurrentHealth() <= 0) {
-            System.out.println("You died.");
+            endMessage="You got killed by "+enemy.getName()+".";
             lose();
             return 0;
         }
@@ -474,12 +482,8 @@ public class Game {
                 player.addToevidence(clue);
                 System.out.println(clue + " has been added to Evidence list");
                 if (player.isEvidence2()) {
-                    System.out.print("Judge: We have found ");
-                    for (Entry<String, NPC> npc : world.getRoom("Jail").getNPCsInRoomMap().entrySet()) {
-                        System.out.print(npc.getValue().getName() + (" "));
-                    }
-                    System.out.println("guilty of murder.");
 
+                    convictWin();
                     win();
                     return 1;
 
@@ -495,6 +499,20 @@ public class Game {
             return 2;
         }
     }
+    
+    private void convictWin(){
+                        String criminals="";
+                    for (String npc : world.getRoom("Jail").getNPCsInRoomMap().keySet()) {
+                        criminals.concat((npc + (", ")));
+                        
+                        
+                    }
+                    String reverse=new StringBuffer(criminals).reverse().toString();
+                    reverse.replaceFirst(",", ""); 
+                    reverse.replaceFirst(",", " and");
+                    String criminalsDone=new StringBuffer(reverse).reverse().toString();
+                    endMessage="Judge: We have found "+criminals+"guilty of murder.";
+    }
 
     /**
      * This method is called when the player decides whether to tell the truth
@@ -507,7 +525,7 @@ public class Game {
      */
     boolean badgeResponse(String answer) {
         if (answer.equals("No")) {
-            System.out.println("You told the truth and confessed to your crime.");
+            endMessage="You told the truth and confessed to your crime.";
             player.addPoints(20);
             win();
             return true;
@@ -556,14 +574,14 @@ public class Game {
     }
 
     void talk(String name) {
-        timeloop(1);
+        
         //Gives the player a list of NPCs in the room
         NPC target = player.getRoom().getNPCsInRoomMap().get(name);
         target.getLine();
-        if (/*target.getClueCount() == target.getClueRelease()*/target.getClue()) {
+        if (target.getClue()) {
             player.addToJournal(target.giveClue());
         }
-
+        timeloop(1);
     }
 
     Set<String> searchMenu() {
@@ -621,6 +639,9 @@ public class Game {
         }
 
     }
+    String endMessage(){
+    return endMessage;
+    }
 
     Set<String> arrestMenu() {
         if (!player.getRoom().getNPCsInRoomMap().isEmpty()) {
@@ -630,22 +651,29 @@ public class Game {
             return victims;
         } else {
             System.out.println("There are no one here for you to arrest.");
-            return null;
+            return new HashSet();
         }
     }
 
     public boolean arrest(String name) {
-        timeloop(10);
+        
 
-        if (player.getRoom().getNPCsInRoomMap().get(name).getAlibi()) {
+        if (player.getRoom().getNPCsInRoomMap().get(name).getAlibi()!=null) {
+            endMessage=player.getRoom().getNPCsInRoomMap().get(name).getAlibi();
             lose();
             return false;
         } else {
             world.getNPC("Commissioner Curt").fulfillCondition();
             goToJail(player.getRoom().getNPCsInRoomMap().get(name));
+            if(!hobosOnTheMove){
             updateCrimeScene();
+            }
+            timeloop(10);
             return true;
+            
         }
+        
+        
     }
 
 //        System.out.println("You have decided to begin arresting people, god bless you");
@@ -794,7 +822,6 @@ public class Game {
     }
 
     public void NpcMover() {
-//        System.out.println("NPCMover entered");//test
         for (Hobo hobo : world.getHobos()) {
             Room currentRoom = world.getRoom(hobo.getCurrentRoomName());
 //            System.out.println(hobo.getName()+" Chosen in "+hobo.getCurrentRoomName());//test
@@ -836,15 +863,15 @@ public class Game {
             player.setHour(player.returnHours() + 1);
             player.setMinutes(0);
             if (player.getDrunkenness() >= 100) {
-                System.out.println("You are completely smashed and pass out on the floor");
+                endMessage="You are completely smashed and pass out on the floor";
 
             }
-            if (player.getDrunkenness() == 5) {
+            if (player.getDrunkenness() < 10) {
                 System.out.println("You start to feel your hands again, if you dont drink soon you might die");
             }
 
             if (player.getDrunkenness() <= 0) {
-                System.out.println("You feel completely sober, you fall down to the floor and die, knowing nobody loved you.");
+                endMessage="You feel completely sober, you fall down to the floor and die, knowing nobody loved you.";
                 lose();
             }
         }

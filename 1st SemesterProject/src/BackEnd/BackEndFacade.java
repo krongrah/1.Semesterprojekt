@@ -210,6 +210,16 @@ public String[] getEnemyData() {
     public String getDrunkenness() {
         return game.getDrunkenness();
     }
+
+    @Override
+    public void help() {
+        game.help();
+    }
+
+    @Override
+    public String endMessage() {
+        return game.endMessage();
+    }
     
    
       
