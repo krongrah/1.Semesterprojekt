@@ -74,8 +74,7 @@ public class BackEndFacade implements IBackEnd{
     
     @Override
     public void save(){
-    game.save();
-    
+    foundation.save(game.save());
     }
 
     @Override

@@ -25,7 +25,7 @@ import javafx.scene.chart.PieChart.Data;
 
 public class SaveFile {
     
-   public boolean saveGame(List aList)
+   public boolean saveGame(Object gameState)
   {
     File desktop = new File(System.getProperty("user.home"), "Desktop");
     
@@ -39,7 +39,7 @@ public class SaveFile {
     {
       FileOutputStream fileOut = new FileOutputStream(filePath + "\\data.ser");
       ObjectOutputStream out = new ObjectOutputStream(fileOut);
-      out.writeObject(aList);
+      out.writeObject(gameState);
       out.close();
       fileOut.close();
       return true;
@@ -51,9 +51,9 @@ public class SaveFile {
     return false;
   }
   
-  public List loadGame()
+  public Object loadGame()
   {
-    ArrayList aList = new ArrayList();
+    Object gameState = new Object();
     
     File desktop = new File(System.getProperty("user.home"), "Desktop");
     try
@@ -61,12 +61,12 @@ public class SaveFile {
       FileInputStream fileIn = new FileInputStream(desktop + "\\data\\data.ser");
       ObjectInputStream in = new ObjectInputStream(fileIn);
       Object temp = in.readObject();
-      if ((temp instanceof ArrayList)) {
-        aList = (ArrayList)temp;
+      if ((temp instanceof Object)) {
+        gameState = (Object)temp;
       }
       in.close();
       fileIn.close();
-      return aList;
+      return gameState;
     }
     catch (IOException i)
     {
@@ -78,63 +78,4 @@ public class SaveFile {
     }
     return null;
   }
-  
-  protected boolean saveMap(HashMap aMap)
-  {
-    File file = new File("src\\resources", "newfile.ser");
-    if (!file.exists()) {
-      try
-      {
-        file.createNewFile();
-      }
-      catch (IOException ex)
-      {
-        Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
-      }
-    }
-    try
-    {
-      FileOutputStream fileOut = new FileOutputStream(file);
-      ObjectOutputStream out = new ObjectOutputStream(fileOut);
-      out.writeObject(aMap);
-      out.close();
-      fileOut.close();
-      return true;
-    }
-    catch (IOException i)
-    {
-      i.printStackTrace();
-    }
-    return false;
-  }
-  
-  protected HashMap loadMap()
-  {
-    HashMap<String, String> aMap = new HashMap();
-    
-    File file = new File("src\\resources", "newfile.ser");
-    try
-    {
-      FileInputStream fileIn = new FileInputStream(file);
-      ObjectInputStream in = new ObjectInputStream(fileIn);
-      Object temp = in.readObject();
-      if ((temp instanceof HashMap)) {
-        aMap = (HashMap)temp;
-      }
-      in.close();
-      fileIn.close();
-      return aMap;
-    }
-    catch (IOException i)
-    {
-      i.printStackTrace();
-    }
-    catch (ClassNotFoundException c)
-    {
-      c.printStackTrace();
-    }
-    return null;
-  }
-  
-  
 }

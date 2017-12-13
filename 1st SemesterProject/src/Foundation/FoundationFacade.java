@@ -32,20 +32,11 @@ public class FoundationFacade implements IFoundation{
         }
     
   
-  public boolean save(List aList)  {
-    return saveFile.saveGame(aList);
+  public boolean save(Object gameState)  {
+    return saveFile.saveGame(gameState);
   }
   
-  public List load()  {
+  public Object load()  {
     return saveFile.loadGame();
   }
-  
-  public boolean saveMap(HashMap aMap){
-    return this.saveFile.saveMap(aMap);
-  }
-  
-  public HashMap loadMap(){
-    return this.saveFile.loadMap();
-  }
-    
 }

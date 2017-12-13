@@ -30,10 +30,11 @@ public class Clue {
     public String getName() {
         return name;
     }
-/**
- * Gets clue description
- * @return description
- */
+    
+    /**
+     * Gets clue description
+     * @return description
+     */
     public String getDescription() {
         return description;
     }

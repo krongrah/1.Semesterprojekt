@@ -14,7 +14,6 @@ public class Item {
     private Boolean isClue;
     private Clue clue;
 
-    
     /**
      * Constructor for Items
      * @param newName The name
@@ -32,16 +31,14 @@ public class Item {
         clue = newClue;
     }
     
-    
-    
     /**
      * Can you pick up the item?
      * @return collectible
      */
     public boolean getCollectible() {
         return collectible;
-
     }
+    
     /**
      * Is the item a clue
      * @return isClue
@@ -49,12 +46,14 @@ public class Item {
     public boolean getIsClue() {
         return isClue;
     }
+    
     /**
      * Sets items clue state to false
      */
     public void deactivateClue() {
         isClue = false;
     }
+    
     /**
      *Gets the name of the item. 
      * @return name
@@ -62,10 +61,7 @@ public class Item {
     public String getName() {
         return name;
     }
-    /**
-     * Gets the descriptiom
-     * @return desription
-     */
+    
     /**
      * Gets the description
      * @return description 
@@ -73,6 +69,7 @@ public class Item {
     public String getDescription() {
         return description;
     }
+    
 /**
  * Show what the clue of the item is.
  * @return clue
@@ -80,7 +77,4 @@ public class Item {
     public Clue giveClue() {
         return clue;
     }
-
-    
-
 }

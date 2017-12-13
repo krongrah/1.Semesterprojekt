@@ -26,7 +26,6 @@ public class Dialogue {
         this.alibi = alibi;
         this.isValid = isValid;
         condition=true;
-
     }
 
     //double dialogue constructor
@@ -56,7 +55,6 @@ public class Dialogue {
                 lineIndex++;
             }
         }
-
     }
 
     void fulfillCondition() {
@@ -81,6 +79,7 @@ public class Dialogue {
     public String getFightScream() {
         return fightScream;
     }
+    
     public boolean getCondition(){
     return condition;
     }

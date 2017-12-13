@@ -5,7 +5,6 @@
  */
 package BackEnd.WorldFill;
 
-
 /**
  *
  * @author Krongrah
@@ -69,7 +68,6 @@ public class NPC {
     /**
      * Resets the clueCounter for the NPC and sets the dialogue condition to true.
      */
-    
     public void fulfillCondition(){
     dialogue.fulfillCondition();
     askForClueCounter=0;
@@ -83,14 +81,14 @@ public class NPC {
     askForClueCounter++;
     if(askForClueCounter==clueRelease&& dialogue.getCondition()){
     return true;
-    }
+        }
     return false;
     }
 
-/**
- * gets clue
- * @return clue
- */
+    /**
+     * gets clue
+     * @return clue
+     */
     public Clue giveClue() {
         return clue;
     }

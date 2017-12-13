@@ -4,6 +4,7 @@ package BackEnd;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
+import Acquaintance.IFoundation;
 import BackEnd.WorldFill.Room;
 import BackEnd.WorldFill.Hobo;
 import BackEnd.WorldFill.NPC;
@@ -15,7 +16,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Scanner;
 import java.util.Set;
 
 public class Game {
@@ -87,12 +87,11 @@ public class Game {
         player.inspectItemMap(item);
     }
 
-    void save() {
+    GameState save() {
+        GameState gamestate = new GameState(player, world);
+        return gamestate;
 
-//        GameState gamestate = new GameState(player, world);
-//        IFoundation.saveFile(gamestate);
-//        System.out.println("Saving");
-    }
+}
 
     void load() {
         //todo
