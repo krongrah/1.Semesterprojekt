@@ -8,6 +8,7 @@ package BackEnd;
 import BackEnd.WorldFill.Room;
 import BackEnd.WorldFill.Clue;
 import BackEnd.WorldFill.Item;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.Set;
  *
  * @author Krongrah
  */
-public class PC {
+public class PC implements Serializable{
 
     //player attributes
     private int minutes;
