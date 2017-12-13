@@ -34,6 +34,7 @@ public class Game {
     private String temp;//todo make better
     private boolean hobosOnTheMove = false;
     private HostileNPC enemy;
+    private String endMessage;
     // Constructor calls createRooms and creates new Parser
 
     public Game() {
@@ -272,10 +273,7 @@ public class Game {
     }
     
     public void help(){
-        System.out.println("Your job is to discover and solve the murder.");
-        System.out.println("During your quest, you must avoid getting sober at all cost, ");
-        System.out.println("by drinking whatever drinks you can find.");
-        System.out.println("");
+        System.out.println("Your job is to discover and solve the murder. During your quest, you must avoid getting sober at all cost, by drinking whatever drinks you can find.");
     }
 
     private void getInfo() {
@@ -626,6 +624,9 @@ public class Game {
         }
 
     }
+    String endMessage(){
+    return endMessage;
+    }
 
     Set<String> arrestMenu() {
         if (!player.getRoom().getNPCsInRoomMap().isEmpty()) {
@@ -642,7 +643,8 @@ public class Game {
     public boolean arrest(String name) {
         timeloop(10);
 
-        if (player.getRoom().getNPCsInRoomMap().get(name).getAlibi()) {
+        if (player.getRoom().getNPCsInRoomMap().get(name).getAlibi()!=null) {
+            endMessage=player.getRoom().getNPCsInRoomMap().get(name).getAlibi();
             lose();
             return false;
         } else {
@@ -651,6 +653,8 @@ public class Game {
             updateCrimeScene();
             return true;
         }
+        
+        
     }
 
 //        System.out.println("You have decided to begin arresting people, god bless you");

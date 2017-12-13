@@ -215,6 +215,11 @@ public String[] getEnemyData() {
     public void help() {
         game.help();
     }
+
+    @Override
+    public String endMessage() {
+        return game.endMessage();
+    }
     
    
       

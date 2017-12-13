@@ -52,4 +52,5 @@ public interface IBackEnd {
     String getTime();
     String getDrunkenness();
     void help();
+    String endMessage();
 }

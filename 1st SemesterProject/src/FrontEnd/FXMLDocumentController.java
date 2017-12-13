@@ -498,11 +498,16 @@ updateHUD();
     mapPane.setVisible(false);
     winGoodHiScore.setItems(FXCollections.observableList(backEnd.getScores().get(0)));
     winBadHighScore.setItems(FXCollections.observableList(backEnd.getScores().get(1)));
-    //todo
+    winText.setText(backEnd.endMessage());
+        winText.setWrapText(true);
+
     }
     private void showLoseScreen(){
     LoseScreen.setVisible(true);
     loseScore.setText(backEnd.endScore());
+    loseText.setText(backEnd.endMessage());
+        loseText.setWrapText(true);
+
     }
     protected void updateHUD(){
         stackPane.setVisible(false);
