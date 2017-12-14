@@ -29,8 +29,6 @@ public class BackEndFacade implements IBackEnd{
         game.getHiScoreManager().pull(foundation);
     
     }    
-
-
     
     @Override
     public void talk(String string){
@@ -74,8 +72,7 @@ public class BackEndFacade implements IBackEnd{
     
     @Override
     public void save(){
-    game.save();
-    
+        foundation.save(game.save());
     }
 
     @Override
@@ -145,7 +142,14 @@ public class BackEndFacade implements IBackEnd{
 
     @Override
     public void load() {
-        game.load();
+    
+    }
+    
+    @Override
+    public void getSavedGame(){
+        System.out.println("bef1 "+foundation.getSavedGame().toString());
+        Game game1 = new Game((GameState) foundation.getSavedGame());
+        System.out.println("bef2 "+foundation.getSavedGame().toString());
     }
 
     @Override

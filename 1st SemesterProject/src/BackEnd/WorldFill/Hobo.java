@@ -5,19 +5,14 @@
  */
 package BackEnd.WorldFill;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
 /**
  *
  * @author sebastian
  */
-public class Hobo extends HostileNPC {
-    
+public class Hobo extends HostileNPC implements Serializable {
 
-
-    
-    
     public Hobo(String newName, Dialogue dialogue, Clue clue, int clueRelease, int health, int damage, double aggression) {
         super(newName, dialogue, clue, clueRelease, health, damage, aggression);
     }
@@ -32,6 +27,7 @@ public class Hobo extends HostileNPC {
      /**
      * @param health the health to set
      */
+    @Override
     public void setHealth(int health) {
         this.health = health;
     }
@@ -39,14 +35,8 @@ public class Hobo extends HostileNPC {
     /**
      * @param damage the damage to set
      */
+    @Override
     public void setDamage(int damage) {
         this.damage = damage;
     }
-
-
-    
-    public void moveNpcsAround(){
-        
-    }
-
 }

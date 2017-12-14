@@ -18,7 +18,7 @@ public class FoundationFacade implements IFoundation{
 
     private HiScore hiscore=new HiScore();
     private SaveFile save=new SaveFile();
-    SaveFile saveFile;
+    SaveFile saveFile= new SaveFile();
 
 
     @Override
@@ -32,20 +32,14 @@ public class FoundationFacade implements IFoundation{
         }
     
   
-  public boolean save(List aList)  {
-    return saveFile.saveGame(aList);
+  public Object save(Object gameState)  {
+    return saveFile.saveGame(gameState);
   }
   
-  public List load()  {
-    return saveFile.loadGame();
+    @Override
+  public Object getSavedGame()  {
+    return saveFile.getSavedGame();
   }
-  
-  public boolean saveMap(HashMap aMap){
-    return this.saveFile.saveMap(aMap);
-  }
-  
-  public HashMap loadMap(){
-    return this.saveFile.loadMap();
-  }
-    
 }
+
+  

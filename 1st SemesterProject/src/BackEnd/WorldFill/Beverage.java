@@ -5,13 +5,13 @@
  */
 package BackEnd.WorldFill;
 
-
+import java.io.Serializable;
 
 /**
  *
  * @author sebastian
  */
-public class Beverage extends Item {
+public class Beverage extends Item implements Serializable{
     private int numberOfSips;
     private int alcoholContent;
     

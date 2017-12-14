@@ -4,6 +4,7 @@ package BackEnd;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
+import Acquaintance.IFoundation;
 import BackEnd.WorldFill.Room;
 import BackEnd.WorldFill.Hobo;
 import BackEnd.WorldFill.NPC;
@@ -15,14 +16,13 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Scanner;
 import java.util.Set;
 
 public class Game {
 
     boolean wantToQuit = false;
     private PC player;
-    private World world = new World();
+    private World world;
     private HiScoreManager manager = new HiScoreManager();
     private String temp;//todo make better
     private boolean hobosOnTheMove = false;
@@ -33,8 +33,14 @@ public class Game {
     public Game() {
 
         player = new PC();
+        world = new World();
         player.move(world.getRoom("Bar"));
 
+    }
+    
+    public Game(GameState gameState){
+    this.player=gameState.getPlayer();
+    this.world=gameState.getWorld();
     }
 
 
@@ -88,15 +94,12 @@ public class Game {
         player.inspectItemMap(item);
     }
 
-    void save() {
-
-//        GameState gamestate = new GameState(player, world);
-//        IFoundation.saveFile(gamestate);
-//        System.out.println("Saving");
+    Object save() {
+        GameState gamestate = new GameState(player, world);
+         return gamestate;
     }
-
-    void load() {
-        //todo
+    void load(GameState gamestate) {
+       
     }
 
     /**

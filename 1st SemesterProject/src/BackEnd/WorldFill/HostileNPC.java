@@ -5,12 +5,13 @@
  */
 package BackEnd.WorldFill;
 
+import java.io.Serializable;
 
 /**
  *
  * @author Krongrah
  */
-public class HostileNPC extends NPC {
+public class HostileNPC extends NPC implements Serializable {
 
     int health;
     int damage;

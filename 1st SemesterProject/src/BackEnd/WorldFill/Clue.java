@@ -5,11 +5,13 @@
  */
 package BackEnd.WorldFill;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Krongrah
  */
-public class Clue {
+public class Clue implements Serializable{
 
     //Attributes
     private String name;
@@ -30,10 +32,11 @@ public class Clue {
     public String getName() {
         return name;
     }
-/**
- * Gets clue description
- * @return description
- */
+    
+    /**
+     * Gets clue description
+     * @return description
+     */
     public String getDescription() {
         return description;
     }

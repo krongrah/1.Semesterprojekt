@@ -1,18 +1,15 @@
 package BackEnd.WorldFill;
 
-
-
-
+import java.io.Serializable;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 /**
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-public class Room {   //rooms have a description/name and map with strings to rooms, serving as exits.
+public class Room implements Serializable{   //rooms have a description/name and map with strings to rooms, serving as exits.
 
     private String description;
     private HashMap<String, Room> exits;
@@ -20,7 +17,6 @@ public class Room {   //rooms have a description/name and map with strings to ro
     private Map<String, NPC> NPCsInRoom = new HashMap<>();
     private String roomName;
     private boolean hoboAccessable;
-    
 
     /**
      * 
@@ -34,20 +30,22 @@ public class Room {   //rooms have a description/name and map with strings to ro
         exits = new HashMap<String, Room>();
         this.hoboAccessable=hoboAccessable;
     }
-/**
- * adds a neighbouring room to the Exits map, with the direction being the key
- * @param direction The direction to the neighbor room. 
- * @param neighbor The neighbouring room you want to access when write "go [direction]"
- * Example of use:  bar.setExit("north", leftStreet);
- */    
+    
+    /**
+     * adds a neighbouring room to the Exits map, with the direction being the key
+     * @param direction The direction to the neighbor room. 
+     * @param neighbor The neighbouring room you want to access when write "go [direction]"
+     * Example of use:  bar.setExit("north", leftStreet);
+     */    
     public void setExit(String direction, Room neighbor) {
         exits.put(direction, neighbor);
     }
-/**
- * 
- * @return description of the room.
+    
+    /**
+     * 
+     * @return description of the room.
 
- */
+     */
     public String getShortDescription() {
         return description;
     }
@@ -121,19 +119,16 @@ public class Room {   //rooms have a description/name and map with strings to ro
         npc.setCurrentRoomName(newRoom.getRoomName());
         }
     }
-/**
- * 
- * @return returns the exits of a certain room.  Print out example:
- * You are in the bar. [description]
-*  Exits:| north = Left Street | [getExitString()]
-
- */
+    /**
+    * 
+    * @return returns the exits of a certain room.  Print out example:
+    * You are in the bar. [description]
+    * Exits:| north = Left Street | [getExitString()]
+    */
     public String getLongDescription() {
         return "You are" + description;
     }
    
-
-    
     /**
      * 
      * @return returns Exits of the current room. Print out example:
@@ -147,12 +142,11 @@ public class Room {   //rooms have a description/name and map with strings to ro
         }
         return returnString;
     }
-/**
- * 
- * @param direction
- * @return returns the room in the given direction.
- */
-    //
+    /**
+     * 
+     * @param direction
+     * @return returns the room in the given direction.
+     */
     public Room getExit(String direction) {
         return exits.get(direction);
     }
@@ -176,5 +170,4 @@ public class Room {   //rooms have a description/name and map with strings to ro
     public HashMap getExit(){
         return exits;
     }
-
 }
