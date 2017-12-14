@@ -538,7 +538,7 @@ updateHUD();
 
     @FXML
     private void loadGame(ActionEvent event) {
-        backEnd.load();
+        backEnd.getSavedGame();
         introScreen.setVisible(false);
     }
 
@@ -663,8 +663,5 @@ updateHUD();
     private void enter(KeyEvent event) {
     }
 
-    @FXML
-    private void loadGameClick(MouseEvent event) {
-        
-    }
+   
 }

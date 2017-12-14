@@ -22,7 +22,7 @@ public class Game {
 
     boolean wantToQuit = false;
     private PC player;
-    private World world = new World();
+    private World world;
     private HiScoreManager manager = new HiScoreManager();
     private String temp;//todo make better
     private boolean hobosOnTheMove = false;
@@ -33,12 +33,14 @@ public class Game {
     public Game() {
 
         player = new PC();
+        world = new World();
         player.move(world.getRoom("Bar"));
 
     }
+    
     public Game(GameState gameState){
-    player=gameState.getPlayer();
-    world=gameState.getWorld();
+    this.player=gameState.getPlayer();
+    this.world=gameState.getWorld();
     }
 
 
@@ -96,7 +98,7 @@ public class Game {
         GameState gamestate = new GameState(player, world);
          return gamestate;
     }
-    void load() {
+    void load(GameState gamestate) {
        
     }
 
