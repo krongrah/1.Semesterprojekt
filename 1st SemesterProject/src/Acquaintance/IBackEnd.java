@@ -64,8 +64,6 @@ public interface IBackEnd {
 
     String endScore();
 
-    void load();
-
     List<List<String>> getScores();
 
     void setName(String string);
@@ -84,7 +82,7 @@ public interface IBackEnd {
 
     void printWelcome();
 
-    String getTime();
+    String getTimeString();
 
     String getDrunkenness();
 

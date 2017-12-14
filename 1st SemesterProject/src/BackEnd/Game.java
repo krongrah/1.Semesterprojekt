@@ -24,27 +24,38 @@ public class Game {
     private HiScoreManager manager = new HiScoreManager();
     private HostileNPC enemy;
     private String endMessage;
-    // Constructor calls createRooms and creates new Parser
-
-    public Game() {
+    
+/**
+ * Constructor makes a new player and world.
+ */
+    Game() {
 
         player = new PC();
         world = new World();
         player.move(world.getRoom("Bar"));
 
     }
-    
-    public void setGameState(GameState gameState){
+    /**
+     * Sets all the parameters of player and world to match that of the gamestate.
+     * @param gameState The game state the was saved.
+     */
+    void setGameState(GameState gameState){
         
         player.setPC(gameState.getPlayer());
         world.setWorld(gameState.getWorld());
     }
-
-    public boolean getIsHobosOnTheMove(){
+    
+    /**
+     * Checks if Hobos can move.
+     * @return world.isHobosOnTheMove(), is the boolean in world that allows Hobos to move.
+     */
+    boolean getIsHobosOnTheMove(){
         return world.isHobosOnTheMove();
     }
 
-    // Prints the welcome message and the current room
+    /**
+     * Prints the welcome message and the current room
+     */
     void printWelcome() {
         System.out.println();
         System.out.println("Welcome to the life of detective Dindunuffin.");
@@ -54,12 +65,18 @@ public class Game {
         getInfo();
     }
 
+    /**
+     * Set the name of the player, used for highscore
+     * @param string is the name you want the player to be called.
+     */
     void setName(String string) {
         player.setName(string);
     }
-
     
-
+    /**
+     * Handles the inspect menu for UI
+     * @return menus is the Set of the inventory and journal, and the the player can choose in UI. 
+     */
     Set<String> inspectMenu() {
         System.out.println("Which menu do you wish to inspect?");
         Set<String> menus = new HashSet();
@@ -68,10 +85,14 @@ public class Game {
         return menus;
     }
 
+    /**
+     * Checks if the player wants the inventory or the journal, and then checks if they are empty.
+     * @param string is what the player chose in the UI "Journal" or "Inventory"
+     * @return 
+     */
     Set<String> inspect(String string) {
         timeLoop(1);
         
-        Set<String> test = new HashSet();
         if (string.equals("Inventory")) {
             if (player.getInventory().isEmpty()) {
 
@@ -85,18 +106,31 @@ public class Game {
             return player.getJournal().keySet();
         }
     }
-
+    
+    /**
+     * The Clue in Journal the player wants to inspect.
+     * @param entry name of the clue the player wants to inspect
+     */
     void journal(String entry) {
         player.inspectEntry(entry);
     }
 
+    /**
+     * The Item in Inventory the player wants to inspect.
+     * @param entry name of the clue the player wants to inspect
+     */
     void inventory(String item) {
         player.inspectItem(item);
     }
 
+    /**
+     * Creates the state of the game useing GameState.class.'
+     * @return Is the gameState the player wants to saved, and it passed down
+     * to save file to be written
+     */
     Object save() {
-        GameState gamestate = new GameState(player, world);
-         return gamestate;
+        GameState gameState = new GameState(player, world);
+         return gameState;
     }
    
     /**
@@ -156,11 +190,18 @@ public class Game {
         return null;
     }
 
-    
+    /**
+     * Prints the help message out.
+     */
     public void help(){
-        System.out.println("Your job is to discover and solve the murder. During your quest, you must avoid getting sober at all cost, by drinking whatever drinks you can find.");
+        System.out.println("Your job is to discover and solve the murder. During "
+                + "your quest, you must avoid getting sober at all cost, by drinking "
+                + "whatever drinks you can find.");
     }
 
+    /**
+     * Prints out the info of the about who is the in the room apart from the player.
+     */
     private void getInfo() {
         if (player.getRoom().getNPCsInRoomMap().isEmpty()) {
             System.out.println("You are all alone." + "\n");
@@ -171,6 +212,10 @@ public class Game {
         }
     }
 
+    /**
+     * The drink method adds drunkness, and removes the sips from the Beverage, 
+     * and if it becomes empty, it gets thrown away.
+     */
     public void drink() {
         timeLoop(1);
         for (Item drink : player.getInventory().values()) {
@@ -187,6 +232,10 @@ public class Game {
         }
     }
 
+    /**
+     * Sends the player and arrested NPC to Jail.
+     * @param scum is the NPC that was Arrested.
+     */
     public void goToJail(NPC scum) {
         System.out.println("You moved the scum to jail.");
         player.getRoom().moveNpc(scum, world.getRoom("Jail"));
@@ -194,31 +243,45 @@ public class Game {
         System.out.println("Commissioner: Good job, now you need to go find "
                 + "some better evidence to convict this bastard. I will be in the Police department.");
         world.getRoom("Home").addItemToRoom(world.getItem("Badge"));
-
     }
     
-    public String getTime(){
-    return player.getTime();
+    /**
+     * Gets the TimeString from player, used for displaying the time on the HUD.
+     * @return The timeSTring from player. Format example: "12:02"
+     */
+    public String getTimeString(){
+    return player.getTimeString();
     }
  
+    /**
+     * Gets the Highscore of previous games and add it in, sorting it in the process.
+     */
     public void win() {
         manager.retrieve();
         manager.addScore(player.getName(), player.getPoints());
         //todo make highscore application
     }
 
+    /**
+     * Gets the highscores from the manager as a list of lists.
+     * @return the scores lists
+     */
     public List<List<String>> getScores() {
         return manager.getScores();
     }
 
-    public void drunkness() {
-        System.out.println(player.getDrunkenness());
-    }
-
+    /**
+     * Adds damage on top of your and the enemy's base damage
+     * @return 
+     */
     private int damageRandomizer() {
         return ((int) (Math.random() * 11) - 5);
     }
 
+    /**
+     * Updates the crimescene so corroner disapperes with corpse, and makes it 
+     * so Hobos become agressive and start moving around
+     */
     private void updateCrimeScene() {
         world.getRoom("Crime Scene").removeNpcFromRoom(world.getNPC("Coroner"));
         world.getRoom("Crime Scene").addItemToRoom(world.getItem("Corpse Outline"));
@@ -230,14 +293,26 @@ public class Game {
         world.setHobosOnTheMove(true);
     }
 
+    /**
+     * Gets the player health in so it can be used as a percentage.
+     * @return (player.getCurrentHealth() / 100.0);
+     */
     double playerHealthPercent() {
         return (player.getCurrentHealth() / 100.0);
     }
 
+    /**
+     *  Gets the enemy health in so it can be used as a percentage.
+     * @return (enemy.getHealth() / (enemy.getTotalHealth() * 1.0));
+     */
     double enemyHealthPercent() {
         return (enemy.getHealth() / (enemy.getTotalHealth() * 1.0));
     }
 
+    /**
+     * Reset the damage in case you drop your gun afterwards.
+     * and get who is in the room, and sets enemy to null.
+     */
     void combatEnd() {
         player.setDamage(10);
         getInfo();
@@ -274,14 +349,19 @@ public class Game {
         return 1;
     }
 
+    /**
+     * Send the name, damage + randomizer and health to the fightscreen in UI, as strings.
+     * @return String Array with the enemy data.
+     */
     public String[] getEnemyData() {
         String[] enemyData = new String[3];
         enemyData[0] = enemy.getName();
-        enemyData[1] = Integer.toString(enemy.getDamage());
+        enemyData[1] = Integer.toString(enemy.getDamage()+5) + "-" + Integer.toString(enemy.getDamage()+11);
         enemyData[2] = Integer.toString(enemy.getHealth());
         return enemyData;
     }
 
+    
     int run() {
         timeLoop(1);
         if (Math.random() < 0.7) {
@@ -325,7 +405,12 @@ public class Game {
         }
         return 1;
     }
-
+    
+    /**
+     * Checks if the player is the PD so that it seems like he is talking to The Commisioner.
+     * Then it gets the journal so it can gets
+     * @return 
+     */
     Set<String> convictMenu() {
         if (player.getRoom() == world.getRoom("Police Department")) {
 

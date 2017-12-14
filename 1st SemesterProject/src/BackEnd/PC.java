@@ -281,8 +281,8 @@ class PC implements Serializable {
      *
      * @return Returns the current time as a formatted string.
      */
-    String getTime() {
-        return (String.format("%02d", hours) + ":" + String.format("%02d", minutes));
+    String getTimeString(){
+        return (String.format("%02d", hours)+":"+String.format("%02d", minutes));
 
     }
 
