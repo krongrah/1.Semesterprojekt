@@ -343,7 +343,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void arrestMenuSelect(MouseEvent event) {
         if (input(arrestList) != null) {
-            if (input(arrestList) != "No one") {    //todo is this okay?
+            if (!input(arrestList).equals("No one")) {
                 if (backEnd.arrest(input(arrestList))) {
                     convict.setVisible(true);
                     startRooms();
