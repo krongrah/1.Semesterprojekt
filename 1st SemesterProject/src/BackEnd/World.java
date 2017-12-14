@@ -88,13 +88,13 @@ public class World implements Serializable {
                 + " his face is covered in spit", true, false, corpseClue);
 
         //creates the Beverages
-        Beverage whiskey = new Beverage("Whiskey", "This bottle is your favorite drink, and the reason you love coming home.", 2, 5);
-        Beverage gin = new Beverage("Half-empty Gin", "its a half-empty bottle of gin, some idiot wasted his drink", 1, 7);
-        Beverage beerKeg = new Beverage("Keg Of beer", "Its a keg of beer, nobody will notice if you take this", 4, 4);
+        Beverage whiskey = new Beverage("Whiskey", "This bottle is your favorite drink, and the reason you love coming home.", 8, 5);
+        Beverage gin = new Beverage("Half-empty Gin", "its a half-empty bottle of gin, some idiot wasted his drink", 4, 7);
+        Beverage beerKeg = new Beverage("Keg Of beer", "Its a keg of beer, nobody will notice if you take this", 16, 5);
         Beverage coffee = new Beverage("Coffee", "A normal looking drink of coffee, expect you can smell a strong vodka odor", 2, 6);
         Beverage wine = new Beverage("Wine", "the fancy people left out a glass of wine", 3, 7);
-        Beverage beer = new Beverage("Beer", "It's a well known brand called pisswasser", 2, 2);
-
+        Beverage beer = new Beverage("Beer", "It's a well known brand called pisswasser", 2, 5);
+       
         //Creates the Rooms
         Room leftStreet = new Room(" on left street", "Left Street", true);
         Room rightStreet = new Room(" on Right street", "Right Street", true);
