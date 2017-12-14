@@ -61,6 +61,10 @@ class PC implements Serializable{
      * @return Returns the Inventory 
      */
     public Map<String,Item>getInventory(){
+    /**
+     * 
+     * @return Returns the Inventory 
+     */
     return inventory;
     }
 
@@ -128,6 +132,7 @@ class PC implements Serializable{
      */
     void addToevidence(String clue) {
         getEvidence().add(journal.get(clue));
+        evidence.add(journal.get(clue));
         journal.remove(clue);
     }
 

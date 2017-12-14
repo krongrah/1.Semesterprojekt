@@ -33,7 +33,7 @@ public class World implements Serializable {
     private Map<String,Item> items=new HashMap<>();
     private Map<String,Clue> clues=new HashMap<>();
     private Map<String,Room> rooms=new HashMap<>();
-    private ArrayList<Hobo> hobos = new ArrayList<>();
+    private List<Hobo> hobos = new ArrayList<>();
     private boolean hobosOnTheMove = false;
 
     /**
@@ -343,17 +343,14 @@ public class World implements Serializable {
     Room getRoom(String name){
     return rooms.get(name);
     }
-    public Clue getClue(String name){
-    return getClues().get(name);
-    }
-    public boolean isRoom(String name){
-        return getRooms().containsKey(name);
     
-    }
-    public Map getTheCluse (){
-    return getClues();
-    }
-    public ArrayList<Hobo> getHobos(){
+
+    
+    /**
+     * 
+     * @return Returns the ArrayList of hobos.
+     */
+    List<Hobo> getHobos(){
         return hobos;
     }
 
