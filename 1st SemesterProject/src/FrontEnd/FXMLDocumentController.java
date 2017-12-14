@@ -43,9 +43,7 @@ import javafx.scene.layout.StackPane;
  */
 public class FXMLDocumentController implements Initializable {
     private IBackEnd backEnd;
-    private List<String> ask = Arrays.asList("Yes", "No");//todo is it better to add them on separate lines?
-    @FXML
-    private Button talk;
+    private List<String> ask = Arrays.asList("Yes", "No");
     @FXML
     private ProgressIndicator Drunkmeter;
     @FXML
@@ -506,7 +504,7 @@ updateHUD();
         loseText.setWrapText(true);
 
     }
-    protected void updateHUD(){
+    void updateHUD(){
         stackPane.setVisible(false);
         Drunkmeter.setProgress(backEnd.getHUD().get(0)/100.0);
         watch.setText(backEnd.getTime());
@@ -541,12 +539,17 @@ updateHUD();
 
     @FXML
     private void loadGame(ActionEvent event) {
-        backEnd.getSavedGame();
+        
+        if(backEnd.getSavedGame()){
         introScreen.setVisible(false);
         startRooms();
         updateHUD();
         if(backEnd.getIsHobosOnTheMove()){
         convict.setVisible(true);
+        }}else{
+        loadGame.setText("No save file found");
+        loadGame.disarm();
+        
         }
     }
 

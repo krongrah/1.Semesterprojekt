@@ -25,6 +25,10 @@ public class Initializer extends Application implements IFrontEnd{
      * despite the controller being instantiated by the start method, in a foreign class.
      */
     private static IBackEnd backEnd;
+    
+    /**
+     * No-arg constructor
+     */
     public Initializer(){}
     
     /**

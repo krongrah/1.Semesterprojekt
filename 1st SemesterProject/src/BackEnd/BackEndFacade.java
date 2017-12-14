@@ -146,9 +146,14 @@ public class BackEndFacade implements IBackEnd{
     }
     
     @Override
-    public void getSavedGame(){
+    public boolean getSavedGame(){
         GameState gameState= (GameState) foundation.getSavedGame();
+        if(gameState !=null){
         game.setGameState(gameState);
+        return true;
+        }
+        return false;
+        
     }
 
     @Override

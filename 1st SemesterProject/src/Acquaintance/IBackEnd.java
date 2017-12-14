@@ -52,6 +52,6 @@ public interface IBackEnd {
     String getDrunkenness();
     void help();
     String endMessage();
-    void getSavedGame();
+    boolean getSavedGame();
     boolean getIsHobosOnTheMove();
 }
