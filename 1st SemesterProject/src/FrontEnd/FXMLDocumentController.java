@@ -6,6 +6,7 @@
 package FrontEnd;
 
 import Acquaintance.IBackEnd;
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -30,6 +31,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -181,7 +183,7 @@ public class FXMLDocumentController implements Initializable {
         System.setOut(new PrintStream(o, true));
         stackPane.setVisible(false);
         introScreen.setVisible(true);
-
+        
     }
 
     /**
@@ -341,7 +343,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void arrestMenuSelect(MouseEvent event) {
         if (input(arrestList) != null) {
-            if (input(arrestList).equals("No one")) {
+            if (input(arrestList) != "No one") {    //todo is this okay?
                 if (backEnd.arrest(input(arrestList))) {
                     convict.setVisible(true);
                     startRooms();
@@ -384,18 +386,14 @@ public class FXMLDocumentController implements Initializable {
         if (input(convictList) != null) {
             int convictResult = backEnd.convict(input(convictList));
 
-            switch (convictResult) {
-                case 1:
-                    showWinScreen();
-                    break;
-                case 2:
-                    badgeList.setVisible(true);
-                    badgeList.setItems(FXCollections.observableList(ask));
-                    break;
-                default:
-                    convictList.setVisible(false);
-                    updateHUD();
-                    break;
+            if (convictResult == 1) {
+                showWinScreen();
+            } else if (convictResult == 2) {
+                badgeList.setVisible(true);
+                badgeList.setItems(FXCollections.observableList(ask));
+            } else {
+                convictList.setVisible(false);
+                updateHUD();
             }
         }
     }
@@ -725,17 +723,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void fight(ActionEvent event) {
         int f = backEnd.fight();
-        switch (f) {
-            case 2:
-                fightScreen.setVisible(false);
-                break;
-            case 0:
-                showLoseScreen();
-                fightScreen.setVisible(false);
-                break;
-            default:
-                updateHealth();
-                break;
+        if (f == 2) {
+            fightScreen.setVisible(false);
+        } else if (f == 0) {
+            showLoseScreen();
+            fightScreen.setVisible(false);
+        } else {
+            updateHealth();
         }
     }
 
@@ -746,19 +740,16 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void run(ActionEvent event) {
-        int r = backEnd.run();
-        switch (r) {
-            case 2:
-                fightScreen.setVisible(false);
-                startRooms();
-                break;
-            case 0:
-                showLoseScreen();
-                fightScreen.setVisible(false);
-                break;
-            default:
-                updateHealth();
-                break;
+        int f = backEnd.run();
+        if (f == 2) {
+            fightScreen.setVisible(false);
+            startRooms();
+
+        } else if (f == 0) {
+            showLoseScreen();
+            fightScreen.setVisible(false);
+        } else {
+            updateHealth();
         }
     }
 
@@ -769,18 +760,14 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     private void calm(ActionEvent event) {
-        int c = backEnd.calm();
-        switch (c) {
-            case 2:
-                fightScreen.setVisible(false);
-                break;
-            case 0:
-                showLoseScreen();
-                fightScreen.setVisible(false);
-                break;
-            default:
-                updateHealth();
-                break;
+        int f = backEnd.calm();
+        if (f == 2) {
+            fightScreen.setVisible(false);
+        } else if (f == 0) {
+            showLoseScreen();
+            fightScreen.setVisible(false);
+        } else {
+            updateHealth();
         }
     }
 
