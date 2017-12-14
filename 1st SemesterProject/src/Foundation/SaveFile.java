@@ -5,7 +5,6 @@
  */
 package Foundation;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -13,12 +12,6 @@ import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.scene.chart.PieChart.Data;
 
 /**
  *
@@ -27,39 +20,30 @@ import javafx.scene.chart.PieChart.Data;
 
 public class SaveFile implements Serializable{
     
-   public void saveGame(Object gameState)
-  {
-    File desktop = new File(System.getProperty("user.home"), "Desktop");
-    
-    String folderName = "data";
-    
-    File filePath = new File(desktop.toString(), folderName);
-    if (!filePath.exists()) {
-      filePath.mkdirs();
+    public boolean saveGame(Object gameState){
+        try
+        {
+          FileOutputStream fileOut = new FileOutputStream("data.ser");
+          ObjectOutputStream out = new ObjectOutputStream(fileOut);
+          out.writeObject(gameState);
+          out.close();
+          fileOut.close();
+          System.out.println("game saved");
+
+          return true;
+        }
+        catch (IOException i){
+          i.printStackTrace();
+        }
+
+        return false;
     }
-    try
-    {
-      FileOutputStream fileOut = new FileOutputStream(filePath + "\\data.ser");
-      ObjectOutputStream out = new ObjectOutputStream(fileOut);
-      out.writeObject(gameState);
-      out.close();
-      fileOut.close();
-      System.out.println("game saved");
-    }
-    catch (IOException i)
-    {
-      i.printStackTrace();
-    }
-  }
   
-  public Object getSavedGame()
-  {
+  public Object getSavedGame(){
     Object gameState = new Object();
     
-    File desktop = new File(System.getProperty("user.home"), "Desktop");
-    try
-    {
-      FileInputStream fileIn = new FileInputStream(desktop + "\\data\\data.ser");
+    try{
+      FileInputStream fileIn = new FileInputStream("data.ser");
       ObjectInputStream in = new ObjectInputStream(fileIn);
       Object temp = in.readObject();
       if ((temp instanceof Object)) {
@@ -68,17 +52,15 @@ public class SaveFile implements Serializable{
       in.close();
       fileIn.close();
       return gameState; 
-    } catch (FileNotFoundException f) 
-    {
-        f.printStackTrace();
+    } 
+    catch (FileNotFoundException f){
+        System.out.println("File does not exist");
     }
-    catch (IOException i)
-    {
-      i.printStackTrace();
+    catch (IOException i){
+        System.out.println("IO exception found");
     }
-    catch (ClassNotFoundException c)
-    {
-      c.printStackTrace();
+    catch (ClassNotFoundException c){
+        System.out.println("Class not found in file");
     } 
     return null;
   }
