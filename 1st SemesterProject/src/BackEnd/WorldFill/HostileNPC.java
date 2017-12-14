@@ -38,14 +38,14 @@ public class HostileNPC extends NPC implements Serializable {
     
     
      /**
-     * semi No-arg constructor for making Normal NPCs Hostile.
+     * constructor for HostileNPCs with predetermined combat values
      * @param newName Is the name of the HostileNPC
      * @param dialogue The HostileNPC's dialog strings.
      * @param clue the clue given in dialog [If any]
      * @param clueRelease How many times the player has to talk to the NPC before getting a clue.
      * health Health of the Hostile NPC, used for fighting. Standard= 50
      * damage The damage the NPC can deal to the player. Standard is 7
-     * aggression The chance of getting jumped, when you enter a room. 0= not posible, 0.5= 50% chance, 1 = always.
+     * aggression The chance of getting jumped, when you enter a room. 0= not possible, 0.5= 50% chance, 1 = always.
      * Standard is 0.
      */
     public HostileNPC(String newName, Dialogue dialogue, Clue clue, int clueRelease) {
@@ -77,7 +77,7 @@ public class HostileNPC extends NPC implements Serializable {
         return aggression;
     }
 /**
- * Used during combat to end combat in a peaceful way.
+ * Used make a HostileNPC peaceful
  * @set aggression to -1
  */ 
     public void calmDown() {
@@ -85,6 +85,7 @@ public class HostileNPC extends NPC implements Serializable {
     }
 
     /**
+     * Sets the aggression of the HostileNPC
      * @param aggression the aggression to set
      */
     public void setAggression(double aggression) {
@@ -100,12 +101,26 @@ public class HostileNPC extends NPC implements Serializable {
     return getDialogue().getFightScream();
     }
     
+    /**
+     * Sets the health of the HostileNPC to the Argument
+     * @param health 
+     */
     public void setHealth(int health) {
         this.health = health;
     }
+    
+    /**
+     * 
+     * @return Returns the maximum health of the HostileNPC
+     */
     public int getTotalHealth(){
     return totalHealth;
     }
+    
+    /**
+     * Sets the health of the HostileNPC to the Argument
+     * @param damage 
+     */
     public void setDamage(int damage) {
         this.damage = damage;
     }

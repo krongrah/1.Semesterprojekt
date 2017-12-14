@@ -463,7 +463,7 @@ public class FXMLDocumentController implements Initializable {
         inventoryList.setVisible(false);
         updateHUD();
     }}
-
+    
     @FXML
     private void journalSelect(MouseEvent event) {
         if (input(journalList)!=null){
