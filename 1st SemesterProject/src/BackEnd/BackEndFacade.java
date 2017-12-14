@@ -147,9 +147,8 @@ public class BackEndFacade implements IBackEnd{
     
     @Override
     public void getSavedGame(){
-        System.out.println("bef1 "+foundation.getSavedGame().toString());
-        Game game1 = new Game((GameState) foundation.getSavedGame());
-        System.out.println("bef2 "+foundation.getSavedGame().toString());
+        GameState gameState= (GameState) foundation.getSavedGame();
+        game.setGameState(gameState);
     }
 
     @Override
@@ -224,7 +223,10 @@ public String[] getEnemyData() {
     public String endMessage() {
         return game.endMessage();
     }
-    
-   
+
+    @Override
+    public boolean getIsHobosOnTheMove() {
+        return game.getIsHobosOnTheMove();
+    }
       
 }

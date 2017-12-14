@@ -540,6 +540,11 @@ updateHUD();
     private void loadGame(ActionEvent event) {
         backEnd.getSavedGame();
         introScreen.setVisible(false);
+        startRooms();
+        updateHUD();
+        if(backEnd.getIsHobosOnTheMove()){
+        convict.setVisible(true);
+        }
     }
 
     @FXML

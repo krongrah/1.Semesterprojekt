@@ -33,9 +33,20 @@ public class World implements Serializable {
     private Map<String,Clue> clues=new HashMap<>();
     private Map<String,Room> rooms=new HashMap<>();
     private ArrayList<Hobo> hobos = new ArrayList<>();
+    private boolean hobosOnTheMove = false;
 
     public World(){
     createWorld();
+    }
+    
+    public void setWorld(World world){
+    this.npcs = world.getNpcs();
+    this.hostileNpcs = world.getHostileNpcs();
+    this.items= world.getItems();
+    this.clues= world.getClues();
+    this.rooms= world.getRooms();
+    this.hobos= world.getHobos();
+    this.hobosOnTheMove= world.isHobosOnTheMove();
     }
     
     private void createWorld() {
@@ -178,7 +189,7 @@ public class World implements Serializable {
         Hobo hobo4 =  new Hobo("Insane Dwayne", hobo4Dialogue, hobo4Statement, 1);
         NPC commissioner = new NPC("Commissioner Curt", commissionerDialogue, null, 0);
         NPC bartender = new NPC("Bartender Bert", bartenderDialogue, bartenderStatement, 1);
-        HostileNPC wife = new HostileNPC("Wife", wifeDialogue, null, 0, 50, 5, 1);
+        HostileNPC wife = new HostileNPC("Wife", wifeDialogue, null, 0, 50, 5, 0);
         NPC coroner = new NPC("Coroner", coronerDialogue, coronerStatement, 4);
         
         
@@ -233,53 +244,53 @@ public class World implements Serializable {
 
         
         
-        hostileNpcs.put(hobo1.getName(), hobo1);
-        hostileNpcs.put(hobo2.getName(), hobo2);
-        hostileNpcs.put(hobo3.getName(), hobo3);
-        hostileNpcs.put(hobo4.getName(), hobo4);
-        hostileNpcs.put(wife.getName(), wife);
-        npcs.put(coroner.getName(), coroner);
-        npcs.put(commissioner.getName(), commissioner);
-        npcs.put(bartender.getName(), bartender);
-        for(String string:hostileNpcs.keySet()){
-        npcs.put(string, hostileNpcs.get(string));
+        getHostileNpcs().put(hobo1.getName(), hobo1);
+        getHostileNpcs().put(hobo2.getName(), hobo2);
+        getHostileNpcs().put(hobo3.getName(), hobo3);
+        getHostileNpcs().put(hobo4.getName(), hobo4);
+        getHostileNpcs().put(wife.getName(), wife);
+        getNpcs().put(coroner.getName(), coroner);
+        getNpcs().put(commissioner.getName(), commissioner);
+        getNpcs().put(bartender.getName(), bartender);
+        for(String string:getHostileNpcs().keySet()){
+            getNpcs().put(string, getHostileNpcs().get(string));
         }
         
-        rooms.put(rightStreet.getRoomName(), rightStreet);
-        rooms.put(leftStreet.getRoomName(), leftStreet);
-        rooms.put(pd.getRoomName(), pd);
-        rooms.put(court.getRoomName(), court);
-        rooms.put(home.getRoomName(), home);
-        rooms.put(jail.getRoomName(), jail);
-        rooms.put(crimeScene.getRoomName(), crimeScene);
-        rooms.put(partnerHome.getRoomName(), partnerHome);
-        rooms.put(hoboAlley.getRoomName(), hoboAlley);
-        rooms.put(bar.getRoomName(), bar);
+        getRooms().put(rightStreet.getRoomName(), rightStreet);
+        getRooms().put(leftStreet.getRoomName(), leftStreet);
+        getRooms().put(pd.getRoomName(), pd);
+        getRooms().put(court.getRoomName(), court);
+        getRooms().put(home.getRoomName(), home);
+        getRooms().put(jail.getRoomName(), jail);
+        getRooms().put(crimeScene.getRoomName(), crimeScene);
+        getRooms().put(partnerHome.getRoomName(), partnerHome);
+        getRooms().put(hoboAlley.getRoomName(), hoboAlley);
+        getRooms().put(bar.getRoomName(), bar);
         
-        items.put(beer.getName(), beer);
-        items.put(wine.getName(), wine);
-        items.put(gin.getName(), gin);
-        items.put(beerKeg.getName(), beerKeg);
-        items.put(whiskey.getName(), whiskey);
-        items.put(coffee.getName(), coffee);
-        items.put(murderWeapon.getName(), murderWeapon);
-        items.put(partnerKey.getName(), partnerKey);
-        items.put(bloodSplatter.getName(), bloodSplatter);
-        items.put(corpse.getName(), corpse);
-        items.put(badge.getName(), badge);
-        items.put(gun.getName(), gun);
-        items.put(corpseOutline.getName(), corpseOutline);
+        getItems().put(beer.getName(), beer);
+        getItems().put(wine.getName(), wine);
+        getItems().put(gin.getName(), gin);
+        getItems().put(beerKeg.getName(), beerKeg);
+        getItems().put(whiskey.getName(), whiskey);
+        getItems().put(coffee.getName(), coffee);
+        getItems().put(murderWeapon.getName(), murderWeapon);
+        getItems().put(partnerKey.getName(), partnerKey);
+        getItems().put(bloodSplatter.getName(), bloodSplatter);
+        getItems().put(corpse.getName(), corpse);
+        getItems().put(badge.getName(), badge);
+        getItems().put(gun.getName(), gun);
+        getItems().put(corpseOutline.getName(), corpseOutline);
         
-        clues.put(hobo1Statement.getName(), hobo1Statement);
-        clues.put(hobo2Statement.getName(), hobo2Statement);
-        clues.put(hobo3Statement.getName(), hobo3Statement);
-        clues.put(hobo4Statement.getName(), hobo4Statement);
-        clues.put(coronerStatement.getName(), coronerStatement);
-        clues.put(bartenderStatement.getName(), bartenderStatement);
-        clues.put(bloodsplatterClue.getName(), bloodsplatterClue);
-        clues.put(bloodSplatteredBadgeClue.getName(), bloodSplatteredBadgeClue);
-        clues.put(murderWeaponClue.getName(), murderWeaponClue);
-        clues.put(corpseClue.getName(), corpseClue);
+        getClues().put(hobo1Statement.getName(), hobo1Statement);
+        getClues().put(hobo2Statement.getName(), hobo2Statement);
+        getClues().put(hobo3Statement.getName(), hobo3Statement);
+        getClues().put(hobo4Statement.getName(), hobo4Statement);
+        getClues().put(coronerStatement.getName(), coronerStatement);
+        getClues().put(bartenderStatement.getName(), bartenderStatement);
+        getClues().put(bloodsplatterClue.getName(), bloodsplatterClue);
+        getClues().put(bloodSplatteredBadgeClue.getName(), bloodSplatteredBadgeClue);
+        getClues().put(murderWeaponClue.getName(), murderWeaponClue);
+        getClues().put(corpseClue.getName(), corpseClue);
         
         hobos.add(hobo1);
         hobos.add(hobo2);
@@ -288,29 +299,78 @@ public class World implements Serializable {
     }
     
     public NPC getNPC(String name){
-    return npcs.get(name);
+    return getNpcs().get(name);
     }
     public HostileNPC getHostileNPC(String name){
-    return hostileNpcs.get(name);
+    return getHostileNpcs().get(name);
     }
     public Item getItem(String name){
-    return items.get(name);
+    return getItems().get(name);
     }
     public Room getRoom(String name){
-    return rooms.get(name);
+    return getRooms().get(name);
     }
     public Clue getClue(String name){
-    return clues.get(name);
+    return getClues().get(name);
     }
     public boolean isRoom(String name){
-        return rooms.containsKey(name);
+        return getRooms().containsKey(name);
     
     }
     public Map getTheCluse (){
-    return clues;
+    return getClues();
     }
     public ArrayList<Hobo> getHobos(){
         return hobos;
+    }
+
+    /**
+     * @return the hobosOnTheMove
+     */
+    public boolean isHobosOnTheMove() {
+        return hobosOnTheMove;
+    }
+
+    /**
+     * @param hobosOnTheMove the hobosOnTheMove to set
+     */
+    public void setHobosOnTheMove(boolean hobosOnTheMove) {
+        this.hobosOnTheMove = hobosOnTheMove;
+    }
+
+    /**
+     * @return the npcs
+     */
+    public Map<String,NPC> getNpcs() {
+        return npcs;
+    }
+
+    /**
+     * @return the hostileNpcs
+     */
+    public Map<String, HostileNPC> getHostileNpcs() {
+        return hostileNpcs;
+    }
+
+    /**
+     * @return the items
+     */
+    public Map<String,Item> getItems() {
+        return items;
+    }
+
+    /**
+     * @return the clues
+     */
+    public Map<String,Clue> getClues() {
+        return clues;
+    }
+
+    /**
+     * @return the rooms
+     */
+    public Map<String,Room> getRooms() {
+        return rooms;
     }
 
 }

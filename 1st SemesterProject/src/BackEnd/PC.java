@@ -37,6 +37,22 @@ public class PC implements Serializable{
     //constructor
     PC(){}
 
+    public void setPC(PC player) {
+        this.currentRoom = player.getRoom();
+        this.lastRoom = player.getLastRoom();
+        this.name = player.getName();
+        this.minutes = player.getMinutes();
+        this.hours = player.getHours();
+        this.drunkenness= player.getDrunkenness();
+        this.inventory = player.getInventory();
+        this.points = player.getPoints();
+        this.currentHealth= player.getCurrentHealth();
+        this.inventory= player.getInventory();
+        this.journal = player.getJournal();
+        this.evidence= player.getEvidence();
+    }
+     
+
     public Map<String,Item>getInventory(){
     return inventory;
     }
@@ -150,7 +166,7 @@ public class PC implements Serializable{
     }
     
     public void moveBack(){
-    currentRoom=lastRoom;
+    currentRoom=getLastRoom();
     }
     Room getRoom(){
     return currentRoom;
@@ -159,10 +175,10 @@ public class PC implements Serializable{
     name=string;
     }
     public String getTime(){
-        return (String.format("%02d", hours)+":"+String.format("%02d", minutes));
+        return (String.format("%02d", getHours())+":"+String.format("%02d", minutes));
     }
     public int returnHours(){
-        return hours;
+        return getHours();
     }
     public void setHour(int newHour){
         hours = newHour;
@@ -186,6 +202,20 @@ public class PC implements Serializable{
     }
     void setItemToBePickedUp(Item itemToBePickedUp){
     this.itemToBePickedUp=itemToBePickedUp;
+    }
+
+    /**
+     * @return the lastRoom
+     */
+    public Room getLastRoom() {
+        return lastRoom;
+    }
+
+    /**
+     * @return the hours
+     */
+    public int getHours() {
+        return hours;
     }
     
 }
