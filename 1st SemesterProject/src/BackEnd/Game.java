@@ -5,7 +5,6 @@ package BackEnd;
  * @version 2006.03.30
  */
 import BackEnd.WorldFill.Room;
-import BackEnd.WorldFill.Hobo;
 import BackEnd.WorldFill.NPC;
 import BackEnd.WorldFill.HostileNPC;
 import BackEnd.WorldFill.Beverage;
@@ -23,7 +22,6 @@ public class Game {
     private PC player;
     private World world;
     private HiScoreManager manager = new HiScoreManager();
-    private boolean hobosOnTheMove = false;
     private HostileNPC enemy;
     private String endMessage;
     // Constructor calls createRooms and creates new Parser
@@ -257,7 +255,7 @@ public class Game {
             System.out.println("You defeated you oppoent!");
             player.removePoints(15);
             player.getRoom().removeNpcFromRoom(enemy);
-            if(enemy instanceof Hobo){
+            if(world.getHobos().contains(enemy)){
             world.getHobos().remove(enemy);
             
             }
@@ -576,7 +574,7 @@ public class Game {
     }
 
     public void NpcMover() {
-        for (Hobo hobo : world.getHobos()) {
+        for (HostileNPC hobo : world.getHobos()) {
             Room currentRoom = world.getRoom(hobo.getCurrentRoomName());
 //            System.out.println(hobo.getName()+" Chosen in "+hobo.getCurrentRoomName());//test
             List<String> exits = new ArrayList<>();
