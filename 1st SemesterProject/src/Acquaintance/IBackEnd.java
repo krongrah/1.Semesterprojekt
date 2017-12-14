@@ -64,8 +64,7 @@ public interface IBackEnd {
 
     String endScore();
 
-    List<List<String>> getScores();
-
+    List<List<String>>getScores();
     void setName(String string);
 
     int fight();
@@ -81,9 +80,7 @@ public interface IBackEnd {
     String[] getEnemyData();
 
     void printWelcome();
-
     String getTimeString();
-
     String getDrunkenness();
 
     void help();

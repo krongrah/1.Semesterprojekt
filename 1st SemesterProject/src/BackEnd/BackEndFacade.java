@@ -140,7 +140,6 @@ public class BackEndFacade implements IBackEnd {
     }
 
     @Override
-
     public boolean getSavedGame(){
         GameState gameState= (GameState) foundation.getSavedGame();
         if(gameState !=null){
@@ -148,7 +147,6 @@ public class BackEndFacade implements IBackEnd {
         return true;
         }
         return false;
-
     }
 
     @Override
