@@ -145,22 +145,22 @@ public class FXMLDocumentController implements Initializable {
     private Label drunkMeter;
 
     //All images used
-    private Image Bar = new Image(getClass().getResourceAsStream("Bar.png"));
-    private Image PD = new Image(getClass().getResourceAsStream("PD.png"));
-    private Image Court = new Image(getClass().getResourceAsStream("Court.png"));
-    private Image CrimeScene = new Image(getClass().getResourceAsStream("Crimescene.png"));
-    private Image hoboAlley = new Image(getClass().getResourceAsStream("Hoboalley.png"));
-    private Image Home = new Image(getClass().getResourceAsStream("Home.png"));
-    private Image Jail = new Image(getClass().getResourceAsStream("Jail.png"));
-    private Image PartnerHouse = new Image(getClass().getResourceAsStream("PartnerHouse.png"));
-    private Image rightstreet = new Image(getClass().getResourceAsStream("rightstreet.png"));
-    private Image Leftstreet = new Image(getClass().getResourceAsStream("Leftstreet.png"));
+    private Image Bar = new Image(getClass().getResourceAsStream("Textures/Bar.png"));
+    private Image PD = new Image(getClass().getResourceAsStream("Textures/PD.png"));
+    private Image Court = new Image(getClass().getResourceAsStream("Textures/Court.png"));
+    private Image CrimeScene = new Image(getClass().getResourceAsStream("Textures/Crimescene.png"));
+    private Image hoboAlley = new Image(getClass().getResourceAsStream("Textures/Hoboalley.png"));
+    private Image Home = new Image(getClass().getResourceAsStream("Textures/Home.png"));
+    private Image Jail = new Image(getClass().getResourceAsStream("Textures/Jail.png"));
+    private Image PartnerHouse = new Image(getClass().getResourceAsStream("Textures/PartnerHouse.png"));
+    private Image rightstreet = new Image(getClass().getResourceAsStream("Textures/rightstreet.png"));
+    private Image Leftstreet = new Image(getClass().getResourceAsStream("Textures/Leftstreet.png"));
 
-    private Image combatImageDirty = new Image(getClass().getResourceAsStream("combatImageDirty.png"));
-    private Image combatImageHeroin = new Image(getClass().getResourceAsStream("combatImageHeroin.png"));
-    private Image combatImageInsane = new Image(getClass().getResourceAsStream("combatImageInsane.png"));
-    private Image combatImageNoTeeth = new Image(getClass().getResourceAsStream("combatImageNoTeeth.png"));
-    private Image combatImageWife = new Image(getClass().getResourceAsStream("combatImageWife.png"));
+    private Image combatImageDirty = new Image(getClass().getResourceAsStream("Textures/combatImageDirty.png"));
+    private Image combatImageHeroin = new Image(getClass().getResourceAsStream("Textures/combatImageHeroin.png"));
+    private Image combatImageInsane = new Image(getClass().getResourceAsStream("Textures/combatImageInsane.png"));
+    private Image combatImageNoTeeth = new Image(getClass().getResourceAsStream("Textures/combatImageNoTeeth.png"));
+    private Image combatImageWife = new Image(getClass().getResourceAsStream("Textures/combatImageWife.png"));
 
     /**
      * initializes the controller also redirects all System.out inputs from the
