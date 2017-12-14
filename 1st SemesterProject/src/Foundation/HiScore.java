@@ -24,7 +24,7 @@ class HiScore {
     
     /**
      * 
-     * @return 
+     * @return Returns an ArrayList containing all high scores, after retrieving it from the file HiScore.txt.
      */
     ArrayList<String> pullHiScore() {
         
@@ -43,7 +43,10 @@ class HiScore {
     }
 
    
-
+/**
+ * Saves the content of the ArrayList argument the in the file HiScore.txt.
+ * @param newList 
+ */
     void writeHiScore(ArrayList<String> newList) {
         try {
             PrintWriter writer = new PrintWriter(file);
