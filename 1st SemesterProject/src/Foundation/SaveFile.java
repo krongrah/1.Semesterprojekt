@@ -19,24 +19,39 @@ import java.io.Serializable;
  */
 public class SaveFile implements Serializable {
 
-    public boolean saveGame(Object gameState) {
+    /**
+     * Gets a GameState which is written to a file in the game folder. If it is
+     * succesfull it prints out "Game saved", if not it says "Could not save"
+     *
+     * @param gameState the GameState the player wants saved.
+     */
+    void saveGame(Object gameState) {
         try {
             FileOutputStream fileOut = new FileOutputStream("data.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(gameState);
             out.close();
             fileOut.close();
-            System.out.println("game saved");
+            System.out.println("Game saved");
 
-            return true;
         } catch (IOException i) {
             i.printStackTrace();
+            System.out.println("Could not save");
         }
 
-        return false;
     }
 
-    public Object getSavedGame() {
+    /**
+     * Takes the previous written gamestate, and imports it as an Object. If
+     * successfull it return the gameState. 
+     * If there is no file, it prints an
+     * error "File does not exist" and null 
+     * If the file is empty or corrpted it.
+     * If the file can't be accessed, but is present it Prints "IO exception found"
+     * prints "Class not found in file" and null
+     * @return GameState
+     */
+    Object getSavedGame() {
         Object gameState = new Object();
 
         try {
