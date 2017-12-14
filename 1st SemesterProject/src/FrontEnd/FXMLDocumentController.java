@@ -6,7 +6,6 @@
 package FrontEnd;
 
 import Acquaintance.IBackEnd;
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -31,7 +30,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -183,7 +181,7 @@ public class FXMLDocumentController implements Initializable {
         System.setOut(new PrintStream(o, true));
         stackPane.setVisible(false);
         introScreen.setVisible(true);
-        
+
     }
 
     /**
