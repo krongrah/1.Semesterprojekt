@@ -32,13 +32,14 @@ class HiScoreManager {
      * then stored in the foundation.
      */
     private void store() {
-//    ArrayList<String> combinedList=new ArrayList<>();
-//    for(String string1:goodHiScore){
-//    combinedList.add(string1);
-//    for(String string2:badHiScore){
-//    combinedList.add(string2);
-//    foundation.saveHiScoreList(combinedList);
-//    }}
+        ArrayList<String> combinedList = new ArrayList<>();
+        for (String string1 : goodHiScore) {
+            combinedList.add(string1);
+        }
+        for (String string2 : badHiScore) {
+            combinedList.add(string2);
+        }
+        foundation.saveHiScoreList(combinedList);
     }
 
     /**
@@ -46,14 +47,16 @@ class HiScoreManager {
      * the good and the bad list.
      */
     void retrieve() {
-        //retrive the combined list and split it into good and bad.
-//        ArrayList<String>list=foundation.getHiScoreList();
-//        for(int i=0;i<hiScoreMax;i++){
-//        goodHiScore.add(list.get(i));
-//        }
-//        for(int j=hiScoreMax;j<2*hiScoreMax;j++){
-//        goodHiScore.add(list.get(j));
-//        }
+        ArrayList<String> list = foundation.getHiScoreList();
+        if (!list.isEmpty()) {
+
+            for (int i = 0; i < hiScoreMax; i++) {
+                goodHiScore.add(list.get(i));
+            }
+            for (int j = hiScoreMax; j < 2 * hiScoreMax; j++) {
+                badHiScore.add(list.get(j));
+            }
+        }
 
     }
 
@@ -107,6 +110,12 @@ class HiScoreManager {
         Collections.sort(badHiScore);
         Collections.reverse(goodHiScore);
         Collections.reverse(badHiScore);
+        while (goodHiScore.size() < hiScoreMax) {
+            goodHiScore.add(" ");
+        }
+        while (badHiScore.size() < hiScoreMax) {
+            badHiScore.add(" ");
+        }
         if (goodHiScore.size() > hiScoreMax) {
             goodHiScore = goodHiScore.subList(0, hiScoreMax);
         }

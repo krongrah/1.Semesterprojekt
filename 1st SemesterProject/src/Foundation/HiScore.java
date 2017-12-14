@@ -7,6 +7,7 @@ package Foundation;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -27,7 +28,13 @@ class HiScore {
      */
     ArrayList<String> pullHiScore() {
 
-        file.mkdir();//makes directory if none exists
+        try {
+            file.createNewFile();
+        } catch (IOException f) {
+            f.printStackTrace();
+        }
+
+//makes directory if none exists
         try {
 
             Scanner input = new Scanner(file);

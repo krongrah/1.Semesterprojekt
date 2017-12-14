@@ -547,11 +547,7 @@ public class Game {
             player.addToevidence("Badge");
             System.out.println("Badge has been added to Evidence list");
             if (player.isSecondEvidence()) {
-                System.out.print("Judge: We have found ");
-                for (Entry<String, NPC> npc : world.getRoom("Jail").getNPCsInRoomMap().entrySet()) {
-                    System.out.print(npc.getValue().getName() + (" "));
-                }
-                System.out.println("guilty of murder.");
+                convictWin();
                 win();
                 return true;
             }
