@@ -477,6 +477,7 @@ private void badgeSelect(MouseEvent event) {
         if (input(badgeList)!=null){
         backEnd.badgeResponse(input(badgeList));
         if(input(badgeList).equals("No")){
+        closeMenus();
         showWinScreen();
         }else{
         badgeList.setVisible(false);
@@ -584,9 +585,10 @@ updateHUD();
     }else if(f==0){
         showLoseScreen();
         fightScreen.setVisible(false);
-    }
+    }else{
         updateHealth();
-    }
+    }}
+    
     private void updateHealth(){
         playerHealth.setProgress(backEnd.getPlayerHealth());
         enemyHealth.setProgress(backEnd.getEnemyHealth());

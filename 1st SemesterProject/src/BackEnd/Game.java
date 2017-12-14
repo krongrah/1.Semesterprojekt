@@ -255,6 +255,7 @@ public class Game {
             player.getRoom().removeNpcFromRoom(enemy);
             if(enemy instanceof Hobo){
             world.getHobos().remove(enemy);
+            
             }
             combatEnd();
             return 2;
@@ -348,7 +349,6 @@ public class Game {
                 player.addToevidence(clue);
                 System.out.println(clue + " has been added to Evidence list");
                 if (player.isSecondEvidence()) {
-
                     convictWin();
                     win();
                     return 1;
