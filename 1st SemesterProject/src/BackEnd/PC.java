@@ -164,26 +164,59 @@ public class PC implements Serializable{
     public int returnHours(){
         return hours;
     }
-    public void setHour(int newHour){
-        hours = newHour;
+    
+    /**
+     *sets the minutes of the time.
+     * @param hours the new value of the minutes
+     */
+    public void setHour(int hours){
+        this.hours = hours;
     }
+    
+    /**
+     * 
+     * @return returns the current minutes of the the time.
+     */
     public int getMinutes(){
         return minutes;
     }
-    public void setMinutes(int newMinutes){
-        minutes = newMinutes;
+    
+    /**
+     * sets the minutes of the time.
+     * @param minutes the new value of the minutes
+     */
+    public void setMinutes(int minutes){
+        this.minutes = minutes;
     }
+    
+    /**
+     * sets the damage of the player to the argument of the method.
+     * @param damage the value the player's damage is to be set to.
+     */
     public void setDamage(int damage){
     this.damage=damage;
     }
+    
+    /**
+     * 
+     * @return returns the damage of the player.
+     */
     public int getDamage(){
     return damage;
     }
+    /**
+     * 
+     * @return returns the itemToBePickedUp String and then sets the String to null.
+     */
     Item getItemToBePickedUp(){
         Item holder=itemToBePickedUp;
         itemToBePickedUp=null;
         return holder;
     }
+    /**
+     * Sets the itemToBePickedUp variable to the argument if the method.
+     * @param itemToBePickedUp the String to be stored for use in the pickUp method of the game Class
+     */
     void setItemToBePickedUp(Item itemToBePickedUp){
     this.itemToBePickedUp=itemToBePickedUp;
     }
