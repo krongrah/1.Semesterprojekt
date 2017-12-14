@@ -34,7 +34,10 @@ class PC implements Serializable{
     private Room currentRoom, lastRoom;
     private String name;
     private Item itemToBePickedUp;
-    //constructor
+
+    /**
+     * Constructs a PC.
+     */
     PC(){}
 
     /**

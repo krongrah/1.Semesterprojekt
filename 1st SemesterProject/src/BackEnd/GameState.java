@@ -15,6 +15,11 @@ class GameState implements Serializable{
     private PC player;
     private World world;
     
+    /**
+     * Constructs a GameState.
+     * @param player The PC object to be stored.
+     * @param world The World object to be stored.
+     */
     GameState(PC player, World world){
     this.player=player;
     this.world=world;

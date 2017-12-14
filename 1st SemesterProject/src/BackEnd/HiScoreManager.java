@@ -22,6 +22,11 @@ class HiScoreManager {
     private int hiScoreMax = 5;
 
     /**
+     * constructs a HiScoreManager
+     */
+    HiScoreManager(){}
+    
+    /**
      * Stores combines the good and the bad high score lists into one, which is
      * then stored in the foundation.
      */
