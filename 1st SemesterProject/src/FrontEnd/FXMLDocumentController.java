@@ -507,7 +507,7 @@ updateHUD();
     void updateHUD(){
         stackPane.setVisible(false);
         Drunkmeter.setProgress(backEnd.getHUD().get(0)/100.0);
-        watch.setText(backEnd.getTime());
+        watch.setText(backEnd.getTimeString());
         drunkMeter.setText(backEnd.getDrunkenness());
         if(backEnd.getHUD().get(1)==null){
         badCopBar.setProgress(backEnd.getHUD().get(2)/100.0);

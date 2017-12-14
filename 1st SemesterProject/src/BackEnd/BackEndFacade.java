@@ -141,11 +141,6 @@ public class BackEndFacade implements IBackEnd{
     }
 
     @Override
-    public void load() {
-    
-    }
-    
-    @Override
     public boolean getSavedGame(){
         GameState gameState= (GameState) foundation.getSavedGame();
         if(gameState !=null){
@@ -153,7 +148,6 @@ public class BackEndFacade implements IBackEnd{
         return true;
         }
         return false;
-        
     }
 
     @Override
@@ -200,7 +194,8 @@ public class BackEndFacade implements IBackEnd{
     public double getPlayerHealth() {
         return game.playerHealthPercent();
     }
-public String[] getEnemyData() {
+    @Override
+    public String[] getEnemyData() {
         return game.getEnemyData();
     }
 
@@ -210,8 +205,8 @@ public String[] getEnemyData() {
     }
 
     @Override
-    public String getTime() {
-        return game.getTime();
+    public String getTimeString() {
+        return game.getTimeString();
     }
 
     @Override

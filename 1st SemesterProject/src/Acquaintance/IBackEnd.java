@@ -38,7 +38,6 @@ public interface IBackEnd {
     boolean badgeResponse(String answer);
     List<Integer>getHUD();
     String endScore();
-    void load();
     List<List<String>>getScores();
     void setName(String string);
     int fight();
@@ -48,7 +47,7 @@ public interface IBackEnd {
     double getPlayerHealth();
     String[] getEnemyData();
     void printWelcome();
-    String getTime();
+    String getTimeString();
     String getDrunkenness();
     void help();
     String endMessage();
