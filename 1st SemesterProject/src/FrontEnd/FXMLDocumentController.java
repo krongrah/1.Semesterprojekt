@@ -6,6 +6,7 @@
 package FrontEnd;
 
 import Acquaintance.IBackEnd;
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -144,22 +145,22 @@ public class FXMLDocumentController implements Initializable {
     private Label drunkMeter;
 
     //All images used
-    private Image Bar = new Image("file:src/Texures/Bar.png");
-    private Image PD = new Image("file:src/Texures/PD.png");
-    private Image Court = new Image("file:src/Texures/Court.png");
-    private Image CrimeScene = new Image("file:src/Texures/Crimescene.png");
-    private Image hoboAlley = new Image("file:src/Texures/Hoboalley.png");
-    private Image Home = new Image("file:src/Texures/Home.png");
-    private Image Jail = new Image("file:src/Texures/Jail.png");
-    private Image PartnerHouse = new Image("file:src/Texures/PartnerHouse.png");
-    private Image rightstreet = new Image("file:src/Texures/rightstreet.png");
-    private Image Leftstreet = new Image("file:src/Texures/Leftstreet.png");
+    private Image Bar = new Image(getClass().getResourceAsStream("Bar.png"));
+    private Image PD = new Image(getClass().getResourceAsStream("PD.png"));
+    private Image Court = new Image(getClass().getResourceAsStream("Court.png"));
+    private Image CrimeScene = new Image(getClass().getResourceAsStream("Crimescene.png"));
+    private Image hoboAlley = new Image(getClass().getResourceAsStream("Hoboalley.png"));
+    private Image Home = new Image(getClass().getResourceAsStream("Home.png"));
+    private Image Jail = new Image(getClass().getResourceAsStream("Jail.png"));
+    private Image PartnerHouse = new Image(getClass().getResourceAsStream("PartnerHouse.png"));
+    private Image rightstreet = new Image(getClass().getResourceAsStream("rightstreet.png"));
+    private Image Leftstreet = new Image(getClass().getResourceAsStream("Leftstreet.png"));
 
-    private Image combatImageDirty = new Image("file:src/Texures/combatImageDirty.png");
-    private Image combatImageHeroin = new Image("file:src/Texures/combatImageHeroin.png");
-    private Image combatImageInsane = new Image("file:src/Texures/combatImageInsane.png");
-    private Image combatImageNoTeeth = new Image("file:src/Texures/combatImageNoTeeth.png");
-    private Image combatImageWife = new Image("file:src/Texures/combatImageWife.png");
+    private Image combatImageDirty = new Image(getClass().getResourceAsStream("combatImageDirty.png"));
+    private Image combatImageHeroin = new Image(getClass().getResourceAsStream("combatImageHeroin.png"));
+    private Image combatImageInsane = new Image(getClass().getResourceAsStream("combatImageInsane.png"));
+    private Image combatImageNoTeeth = new Image(getClass().getResourceAsStream("combatImageNoTeeth.png"));
+    private Image combatImageWife = new Image(getClass().getResourceAsStream("combatImageWife.png"));
 
     /**
      * initializes the controller also redirects all System.out inputs from the
@@ -182,6 +183,7 @@ public class FXMLDocumentController implements Initializable {
         System.setOut(new PrintStream(o, true));
         stackPane.setVisible(false);
         introScreen.setVisible(true);
+        
     }
 
     /**
