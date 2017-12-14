@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Krongrah
  */
-public class Clue implements Serializable{
+public class Clue implements Serializable {
 
     //Attributes
     private String name;
@@ -19,7 +19,8 @@ public class Clue implements Serializable{
     private boolean isConvictable;
 
     /**
-     * Constructs a Clue 
+     * Constructs a Clue
+     *
      * @param name The name of the Clue
      * @param description The description of the Clue
      * @param isConvictable True if the it can be used to convict, else false.
@@ -32,14 +33,16 @@ public class Clue implements Serializable{
 
     /**
      * Gets clue name
+     *
      * @return Returns the name of the clue
      */
     public String getName() {
         return name;
     }
-    
+
     /**
      * Gets clue description
+     *
      * @return Returns the description of the clue
      */
     public String getDescription() {

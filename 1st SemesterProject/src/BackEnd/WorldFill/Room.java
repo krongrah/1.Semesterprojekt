@@ -9,17 +9,17 @@ import java.util.Map;
  * @author Michael Kolling and David J. Barnes
  * @version 2006.03.30
  */
-public class Room implements Serializable{   //rooms have a description/name and map with strings to rooms, serving as exits.
+public class Room implements Serializable {   //rooms have a description/name and map with strings to rooms, serving as exits.
 
     private String description;
     private HashMap<String, Room> exits;
-    private Map<String,Item> ItemsInRoom = new HashMap<>();
+    private Map<String, Item> ItemsInRoom = new HashMap<>();
     private Map<String, NPC> NPCsInRoom = new HashMap<>();
     private String roomName;
     private boolean hoboAccessable;
 
     /**
-     * 
+     *
      * @param description is the description of the room. Example: " in the bar"
      * @param roomName is the name of the room Example: "Bar"
      * @param hoboAccessable is used to define if hobos can walk in this room.
@@ -28,23 +28,25 @@ public class Room implements Serializable{   //rooms have a description/name and
         this.description = description;
         this.roomName = roomName;
         exits = new HashMap<String, Room>();
-        this.hoboAccessable=hoboAccessable;
+        this.hoboAccessable = hoboAccessable;
     }
-    
+
     /**
-     * adds a neighboring room to the Exits map, with the direction being the key
-     * @param direction The direction to the neighbor room. 
-     * @param neighbor The neighboring room you want to access when write "go [direction]"
-     * Example of use:  bar.setExit("north", leftStreet);
-     */    
+     * adds a neighboring room to the Exits map, with the direction being the
+     * key
+     *
+     * @param direction The direction to the neighbor room.
+     * @param neighbor The neighboring room you want to access when write "go
+     * [direction]" Example of use: bar.setExit("north", leftStreet);
+     */
     public void setExit(String direction, Room neighbor) {
         exits.put(direction, neighbor);
     }
-    
-    /**
-     * 
-     * @return description of the room.
 
+    /**
+     *
+     * @return description of the room.
+     *
      */
     public String getShortDescription() {
         return description;
@@ -53,84 +55,87 @@ public class Room implements Serializable{   //rooms have a description/name and
     /**
      * @return the ItemsInRoom Set
      */
-    
-    public Map<String,Item> getItemsInRoomMap() {
+    public Map<String, Item> getItemsInRoomMap() {
         return ItemsInRoom;
     }
-    
 
-    /** Adds items to the ItemsInRoom Map.
-     * @param item you want to add to ItemsInRoom Map.
-     * Example of use: bar.addItemToRoom(beer);
+    /**
+     * Adds items to the ItemsInRoom Map.
+     *
+     * @param item you want to add to ItemsInRoom Map. Example of use:
+     * bar.addItemToRoom(beer);
      */
     public void addItemToRoom(Item item) {
         this.ItemsInRoom.put(item.getName(), item);
     }
 
-    
     /**
-    * Removes items from room set
-    * @param string is the item name you want to be removed from itemsInRoom Set.
-    * Example of use: bar.removeItemFromRoom(beer);
-    */ 
-    public void removeItemFromRoomMap(String string){
+     * Removes items from room set
+     *
+     * @param string is the item name you want to be removed from itemsInRoom
+     * Set. Example of use: bar.removeItemFromRoom(beer);
+     */
+    public void removeItemFromRoomMap(String string) {
         this.ItemsInRoom.remove(string);
     }
 
     /**
-    * 
-    * @return the NPCsInRoomMap
-    */
+     *
+     * @return the NPCsInRoomMap
+     */
     public Map<String, NPC> getNPCsInRoomMap() {
         return NPCsInRoom;
     }
 
-    /**Adds NPC to the NPCsInRoom Set
-     * @param npc is the NPC you want added to the room.
-     * Example of use: bar.addNpcToRoom(bartender);
+    /**
+     * Adds NPC to the NPCsInRoom Set
+     *
+     * @param npc is the NPC you want added to the room. Example of use:
+     * bar.addNpcToRoom(bartender);
      */
     public void addNpcToRoom(NPC npc) {
         this.NPCsInRoom.put(npc.getName(), npc);
-        npc.setCurrentRoomName(this.roomName);          
+        npc.setCurrentRoomName(this.roomName);
     }
 
-    /**Removes NPC from the NPCsInRoom Set.
-     * @param npc is the NPC you want removed from the room
-     * Example of use: bar.removeNpcFromRoom(bartender)
+    /**
+     * Removes NPC from the NPCsInRoom Set.
+     *
+     * @param npc is the NPC you want removed from the room Example of use:
+     * bar.removeNpcFromRoom(bartender)
      */
     public void removeNpcFromRoom(NPC npc) {
         this.NPCsInRoom.remove(npc.getName());
         npc.setCurrentRoomName(null);
     }
-    
+
     /**
      * Moves NPCs from one room to another.
+     *
      * @param npc is the NPC in the room you want moved
-     * @param newRoom is the room you want the NPC to be moved to.
-     * Example of use: bar.moveNpc(bartender, leftstreet);
+     * @param newRoom is the room you want the NPC to be moved to. Example of
+     * use: bar.moveNpc(bartender, leftstreet);
      */
-    
-    public void moveNpc(NPC npc, Room newRoom){
-        
-        if(this.getNPCsInRoomMap().containsKey(npc.getName())){
-        this.NPCsInRoom.remove(npc.getName());
-        newRoom.NPCsInRoom.put(npc.getName(), npc);
-        npc.setCurrentRoomName(newRoom.getRoomName());
+    public void moveNpc(NPC npc, Room newRoom) {
+
+        if (this.getNPCsInRoomMap().containsKey(npc.getName())) {
+            this.NPCsInRoom.remove(npc.getName());
+            newRoom.NPCsInRoom.put(npc.getName(), npc);
+            npc.setCurrentRoomName(newRoom.getRoomName());
         }
     }
+
     /**
-    * 
-    * @return returns the exits of a certain room.  Print out example:
-    * You are in the bar. [description]
-    * Exits:| north = Left Street | [getExitString()]
-    */
+     *
+     * @return returns the exits of a certain room. Print out example: You are
+     * in the bar. [description] Exits:| north = Left Street | [getExitString()]
+     */
     public String getLongDescription() {
         return "You are" + description;
     }
-   
-    
+
     /**
-     * 
+     *
      * @param direction
      * @return returns the room in the given direction.
      */
@@ -144,21 +149,20 @@ public class Room implements Serializable{   //rooms have a description/name and
     public String getRoomName() {
         return roomName;
     }
-    
-
 
     /**
-     * @return instance variable HoboAccessable, used to if a hobo can walk into a room.
+     * @return instance variable HoboAccessable, used to if a hobo can walk into
+     * a room.
      */
     public boolean isHoboAccessable() {
         return hoboAccessable;
     }
-    
+
     /**
-     * 
+     *
      * @return Returns A Map with the exits from this Room
      */
-    public HashMap<String,Room> getExit(){
+    public HashMap<String, Room> getExit() {
         return exits;
     }
 }

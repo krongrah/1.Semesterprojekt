@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Krongrah
  */
-public class NPC implements Serializable{
+public class NPC implements Serializable {
 
     // NPC attributes
     private String name;
@@ -20,13 +20,15 @@ public class NPC implements Serializable{
     private int askForClueCounter = 0;
     private int clueRelease;
     private String NPCCurrentRoomName;
-    
+
     /**
      * NPC constructor
+     *
      * @param newName Is the name of the HostileNPC
      * @param dialogue The HostileNPC's dialog strings.
      * @param clue the clue given in dialog [If any]
-     * @param clueRelease How many times the player has to talk to the NPC before getting a clue.
+     * @param clueRelease How many times the player has to talk to the NPC
+     * before getting a clue.
      */
     public NPC(String newName, Dialogue dialogue, Clue clue, int clueRelease) {
         this.name = newName;
@@ -34,61 +36,68 @@ public class NPC implements Serializable{
         this.clue = clue;
         this.clueRelease = clueRelease;
     }
-    
+
     /**
      * Gets name
+     *
      * @return name
      */
     public String getName() {
         return name;
     }
-    
-/**
- * Prints out a dialog line
- */
+
+    /**
+     * Prints out a dialog line
+     */
     public void getLine() {
-        System.out.print(name +": ");
+        System.out.print(name + ": ");
         dialogue.getLine();
         System.out.println("\n");
     }
 
     /**
      * gets Alibi
+     *
      * @return Returns alibi
      */
     public String getAlibi() {
         return getDialogue().getAlibi();
     }
+
     /**
-    * Set dialog object.
-    * @param dialogue The dialogue object you want to bind with the NPC
-    */ 
-    public void setDialogue(Dialogue dialogue) { 
+     * Set dialog object.
+     *
+     * @param dialogue The dialogue object you want to bind with the NPC
+     */
+    public void setDialogue(Dialogue dialogue) {
         this.dialogue = dialogue;
     }
-    
+
     /**
-     * Resets the clueCounter for the NPC and sets the dialogue condition to true.
+     * Resets the clueCounter for the NPC and sets the dialogue condition to
+     * true.
      */
-    public void fulfillCondition(){
-    dialogue.fulfillCondition();
-    askForClueCounter=0;
+    public void fulfillCondition() {
+        dialogue.fulfillCondition();
+        askForClueCounter = 0;
     }
 
     /**
      * increments the clue counter and returns true if the Clue should be given.
+     *
      * @return true if the clue of the NPC should be given, else returns false.
      */
-    public boolean getClue(){
-    askForClueCounter++;
-    if(askForClueCounter==clueRelease&& dialogue.getCondition()){
-    return true;
+    public boolean getClue() {
+        askForClueCounter++;
+        if (askForClueCounter == clueRelease && dialogue.getCondition()) {
+            return true;
         }
-    return false;
+        return false;
     }
 
     /**
      * gets clue
+     *
      * @return clue
      */
     public Clue giveClue() {
@@ -115,5 +124,5 @@ public class NPC implements Serializable{
     public void setCurrentRoomName(String NPCCurrentRoomName) {
         this.NPCCurrentRoomName = NPCCurrentRoomName;
     }
-   
+
 }
