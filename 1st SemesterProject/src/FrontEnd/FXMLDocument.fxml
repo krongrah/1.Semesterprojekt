@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -18,7 +22,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FrontEnd.FXMLDocumentController">
+<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FrontEnd.FXMLDocumentController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="203.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="397.0" />
@@ -37,19 +41,19 @@
             <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="16.0" prefWidth="600.0">
                <children>
                   <ProgressBar fx:id="badCopBar" focusTraversable="false" maxWidth="1.7976931348623157E308" nodeOrientation="RIGHT_TO_LEFT" progress="0.0" HBox.hgrow="ALWAYS" />
-                  <ProgressBar fx:id="GoodCopBar" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
+                  <ProgressBar fx:id="goodCopBar" maxWidth="1.7976931348623157E308" progress="0.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label fx:id="watch" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="38.0" text="watch" HBox.hgrow="ALWAYS" />
-                  <ProgressIndicator fx:id="Drunkmeter" prefHeight="0.0" prefWidth="34.0" progress="0.0" visible="false" HBox.hgrow="ALWAYS" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <Label fx:id="drunkMeter" text="drunkMeter" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
          </children>
       </VBox>
-      <GridPane fx:id="ControlPanel" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      <GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -61,13 +65,13 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="talk" mnemonicParsing="false" onAction="#talkGui" text="Talk" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-            <Button fx:id="convict" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ConvictGUI" text="Convict" visible="false" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
-            <Button fx:id="drink" mnemonicParsing="false" onAction="#drinkGUI" text="Drink" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
-            <Button fx:id="search" mnemonicParsing="false" onAction="#searchGui" text="Search" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
-            <Button fx:id="arrest" mnemonicParsing="false" onAction="#ArrestGUI" text="Arrest" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
-            <Button fx:id="save" mnemonicParsing="false" onAction="#saveGUI" text="Save" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-            <Button fx:id="inspect" mnemonicParsing="false" onAction="#inspectGUI" text="Inspect" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+            <Button mnemonicParsing="false" onAction="#talkGui" text="Talk" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+            <Button fx:id="convict" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#convictGUI" text="Convict" visible="false" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES" />
+            <Button mnemonicParsing="false" onAction="#drinkGUI" text="Drink" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
+            <Button mnemonicParsing="false" onAction="#searchGui" text="Search" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
+            <Button mnemonicParsing="false" onAction="#arrestGUI" text="Arrest" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
+            <Button mnemonicParsing="false" onAction="#saveGUI" text="Save" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+            <Button mnemonicParsing="false" onAction="#inspectGUI" text="Inspect" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
             <Button layoutX="154.0" layoutY="53.0" mnemonicParsing="false" onAction="#dropGUI" text="Drop" GridPane.columnIndex="2" />
             <Button mnemonicParsing="false" onAction="#helpGUI" text="Help" />
          </children>
@@ -77,7 +81,7 @@
             <TextArea fx:id="textOutput" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="121.0" prefWidth="442.0" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
-      <GridPane fx:id="gridPaneList" prefHeight="320.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+      <GridPane prefHeight="320.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="203.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="197.0" />
@@ -103,7 +107,7 @@
                         <ListView fx:id="winBadHighScore" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </HBox>
-                  <Button mnemonicParsing="false" onAction="#Quit" text="Quit" />
+                  <Button mnemonicParsing="false" onAction="#quit" text="Quit" />
                </children>
             </VBox>
          </center>
@@ -116,28 +120,28 @@
       </BorderPane>
       <BorderPane fx:id="mapPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="600.0" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
          <top>
-            <ImageView fx:id="arrowNorth" fitHeight="46.0" fitWidth="50.0" onMouseClicked="#GoArrowNorth" pickOnBounds="true" preserveRatio="true" rotate="180.0" BorderPane.alignment="CENTER">
+            <ImageView fx:id="arrowNorth" fitHeight="46.0" fitWidth="50.0" onMouseClicked="#goArrowNorth" pickOnBounds="true" preserveRatio="true" rotate="180.0" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../Texures/arrow.png" />
                </image>
             </ImageView>
          </top>
          <left>
-            <ImageView fx:id="arrowWest" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#GoArrowWest" pickOnBounds="true" preserveRatio="true" rotate="90.0" BorderPane.alignment="CENTER">
+            <ImageView fx:id="arrowWest" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#goArrowWest" pickOnBounds="true" preserveRatio="true" rotate="90.0" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../Texures/arrow.png" />
                </image>
             </ImageView>
          </left>
          <right>
-            <ImageView fx:id="arrowEast" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#GoArrowEast" pickOnBounds="true" preserveRatio="true" rotate="-90.0" BorderPane.alignment="CENTER">
+            <ImageView fx:id="arrowEast" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#goArrowEast" pickOnBounds="true" preserveRatio="true" rotate="-90.0" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../Texures/arrow.png" />
                </image>
             </ImageView>
          </right>
          <bottom>
-            <ImageView fx:id="arrowSouth" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#GoArrowSouth" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="arrowSouth" fitHeight="50.0" fitWidth="50.0" onMouseClicked="#goArrowSouth" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@../Texures/arrow.png" />
                </image>
@@ -165,14 +169,14 @@
             <ListView fx:id="dropList" layoutX="10.0" layoutY="10.0" onMouseClicked="#dropMenuSelect" prefHeight="220.0" prefWidth="397.0" visible="false" />
          </children>
       </StackPane>
-      <BorderPane fx:id="LoseScreen" style="-fx-background-color: crimson;" visible="false" GridPane.columnSpan="3" GridPane.rowSpan="5">
+      <BorderPane fx:id="loseScreen" style="-fx-background-color: crimson;" visible="false" GridPane.columnSpan="3" GridPane.rowSpan="5">
          <center>
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
                   <Label text="You Lost!" />
                   <TextField fx:id="loseScore" />
                   <TextArea fx:id="loseText" prefHeight="123.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" onAction="#Quit" text="Quit" />
+                  <Button mnemonicParsing="false" onAction="#quit" text="Quit" />
                </children>
             </VBox>
          </center>
@@ -183,7 +187,7 @@
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </right>
       </BorderPane>
-      <BorderPane fx:id="introScreen" layoutX="10.0" layoutY="10.0" style="-fx-background-color: royalBlue;" GridPane.columnSpan="3" GridPane.rowSpan="5">
+      <BorderPane fx:id="introScreen" layoutX="10.0" layoutY="10.0" style="-fx-background-color: royalBlue;" visible="false" GridPane.columnSpan="3" GridPane.rowSpan="5">
          <center>
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
@@ -196,7 +200,7 @@
                   <Button fx:id="newGame" mnemonicParsing="false" onAction="#newGame" text="New Game" />
                   <Pane prefHeight="17.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="nameField" alignment="CENTER" layoutX="215.0" onKeyPressed="#enter" prefHeight="25.0" prefWidth="173.0" promptText="Enter your name" visible="false" />
+                        <TextField fx:id="nameField" alignment="CENTER" layoutX="215.0" prefHeight="25.0" prefWidth="173.0" promptText="Enter your name" visible="false" />
                      </children></Pane>
                   <Button fx:id="loadGame" mnemonicParsing="false" onAction="#loadGame" text="Load Game" />
                   <Pane prefHeight="17.0" prefWidth="200.0">
@@ -205,7 +209,7 @@
                      </children></Pane>
                   <Button fx:id="hiScore" mnemonicParsing="false" onAction="#hiScore" text="Hi Score" />
                   <Pane prefHeight="17.0" prefWidth="200.0" />
-                  <Button fx:id="quit" mnemonicParsing="false" onAction="#Quit" text="Quit" />
+                  <Button fx:id="quit" mnemonicParsing="false" onAction="#quit" text="Quit" />
                </children>
             </VBox>
          </center>
@@ -284,7 +288,7 @@
             </Pane>
          </children>
       </GridPane>
-      <BorderPane fx:id="HiScoreScreen" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnSpan="3" GridPane.rowSpan="5">
+      <BorderPane fx:id="hiScoreScreen" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnSpan="3" GridPane.rowSpan="5">
          <center>
             <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
@@ -318,7 +322,7 @@
                   <Label text="Bad Cop High Score" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      
                   </Label>
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#Back" text="Back" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#back" text="Back" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
          </top>
