@@ -353,7 +353,7 @@ public class Game {
      * Send the name, damage + randomizer and health to the fightscreen in UI, as strings.
      * @return String Array with the enemy data.
      */
-    public String[] getEnemyData() {
+    String[] getEnemyData() {
         String[] enemyData = new String[3];
         enemyData[0] = enemy.getName();
         enemyData[1] = Integer.toString(enemy.getDamage()+5) + "-" + Integer.toString(enemy.getDamage()+11);
@@ -427,7 +427,13 @@ public class Game {
         }
     }
 
-    public int convict(String clue) {
+    /**
+     * Checks if the clue is convictible or badge so it can be handled arcordingly.
+     * Advances time 10 minutes
+     * @param clue The clue the player wants to use.
+     * @return 0 = Clue is not usable in court. 1 = Clue is good to use in court 2 = The clue is badge.
+     */
+    int convict(String clue) {
         timeLoop(10);
         if (!clue.equals("Badge")) {
 
@@ -452,7 +458,10 @@ public class Game {
             return 2;
         }
     }
-
+    
+    /**
+     * Takes the arrested NPC(s) in jail, to court and then convicts them of Murder.
+     */
     private void convictWin() {
         String criminals = "";
         for (String npc : world.getRoom("Jail").getNPCsInRoomMap().keySet()) {
@@ -498,6 +507,11 @@ public class Game {
         }
     }
 
+    /**
+     * Sends the inventory to UI, so the player can selected what he wants to drop.
+     * @return If the inventory isn't empty it returns the keyset of of the inventory. 
+     * If it is empty it returns null and prints out a string.
+     */
     Set<String> dropMenu() {
         if (!player.getInventory().isEmpty()) {
             System.out.println("These are the items in your inventory.");
@@ -508,13 +522,22 @@ public class Game {
         }
     }
 
+    /**
+     * drops an item, and 1 minute passes.
+     * @param string is the name of the item you want dropped.
+     */
     void drop(String string) {
         timeLoop(1);
         player.moveToRoom(world.getItem(string), player.getRoom());
     }
 
+    /**
+     * if there are NPCs in the room it Prints "Who do you wish to talk to?" and 
+     * returns the Set of their names.
+     * If there is no one it prints "You are all alone." and returns null
+     * @return Set with the names / null
+     */
     Set<String> talkMenu() {
-        remover();
         if (!player.getRoom().getNPCsInRoomMap().isEmpty()) {
             System.out.println("Who do you wish to talk to?");
             return player.getRoom().getNPCsInRoomMap().keySet();
@@ -524,8 +547,12 @@ public class Game {
         }
     }
 
+    /**
+     * Uses the name of the NPC the player wants to talk to, and then gets their lines.
+     * advances time 1 minute.
+     * @param name is the name of the NPC the player wants to talk to.
+     */
     void talk(String name) {
-        //Gives the player a list of NPCs in the room
         NPC target = player.getRoom().getNPCsInRoomMap().get(name);
         target.getLine();
         if (target.getClue()) {
@@ -534,8 +561,13 @@ public class Game {
         timeLoop(1);
     }
 
+    /**
+     * if there are items in the room it Prints "You found these items.\nWhat 
+     * do you want to look at?" and  returns the Set of the names.
+     * If there is no one it prints "You are all alone." and returns null
+     * @return Set with the names / null
+     */
     Set<String> searchMenu() {
-        remover();
         if (!player.getRoom().getItemsInRoomMap().isEmpty()) {
             System.out.println("You found these items.\nWhat do you want to look at?");
             return player.getRoom().getItemsInRoomMap().keySet();
@@ -545,6 +577,13 @@ public class Game {
         }
     }
 
+    /**
+     * Uses the name of the Item the player wants to pick up to, and sees if it can be picled up.
+     * advances time 1 minute. If it can be picked up it sets it as ItemToBePickedUp.
+     * If not it gives a clue (if any)
+     * Advances time 2 minutes
+     * @param name is the name of the Item the player wants to pick up.
+     */
     boolean search(String name) {
         timeLoop(2);
         Item item = world.getItem(name);
@@ -562,7 +601,13 @@ public class Game {
             return false;
         }
     }
-
+    
+    /**
+     * If the item can be picked up this asks if the player wants to pick it up 
+     * the item in ItemToBePickedUp will be pickup. If it is a clue the clue is added to Journal.
+     * Advances time 1 minute.
+     * @param answer Yes/ No 
+     */
     void pickup(String answer) {
         timeLoop(1);
         if (answer.equals("No")) {
@@ -577,6 +622,10 @@ public class Game {
         }
     }
 
+    /**
+     * Prints out the end score if the player was a good or a bad cop.
+     * @return 
+     */
     String endScore() {
         if (player.getPoints() >= 100) {
             return "You were rated a " + (player.getPoints() - 100) + "% good cop.";
@@ -585,10 +634,21 @@ public class Game {
         }
     }
 
+    /**
+     * If the player Loses, the end message will be why they lost.
+     * @return The end message
+     */
     String endMessage() {
         return endMessage;
     }
 
+      /**
+     * if there are NPCs in the room it Prints ""Who do you wish arrest?" and 
+     * returns the Set of their names. No one is added so if the player doesn't want to 
+     * arrest any one yet.
+     * If there is no one it prints "There are no one here for you to arrest." and returns null
+     * @return Set with the names of NPCs / empty Set
+     */
     Set<String> arrestMenu() {
         if (!player.getRoom().getNPCsInRoomMap().isEmpty()) {
             System.out.println("Who do you wish arrest?");
@@ -601,6 +661,14 @@ public class Game {
         }
     }
 
+    /**
+     * Uses the name of the NPC the player wants to arrest to, and then arrests 
+     * them if they don't have an alibi. And then it updates the Crimescene.
+     * If the NPC has an alibi the player will loose.
+     * advances time 10 minutes.
+     * @param name is the name of the NPC the player wants to arrest.
+     * @return True if the NPC can be arrested, false if the alibi is valid.
+     */
     public boolean arrest(String name) {
         if (player.getRoom().getNPCsInRoomMap().get(name).getAlibi() != null) {
             endMessage = player.getRoom().getNPCsInRoomMap().get(name).getAlibi();
@@ -625,7 +693,7 @@ public class Game {
      * cop points. if the player is currently a good cop, bad cop will be null,
      * and vice versa.
      */
-    public List<Integer> getHUD() {
+    List<Integer> getHUD() {
         List<Integer> list = new ArrayList();
         list.add(0, player.getDrunkenness());
         if (player.getPoints() < 100) {
@@ -639,26 +707,34 @@ public class Game {
         return list;
     }
 
-    public String getDrunkenness() {
+    /**
+     * Gets the Drunkness in percent.
+     * @return drunkenness Format: "Drunkenness: " + percent + "%" 
+     */
+    String getDrunkenness() {
         String percent = String.format("%02d", player.getDrunkenness());
         String drunkenness = ("Drunkenness: " + percent + "%");
         return drunkenness;
     }
 
-    public HiScoreManager getHiScoreManager() {
+    HiScoreManager getHiScoreManager() {
         return manager;
     }
 
-    public int rollRooms() {
-        int r = (int) (Math.random() * (5 - 1)) + 1;
-        return r;
-    }
-
-    public PC getPlayer() {
+    /**
+     * Gets the played so UI can see what room the player is in, and the exits of the room.
+     * @return player
+     */
+    PC getPlayer() {
         return player;
     }
 
-    public void NpcMover() {
+    /**
+     * Moves the Hobos when HobosOnTheMove==true.
+     * It gets all the Hobos, gets their exits, makes a list of the of the exits,
+     * then it rolls for what exit the hobo should take. If it rolls 0 the hobo stays.
+     */
+    private void NpcMover() {
         for (HostileNPC hobo : world.getHobos()) {
             Room currentRoom = world.getRoom(hobo.getCurrentRoomName());
 //            System.out.println(hobo.getName()+" Chosen in "+hobo.getCurrentRoomName());//test
@@ -688,11 +764,19 @@ public class Game {
         }
     }
 
-    public void remover() {
+    /**
+     * Removes 1 drunkness, used in timeloop.
+     */
+    private void remover() {
         player.removeDrunkenness(1);
     }
 
-    public void properTimer() {
+    /**
+     * Organizes time from just minutes to hours and minutes.
+     * Controls messages to the player about Drunkenness
+     * and moves Hobos useing time.
+     */
+    private void properTimer() {
         if (player.getMinutes() >= 60) {
             player.setHour(player.returnHours() + 1);
             player.setMinutes(0);
@@ -711,7 +795,12 @@ public class Game {
         }
     }
 
-    public void timeLoop(int runtimes) {
+    /**
+     * Adds a minute, runs properTimer() and remover().
+     * This method is used to control time and what it does to the player, and the world
+     * @param runtimes ammount of minutes you want to add to time.
+     */
+    private void timeLoop(int runtimes) {
         int i;
         for (i = 0; i < runtimes; i++) {
             player.passTime(1);
