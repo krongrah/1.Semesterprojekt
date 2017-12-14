@@ -27,7 +27,7 @@ import javafx.scene.chart.PieChart.Data;
 
 public class SaveFile implements Serializable{
     
-   public boolean saveGame(Object gameState)
+   public void saveGame(Object gameState)
   {
     File desktop = new File(System.getProperty("user.home"), "Desktop");
     
@@ -45,15 +45,11 @@ public class SaveFile implements Serializable{
       out.close();
       fileOut.close();
       System.out.println("game saved");
-      
-      return true;
     }
     catch (IOException i)
     {
       i.printStackTrace();
     }
-      
-    return false;
   }
   
   public Object getSavedGame()

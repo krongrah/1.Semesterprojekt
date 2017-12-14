@@ -21,6 +21,11 @@ class HiScore {
     private ArrayList<String> hiScoreList = new ArrayList<>();
     private File file = new File("HiScore.txt");
     
+    
+    /**
+     * 
+     * @return 
+     */
     ArrayList<String> pullHiScore() {
         
         file.mkdir();//makes directory if none exists
