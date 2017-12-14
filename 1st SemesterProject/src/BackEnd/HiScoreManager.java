@@ -24,8 +24,9 @@ class HiScoreManager {
     /**
      * constructs a HiScoreManager
      */
-    HiScoreManager(){}
-    
+    HiScoreManager() {
+    }
+
     /**
      * Stores combines the good and the bad high score lists into one, which is
      * then stored in the foundation.

@@ -14,72 +14,71 @@ import java.util.Set;
  *
  * @author Krongrah
  */
-public class BackEndFacade implements IBackEnd{
+public class BackEndFacade implements IBackEnd {
 
     IFoundation foundation;
-    Game game=new Game();
+    Game game = new Game();
 
     @Override
     public void injectFoundation(IFoundation foundation) {
-        this.foundation=foundation;
+        this.foundation = foundation;
     }
-    
+
     @Override
-    public void play(){
+    public void play() {
         game.getHiScoreManager().pull(foundation);
-    
-    }    
-    
-    @Override
-    public void talk(String string){
-    game.talk(string);
+
     }
-    
+
     @Override
-    public boolean search(String string){
-        if (game.search(string)){
-        return true;
+    public void talk(String string) {
+        game.talk(string);
+    }
+
+    @Override
+    public boolean search(String string) {
+        if (game.search(string)) {
+            return true;
+        } else {
+            return false;
         }
-        else{
-        return false;
-        }
     }
-    public void pickUpAsk(String answer){
-    game.pickup(answer);
+
+    public void pickUpAsk(String answer) {
+        game.pickup(answer);
     }
-    
-    
+
     @Override
-    public Set<String> inspect(String string){
-    return game.inspect(string);
-    
+    public Set<String> inspect(String string) {
+        return game.inspect(string);
+
     }
-    
+
     @Override
-    public int convict(String string){
-    return game.convict(string);
+    public int convict(String string) {
+        return game.convict(string);
     }
-    
+
     @Override
-    public boolean arrest(String string){
-    return game.arrest(string);
+    public boolean arrest(String string) {
+        return game.arrest(string);
     }
-    
+
     @Override
-    public void drink(){
-    game.drink();
+    public void drink() {
+        game.drink();
     }
-    
+
     @Override
-    public void save(){
+    public void save() {
         foundation.save(game.save());
     }
 
     @Override
-    public Set<String> talkMenu(){
-    return game.talkMenu();
+    public Set<String> talkMenu() {
+        return game.talkMenu();
     }
-    
+
     @Override
     public Set<String> arrestMenu() {
         return game.arrestMenu();
@@ -99,20 +98,20 @@ public class BackEndFacade implements IBackEnd{
     public Set<String> inspectMenu() {
         return game.inspectMenu();
     }
-    
+
     @Override
-    public String getCurrentRoom(){        
+    public String getCurrentRoom() {
         return game.getPlayer().getRoom().getRoomName();
     }
-      
+
     @Override
-    public Set getMapExits(){
+    public Set getMapExits() {
         return game.getPlayer().getRoom().getExit().keySet();
     }
-    
+
     @Override
-    public boolean UIGo(String e){
-    return game.UIGo(e);
+    public boolean UIGo(String e) {
+        return game.UIGo(e);
     }
 
     @Override
@@ -142,28 +141,28 @@ public class BackEndFacade implements IBackEnd{
 
     @Override
     public void load() {
-    
+
     }
-    
+
     @Override
-    public boolean getSavedGame(){
-        GameState gameState= (GameState) foundation.getSavedGame();
-        if(gameState !=null){
-        game.setGameState(gameState);
-        return true;
+    public boolean getSavedGame() {
+        GameState gameState = (GameState) foundation.getSavedGame();
+        if (gameState != null) {
+            game.setGameState(gameState);
+            return true;
         }
         return false;
-        
+
     }
 
     @Override
     public void drop(String string) {
-      game.drop(string);
+        game.drop(string);
     }
 
     @Override
     public Set<String> dropMenu() {
-    return game.dropMenu();
+        return game.dropMenu();
     }
 
     @Override
@@ -173,7 +172,7 @@ public class BackEndFacade implements IBackEnd{
 
     @Override
     public void setName(String string) {
-       game.setName(string);
+        game.setName(string);
     }
 
     @Override
@@ -200,7 +199,8 @@ public class BackEndFacade implements IBackEnd{
     public double getPlayerHealth() {
         return game.playerHealthPercent();
     }
-public String[] getEnemyData() {
+
+    public String[] getEnemyData() {
         return game.getEnemyData();
     }
 
@@ -233,5 +233,5 @@ public String[] getEnemyData() {
     public boolean getIsHobosOnTheMove() {
         return game.getIsHobosOnTheMove();
     }
-      
+
 }

@@ -13,45 +13,86 @@ import java.util.Set;
  * @author Krongrah
  */
 public interface IBackEnd {
+
     void injectFoundation(IFoundation foundation);
+
     void play();
+
     void save();
+
     void drink();
+
     void talk(String string);
+
     void drop(String string);
+
     boolean search(String string);
+
     Set<String> inspect(String string);
+
     boolean arrest(String string);
+
     int convict(String string);
+
     Set<String> talkMenu();
+
     Set<String> arrestMenu();
+
     Set<String> convictMenu();
+
     Set<String> searchMenu();
+
     Set<String> inspectMenu();
+
     Set<String> dropMenu();
+
     String getCurrentRoom();
+
     boolean UIGo(String e);
+
     Set getMapExits();
+
     void pickUpAsk(String answer);
+
     void journal(String string);
+
     void inventory(String string);
+
     boolean badgeResponse(String answer);
-    List<Integer>getHUD();
+
+    List<Integer> getHUD();
+
     String endScore();
+
     void load();
-    List<List<String>>getScores();
+
+    List<List<String>> getScores();
+
     void setName(String string);
+
     int fight();
+
     int run();
+
     int calm();
+
     double getEnemyHealth();
+
     double getPlayerHealth();
+
     String[] getEnemyData();
+
     void printWelcome();
+
     String getTime();
+
     String getDrunkenness();
+
     void help();
+
     String endMessage();
+
     boolean getSavedGame();
+
     boolean getIsHobosOnTheMove();
 }
