@@ -53,4 +53,5 @@ public interface IBackEnd {
     void help();
     String endMessage();
     void getSavedGame();
+    boolean getIsHobosOnTheMove();
 }

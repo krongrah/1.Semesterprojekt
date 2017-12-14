@@ -31,14 +31,26 @@ public class World implements Serializable {
     private Map<String,NPC> npcs=new HashMap<>();
     private Map<String, HostileNPC> hostileNpcs = new HashMap<>();
     private Map<String,Item> items=new HashMap<>();
+    private Map<String,Clue> clues=new HashMap<>();
     private Map<String,Room> rooms=new HashMap<>();
     private List<Hobo> hobos = new ArrayList<>();
+    private boolean hobosOnTheMove = false;
 
     /**
      * Creates a world object and call the createWorld() method.
      */
     World(){
     createWorld();
+    }
+    
+    public void setWorld(World world){
+    this.npcs = world.getNpcs();
+    this.hostileNpcs = world.getHostileNpcs();
+    this.items= world.getItems();
+    this.clues= world.getClues();
+    this.rooms= world.getRooms();
+    this.hobos= world.getHobos();
+    this.hobosOnTheMove= world.isHobosOnTheMove();
     }
     /**
      * This method generates all objects in the game world and places them in the appropriate collections.
@@ -185,7 +197,7 @@ public class World implements Serializable {
         Hobo hobo4 =  new Hobo("Insane Dwayne", hobo4Dialogue, hobo4Statement, 1);
         NPC commissioner = new NPC("Commissioner Curt", commissionerDialogue, null, 0);
         NPC bartender = new NPC("Bartender Bert", bartenderDialogue, bartenderStatement, 1);
-        HostileNPC wife = new HostileNPC("Wife", wifeDialogue, null, 0, 50, 5, 1);
+        HostileNPC wife = new HostileNPC("Wife", wifeDialogue, null, 0, 50, 5, 0);
         NPC coroner = new NPC("Coroner", coronerDialogue, coronerStatement, 4);
         
         //Adds the NPCs and their subclass objects to the rooms
@@ -279,7 +291,17 @@ public class World implements Serializable {
         items.put(gun.getName(), gun);
         items.put(corpseOutline.getName(), corpseOutline);
         
-        //adds all hobos to the hobos List
+        getClues().put(hobo1Statement.getName(), hobo1Statement);
+        getClues().put(hobo2Statement.getName(), hobo2Statement);
+        getClues().put(hobo3Statement.getName(), hobo3Statement);
+        getClues().put(hobo4Statement.getName(), hobo4Statement);
+        getClues().put(coronerStatement.getName(), coronerStatement);
+        getClues().put(bartenderStatement.getName(), bartenderStatement);
+        getClues().put(bloodsplatterClue.getName(), bloodsplatterClue);
+        getClues().put(bloodSplatteredBadgeClue.getName(), bloodSplatteredBadgeClue);
+        getClues().put(murderWeaponClue.getName(), murderWeaponClue);
+        getClues().put(corpseClue.getName(), corpseClue);
+        
         hobos.add(hobo1);
         hobos.add(hobo2);
         hobos.add(hobo3);
@@ -330,6 +352,55 @@ public class World implements Serializable {
      */
     List<Hobo> getHobos(){
         return hobos;
+    }
+
+    /**
+     * @return the hobosOnTheMove
+     */
+    public boolean isHobosOnTheMove() {
+        return hobosOnTheMove;
+    }
+
+    /**
+     * @param hobosOnTheMove the hobosOnTheMove to set
+     */
+    public void setHobosOnTheMove(boolean hobosOnTheMove) {
+        this.hobosOnTheMove = hobosOnTheMove;
+    }
+
+    /**
+     * @return the npcs
+     */
+    public Map<String,NPC> getNpcs() {
+        return npcs;
+    }
+
+    /**
+     * @return the hostileNpcs
+     */
+    public Map<String, HostileNPC> getHostileNpcs() {
+        return hostileNpcs;
+    }
+
+    /**
+     * @return the items
+     */
+    public Map<String,Item> getItems() {
+        return items;
+    }
+
+    /**
+     * @return the clues
+     */
+    public Map<String,Clue> getClues() {
+        return clues;
+    }
+
+    /**
+     * @return the rooms
+     */
+    public Map<String,Room> getRooms() {
+        return rooms;
     }
 
 }

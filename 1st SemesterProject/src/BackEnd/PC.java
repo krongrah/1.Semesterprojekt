@@ -40,11 +40,31 @@ class PC implements Serializable{
      */
     PC(){}
 
+
+    public void setPC(PC player) {
+        this.currentRoom = player.getRoom();
+        this.lastRoom = player.getLastRoom();
+        this.name = player.getName();
+        this.minutes = player.getMinutes();
+        this.hours = player.getHours();
+        this.drunkenness= player.getDrunkenness();
+        this.inventory = player.getInventory();
+        this.points = player.getPoints();
+        this.currentHealth= player.getCurrentHealth();
+        this.inventory= player.getInventory();
+        this.journal = player.getJournal();
+        this.evidence= player.getEvidence();
+    }
+     
     /**
      * 
      * @return Returns the Inventory 
      */
-    Map<String,Item>getInventory(){
+    public Map<String,Item>getInventory(){
+    /**
+     * 
+     * @return Returns the Inventory 
+     */
     return inventory;
     }
 
@@ -111,6 +131,7 @@ class PC implements Serializable{
      * @param clue The name of the Clue to be moved from the Journal to Evidence.
      */
     void addToevidence(String clue) {
+        getEvidence().add(journal.get(clue));
         evidence.add(journal.get(clue));
         journal.remove(clue);
     }
@@ -121,7 +142,7 @@ class PC implements Serializable{
      */
     boolean isSecondEvidence() {
 
-        return evidence.size() >= 2;
+        return getEvidence().size() >= 2;
     }
 
     /**
@@ -237,21 +258,23 @@ class PC implements Serializable{
     void setName(String name){
     this.name=name;
     }
-    
+       
     /**
      * 
      * @return Returns the current time as a formatted string.
      */
     String getTime(){
         return (String.format("%02d", hours)+":"+String.format("%02d", minutes));
+
     }
-    
+     
     /**
      * 
      * @return Returns the current hours of the the time.
      */
     int returnHours(){
         return hours;
+
     }
     
     /**
@@ -309,8 +332,25 @@ class PC implements Serializable{
     void setItemToBePickedUp(Item itemToBePickedUp){
     this.itemToBePickedUp=itemToBePickedUp;
     }
-    
-}
-    
-    
 
+    /**
+     * @return the lastRoom
+     */
+    public Room getLastRoom() {
+        return lastRoom;
+    }
+
+    /**
+     * @return the hours
+     */
+    public int getHours() {
+        return hours;
+    }
+
+    /**
+     * @return the evidence
+     */
+    public Set<Clue> getEvidence() {
+        return evidence;
+    }
+}

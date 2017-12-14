@@ -36,11 +36,15 @@ public class Game {
 
     }
     
-    public Game(GameState gameState){
-    this.player=gameState.getPlayer();
-    this.world=gameState.getWorld();
+    public void setGameState(GameState gameState){
+        
+        player.setPC(gameState.getPlayer());
+        world.setWorld(gameState.getWorld());
     }
 
+    public boolean getIsHobosOnTheMove(){
+        return world.isHobosOnTheMove();
+    }
 
     // Prints the welcome message and the current room
     void printWelcome() {
@@ -96,10 +100,7 @@ public class Game {
         GameState gamestate = new GameState(player, world);
          return gamestate;
     }
-    void load(GameState gamestate) {
-       
-    }
-
+   
     /**
      * Moves the player from room to room.
      *
@@ -108,6 +109,9 @@ public class Game {
     public boolean UIGo(String e) {
         timeLoop(2);
         Room nextRoom = player.getRoom().getExit(e);
+        if(nextRoom==world.getRoom("Home")&& player.getDrunkenness()>=80){
+        world.getHostileNPC(e).setAggression(1);
+        }
         if (nextRoom == world.getRoom("Crime Scene")) {
             world.getNPC("Bartender Bert").fulfillCondition();
         }
@@ -225,7 +229,7 @@ public class Game {
         for (String hobo : world.getRoom("Crime Scene").getNPCsInRoomMap().keySet()) {
             world.getHostileNPC(hobo).setAggression(0.3);
         }
-        hobosOnTheMove = true;
+        world.setHobosOnTheMove(true);
     }
 
     double playerHealthPercent() {
@@ -521,7 +525,7 @@ public class Game {
         } else {
             world.getNPC("Commissioner Curt").fulfillCondition();
             goToJail(player.getRoom().getNPCsInRoomMap().get(name));
-            if (!hobosOnTheMove) {
+            if (!world.isHobosOnTheMove()) {
                 updateCrimeScene();
             }
             timeLoop(10);
@@ -619,7 +623,7 @@ public class Game {
                 endMessage = "You feel completely sober, you fall down to the floor and die, knowing nobody loved you.";
             }
         }
-        if (player.getMinutes() % 3 == 0 && hobosOnTheMove == true) {
+        if (player.getMinutes() % 3 == 0 && world.isHobosOnTheMove() == true) {
             NpcMover();
         }
     }

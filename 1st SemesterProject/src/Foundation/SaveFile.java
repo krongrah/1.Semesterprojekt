@@ -71,7 +71,6 @@ public class SaveFile implements Serializable{
       }
       in.close();
       fileIn.close();
-        System.out.println("save "+gameState.toString()); 
       return gameState; 
     } catch (FileNotFoundException f) 
     {
