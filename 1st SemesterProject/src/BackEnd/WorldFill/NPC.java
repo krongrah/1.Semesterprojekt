@@ -54,17 +54,17 @@ public class NPC implements Serializable{
 
     /**
      * gets Alibi
-     * @return getDialogue().getAlibi()
+     * @return Returns alibi
      */
     public String getAlibi() {
         return getDialogue().getAlibi();
     }
     /**
     * Set dialog object.
-    * @param dialogue_ The dialogue object you want to bind with the NPC
+    * @param dialogue The dialogue object you want to bind with the NPC
     */ 
-    public void setDialogue(Dialogue dialogue_) { 
-        dialogue = dialogue_;
+    public void setDialogue(Dialogue dialogue) { 
+        this.dialogue = dialogue;
     }
     
     /**

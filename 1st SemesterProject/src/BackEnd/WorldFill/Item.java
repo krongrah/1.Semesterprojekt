@@ -24,7 +24,6 @@ public class Item implements Serializable {
      * @param newCollectible Can you pick it up? true/false
      * @param newClue The clue to release if item is a clue.
      */
-    //creating the constructor for the purpose of making objects of the item class
     public Item(String newName, String newDescription, boolean newIsClue, boolean newCollectible, Clue newClue) {
         name = newName;
         description = newDescription;

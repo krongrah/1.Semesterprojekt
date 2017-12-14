@@ -32,9 +32,9 @@ public class Room implements Serializable{   //rooms have a description/name and
     }
     
     /**
-     * adds a neighbouring room to the Exits map, with the direction being the key
+     * adds a neighboring room to the Exits map, with the direction being the key
      * @param direction The direction to the neighbor room. 
-     * @param neighbor The neighbouring room you want to access when write "go [direction]"
+     * @param neighbor The neighboring room you want to access when write "go [direction]"
      * Example of use:  bar.setExit("north", leftStreet);
      */    
     public void setExit(String direction, Room neighbor) {
@@ -95,11 +95,10 @@ public class Room implements Serializable{   //rooms have a description/name and
     }
 
     /**Removes NPC from the NPCsInRoom Set.
-     * @param npc is the npc you want removed from the room
+     * @param npc is the NPC you want removed from the room
      * Example of use: bar.removeNpcFromRoom(bartender)
      */
     public void removeNpcFromRoom(NPC npc) {
-        //this.NPCsInRoom.remove(npc);
         this.NPCsInRoom.remove(npc.getName());
         npc.setCurrentRoomName(null);
     }
@@ -129,19 +128,7 @@ public class Room implements Serializable{   //rooms have a description/name and
         return "You are" + description;
     }
    
-    /**
-     * 
-     * @return returns Exits of the current room. Print out example:
-     *  Exits:| north = Left Street |
-     */
-    private String getExitString() {
-        String returnString = "Exits:";
-        Set<String> keys = exits.keySet();
-        for (String exit : keys) {
-            returnString += "| " + exit + " = " + exits.get(exit).getRoomName() + " |";
-        }
-        return returnString;
-    }
+    
     /**
      * 
      * @param direction
@@ -167,7 +154,11 @@ public class Room implements Serializable{   //rooms have a description/name and
         return hoboAccessable;
     }
     
-    public HashMap getExit(){
+    /**
+     * 
+     * @return Returns A Map with the exits from this Room
+     */
+    public HashMap<String,Room> getExit(){
         return exits;
     }
 }
