@@ -21,7 +21,7 @@ public class SaveFile implements Serializable {
 
     /**
      * Gets a GameState which is written to a file in the game folder. If it is
-     * succesfull it prints out "Game saved", if not it says "Could not save"
+     * successful it prints out "Game saved", if not it says "Could not save"
      *
      * @param gameState the GameState the player wants saved.
      */
@@ -42,13 +42,12 @@ public class SaveFile implements Serializable {
     }
 
     /**
-     * Takes the previous written gamestate, and imports it as an Object. If
-     * successfull it return the gameState. 
-     * If there is no file, it prints an
-     * error "File does not exist" and null 
-     * If the file is empty or corrpted it.
-     * If the file can't be accessed, but is present it Prints "IO exception found"
-     * prints "Class not found in file" and null
+     * Takes the previous written gameState, and imports it as an Object. If
+     * successful it return the gameState. If there is no file, it prints an
+     * error "File does not exist" and null If the file is empty or corrupted
+     * it. If the file can't be accessed, but is present it Prints "IO exception
+     * found" prints "Class not found in file" and null
+     *
      * @return GameState
      */
     Object getSavedGame() {
