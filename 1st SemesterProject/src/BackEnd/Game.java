@@ -108,7 +108,7 @@ public class Game {
         timeLoop(2);
         Room nextRoom = player.getRoom().getExit(e);
         if(nextRoom==world.getRoom("Home")&& player.getDrunkenness()>=80){
-        world.getHostileNPC(e).setAggression(1);
+        world.getHostileNPC("Wife").setAggression(1);
         }
         if (nextRoom == world.getRoom("Crime Scene")) {
             world.getNPC("Bartender Bert").fulfillCondition();

@@ -171,6 +171,8 @@ public class FXMLDocumentController implements Initializable {
     private Image combatImageHeroin = new Image("file:src/Texures/combatImageHeroin.png");    
     private Image combatImageInsane = new Image("file:src/Texures/combatImageInsane.png");    
     private Image combatImageNoTeeth = new Image("file:src/Texures/combatImageNoTeeth.png");    
+    private Image combatImageWife = new Image("file:src/Texures/combatImageWife.png");    
+    
     @FXML
     private Label watch;
     @FXML
@@ -616,6 +618,9 @@ updateHUD();
                     break;
                 case "Insane Dwayne":
                     fightImage.setImage(combatImageInsane);
+                    break;
+                case "Wife":
+                    fightImage.setImage(combatImageWife);
                     break;
     }
         
