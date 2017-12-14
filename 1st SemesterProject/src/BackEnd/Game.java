@@ -23,7 +23,7 @@ public class Game {
     private PC player;
     private World world;
     private HiScoreManager manager = new HiScoreManager();
-    private String temp;//todo make better
+    private boolean hobosOnTheMove = false;
     private HostileNPC enemy;
     private String endMessage;
     // Constructor calls createRooms and creates new Parser
@@ -89,11 +89,11 @@ public class Game {
     }
 
     void journal(String entry) {
-        player.inspectEntryMap(entry);
+        player.inspectEntry(entry);
     }
 
     void inventory(String item) {
-        player.inspectItemMap(item);
+        player.inspectItem(item);
     }
 
     Object save() {
@@ -131,7 +131,7 @@ public class Game {
             if (enemy != null) {
                 System.out.println(enemy.getFightScream());
                 System.out.println("You are now fighting " + enemy.getName() + ".");
-                if (player.inventoryContains("Gun")) {
+                if (player.getInventory().containsKey("Gun")) {
                     player.setDamage(30);
                     System.out.println("You draw your gun.");
                 }
@@ -257,6 +257,10 @@ public class Game {
             System.out.println("You defeated you oppoent!");
             player.removePoints(15);
             player.getRoom().removeNpcFromRoom(enemy);
+            if(enemy instanceof Hobo){
+            world.getHobos().remove(enemy);
+            
+            }
             combatEnd();
             return 2;
         } else {
@@ -348,8 +352,7 @@ public class Game {
 
                 player.addToevidence(clue);
                 System.out.println(clue + " has been added to Evidence list");
-                if (player.isEvidence2()) {
-
+                if (player.isSecondEvidence()) {
                     convictWin();
                     win();
                     return 1;
@@ -399,7 +402,7 @@ public class Game {
             player.removePoints(40);
             player.addToevidence("Badge");
             System.out.println("Badge has been added to Evidence list");
-            if (player.isEvidence2()) {
+            if (player.isSecondEvidence()) {
                 System.out.print("Judge: We have found ");
                 for (Entry<String, NPC> npc : world.getRoom("Jail").getNPCsInRoomMap().entrySet()) {
                     System.out.print(npc.getValue().getName() + (" "));
@@ -465,7 +468,7 @@ public class Game {
         System.out.println("\n" + item.getDescription() + "\n");
         if (item.getCollectible()) {
             System.out.println("Do you want to pick this item up? Yes/No");
-            temp = name;
+            player.setItemToBePickedUp(item);
             return true;
         } else {
             System.out.println("This item can't be picked up.");
@@ -482,13 +485,13 @@ public class Game {
         if (answer.equals("No")) {
             System.out.println("You decided not not to pick the item up.");
         } else {
-            Item item = world.getItem(temp);
+            Item item = player.getItemToBePickedUp();
+            
             if (item.getIsClue()) {
                 player.addToJournal(item.giveClue());
             }
-            System.out.println(player.addToInventory(item, player.getRoom()));
+            System.out.println(player.addToInventory(item));
         }
-        temp = null;
     }
 
     String endScore() {

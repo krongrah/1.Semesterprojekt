@@ -10,6 +10,7 @@ import BackEnd.WorldFill.Clue;
 import BackEnd.WorldFill.Item;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -17,25 +18,28 @@ import java.util.Set;
  *
  * @author Krongrah
  */
-public class PC implements Serializable{
+class PC implements Serializable{
 
     //player attributes
     private int minutes=0;
     private int hours=12;
-    private int movementChecker=0;
     private int drunkenness=99;
     private int points=90;
     private Map<String,Item> inventory=new HashMap<>();
     private Map<String,Clue> journal = new HashMap<>();
-    private Map<String,Clue> evidence = new HashMap<>();
+    private Set<Clue> evidence = new HashSet<>();
     private int maxInventoryCapacity = 2;
     private int currentHealth = 100;
     private int damage=10;
     private Room currentRoom, lastRoom;
     private String name;
     private Item itemToBePickedUp;
-    //constructor
+
+    /**
+     * Constructs a PC.
+     */
     PC(){}
+
 
     public void setPC(PC player) {
         this.currentRoom = player.getRoom();
@@ -52,154 +56,274 @@ public class PC implements Serializable{
         this.evidence= player.getEvidence();
     }
      
-
+    /**
+     * 
+     * @return Returns the Inventory 
+     */
     public Map<String,Item>getInventory(){
     return inventory;
     }
 
-    //getters for the descriptions
-
-    public void inspectItemMap(String entry){
+    /**
+     * Prints the description of the Clue whose name is the argument.
+     * @param entry The Clue whose description will be printed.
+     */
+    void inspectItem(String entry){
         System.out.println(inventory.get(entry).getDescription());
     }
-    public void inspectEntryMap(String item){
+    
+    /**
+     * Prints the description of the Item whose name is the argument.
+     * @param item The Item whose description will be printed.
+     */
+    void inspectEntry(String item){
         System.out.println(journal.get(item).getDescription());
     }
-    public String getName(){
+    
+    /**
+     * 
+     * @return Returns the name of the player.
+     */
+    String getName(){
     return name;
     }
 
-    public void moveToRoom(Item thing, Room currentRoom) {
+    /**
+     * Moves the thing argument from inventory to the room argument. 
+     * @param thing The item to be moved.
+     * @param room The room the item is to be moved to.
+     */
+    void moveToRoom(Item thing, Room room) {
         inventory.remove(thing.getName());
-        currentRoom.addItemToRoom(thing);
+        room.addItemToRoom(thing);
     }
 
-    //methods for adding to cluelist and inventory
-    public String addToInventory(Item thing, Room currentRoom) {
-
+    /**
+     * Adds the argument to Inventory, unless the inventory is at max capacity.
+     * @param thing The Item being added to the inventory.
+     * @return Returns a String with a string to be printed.
+     */
+    String addToInventory(Item thing) {
         if (inventory.size() < maxInventoryCapacity) {
-            if (thing.getCollectible()) {
-                
                 currentRoom.removeItemFromRoomMap(thing.getName());
                 inventory.put(thing.getName(),thing);
                 return("You placed it in your bag.");
-            } else {
-                return("You can't seem to get a hold of it.");
-            }
         } else {
             return("Your inventory is full");
         }
-
     }
 
-    public void addToJournal(Clue thing) {
+    /**
+     * Adds the argument to the journal and awards the player with points.
+     * @param thing the Clue being added to the Journal
+     */
+    void addToJournal(Clue thing) {
         journal.put(thing.getName(),thing);
         addPoints(5);
     }
 
-    public void addToevidence(String thing) {
-        evidence.put(thing,journal.get(thing));
-        journal.remove(thing);
+    /**
+     * Moves the Clue from the Journal to Evidence that has the Journal-Key matching the argument.
+     * @param clue The name of the Clue to be moved from the Journal to Evidence.
+     */
+    void addToevidence(String clue) {
+        getEvidence().add(journal.get(clue));
+        journal.remove(clue);
     }
 
-    public boolean isEvidence2() {
+    /**
+     * 
+     * @return Returns true if the player has two or more clues in Evidence.
+     */
+    boolean isSecondEvidence() {
 
-        return evidence.size() >= 2;
+        return getEvidence().size() >= 2;
     }
 
-    public int getPoints() {
+    /**
+     * 
+     * @return Returns the score of the player.
+     */
+    int getPoints() {
         return points;
     }
 
-    public void addPoints(int value) {
+    /**
+     * Increases the player's score by the argument.
+     * @param value The amount of points the player gets.
+     */
+    void addPoints(int value) {
         points += value;
 
     }
 
-    public Map<String, Clue> getJournal() {
+    /**
+     * 
+     * @return Returns the journal, containing all of the gathered clues.
+     */
+    Map<String, Clue> getJournal() {
 
         return journal;
     }
 
-    public Map<String,Clue> getEvidence() {
-
-        return evidence;
-    }
-
-    public void removePoints(int value) {
+    /**
+     * Lowers the player's score by the argument.
+     * @param value The amount of points the player loses.
+     */
+    void removePoints(int value) {
         points -= value;
     }
 
-    public void setCurrentHealth(int hp) {
+    /**
+     * Sets currentHealth to the argument.
+     * @param hp The new amount of health the player has.
+     */
+    void setCurrentHealth(int hp) {
         currentHealth = hp;
     }
 
-    public int getCurrentHealth() {
+    /**
+     * 
+     * @return Returns the current health of the player.
+     */
+    int getCurrentHealth() {
         return currentHealth;
     }
 
-    public boolean inventoryContains(String name) {
-        return inventory.containsKey(name);
-    }
-
-    public int getDrunkenness() {
+    /**
+     * 
+     * @return Returns the player's drunkenness.
+     */
+    int getDrunkenness() {
         return drunkenness;
     }
 
-    public void removeDrunkenness(int drunkValue) {
+    /**
+     * Decreases the player's drunkenness by the drunkValue.
+     * @param drunkValue the amount drunkenness should be decreased by.
+     */
+    void removeDrunkenness(int drunkValue) {
         drunkenness -= drunkValue;
     }
 
-    public void addDrunkenness(int drunkvalue) {
-        drunkenness += drunkvalue;
+    /**
+     * Increases the player's drunkenness by the drunkValue.
+     * @param drunkValue the amount drunkenness should be increased by.
+     */
+    void addDrunkenness(int drunkValue) {
+        drunkenness += drunkValue;
     } 
-    public void passTime(int timer){
-        movementChecker += timer;
+    
+    /**
+     * Increases the current time by the number of minutes specified by the argument.
+     * @param timer The number of the time is to be passed by.
+     */
+    void passTime(int timer){
         minutes += timer;
     }
-    public int getMovementChecker() {
-        return movementChecker;
-    }
-    public void move(Room newRoom){
+    
+    /**
+     * Sets the currentRoom to the argument, and the lastRoom to the past currentRoom.
+     * @param newRoom The room the player is moving to.
+     */
+    void move(Room newRoom){
     lastRoom=currentRoom;
     currentRoom=newRoom;
     }
     
-    public void moveBack(){
-    currentRoom=getLastRoom();
+    /**
+     * Sets currentRoom to lastRoom, effectively moving the player backwards.
+     */
+    void moveBack(){
+    currentRoom=lastRoom;
     }
+    
+    /**
+     * 
+     * @return Return the room the player currently inhabits.
+     */
     Room getRoom(){
     return currentRoom;
     }
-    public void setName(String string){
-    name=string;
+    
+    /**
+     * Sets the name of the player.
+     * @param name The name of the player
+     */
+    void setName(String name){
+    this.name=name;
     }
-    public String getTime(){
-        return (String.format("%02d", getHours())+":"+String.format("%02d", minutes));
+       
+    /**
+     * 
+     * @return Returns the current time as a formatted string.
+     */
+    String getTime(){
+        return (String.format("%02d", hours)+":"+String.format("%02d", minutes));
+
     }
-    public int returnHours(){
-        return getHours();
+     
+    /**
+     * 
+     * @return Returns the current hours of the the time.
+     */
+    int returnHours(){
+        return hours;
+
     }
-    public void setHour(int newHour){
-        hours = newHour;
+    
+    /**
+     *Rets the minutes of the time.
+     * @param hours The new value of the minutes
+     */
+    void setHour(int hours){
+        this.hours = hours;
     }
-    public int getMinutes(){
+    
+    /**
+     * 
+     * @return Returns the current minutes of the the time.
+     */
+    int getMinutes(){
         return minutes;
     }
-    public void setMinutes(int newMinutes){
-        minutes = newMinutes;
+    
+    /**
+     * Sets the minutes of the time.
+     * @param minutes The new value of the minutes
+     */
+    void setMinutes(int minutes){
+        this.minutes = minutes;
     }
-    public void setDamage(int damage){
+    
+    /**
+     * Sets the damage of the player to the argument of the method.
+     * @param damage The value the player's damage is to be set to.
+     */
+    void setDamage(int damage){
     this.damage=damage;
     }
-    public int getDamage(){
+    
+    /**
+     * 
+     * @return Returns the damage of the player.
+     */
+    int getDamage(){
     return damage;
     }
+    /**
+     * 
+     * @return Returns the itemToBePickedUp Item and then sets the Item to null.
+     */
     Item getItemToBePickedUp(){
         Item holder=itemToBePickedUp;
         itemToBePickedUp=null;
         return holder;
     }
+    /**
+     * Sets the itemToBePickedUp variable to the argument if the method.
+     * @param itemToBePickedUp The Item to be stored for use in the pickUp method of the game Class
+     */
     void setItemToBePickedUp(Item itemToBePickedUp){
     this.itemToBePickedUp=itemToBePickedUp;
     }
@@ -217,8 +341,11 @@ public class PC implements Serializable{
     public int getHours() {
         return hours;
     }
-    
-}
-    
-    
 
+    /**
+     * @return the evidence
+     */
+    public Set<Clue> getEvidence() {
+        return evidence;
+    }
+}

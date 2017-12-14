@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,6 +72,9 @@ public class SaveFile implements Serializable{
       in.close();
       fileIn.close();
       return gameState; 
+    } catch (FileNotFoundException f) 
+    {
+        f.printStackTrace();
     }
     catch (IOException i)
     {
@@ -79,7 +83,7 @@ public class SaveFile implements Serializable{
     catch (ClassNotFoundException c)
     {
       c.printStackTrace();
-    }
+    } 
     return null;
   }
 }

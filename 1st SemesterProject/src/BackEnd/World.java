@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import BackEnd.WorldFill.Hobo;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -35,7 +36,10 @@ public class World implements Serializable {
     private ArrayList<Hobo> hobos = new ArrayList<>();
     private boolean hobosOnTheMove = false;
 
-    public World(){
+    /**
+     * Creates a world object and call the createWorld() method.
+     */
+    World(){
     createWorld();
     }
     
@@ -48,9 +52,12 @@ public class World implements Serializable {
     this.hobos= world.getHobos();
     this.hobosOnTheMove= world.isHobosOnTheMove();
     }
-    
+    /**
+     * This method generates all objects in the game world and places them in the appropriate collections.
+     */
     private void createWorld() {
 
+        //creates Clues
         Clue bartenderStatement = new Clue("Bartender's Statement", "According to Bartender Bert everyone hated the victim.", false);
         Clue hobo1Statement = new Clue("No-Teeth Terry's Statement", "According to No-Teeth Terry the murderer was a drunk man.", false);
         Clue hobo2Statement = new Clue("Dirty Darryl's Statement", "Dirty Darryl obviously hates cops.", true);
@@ -64,7 +71,7 @@ public class World implements Serializable {
 
         
         
-        // creation of the multiple items via the constructor in Item.java
+        // creates the Items
         Item murderWeapon = new Item("Murder Weapon", "This is a broken bottle"
                 + " with sharp edges and blood covering the edges", true, true, murderWeaponClue);
         Item bloodSplatter = new Item("Blood Splatter", "the ground is covered"
@@ -84,15 +91,15 @@ public class World implements Serializable {
                 + " brutally multiple times.\n When you looked closer you noticed"
                 + " his face is covered in spit", true, false, corpseClue);
 
-        
-        Beverage whiskey=new Beverage("Whiskey","This bottle is your favorite drink, and the reason you love coming home.",false, true, null,2,5);
-        Beverage gin = new Beverage ("Half-empty Gin", "its a half-empty bottle of gin, some idiot wasted his drink", false, true, null,1,7);
-        Beverage beerKeg = new Beverage ("Keg Of beer", "Its a keg of beer, nobody will notice if you take this", false, true, null, 4,4);
-        Beverage coffee = new Beverage ("Coffee", "A normal looking drink of coffee, expect you can smell a strong vodka odor", false, true, null, 2,6);
-        Beverage wine = new Beverage ("Wine", "the fancy people left out a glass of wine", false, true, null, 3,7);
-        Beverage beer = new Beverage("Beer", "It's a well known brand called pisswasser", false, true, null, 2, 2);
+        //creates the Beverages
+        Beverage whiskey=new Beverage("Whiskey","This bottle is your favorite drink, and the reason you love coming home.",2,5);
+        Beverage gin = new Beverage ("Half-empty Gin", "its a half-empty bottle of gin, some idiot wasted his drink", 1,7);
+        Beverage beerKeg = new Beverage ("Keg Of beer", "Its a keg of beer, nobody will notice if you take this",  4,4);
+        Beverage coffee = new Beverage ("Coffee", "A normal looking drink of coffee, expect you can smell a strong vodka odor",  2,6);
+        Beverage wine = new Beverage ("Wine", "the fancy people left out a glass of wine",  3,7);
+        Beverage beer = new Beverage("Beer", "It's a well known brand called pisswasser",  2, 2);
     
-        
+        //Creates the Rooms
         Room leftStreet = new Room(" on left street", "Left Street", true);
         Room rightStreet = new Room(" on Right street", "Right Street", true);
         Room bar = new Room(" in the bar", "Bar", false);
@@ -106,7 +113,7 @@ public class World implements Serializable {
 
       
 
-        //create dialogue
+        //Creates the Dialogue Strings
         String[] coronerLine =  {
             "Welcome to the murder scene, make yourself at home.",
             "The victim is your partner, Detective Prickard. He was a dick, and the world is a better place without him.",
@@ -154,6 +161,8 @@ public class World implements Serializable {
             "Did you find his badge? We need it for the memorial."
 
         };
+        
+        //Creates the Dialogue alibis
         String coronerAlibi = "The coroners fingerprints and footprints are everywhere  on the crimescene"
                 + " thats probaly because he is a coroner, his alibi checks out.";
         String wifeAlibi = "Of all the crimes this human waste has done, murder is sadly not one of them.";
@@ -164,14 +173,14 @@ public class World implements Serializable {
         String hobo3Alibi = "Randomly throwing around accusations is often a sign of guilt, except when you do it, of course...";
         String hobo4Alibi = "This guy is insane... theres i no other way around it.";
 
-        //Fight Screams System.out.println((char)27 + "[31mThis text would show up red" + (char)27 + "[0m");
+        //Creates the Dialogue fightScreams
         String fightScreamHobo1= "You arrested my friend, I can't bite you but I can punch you!";
         String fightScreamHobo2= "You arrested my friend, imma mess ya suit, n' ya face up now!";
         String fightScreamHobo3= "You arrested my friend, I am gonna, kill you and sell your badge for heroin!";
         String fightScreamHobo4= "Monkey goes UH-UH-AH-AH! I like CAAAKEE!!";
         String fightScreamWife = "This is for coming home stinking like Booze, again!";
         
-        //add dialogue to dialogue object
+        //Adds relevant Strings to the Dialogue objects
         Dialogue coronerDialogue = new Dialogue(coronerLine, coronerAlibi, true);
         Dialogue wifeDialogue = new Dialogue(wifeLine, wifeAlibi, true, fightScreamWife);
         Dialogue bartenderDialogue = new Dialogue(bartenderLine1,bartenderLine2, bartenderAlibi, true);
@@ -181,8 +190,7 @@ public class World implements Serializable {
         Dialogue hobo4Dialogue = new Dialogue(hobo4Line, hobo4Alibi, false, fightScreamHobo4);
         Dialogue commissionerDialogue = new Dialogue(commissionerLine1, commissionerLine2, commissionerAlibi, true);
 
-        //create clues
-     
+        //Creates the NPCs and their subclasses
         Hobo hobo1 =  new Hobo("No-Teeth Terry", hobo1Dialogue, hobo1Statement, 2);
         Hobo hobo2 =  new Hobo("Dirty Darryl", hobo2Dialogue, hobo2Statement, 2);
         Hobo hobo3 =  new Hobo("Heroin Harry", hobo3Dialogue, hobo3Statement, 1);
@@ -192,7 +200,7 @@ public class World implements Serializable {
         HostileNPC wife = new HostileNPC("Wife", wifeDialogue, null, 0, 50, 5, 0);
         NPC coroner = new NPC("Coroner", coronerDialogue, coronerStatement, 4);
         
-        
+        //Adds the NPCs and their subclass objects to the rooms
         bar.addNpcToRoom(bartender);
         home.addNpcToRoom(wife);
         pd.addNpcToRoom(commissioner);
@@ -202,6 +210,7 @@ public class World implements Serializable {
         crimeScene.addNpcToRoom(hobo3);
         crimeScene.addNpcToRoom(hobo4);
 
+        //Adds the Items and their subclass objects to the rooms
         hoboAlley.addItemToRoom(murderWeapon);
         crimeScene.addItemToRoom(bloodSplatter);
         crimeScene.addItemToRoom(corpse);
@@ -216,26 +225,24 @@ public class World implements Serializable {
         
         
 
-        //leftStreet exits
+        //Sets the leftStreet exits
         leftStreet.setExit("east", rightStreet);
         leftStreet.setExit("south", bar);
         leftStreet.setExit("north", hoboAlley);
         leftStreet.setExit("west", partnerHome);
 
-        //rightsteet exits
+        //Sets the rightsteet exits
         rightStreet.setExit("east", home);
         rightStreet.setExit("south", court);
         rightStreet.setExit("north", pd);
         rightStreet.setExit("west", leftStreet);
 
-        //leftstreet room exits
+        //Sets the remaining exits
         hoboAlley.setExit("north", crimeScene);
         hoboAlley.setExit("south", leftStreet);
         crimeScene.setExit("south", hoboAlley);
         bar.setExit("north", leftStreet);
         partnerHome.setExit("east", leftStreet);
-
-        //rightstreet room exits
         pd.setExit("north", jail);
         pd.setExit("south", rightStreet);
         jail.setExit("south", pd);
@@ -243,43 +250,46 @@ public class World implements Serializable {
         court.setExit("north", rightStreet);
 
         
-        
-        getHostileNpcs().put(hobo1.getName(), hobo1);
-        getHostileNpcs().put(hobo2.getName(), hobo2);
-        getHostileNpcs().put(hobo3.getName(), hobo3);
-        getHostileNpcs().put(hobo4.getName(), hobo4);
-        getHostileNpcs().put(wife.getName(), wife);
-        getNpcs().put(coroner.getName(), coroner);
-        getNpcs().put(commissioner.getName(), commissioner);
-        getNpcs().put(bartender.getName(), bartender);
-        for(String string:getHostileNpcs().keySet()){
-            getNpcs().put(string, getHostileNpcs().get(string));
+        //Adds NPCs and their subclass objects to the npcs Map
+        //and the hostileNPCs to the hostileNpcs Map
+        hostileNpcs.put(hobo1.getName(), hobo1);
+        hostileNpcs.put(hobo2.getName(), hobo2);
+        hostileNpcs.put(hobo3.getName(), hobo3);
+        hostileNpcs.put(hobo4.getName(), hobo4);
+        hostileNpcs.put(wife.getName(), wife);
+        npcs.put(coroner.getName(), coroner);
+        npcs.put(commissioner.getName(), commissioner);
+        npcs.put(bartender.getName(), bartender);
+        for(String string:hostileNpcs.keySet()){
+        npcs.put(string, hostileNpcs.get(string));
         }
         
-        getRooms().put(rightStreet.getRoomName(), rightStreet);
-        getRooms().put(leftStreet.getRoomName(), leftStreet);
-        getRooms().put(pd.getRoomName(), pd);
-        getRooms().put(court.getRoomName(), court);
-        getRooms().put(home.getRoomName(), home);
-        getRooms().put(jail.getRoomName(), jail);
-        getRooms().put(crimeScene.getRoomName(), crimeScene);
-        getRooms().put(partnerHome.getRoomName(), partnerHome);
-        getRooms().put(hoboAlley.getRoomName(), hoboAlley);
-        getRooms().put(bar.getRoomName(), bar);
+        //Adds all Rooms to the rooms map
+        rooms.put(rightStreet.getRoomName(), rightStreet);
+        rooms.put(leftStreet.getRoomName(), leftStreet);
+        rooms.put(pd.getRoomName(), pd);
+        rooms.put(court.getRoomName(), court);
+        rooms.put(home.getRoomName(), home);
+        rooms.put(jail.getRoomName(), jail);
+        rooms.put(crimeScene.getRoomName(), crimeScene);
+        rooms.put(partnerHome.getRoomName(), partnerHome);
+        rooms.put(hoboAlley.getRoomName(), hoboAlley);
+        rooms.put(bar.getRoomName(), bar);
         
-        getItems().put(beer.getName(), beer);
-        getItems().put(wine.getName(), wine);
-        getItems().put(gin.getName(), gin);
-        getItems().put(beerKeg.getName(), beerKeg);
-        getItems().put(whiskey.getName(), whiskey);
-        getItems().put(coffee.getName(), coffee);
-        getItems().put(murderWeapon.getName(), murderWeapon);
-        getItems().put(partnerKey.getName(), partnerKey);
-        getItems().put(bloodSplatter.getName(), bloodSplatter);
-        getItems().put(corpse.getName(), corpse);
-        getItems().put(badge.getName(), badge);
-        getItems().put(gun.getName(), gun);
-        getItems().put(corpseOutline.getName(), corpseOutline);
+        //Adds all Items and their subclass objects to the items Map
+        items.put(beer.getName(), beer);
+        items.put(wine.getName(), wine);
+        items.put(gin.getName(), gin);
+        items.put(beerKeg.getName(), beerKeg);
+        items.put(whiskey.getName(), whiskey);
+        items.put(coffee.getName(), coffee);
+        items.put(murderWeapon.getName(), murderWeapon);
+        items.put(partnerKey.getName(), partnerKey);
+        items.put(bloodSplatter.getName(), bloodSplatter);
+        items.put(corpse.getName(), corpse);
+        items.put(badge.getName(), badge);
+        items.put(gun.getName(), gun);
+        items.put(corpseOutline.getName(), corpseOutline);
         
         getClues().put(hobo1Statement.getName(), hobo1Statement);
         getClues().put(hobo2Statement.getName(), hobo2Statement);
@@ -298,17 +308,40 @@ public class World implements Serializable {
         hobos.add(hobo4);
     }
     
-    public NPC getNPC(String name){
-    return getNpcs().get(name);
+    /**
+     * 
+     * @param name The name of the NPC to be returned.
+     * @return Returns the NPC with the argument as name.
+     */
+    NPC getNPC(String name){
+    return npcs.get(name);
     }
-    public HostileNPC getHostileNPC(String name){
-    return getHostileNpcs().get(name);
+    
+    /**
+     * 
+     * @param name The name of the hostileNPC to be returned.
+     * @return Returns the hostileNPC with the argument as name.
+     */
+    HostileNPC getHostileNPC(String name){
+    return hostileNpcs.get(name);
     }
-    public Item getItem(String name){
-    return getItems().get(name);
+    
+    /**
+     * 
+     * @param name The name of the Item to be returned.
+     * @return Returns the Item with the argument as name.
+     */
+    Item getItem(String name){
+    return items.get(name);
     }
-    public Room getRoom(String name){
-    return getRooms().get(name);
+    
+    /**
+     * 
+     * @param name The name of the Room to be returned.
+     * @return Returns the Room with the argument as name.
+     */
+    Room getRoom(String name){
+    return rooms.get(name);
     }
     public Clue getClue(String name){
     return getClues().get(name);

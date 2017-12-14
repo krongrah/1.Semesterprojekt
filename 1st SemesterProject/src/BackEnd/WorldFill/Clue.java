@@ -18,16 +18,21 @@ public class Clue implements Serializable{
     private String description;
     private boolean isConvictable;
 
-    //constructor
-    public Clue(String _name, String _description, boolean _isConvictable) {
-        name = _name;
-        description = _description;
-        isConvictable = _isConvictable;
+    /**
+     * Constructs a Clue 
+     * @param name The name of the Clue
+     * @param description The description of the Clue
+     * @param isConvictable True if the it can be used to convict, else false.
+     */
+    public Clue(String name, String description, boolean isConvictable) {
+        this.name = name;
+        this.description = description;
+        this.isConvictable = isConvictable;
     }
 
     /**
      * Gets clue name
-     * @return name
+     * @return Returns the name of the clue
      */
     public String getName() {
         return name;
@@ -35,14 +40,14 @@ public class Clue implements Serializable{
     
     /**
      * Gets clue description
-     * @return description
+     * @return Returns the description of the clue
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     * @return the isConvictable
+     * @return returns true of the Clue can be used to convict, else false.
      */
     public boolean isConvictable() {
         return isConvictable;
