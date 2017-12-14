@@ -11,9 +11,9 @@ import java.io.Serializable;
  *
  * @author jensd
  */
-public class GameState implements Serializable{
-    private BackEnd.PC player;
-    private BackEnd.World world;
+class GameState implements Serializable{
+    private PC player;
+    private World world;
     
     GameState(PC player, World world){
     this.player=player;
@@ -24,14 +24,14 @@ public class GameState implements Serializable{
     /**
      * @return the player
      */
-    public BackEnd.PC getPlayer() {
+    PC getPlayer() {
         return player;
     }
 
     /**
      * @return the world
      */
-    public BackEnd.World getWorld() {
+    World getWorld() {
         return world;
     }
 

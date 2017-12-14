@@ -18,7 +18,7 @@ import java.util.Set;
  *
  * @author Krongrah
  */
-public class PC implements Serializable{
+class PC implements Serializable{
 
     //player attributes
     private int minutes=0;
@@ -41,7 +41,7 @@ public class PC implements Serializable{
      * 
      * @return Returns the Inventory 
      */
-    public Map<String,Item>getInventory(){
+    Map<String,Item>getInventory(){
     return inventory;
     }
 
@@ -49,7 +49,7 @@ public class PC implements Serializable{
      * Prints the description of the Clue whose name is the argument.
      * @param entry The Clue whose description will be printed.
      */
-    public void inspectItem(String entry){
+    void inspectItem(String entry){
         System.out.println(inventory.get(entry).getDescription());
     }
     
@@ -57,7 +57,7 @@ public class PC implements Serializable{
      * Prints the description of the Item whose name is the argument.
      * @param item The Item whose description will be printed.
      */
-    public void inspectEntry(String item){
+    void inspectEntry(String item){
         System.out.println(journal.get(item).getDescription());
     }
     
@@ -65,7 +65,7 @@ public class PC implements Serializable{
      * 
      * @return Returns the name of the player.
      */
-    public String getName(){
+    String getName(){
     return name;
     }
 
@@ -74,7 +74,7 @@ public class PC implements Serializable{
      * @param thing The item to be moved.
      * @param room The room the item is to be moved to.
      */
-    public void moveToRoom(Item thing, Room room) {
+    void moveToRoom(Item thing, Room room) {
         inventory.remove(thing.getName());
         room.addItemToRoom(thing);
     }
@@ -84,28 +84,21 @@ public class PC implements Serializable{
      * @param thing The Item being added to the inventory.
      * @return Returns a String with a string to be printed.
      */
-    public String addToInventory(Item thing) {
-
+    String addToInventory(Item thing) {
         if (inventory.size() < maxInventoryCapacity) {
-            if (thing.getCollectible()) {
-                
                 currentRoom.removeItemFromRoomMap(thing.getName());
                 inventory.put(thing.getName(),thing);
                 return("You placed it in your bag.");
-            } else {
-                return("You can't seem to get a hold of it.");
-            }
         } else {
             return("Your inventory is full");
         }
-
     }
 
     /**
      * Adds the argument to the journal and awards the player with points.
      * @param thing the Clue being added to the Journal
      */
-    public void addToJournal(Clue thing) {
+    void addToJournal(Clue thing) {
         journal.put(thing.getName(),thing);
         addPoints(5);
     }
@@ -114,7 +107,7 @@ public class PC implements Serializable{
      * Moves the Clue from the Journal to Evidence that has the Journal-Key matching the argument.
      * @param clue The name of the Clue to be moved from the Journal to Evidence.
      */
-    public void addToevidence(String clue) {
+    void addToevidence(String clue) {
         evidence.add(journal.get(clue));
         journal.remove(clue);
     }
@@ -123,7 +116,7 @@ public class PC implements Serializable{
      * 
      * @return Returns true if the player has two or more clues in Evidence.
      */
-    public boolean isSecondEvidence() {
+    boolean isSecondEvidence() {
 
         return evidence.size() >= 2;
     }
@@ -132,7 +125,7 @@ public class PC implements Serializable{
      * 
      * @return Returns the score of the player.
      */
-    public int getPoints() {
+    int getPoints() {
         return points;
     }
 
@@ -140,7 +133,7 @@ public class PC implements Serializable{
      * Increases the player's score by the argument.
      * @param value The amount of points the player gets.
      */
-    public void addPoints(int value) {
+    void addPoints(int value) {
         points += value;
 
     }
@@ -149,7 +142,7 @@ public class PC implements Serializable{
      * 
      * @return Returns the journal, containing all of the gathered clues.
      */
-    public Map<String, Clue> getJournal() {
+    Map<String, Clue> getJournal() {
 
         return journal;
     }
@@ -158,7 +151,7 @@ public class PC implements Serializable{
      * Lowers the player's score by the argument.
      * @param value The amount of points the player loses.
      */
-    public void removePoints(int value) {
+    void removePoints(int value) {
         points -= value;
     }
 
@@ -166,7 +159,7 @@ public class PC implements Serializable{
      * Sets currentHealth to the argument.
      * @param hp The new amount of health the player has.
      */
-    public void setCurrentHealth(int hp) {
+    void setCurrentHealth(int hp) {
         currentHealth = hp;
     }
 
@@ -174,7 +167,7 @@ public class PC implements Serializable{
      * 
      * @return Returns the current health of the player.
      */
-    public int getCurrentHealth() {
+    int getCurrentHealth() {
         return currentHealth;
     }
 
@@ -182,7 +175,7 @@ public class PC implements Serializable{
      * 
      * @return Returns the player's drunkenness.
      */
-    public int getDrunkenness() {
+    int getDrunkenness() {
         return drunkenness;
     }
 
@@ -190,7 +183,7 @@ public class PC implements Serializable{
      * Decreases the player's drunkenness by the drunkValue.
      * @param drunkValue the amount drunkenness should be decreased by.
      */
-    public void removeDrunkenness(int drunkValue) {
+    void removeDrunkenness(int drunkValue) {
         drunkenness -= drunkValue;
     }
 
@@ -198,7 +191,7 @@ public class PC implements Serializable{
      * Increases the player's drunkenness by the drunkValue.
      * @param drunkValue the amount drunkenness should be increased by.
      */
-    public void addDrunkenness(int drunkValue) {
+    void addDrunkenness(int drunkValue) {
         drunkenness += drunkValue;
     } 
     
@@ -206,7 +199,7 @@ public class PC implements Serializable{
      * Increases the current time by the number of minutes specified by the argument.
      * @param timer The number of the time is to be passed by.
      */
-    public void passTime(int timer){
+    void passTime(int timer){
         minutes += timer;
     }
     
@@ -214,7 +207,7 @@ public class PC implements Serializable{
      * Sets the currentRoom to the argument, and the lastRoom to the past currentRoom.
      * @param newRoom The room the player is moving to.
      */
-    public void move(Room newRoom){
+    void move(Room newRoom){
     lastRoom=currentRoom;
     currentRoom=newRoom;
     }
@@ -222,7 +215,7 @@ public class PC implements Serializable{
     /**
      * Sets currentRoom to lastRoom, effectively moving the player backwards.
      */
-    public void moveBack(){
+    void moveBack(){
     currentRoom=lastRoom;
     }
     
@@ -238,7 +231,7 @@ public class PC implements Serializable{
      * Sets the name of the player.
      * @param name The name of the player
      */
-    public void setName(String name){
+    void setName(String name){
     this.name=name;
     }
     
@@ -246,7 +239,7 @@ public class PC implements Serializable{
      * 
      * @return Returns the current time as a formatted string.
      */
-    public String getTime(){
+    String getTime(){
         return (String.format("%02d", hours)+":"+String.format("%02d", minutes));
     }
     
@@ -254,7 +247,7 @@ public class PC implements Serializable{
      * 
      * @return Returns the current hours of the the time.
      */
-    public int returnHours(){
+    int returnHours(){
         return hours;
     }
     
@@ -262,7 +255,7 @@ public class PC implements Serializable{
      *Rets the minutes of the time.
      * @param hours The new value of the minutes
      */
-    public void setHour(int hours){
+    void setHour(int hours){
         this.hours = hours;
     }
     
@@ -270,7 +263,7 @@ public class PC implements Serializable{
      * 
      * @return Returns the current minutes of the the time.
      */
-    public int getMinutes(){
+    int getMinutes(){
         return minutes;
     }
     
@@ -278,7 +271,7 @@ public class PC implements Serializable{
      * Sets the minutes of the time.
      * @param minutes The new value of the minutes
      */
-    public void setMinutes(int minutes){
+    void setMinutes(int minutes){
         this.minutes = minutes;
     }
     
@@ -286,7 +279,7 @@ public class PC implements Serializable{
      * Sets the damage of the player to the argument of the method.
      * @param damage The value the player's damage is to be set to.
      */
-    public void setDamage(int damage){
+    void setDamage(int damage){
     this.damage=damage;
     }
     
@@ -294,7 +287,7 @@ public class PC implements Serializable{
      * 
      * @return Returns the damage of the player.
      */
-    public int getDamage(){
+    int getDamage(){
     return damage;
     }
     /**

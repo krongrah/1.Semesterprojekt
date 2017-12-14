@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Krongrah
  */
-public class HiScoreManager {
+class HiScoreManager {
 
     private List<String> goodHiScore = new ArrayList<>();
     private List<String> badHiScore = new ArrayList<>();
