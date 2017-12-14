@@ -123,7 +123,7 @@ public class World implements Serializable {
         };
         String[] bartenderLine1 = {
             "Isn't it a bit early for you to be here?",
-            "I think you should get back at work now."
+            "I think you should get to the police station, you shift started 2 hours ago now."
         };
         String[] bartenderLine2 = {
             "Detective Prickard is dead? I can't say I'm surprised, he didn't seem to get along with anyone, especially not you.",
