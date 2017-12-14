@@ -54,13 +54,13 @@ public class SaveFile implements Serializable{
       return gameState; 
     } 
     catch (FileNotFoundException f){
-        System.out.println("File does not exist");
+        System.err.println("File does not exist");
     }
     catch (IOException i){
-        System.out.println("IO exception found");
+        System.err.println("IO exception found");
     }
     catch (ClassNotFoundException c){
-        System.out.println("Class not found in file");
+        System.err.println("Class not found in file");
     } 
     return null;
   }
