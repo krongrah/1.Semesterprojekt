@@ -6,16 +6,18 @@
 package Acquaintance;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  *
  * @author Krongrah
  */
 public interface IFoundation {
-   void saveHiScoreList(ArrayList<String> list);
-   ArrayList<String> getHiScoreList();
-   void save(Object gameState);
-   Object getSavedGame();
+
+    void saveHiScoreList(ArrayList<String> list);
+
+    ArrayList<String> getHiScoreList();
+
+    void save(Object gameState);
+
+    Object getSavedGame();
 }
