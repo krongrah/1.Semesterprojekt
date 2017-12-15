@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import static javafx.application.Application.launch;
 import javafx.application.Platform;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -49,6 +50,8 @@ public class Initializer extends Application implements IFrontEnd {
         c.importBackEnd(backEnd);
 
         Scene scene = new Scene(root);
+        stage.getIcons().add(new Image("Images/TLDDIcon.png"));
+        stage.setTitle("The Life of Detective Dindunuffin");
         stage.setScene(scene);
         stage.show();
         c.startRooms();
