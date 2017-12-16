@@ -227,24 +227,35 @@ public class Game {
     }
 
     /**
-     * The drink method adds drunkenness, and removes the sips from the
-     * Beverage, and if it becomes empty, it gets thrown away.
+     * The drink method first checks if you have anything to drink in inventory
+     * if there is a Bevearge it is added to toDrink and the loop breaks, if not 
+     * toDrink stays null. It then checks toDrink and if it is null or a drink, 
+     * if it is null it print "You have nothing to drink!". But if it is a Bevarage
+     * adds drunkenness, and removes the sips from the Beverage, and if it 
+     * becomes empty, it gets thrown away.
      */
     public void drink() {
-        timeLoop(1);
+        Beverage toDrink = null;
         for (Item drink : player.getInventory().values()) {
             if (drink instanceof Beverage) {
-                System.out.println("You drink some " + ((Beverage) drink).getName() + ", you start to feel all your problems disappear");
-                player.addDrunkenness(((Beverage) drink).getAlcoholContent());
-                ((Beverage) drink).removeSip();
-                if (((Beverage) drink).getNumberOfSips() <= 0) {
-                    player.getInventory().remove(drink.getName());
-                    System.out.println("You emptied your bottle and tossed it away.");
-                }
+                toDrink = (Beverage) drink;
                 break;
+                }
+        }
+         if(null==toDrink){
+         System.out.println("You have nothing to drink!");
+        } 
+        if(toDrink instanceof Beverage) {
+        System.out.println("You drink some " + ((Beverage) toDrink).getName() + ", you start to feel all your problems disappear");
+        player.addDrunkenness(((Beverage) toDrink).getAlcoholContent());
+        ((Beverage) toDrink).removeSip();
+        if (((Beverage) toDrink).getNumberOfSips() <= 0) {
+            player.getInventory().remove(toDrink.getName());
+            System.out.println("You emptied your bottle and tossed it away.");
             }
         }
     }
+    
 
     /**
      * Sends the player and arrested NPC to Jail.
