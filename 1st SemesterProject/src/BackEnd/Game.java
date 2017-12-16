@@ -13,12 +13,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.Set;
 
 public class Game {
 
-    boolean wantToQuit = false;
     private PC player;
     private World world;
     private HiScoreManager manager = new HiScoreManager();
