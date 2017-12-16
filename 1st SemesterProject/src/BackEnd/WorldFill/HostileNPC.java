@@ -86,7 +86,7 @@ public class HostileNPC extends NPC implements Serializable {
     /**
      * Used make a HostileNPC peaceful
      *
-     * @set aggression to -1
+     * sets aggression to -1
      */
     public void calmDown() {
         setAggression(-1);
