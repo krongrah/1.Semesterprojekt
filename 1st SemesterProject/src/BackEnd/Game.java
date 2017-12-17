@@ -226,11 +226,11 @@ public class Game {
 
     /**
      * The drink method first checks if you have anything to drink in inventory
-     * if there is a Bevearge it is added to toDrink and the loop breaks, if not 
-     * toDrink stays null. It then checks toDrink and if it is null or a drink, 
-     * if it is null it print "You have nothing to drink!". But if it is a Bevarage
-     * adds drunkenness, and removes the sips from the Beverage, and if it 
-     * becomes empty, it gets thrown away.
+     * if there is a Bevearge it is added to toDrink and the loop breaks, if not
+     * toDrink stays null. It then checks toDrink and if it is null or a drink,
+     * if it is null it print "You have nothing to drink!". But if it is a
+     * Bevarage adds drunkenness, and removes the sips from the Beverage, and if
+     * it becomes empty, it gets thrown away.
      */
     public void drink() {
         Beverage toDrink = null;
@@ -238,22 +238,21 @@ public class Game {
             if (drink instanceof Beverage) {
                 toDrink = (Beverage) drink;
                 break;
-                }
+            }
         }
-         if(null==toDrink){
-         System.out.println("You have nothing to drink!");
-        } 
-        if(toDrink instanceof Beverage) {
-        System.out.println("You drink some " + ((Beverage) toDrink).getName() + ", you start to feel all your problems disappear");
-        player.addDrunkenness(((Beverage) toDrink).getAlcoholContent());
-        ((Beverage) toDrink).removeSip();
-        if (((Beverage) toDrink).getNumberOfSips() <= 0) {
-            player.getInventory().remove(toDrink.getName());
-            System.out.println("You emptied your bottle and tossed it away.");
+        if (null == toDrink) {
+            System.out.println("You have nothing to drink!");
+        }
+        if (toDrink instanceof Beverage) {
+            System.out.println("You drink some " + ((Beverage) toDrink).getName() + ", you start to feel all your problems disappear");
+            player.addDrunkenness(((Beverage) toDrink).getAlcoholContent());
+            ((Beverage) toDrink).removeSip();
+            if (((Beverage) toDrink).getNumberOfSips() <= 0) {
+                player.getInventory().remove(toDrink.getName());
+                System.out.println("You emptied your bottle and tossed it away.");
             }
         }
     }
-    
 
     /**
      * Sends the player and arrested NPC to Jail.
@@ -264,6 +263,7 @@ public class Game {
         System.out.println("You moved the scum to jail.");
         player.getRoom().moveNpc(scum, world.getRoom("Jail"));
         player.move(world.getRoom("Jail"));
+        world.getHobos().remove(scum);
         System.out.println("Commissioner: Good job, now you need to go find "
                 + "some better evidence to convict this bastard. I will be in the Police department.");
         world.getRoom("Home").addItemToRoom(world.getItem("Badge"));
